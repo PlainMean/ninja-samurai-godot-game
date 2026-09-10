@@ -24,6 +24,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Install verification dependencies
+        shell: bash
+        run: |
+          apt-get update -qq
+          apt-get install -y -qq ripgrep python3 libfontconfig1
+
       - name: Prepare matching export templates
         shell: bash
         run: |
