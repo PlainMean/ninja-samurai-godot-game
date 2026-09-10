@@ -1,0 +1,113 @@
+{
+  "description": "Byte-identical supplied artwork and provenance; originals are read-only.",
+  "files": [
+    {
+      "path": "art_sources/ninja/ASSET_SPEC.md",
+      "original": "/home/cmuxao/projects/hermes_area/aseprite-ninja-attack/ASSET_SPEC.md",
+      "bytes": 1102,
+      "sha256": "1b20c9c44ca7fcb7d1ea609c6a1fdf6b90cdde30667f0730b80ed030eea8abe1"
+    },
+    {
+      "path": "art_sources/ninja/generate_ninja.lua",
+      "original": "/home/cmuxao/projects/hermes_area/aseprite-ninja-attack/generate_ninja.lua",
+      "bytes": 5224,
+      "sha256": "1cc47dbd988c381a9da17045bd40704d223f5cab7244ab7e04b0be269d0f47f1"
+    },
+    {
+      "path": "art_sources/ninja/ninja_attack.aseprite",
+      "original": "/home/cmuxao/projects/hermes_area/aseprite-ninja-attack/ninja_attack.aseprite",
+      "bytes": 4771,
+      "sha256": "81348aa9879e6ab99258f0600a6e9d3933c53f462102f481ec223cfc32c72b8f"
+    },
+    {
+      "path": "art_sources/ninja/ninja_attack.gif",
+      "original": "/home/cmuxao/projects/hermes_area/aseprite-ninja-attack/ninja_attack.gif",
+      "bytes": 1645,
+      "sha256": "b2b21f11e05930d3f1cb8d6f04e34045ac79ab2ddaa9798eb36bf5c81e412d67"
+    },
+    {
+      "path": "art_sources/ninja/ninja_attack_sheet.png",
+      "original": "/home/cmuxao/projects/hermes_area/aseprite-ninja-attack/ninja_attack_sheet.png",
+      "bytes": 2154,
+      "sha256": "e1e83137c2bf258988927a49d7228d499eb069409a5bd4687a23b474d1397820"
+    },
+    {
+      "path": "art_sources/ninja/ninja_attack_sheet_4x.png",
+      "original": "/home/cmuxao/projects/hermes_area/aseprite-ninja-attack/ninja_attack_sheet_4x.png",
+      "bytes": 3437,
+      "sha256": "0d2837a99ff1b5dc59a94a75404fba8ef02a54530e1720038e9568819f251fef"
+    },
+    {
+      "path": "art_sources/ninja/verification.txt",
+      "original": "/home/cmuxao/projects/hermes_area/aseprite-ninja-attack/verification.txt",
+      "bytes": 644,
+      "sha256": "334c080756573ce0b001dd9f972cb4a9ef70b6328f4b7861d5beeccb56962b00"
+    },
+    {
+      "path": "art_sources/ninja/verify_ninja.lua",
+      "original": "/home/cmuxao/projects/hermes_area/aseprite-ninja-attack/verify_ninja.lua",
+      "bytes": 1886,
+      "sha256": "ae01a0dce518a9edb088e28faeb3eeaedc6a1c65852e034f3c3578c1af349e8e"
+    },
+    {
+      "path": "art_sources/samurai/ASSET_SPEC.md",
+      "original": "/home/cmuxao/projects/hermes_area/aseprite-samurai-attack/ASSET_SPEC.md",
+      "bytes": 1702,
+      "sha256": "1a8f62224e4035b1d708b49116671d0a0f466a32df6af82088d3cd474f7d6778"
+    },
+    {
+      "path": "art_sources/samurai/generate_samurai.lua",
+      "original": "/home/cmuxao/projects/hermes_area/aseprite-samurai-attack/generate_samurai.lua",
+      "bytes": 7728,
+      "sha256": "ca88ff18cce9d23114bc2c67867f02019f9d9c31d9aaeec4c2f476a76dbd34dd"
+    },
+    {
+      "path": "art_sources/samurai/samurai_attack.aseprite",
+      "original": "/home/cmuxao/projects/hermes_area/aseprite-samurai-attack/samurai_attack.aseprite",
+      "bytes": 3880,
+      "sha256": "c07cb27a6f49738328d6443643b818b159edfe0577cd34c91b7fd3b4de393414"
+    },
+    {
+      "path": "art_sources/samurai/samurai_attack.gif",
+      "original": "/home/cmuxao/projects/hermes_area/aseprite-samurai-attack/samurai_attack.gif",
+      "bytes": 1981,
+      "sha256": "548a373fee2a5604110f6dc6af5584100331ad117e1e4e1d50f2af2d2087d45c"
+    },
+    {
+      "path": "art_sources/samurai/samurai_attack_sheet.png",
+      "original": "/home/cmuxao/projects/hermes_area/aseprite-samurai-attack/samurai_attack_sheet.png",
+      "bytes": 2204,
+      "sha256": "d7a458287e34a07c55eff0fb1ab88a7960e170f62b87343e0188fcf19ceba987"
+    },
+    {
+      "path": "art_sources/samurai/samurai_attack_sheet_4x.png",
+      "original": "/home/cmuxao/projects/hermes_area/aseprite-samurai-attack/samurai_attack_sheet_4x.png",
+      "bytes": 3381,
+      "sha256": "04b9fcd190222a40f26205ae5943e1e8b11c44f919a23dcaa4716add36a93146"
+    },
+    {
+      "path": "art_sources/samurai/verification.txt",
+      "original": "/home/cmuxao/projects/hermes_area/aseprite-samurai-attack/verification.txt",
+      "bytes": 1023,
+      "sha256": "de035d76b00f08b0cdee579c6bd40c9d1963cf551213070a5d3c1bcf672c3e1c"
+    },
+    {
+      "path": "art_sources/samurai/verify_samurai.lua",
+      "original": "/home/cmuxao/projects/hermes_area/aseprite-samurai-attack/verify_samurai.lua",
+      "bytes": 3830,
+      "sha256": "1c83e411deb0e6de16cff825059a05259f13c8da3ea432691779aa99c583dade"
+    },
+    {
+      "path": "game/assets/sprites/ninja_attack_sheet.png",
+      "original": "/home/cmuxao/projects/hermes_area/aseprite-ninja-attack/ninja_attack_sheet.png",
+      "bytes": 2154,
+      "sha256": "e1e83137c2bf258988927a49d7228d499eb069409a5bd4687a23b474d1397820"
+    },
+    {
+      "path": "game/assets/sprites/samurai_attack_sheet.png",
+      "original": "/home/cmuxao/projects/hermes_area/aseprite-samurai-attack/samurai_attack_sheet.png",
+      "bytes": 2204,
+      "sha256": "d7a458287e34a07c55eff0fb1ab88a7960e170f62b87343e0188fcf19ceba987"
+    }
+  ]
+}

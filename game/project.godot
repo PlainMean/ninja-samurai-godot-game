@@ -1,0 +1,39 @@
+config_version=5
+
+[application]
+config/name="Ninja vs Samurai — Block & Counter"
+run/main_scene="res://scenes/duel.tscn"
+config/features=PackedStringArray("4.5", "GL Compatibility")
+
+[display]
+window/size/viewport_width=390
+window/size/viewport_height=844
+window/size/window_width_override=390
+window/size/window_height_override=844
+window/stretch/mode="canvas_items"
+window/stretch/aspect="keep"
+window/handheld/orientation=1
+
+[rendering]
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/default_filters/use_nearest_mipmap_filter=false
+textures/canvas_textures/default_texture_filter=0
+environment/defaults/default_clear_color=Color(0.125, 0.141, 0.22, 1)
+
+[input_devices]
+pointing/emulate_mouse_from_touch=false
+pointing/emulate_touch_from_mouse=false
+
+[audio]
+driver/driver="Dummy"
+
+[importer_defaults]
+texture={
+"compress/mode": 0,
+"mipmaps/generate": false,
+"process/fix_alpha_border": false,
+"process/premult_alpha": false,
+"process/size_limit": 0,
+"detect_3d/compress_to": 0
+}

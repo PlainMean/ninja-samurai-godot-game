@@ -1,0 +1,9 @@
+PASS: source 32x32, 6 frames, 4 editable layers, attack tag frames 1-6
+PASS: frame 1, 100ms, 368 visible pixels, 656 transparent pixels, unique pose
+PASS: frame 2, 100ms, 329 visible pixels, 695 transparent pixels, unique pose
+PASS: frame 3, 100ms, 415 visible pixels, 609 transparent pixels, unique pose
+PASS: frame 4, 100ms, 394 visible pixels, 630 transparent pixels, unique pose
+PASS: frame 5, 100ms, 336 visible pixels, 688 transparent pixels, unique pose
+PASS: frame 6, 100ms, 350 visible pixels, 674 transparent pixels, unique pose
+PASS: PNG sheet 192x32, native-resolution six-cell horizontal strip
+PASS: GIF 32x32, 6 frames, all 100ms

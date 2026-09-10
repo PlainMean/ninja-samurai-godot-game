@@ -1,0 +1,119 @@
+Final local verification — 2026-09-10
+
+Command: game/tests/verify.sh
+
+4.5.1.stable.official.f62fdbde1
+PASS ninja: 192x32 RGBA sheet, six 32x32 RGBA frames at 100 ms, forward attack tag, layers
+PASS samurai: 192x32 RGBA sheet, six 32x32 RGBA frames at 100 ms, forward attack tag, layers
+PASS 18 checksums
+art_sources/ninja/ASSET_SPEC.md: OK
+art_sources/ninja/generate_ninja.lua: OK
+art_sources/ninja/ninja_attack.aseprite: OK
+art_sources/ninja/ninja_attack.gif: OK
+art_sources/ninja/ninja_attack_sheet.png: OK
+art_sources/ninja/ninja_attack_sheet_4x.png: OK
+art_sources/ninja/verification.txt: OK
+art_sources/ninja/verify_ninja.lua: OK
+art_sources/samurai/ASSET_SPEC.md: OK
+art_sources/samurai/generate_samurai.lua: OK
+art_sources/samurai/samurai_attack.aseprite: OK
+art_sources/samurai/samurai_attack.gif: OK
+art_sources/samurai/samurai_attack_sheet.png: OK
+art_sources/samurai/samurai_attack_sheet_4x.png: OK
+art_sources/samurai/verification.txt: OK
+art_sources/samurai/verify_samurai.lua: OK
+game/assets/sprites/ninja_attack_sheet.png: OK
+game/assets/sprites/samurai_attack_sheet.png: OK
+Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org
+
+ERROR: Condition "_sock == -1" is true. Returning: FAILED
+   at: open (drivers/unix/net_socket_unix.cpp:267)
+ERROR: Condition "err != OK" is true. Returning: ERR_CANT_CREATE
+   at: listen (core/io/tcp_server.cpp:57)
+[   0% ] first_scan_filesystem | Started Project initialization (5 steps)
+[   0% ] first_scan_filesystem | Scanning file structure...
+[  16% ] first_scan_filesystem | Loading global class names...
+[  33% ] first_scan_filesystem | Verifying GDExtensions...
+[  50% ] first_scan_filesystem | Creating autoload scripts...
+[  66% ] first_scan_filesystem | Initializing plugins...
+[  83% ] first_scan_filesystem | Starting file scan...
+[ DONE ] first_scan_filesystem
+
+[   0% ] loading_editor_layout | Started Loading editor (5 steps)
+[   0% ] loading_editor_layout | Loading editor layout...
+[ DONE ] loading_editor_layout
+
+ERROR: Condition "_sock == -1" is true. Returning: FAILED
+   at: open (drivers/unix/net_socket_unix.cpp:267)
+ERROR: Condition "err != OK" is true. Returning: ERR_CANT_CREATE
+   at: listen (core/io/tcp_server.cpp:57)
+Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org
+
+RESULT: 309 checks, 0 failures
+Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org
+
+Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org
+
+ERROR: Condition "_sock == -1" is true. Returning: FAILED
+   at: open (drivers/unix/net_socket_unix.cpp:267)
+ERROR: Condition "err != OK" is true. Returning: ERR_CANT_CREATE
+   at: listen (core/io/tcp_server.cpp:57)
+[   0% ] first_scan_filesystem | Started Project initialization (5 steps)
+[   0% ] first_scan_filesystem | Scanning file structure...
+[  16% ] first_scan_filesystem | Loading global class names...
+[  33% ] first_scan_filesystem | Verifying GDExtensions...
+[  50% ] first_scan_filesystem | Creating autoload scripts...
+[  66% ] first_scan_filesystem | Initializing plugins...
+[  83% ] first_scan_filesystem | Starting file scan...
+[ DONE ] first_scan_filesystem
+
+[   0% ] savepack | Started Packing (102 steps)
+[   1% ] savepack | Storing File: res://.godot/exported/133200997/export-5d98a3c8c3e2b122bb56851abf05577f-duel.scn
+[  10% ] savepack | Storing File: res://scripts/duel.gdc
+[  19% ] savepack | Storing File: res://scripts/fighter_view.gdc
+[  28% ] savepack | Storing File: res://scripts/touch_action.gdc
+[  36% ] savepack | Storing File: res://scripts/browser_lifecycle.gdc
+[  45% ] savepack | Storing File: res://.godot/exported/133200997/export-82721361d4a978eabbdbfdbf7434375c-ninja_frames.res
+[  54% ] savepack | Storing File: res://.godot/imported/ninja_attack_sheet.png-727d4386a790e9e4a3236f0108dd2b21.ctex
+[  54% ] savepack | Storing File: res://assets/sprites/ninja_attack_sheet.png.import
+[  63% ] savepack | Storing File: res://.godot/exported/133200997/export-ee6311b8a42dd9e390aab14e83916be6-samurai_frames.res
+[  71% ] savepack | Storing File: res://.godot/imported/samurai_attack_sheet.png-c2142a20ccc3e6fa6279933d6e4d2c1b.ctex
+[  71% ] savepack | Storing File: res://assets/sprites/samurai_attack_sheet.png.import
+[  80% ] savepack | Storing File: res://.godot/exported/133200997/export-9a6adda577fe532429f54eeea7f9c564-duel_theme.res
+[  89% ] savepack | Storing File: res://scripts/combat_model.gdc
+[  89% ] savepack | Storing File: res://scenes/duel.tscn.remap
+[  89% ] savepack | Storing File: res://scripts/duel.gd.remap
+[  89% ] savepack | Storing File: res://scripts/fighter_view.gd.remap
+[  89% ] savepack | Storing File: res://scripts/touch_action.gd.remap
+[  89% ] savepack | Storing File: res://scripts/browser_lifecycle.gd.remap
+[  89% ] savepack | Storing File: res://assets/frames/ninja_frames.tres.remap
+[  89% ] savepack | Storing File: res://assets/frames/samurai_frames.tres.remap
+[  89% ] savepack | Storing File: res://assets/ui/duel_theme.tres.remap
+[  89% ] savepack | Storing File: res://scripts/combat_model.gd.remap
+[  89% ] savepack | Storing File: res://.godot/global_script_class_cache.cfg
+[  89% ] savepack | Storing File: res://.godot/uid_cache.bin
+[  89% ] savepack | Storing File: res://project.binary
+[ DONE ] savepack
+
+ERROR: Condition "_sock == -1" is true. Returning: FAILED
+   at: open (drivers/unix/net_socket_unix.cpp:267)
+ERROR: Condition "err != OK" is true. Returning: ERR_CANT_CREATE
+   at: listen (core/io/tcp_server.cpp:57)
+Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org
+
+CREDITS.md: 1,815 bytes; gzip level 9: 915 bytes
+THIRD_PARTY_NOTICES.txt: 107,348 bytes; gzip level 9: 28,655 bytes
+index.audio.position.worklet.js: 2,973 bytes; gzip level 9: 1,161 bytes
+index.audio.worklet.js: 7,298 bytes; gzip level 9: 2,194 bytes
+index.html: 7,264 bytes; gzip level 9: 2,778 bytes
+index.js: 305,185 bytes; gzip level 9: 77,052 bytes
+index.pck: 28,748 bytes; gzip level 9: 18,036 bytes
+index.png: 21,443 bytes; gzip level 9: 19,328 bytes
+index.wasm: 38,034,280 bytes; gzip level 9: 9,237,412 bytes
+PASS single-threaded bundle, 25 pack entries; 38,516,354 raw bytes / 9,387,531 gzip bytes
+Verification complete. Logs: build/*.log
+
+Command: python3 game/tests/check_source_assets.py --originals
+PASS ninja: 192x32 RGBA sheet, six 32x32 RGBA frames at 100 ms, forward attack tag, layers
+PASS samurai: 192x32 RGBA sheet, six 32x32 RGBA frames at 100 ms, forward attack tag, layers
+PASS 18 checksums and byte-identical originals

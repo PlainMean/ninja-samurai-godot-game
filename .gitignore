@@ -1,0 +1,5 @@
+# Local editor/import state and generated releases
+.godot/
+*.import
+build/
+node_modules/

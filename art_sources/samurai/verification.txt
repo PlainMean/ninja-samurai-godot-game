@@ -1,0 +1,14 @@
+Aseprite 1.3.18.3-dev — independent saved-artifact verification
+PASS: source is 32x32 RGBA, 6 real timeline frames, 3 editable transparent layers
+PASS: attack tag spans frames 1–6, forward playback
+PASS: frame 1: 100 ms, 298 opaque / 726 transparent pixels, checksum 144216932
+PASS: frame 2: 100 ms, 278 opaque / 746 transparent pixels, checksum 1586487201
+PASS: frame 3: 100 ms, 297 opaque / 727 transparent pixels, checksum 1284732047
+PASS: frame 4: 100 ms, 313 opaque / 711 transparent pixels, checksum 218816231
+PASS: frame 5: 100 ms, 292 opaque / 732 transparent pixels, checksum 382529670
+PASS: frame 6: 100 ms, 287 opaque / 737 transparent pixels, checksum 1032515516
+PASS: all 6 frames distinct: 15 exhaustive pairwise pixel comparisons
+PASS: native horizontal PNG is 192x32 and exactly matches all six source frames
+PASS: GIF is 32x32, 6 frames at 100 ms; all colors/transparency exactly match source
+PASS: 4x preview is 768x128; all 98,304 pixels verify exact nearest-neighbor scaling
+PASS: ALL CHECKS PASSED
