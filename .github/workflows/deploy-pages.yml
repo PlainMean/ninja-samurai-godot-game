@@ -33,15 +33,17 @@ jobs:
       - name: Prepare matching export templates
         shell: bash
         run: |
-          mkdir -p ~/.local/share/godot/export_templates
-          mv /root/.local/share/godot/export_templates/4.5.1.stable ~/.local/share/godot/export_templates/4.5.1.stable
+          mkdir -p "$HOME/.local/share/godot/export_templates"
+          if [ "$HOME/.local/share/godot/export_templates" != "/root/.local/share/godot/export_templates" ]; then
+            cp -a /root/.local/share/godot/export_templates/4.5.1.stable "$HOME/.local/share/godot/export_templates/"
+          fi
 
       - name: Run verification and export Godot Web build
         shell: bash
         run: |
           timeout 180s env \
             GODOT_BIN="$(command -v godot)" \
-            GODOT_TEMPLATE_DIR="/root/.local/share/godot/export_templates" \
+            GODOT_TEMPLATE_DIR="$HOME/.local/share/godot/export_templates" \
             game/tests/verify.sh
 
       - name: Upload Pages artifact
