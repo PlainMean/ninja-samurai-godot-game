@@ -1,0 +1,9 @@
+Aseprite 1.3.18.3-dev
+Command: aseprite --batch --script-param out=<archive> --script verify_moonlit_dojo.lua
+PASS ninja_support: 12 distinct frames; layers, tags, durations, palette, alpha, source/sheet equality
+PASS samurai_support: 9 distinct frames; layers, tags, durations, palette, alpha, source/sheet equality
+PASS dojo_backdrops: 3 distinct frames; layers, tags, durations, palette, alpha, source/sheet equality
+PASS dojo_props: 5 distinct frames; layers, tags, durations, palette, alpha, source/sheet equality
+PASS combat_fx: 12 distinct frames; layers, tags, durations, palette, alpha, source/sheet equality
+PASS dojo_icons: 10 distinct frames; layers, tags, durations, palette, alpha, source/sheet equality
+PASS 392489 assertions

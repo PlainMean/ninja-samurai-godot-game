@@ -1,222 +1,25 @@
-[gd_scene load_steps=9 format=3]
-
+[gd_scene load_steps=7 format=3]
 [ext_resource type="Script" path="res://scripts/duel.gd" id="1"]
-[ext_resource type="Script" path="res://scripts/fighter_view.gd" id="2"]
-[ext_resource type="Script" path="res://scripts/touch_action.gd" id="3"]
-[ext_resource type="Script" path="res://scripts/browser_lifecycle.gd" id="4"]
-[ext_resource type="SpriteFrames" path="res://assets/frames/ninja_frames.tres" id="5"]
-[ext_resource type="SpriteFrames" path="res://assets/frames/samurai_frames.tres" id="6"]
-[ext_resource type="Theme" path="res://assets/ui/duel_theme.tres" id="7"]
-[sub_resource type="StyleBoxFlat" id="panel"]
-bg_color = Color(0.96, 0.914, 0.82, 1)
-content_margin_left = 20.0
-content_margin_top = 28.0
-content_margin_right = 20.0
-content_margin_bottom = 24.0
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.125, 0.141, 0.22, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_left = 12
-corner_radius_bottom_right = 12
-
+[ext_resource type="PackedScene" path="res://scenes/arena.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/hud.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://scenes/run_modal.tscn" id="4"]
+[ext_resource type="Script" path="res://scripts/browser_lifecycle.gd" id="5"]
+[ext_resource type="Theme" path="res://assets/ui/duel_theme.tres" id="6"]
 [node name="Duel" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("7")
+theme = ExtResource("6")
 script = ExtResource("1")
-
 [node name="Backdrop" type="ColorRect" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-color = Color(0.898, 0.831, 0.698, 1)
-
-[node name="Arena" type="Node2D" parent="."]
-
-[node name="Ground" type="Line2D" parent="Arena"]
-points = PackedVector2Array(32, 450, 358, 450)
-width = 2.0
-default_color = Color(0.49, 0.43, 0.34, 1)
-
-[node name="Ninja" type="Node2D" parent="Arena"]
-position = Vector2(131, 450)
-script = ExtResource("2")
-frames = ExtResource("5")
-
-[node name="Samurai" type="Node2D" parent="Arena"]
-position = Vector2(259, 450)
-script = ExtResource("2")
-frames = ExtResource("6")
-faces_left = true
-
-[node name="HUD" type="Control" parent="."]
-layout_mode = 0
-offset_right = 390.0
-offset_bottom = 844.0
-mouse_filter = 2
-
-[node name="Title" type="Label" parent="HUD"]
-layout_mode = 0
-offset_left = 20.0
-offset_top = 48.0
-offset_right = 310.0
-offset_bottom = 80.0
-theme_override_font_sizes/font_size = 23
-text = "NINJA  vs  SAMURAI"
-mouse_filter = 2
-
-[node name="Header" type="HBoxContainer" parent="HUD"]
-layout_mode = 0
-offset_left = 20.0
-offset_top = 91.0
-offset_right = 370.0
-offset_bottom = 121.0
-mouse_filter = 2
-
-[node name="PlayerHealth" type="Label" parent="HUD/Header"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "You 3/3"
-
-[node name="EnemyHealth" type="Label" parent="HUD/Header"]
-layout_mode = 2
-text = "Samurai 3/3"
-
-[node name="PauseButton" type="Button" parent="HUD"]
-layout_mode = 0
-offset_left = 322.0
-offset_top = 42.0
-offset_right = 370.0
-offset_bottom = 90.0
-text = "Ⅱ"
-script = ExtResource("3")
-
-[node name="Cue" type="Label" parent="HUD"]
-layout_mode = 0
-offset_left = 14.0
-offset_top = 210.0
-offset_right = 376.0
-offset_bottom = 255.0
-theme_override_font_sizes/font_size = 26
-text = "Ready your guard"
-horizontal_alignment = 1
-
-[node name="PhaseProgress" type="ProgressBar" parent="HUD"]
-layout_mode = 0
-offset_left = 56.0
-offset_top = 274.0
-offset_right = 334.0
-offset_bottom = 282.0
-mouse_filter = 2
-show_percentage = false
-
-[node name="Feedback" type="Label" parent="HUD"]
-layout_mode = 0
-offset_left = 14.0
-offset_top = 492.0
-offset_right = 376.0
-offset_bottom = 528.0
-horizontal_alignment = 1
-
-[node name="Hint" type="Label" parent="HUD"]
-layout_mode = 0
-offset_left = 20.0
-offset_top = 594.0
-offset_right = 370.0
-offset_bottom = 626.0
-theme_override_font_sizes/font_size = 18
-text = "Block the warning. Then counter."
-horizontal_alignment = 1
-
-[node name="Actions" type="HBoxContainer" parent="HUD"]
-layout_mode = 0
-offset_left = 20.0
-offset_top = 656.0
-offset_right = 370.0
-offset_bottom = 752.0
-theme_override_constants/separation = 16
-mouse_filter = 2
-
-[node name="BlockButton" type="Button" parent="HUD/Actions"]
-custom_minimum_size = Vector2(167, 96)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "BLOCK"
-script = ExtResource("3")
-
-[node name="StrikeButton" type="Button" parent="HUD/Actions"]
-custom_minimum_size = Vector2(167, 96)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "STRIKE"
-script = ExtResource("3")
-
-[node name="Footer" type="Label" parent="HUD"]
-layout_mode = 0
-offset_left = 20.0
-offset_top = 775.0
-offset_right = 370.0
-offset_bottom = 805.0
-theme_override_font_sizes/font_size = 14
-text = "3 COUNTERS TO WIN  ·  3 HITS TO FALL"
-horizontal_alignment = 1
-
-[node name="Modal" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 0
-
-[node name="Scrim" type="ColorRect" parent="Modal"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-color = Color(0.125, 0.141, 0.22, 0.45)
-
-[node name="Panel" type="PanelContainer" parent="Modal"]
-layout_mode = 0
-offset_left = 20.0
-offset_top = 472.0
-offset_right = 370.0
-offset_bottom = 760.0
-theme_override_styles/panel = SubResource("panel")
-
-[node name="Content" type="VBoxContainer" parent="Modal/Panel"]
-layout_mode = 2
-theme_override_constants/separation = 18
-
-[node name="Heading" type="Label" parent="Modal/Panel/Content"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 28
-text = "Block & Counter"
-horizontal_alignment = 1
-
-[node name="Instructions" type="Label" parent="Modal/Panel/Content"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 18
-text = "Block the warning.\nStrike when the samurai opens up.\nLand 3 hits."
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="PrimaryButton" type="Button" parent="Modal/Panel/Content"]
-custom_minimum_size = Vector2(0, 64)
-layout_mode = 2
-text = "START DUEL"
-script = ExtResource("3")
-
+color = Color(0.082, 0.086, 0.145, 1)
+[node name="Arena" parent="." instance=ExtResource("2")]
+[node name="HUD" parent="." instance=ExtResource("3")]
+[node name="Modal" parent="." instance=ExtResource("4")]
 [node name="BrowserLifecycle" type="Node" parent="."]
-script = ExtResource("4")
+script = ExtResource("5")

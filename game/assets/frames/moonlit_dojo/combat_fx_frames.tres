@@ -1,0 +1,122 @@
+[gd_resource type="SpriteFrames" load_steps=14 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/sprites/moonlit_dojo/combat_fx_sheet.png" id="1_hovvo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qorym"]
+atlas = ExtResource("1_hovvo")
+region = Rect2(0, 0, 32, 32)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_avmop"]
+atlas = ExtResource("1_hovvo")
+region = Rect2(32, 0, 32, 32)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbmp5"]
+atlas = ExtResource("1_hovvo")
+region = Rect2(64, 0, 32, 32)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ie6mg"]
+atlas = ExtResource("1_hovvo")
+region = Rect2(96, 0, 32, 32)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yef24"]
+atlas = ExtResource("1_hovvo")
+region = Rect2(128, 0, 32, 32)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxmec"]
+atlas = ExtResource("1_hovvo")
+region = Rect2(160, 0, 32, 32)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ci0ey"]
+atlas = ExtResource("1_hovvo")
+region = Rect2(192, 0, 32, 32)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_on1fd"]
+atlas = ExtResource("1_hovvo")
+region = Rect2(224, 0, 32, 32)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fh8fq"]
+atlas = ExtResource("1_hovvo")
+region = Rect2(256, 0, 32, 32)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72osu"]
+atlas = ExtResource("1_hovvo")
+region = Rect2(288, 0, 32, 32)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mik2h"]
+atlas = ExtResource("1_hovvo")
+region = Rect2(320, 0, 32, 32)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bedj6"]
+atlas = ExtResource("1_hovvo")
+region = Rect2(352, 0, 32, 32)
+filter_clip = true
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_qorym")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_avmop")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wbmp5")
+}],
+"loop": false,
+"name": &"block",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_ie6mg")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_yef24")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_nxmec")
+}],
+"loop": false,
+"name": &"dodge",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_ci0ey")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_on1fd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fh8fq")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72osu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mik2h")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_bedj6")
+}],
+"loop": false,
+"name": &"seal",
+"speed": 10.0
+}]

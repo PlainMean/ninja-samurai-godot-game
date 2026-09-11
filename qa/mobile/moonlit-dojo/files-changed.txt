@@ -1,0 +1,103 @@
+ M .github/workflows/deploy-pages.yml
+ M CREDITS.md
+ M README.md
+ M game/README.md
+ M game/assets/ui/duel_theme.tres
+ M game/export_presets.cfg
+ M game/project.godot
+ M game/scenes/duel.tscn
+ M game/scripts/combat_model.gd
+ M game/scripts/duel.gd
+ M game/scripts/fighter_view.gd
+ M game/scripts/touch_action.gd
+ M game/tests/check_web_export.py
+ M game/tests/run_tests.gd
+ M game/tests/verify.sh
+ M game/web/shell.html
+ M qa/mobile/validation.md
+ M qa/mobile/verification.txt
+?? .hermes/plans/2026-09-10_203908-moonlit-dojo-expansion.md
+?? art_sources/moonlit_dojo/ASSET_SPEC.md
+?? art_sources/moonlit_dojo/combat_fx.aseprite
+?? art_sources/moonlit_dojo/combat_fx.json
+?? art_sources/moonlit_dojo/combat_fx_sheet.png
+?? art_sources/moonlit_dojo/dojo_backdrops.aseprite
+?? art_sources/moonlit_dojo/dojo_backdrops.json
+?? art_sources/moonlit_dojo/dojo_backdrops_sheet.png
+?? art_sources/moonlit_dojo/dojo_icons.aseprite
+?? art_sources/moonlit_dojo/dojo_icons.json
+?? art_sources/moonlit_dojo/dojo_icons_sheet.png
+?? art_sources/moonlit_dojo/dojo_props.aseprite
+?? art_sources/moonlit_dojo/dojo_props.json
+?? art_sources/moonlit_dojo/dojo_props_sheet.png
+?? art_sources/moonlit_dojo/generate_moonlit_dojo.lua
+?? art_sources/moonlit_dojo/ninja_support.aseprite
+?? art_sources/moonlit_dojo/ninja_support.json
+?? art_sources/moonlit_dojo/ninja_support_sheet.png
+?? art_sources/moonlit_dojo/samurai_support.aseprite
+?? art_sources/moonlit_dojo/samurai_support.json
+?? art_sources/moonlit_dojo/samurai_support_sheet.png
+?? art_sources/moonlit_dojo/verification.txt
+?? art_sources/moonlit_dojo/verify_moonlit_dojo.lua
+?? game/assets/frames/moonlit_dojo/combat_fx_frames.tres
+?? game/assets/frames/moonlit_dojo/dojo_backdrops_frames.tres
+?? game/assets/frames/moonlit_dojo/dojo_icons_frames.tres
+?? game/assets/frames/moonlit_dojo/dojo_props_frames.tres
+?? game/assets/frames/moonlit_dojo/ninja_support_frames.tres
+?? game/assets/frames/moonlit_dojo/samurai_support_frames.tres
+?? game/assets/sprites/moonlit_dojo/combat_fx_sheet.png
+?? game/assets/sprites/moonlit_dojo/dojo_backdrops_sheet.png
+?? game/assets/sprites/moonlit_dojo/dojo_icons_sheet.png
+?? game/assets/sprites/moonlit_dojo/dojo_props_sheet.png
+?? game/assets/sprites/moonlit_dojo/ninja_support_sheet.png
+?? game/assets/sprites/moonlit_dojo/samurai_support_sheet.png
+?? game/data/encounters/courtyard_retainer.tres
+?? game/data/encounters/dojo_master.tres
+?? game/data/encounters/gate_guard.tres
+?? game/scenes/arena.tscn
+?? game/scenes/fighter.tscn
+?? game/scenes/hud.tscn
+?? game/scenes/run_modal.tscn
+?? game/scripts/arena_view.gd
+?? game/scripts/arena_view.gd.uid
+?? game/scripts/combat_event.gd
+?? game/scripts/combat_event.gd.uid
+?? game/scripts/data/encounter_spec.gd
+?? game/scripts/data/encounter_spec.gd.uid
+?? game/scripts/data/pattern_spec.gd
+?? game/scripts/data/pattern_spec.gd.uid
+?? game/scripts/data/strike_spec.gd
+?? game/scripts/data/strike_spec.gd.uid
+?? game/scripts/effects_view.gd
+?? game/scripts/effects_view.gd.uid
+?? game/scripts/frame_playback.gd
+?? game/scripts/frame_playback.gd.uid
+?? game/scripts/hud.gd
+?? game/scripts/hud.gd.uid
+?? game/scripts/layout_helper.gd
+?? game/scripts/layout_helper.gd.uid
+?? game/scripts/run_modal.gd
+?? game/scripts/run_modal.gd.uid
+?? game/scripts/run_model.gd
+?? game/scripts/run_model.gd.uid
+?? game/tests/check_moonlit_assets.py
+?? game/tests/export_pack_smoke.gd
+?? game/tests/export_pack_smoke.gd.uid
+?? game/tests/model_gate.gd
+?? game/tests/model_gate.gd.uid
+?? game/tests/moonlit_asset_manifest.json
+?? game/tests/moonlit_assets.sha256
+?? game/tests/test_encounter_patterns.gd
+?? game/tests/test_encounter_patterns.gd.uid
+?? game/tests/test_moonlit_assets.gd
+?? game/tests/test_moonlit_assets.gd.uid
+?? game/tests/test_run_model.gd
+?? game/tests/test_run_model.gd.uid
+?? game/tests/test_run_scene.gd
+?? game/tests/test_run_scene.gd.uid
+?? game/tools/import_moonlit_assets.gd
+?? game/tools/import_moonlit_assets.gd.uid
+?? qa/mobile/moonlit-dojo/environment-attempts.txt
+?? qa/mobile/moonlit-dojo/files-changed.txt
+?? qa/mobile/moonlit-dojo/validation.md
+?? qa/mobile/moonlit-dojo/verification.txt

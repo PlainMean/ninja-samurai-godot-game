@@ -39,4 +39,6 @@ func _accept_down(index: int) -> void:
 	pointer_id = index
 	if not disabled:
 		set_pressed_no_signal(true)
+		# Consume this down before callbacks change visibility and clear ownership.
+		get_viewport().set_input_as_handled()
 		activated.emit()

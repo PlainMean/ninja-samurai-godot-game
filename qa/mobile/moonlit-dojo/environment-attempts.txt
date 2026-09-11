@@ -1,0 +1,20 @@
+$ python3 -m http.server 8060 --bind 127.0.0.1 --directory build
+exit 1
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/cmuxao/.local/share/uv/python/cpython-3.11.11-linux-x86_64-gnu/lib/python3.11/http/server.py", line 1313, in <module>
+    test(
+  File "/home/cmuxao/.local/share/uv/python/cpython-3.11.11-linux-x86_64-gnu/lib/python3.11/http/server.py", line 1260, in test
+    with ServerClass(addr, HandlerClass) as httpd:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cmuxao/.local/share/uv/python/cpython-3.11.11-linux-x86_64-gnu/lib/python3.11/socketserver.py", line 452, in __init__
+    self.socket = socket.socket(self.address_family,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cmuxao/.local/share/uv/python/cpython-3.11.11-linux-x86_64-gnu/lib/python3.11/socket.py", line 232, in __init__
+    _socket.socket.__init__(self, family, type, proto, fileno)
+PermissionError: [Errno 1] Operation not permitted
+
+$ /opt/brave.com/brave/brave --headless --no-sandbox --disable-gpu --user-data-dir=/tmp/moonlit-brave-qa --dump-dom about:blank
+exit -5
+[7:7:0911/090438.103116:ERROR:third_party/crashpad/crashpad/util/linux/socket.cc:45] setsockopt: Operation not permitted (1)

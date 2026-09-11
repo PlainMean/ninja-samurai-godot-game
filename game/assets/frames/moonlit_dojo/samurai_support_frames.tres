@@ -1,0 +1,103 @@
+[gd_resource type="SpriteFrames" load_steps=11 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/sprites/moonlit_dojo/samurai_support_sheet.png" id="1_p4wen"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nr2o2"]
+atlas = ExtResource("1_p4wen")
+region = Rect2(192, 0, 32, 32)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wrqls"]
+atlas = ExtResource("1_p4wen")
+region = Rect2(224, 0, 32, 32)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_erabb"]
+atlas = ExtResource("1_p4wen")
+region = Rect2(256, 0, 32, 32)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfllw"]
+atlas = ExtResource("1_p4wen")
+region = Rect2(128, 0, 32, 32)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6l8t"]
+atlas = ExtResource("1_p4wen")
+region = Rect2(160, 0, 32, 32)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kord8"]
+atlas = ExtResource("1_p4wen")
+region = Rect2(0, 0, 32, 32)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ro8o"]
+atlas = ExtResource("1_p4wen")
+region = Rect2(32, 0, 32, 32)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dh02o"]
+atlas = ExtResource("1_p4wen")
+region = Rect2(64, 0, 32, 32)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ocwye"]
+atlas = ExtResource("1_p4wen")
+region = Rect2(96, 0, 32, 32)
+filter_clip = true
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nr2o2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wrqls")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_erabb")
+}],
+"loop": false,
+"name": &"defeat",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hfllw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6l8t")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_kord8")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_2ro8o")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dh02o")
+}],
+"loop": false,
+"name": &"warn_cut",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ocwye")
+}],
+"loop": false,
+"name": &"warn_heavy",
+"speed": 10.0
+}]

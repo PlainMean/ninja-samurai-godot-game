@@ -1,12 +1,12 @@
-# Ninja vs Samurai — Block & Counter
+# Moonlit Dojo: Three Seals
 
-A one-screen, touch-only portrait duel built with Godot 4.5.1 Standard and GDScript. Block the warning, then Strike during the opening. Three counters win; three missed blocks lose. Includes Start, Pause/Resume, and Retry; no audio or keyboard dependency.
-
-From this repository:
+A portrait touch game built with Godot 4.5.1 Standard. Challenge three guardians: **Block CUT**, **Dodge HEAVY**, then **Strike when OPEN**. Double cuts require two fresh blocks. Carry your health through the dojo and choose a technique after each of the first two victories.
 
 ```bash
 game/tests/verify.sh
 ~/.local/bin/godot --path game
 ```
 
-The verification script imports, runs 309 headless checks, smoke-tests the scene, exports `build/web/index.html`, and smoke-tests the exported pack. See [game/README.md](game/README.md) for exact setup, individual commands, controls, architecture, and local HTTP instructions; [qa/mobile/validation.md](qa/mobile/validation.md) records actual results and remaining browser/device coverage. See [CREDITS.md](CREDITS.md) for artwork provenance.
+The verification wrapper checks preserved artwork, six new Aseprite asset sets, deterministic mechanics, full-run touch flows, lifecycle/layout, imports, scene smoke, HTML5 export, and an actual exported-pack three-encounter clear. The complete local artifact is `build/web/`.
+
+See [game setup and architecture](game/README.md), [actual verification and pending browser/device QA](qa/mobile/moonlit-dojo/validation.md), and [artwork provenance](CREDITS.md). Both implementation plans remain in `.hermes/plans/`. No publication is part of local verification.

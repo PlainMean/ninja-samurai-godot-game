@@ -12,23 +12,23 @@ corner_radius_top_right = 8
 corner_radius_bottom_left = 8
 corner_radius_bottom_right = 8
 [sub_resource type="StyleBoxFlat" id="disabled"]
-bg_color = Color(0.70, 0.65, 0.55, 1)
+bg_color = Color(0.20, 0.23, 0.34, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_left = 8
 corner_radius_bottom_right = 8
 [sub_resource type="StyleBoxFlat" id="bar_bg"]
-bg_color = Color(0.70, 0.65, 0.55, 1)
+bg_color = Color(0.20, 0.23, 0.34, 1)
 [sub_resource type="StyleBoxFlat" id="bar_fg"]
 bg_color = Color(0.145, 0.545, 0.569, 1)
 [sub_resource type="StyleBoxEmpty" id="empty"]
 [resource]
 default_font_size = 20
-Label/colors/font_color = Color(0.125, 0.141, 0.22, 1)
+Label/colors/font_color = Color(0.929, 0.949, 0.875, 1)
 Button/colors/font_color = Color(0.97, 0.94, 0.87, 1)
 Button/colors/font_hover_color = Color(0.97, 0.94, 0.87, 1)
 Button/colors/font_pressed_color = Color(1, 1, 1, 1)
-Button/colors/font_disabled_color = Color(0.28, 0.26, 0.24, 1)
+Button/colors/font_disabled_color = Color(0.60, 0.65, 0.70, 1)
 Button/font_sizes/font_size = 20
 Button/styles/normal = SubResource("normal")
 Button/styles/hover = SubResource("normal")

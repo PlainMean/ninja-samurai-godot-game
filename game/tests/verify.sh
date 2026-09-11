@@ -24,13 +24,17 @@ run() {
     fi
 }
 run version "$GODOT_BIN" --version
+[[ "$(cat build/version.log)" == "4.5.1.stable.official.f62fdbde1" ]]
 python3 game/tests/check_source_assets.py
 sha256sum -c game/tests/source_assets.sha256
+python3 game/tests/check_moonlit_assets.py
+sha256sum -c game/tests/moonlit_assets.sha256
 run import "$GODOT_BIN" --headless --path game --editor --import
 run tests "$GODOT_BIN" --headless --path game --script res://tests/run_tests.gd
 run smoke "$GODOT_BIN" --headless --path game --quit-after 120
 run export "$GODOT_BIN" --headless --path game --export-release Web ../build/web/index.html
 run export-smoke "$GODOT_BIN" --headless --path build/web --main-pack index.pck --quit-after 120
+run export-run "$GODOT_BIN" --headless --path build/web --main-pack index.pck --script "$PWD/game/tests/export_pack_smoke.gd"
 cp CREDITS.md THIRD_PARTY_NOTICES.txt build/web/
 python3 game/tests/check_web_export.py
 printf 'Verification complete. Logs: build/*.log\n'

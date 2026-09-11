@@ -1,0 +1,136 @@
+[gd_resource type="SpriteFrames" load_steps=12 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/sprites/moonlit_dojo/dojo_icons_sheet.png" id="1_vh2yc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bh6rv"]
+atlas = ExtResource("1_vh2yc")
+region = Rect2(64, 0, 16, 16)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_auu6x"]
+atlas = ExtResource("1_vh2yc")
+region = Rect2(96, 0, 16, 16)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_alnlm"]
+atlas = ExtResource("1_vh2yc")
+region = Rect2(16, 0, 16, 16)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8fgki"]
+atlas = ExtResource("1_vh2yc")
+region = Rect2(0, 0, 16, 16)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ir8qj"]
+atlas = ExtResource("1_vh2yc")
+region = Rect2(80, 0, 16, 16)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y3ims"]
+atlas = ExtResource("1_vh2yc")
+region = Rect2(144, 0, 16, 16)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bgauy"]
+atlas = ExtResource("1_vh2yc")
+region = Rect2(128, 0, 16, 16)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bj007"]
+atlas = ExtResource("1_vh2yc")
+region = Rect2(112, 0, 16, 16)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i88rf"]
+atlas = ExtResource("1_vh2yc")
+region = Rect2(32, 0, 16, 16)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_icid8"]
+atlas = ExtResource("1_vh2yc")
+region = Rect2(48, 0, 16, 16)
+filter_clip = true
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bh6rv")
+}],
+"loop": false,
+"name": &"cut",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_auu6x")
+}],
+"loop": false,
+"name": &"double_cut",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_alnlm")
+}],
+"loop": false,
+"name": &"heart_empty",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8fgki")
+}],
+"loop": false,
+"name": &"heart_full",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ir8qj")
+}],
+"loop": false,
+"name": &"heavy",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y3ims")
+}],
+"loop": false,
+"name": &"iron_resolve",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bgauy")
+}],
+"loop": false,
+"name": &"long_breath",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bj007")
+}],
+"loop": false,
+"name": &"mend",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i88rf")
+}],
+"loop": false,
+"name": &"seal_empty",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_icid8")
+}],
+"loop": false,
+"name": &"seal_full",
+"speed": 10.0
+}]

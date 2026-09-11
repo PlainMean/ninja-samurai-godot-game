@@ -1,3 +1,9 @@
+# Expansion update — 2026-09-11
+
+Moonlit Dojo: Three Seals is implemented and locally verified: 3,179 automated checks, six independently audited Aseprite sets, HTML5 export and exported-pack three-encounter clear pass. Browser/device acceptance remains blocked. See the [expansion record](moonlit-dojo/validation.md), [exact file inventory](moonlit-dojo/files-changed.txt), and [actual output](moonlit-dojo/verification.txt). The historical record below is retained unchanged.
+
+---
+
 # Implementation validation — 2026-09-10
 
 Implemented locally in `/home/cmuxao/repos/ninja-samurai-godot-game` using Godot **4.5.1 Standard**, `4.5.1.stable.official.f62fdbde1`, with matching `4.5.1.stable/web_nothreads_release.zip` templates. Renderer: Compatibility. Export: single-threaded GDScript, no extensions/PWA/virtual keyboard.

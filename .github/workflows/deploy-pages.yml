@@ -46,6 +46,13 @@ jobs:
             GODOT_TEMPLATE_DIR="$HOME/.local/share/godot/export_templates" \
             game/tests/verify.sh
 
+      - name: Upload failed verification logs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: verification-logs
+          path: build/*.log
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:

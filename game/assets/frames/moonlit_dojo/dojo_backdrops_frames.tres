@@ -1,0 +1,45 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/sprites/moonlit_dojo/dojo_backdrops_sheet.png" id="1_jvn8r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0auh"]
+atlas = ExtResource("1_jvn8r")
+region = Rect2(195, 0, 195, 128)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gfq3n"]
+atlas = ExtResource("1_jvn8r")
+region = Rect2(390, 0, 195, 128)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lswsb"]
+atlas = ExtResource("1_jvn8r")
+region = Rect2(0, 0, 195, 128)
+filter_clip = true
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0auh")
+}],
+"loop": false,
+"name": &"courtyard",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gfq3n")
+}],
+"loop": false,
+"name": &"dojo",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lswsb")
+}],
+"loop": false,
+"name": &"gate",
+"speed": 10.0
+}]

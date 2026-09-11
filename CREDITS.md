@@ -7,8 +7,14 @@ Ninja and samurai artwork was supplied with this project. The supplied files do 
 | Ninja | `/home/cmuxao/projects/hermes_area/aseprite-ninja-attack` | `game/assets/sprites/ninja_attack_sheet.png` | `art_sources/ninja/ninja_attack.aseprite` |
 | Samurai | `/home/cmuxao/projects/hermes_area/aseprite-samurai-attack` | `game/assets/sprites/samurai_attack_sheet.png` | `art_sources/samurai/samurai_attack.aseprite` |
 
-Both runtime sheets are byte-identical 192×32 RGBA PNGs: six native 32×32 frames, 100 ms each. The samurai is flipped only at runtime. No artwork was regenerated or resized. The existing archive also preserves each specification, Lua generator, Lua verifier, recorded verification report, GIF, and enlarged preview. Only the two native sheets enter the game pack.
+Both runtime sheets are byte-identical 192×32 RGBA PNGs: six native 32×32 frames, 100 ms each. The samurai is flipped only at runtime. No supplied artwork was regenerated or resized. The existing archive also preserves each specification, Lua generator, Lua verifier, recorded verification report, GIF, and enlarged preview. Only the two native attack sheets from these original archives enter the game pack.
 
-The complete original paths, file sizes, and SHA-256 hashes are in [asset_manifest.json](game/tests/asset_manifest.json) and [source_assets.sha256](game/tests/source_assets.sha256). Both original repositories were read only. The Lua generators and verifiers were not executed.
+The complete original paths, file sizes, and SHA-256 hashes are in [asset_manifest.json](game/tests/asset_manifest.json) and [source_assets.sha256](game/tests/source_assets.sha256). Both original repositories were read only. The original Lua generators and verifiers were not executed.
 
 Godot Engine 4.5.1 Standard provides the engine, default font, and UI primitives. The custom HTML shell is adapted from `godot.html` inside the matching `web_nothreads_release.zip`. Godot is distributed under the MIT license; its engine and bundled component notices, including font notices, are preserved in [THIRD_PARTY_NOTICES.txt](THIRD_PARTY_NOTICES.txt), extracted from the installed engine's own license APIs. The verification script includes both notices files beside the exported game.
+
+## Moonlit Dojo expansion — 2026-09-11
+
+Six additional layered assets were authored locally by Codex using **Aseprite 1.3.18.3-dev Sprite/Image Lua APIs**: `ninja_support`, `samurai_support`, `dojo_backdrops`, `dojo_props`, `combat_fx`, and `dojo_icons`. Their 51 frames, native PNG strips, JSON metadata, reproducible generator, specification, and independent source-to-sheet verifier are archived in [art_sources/moonlit_dojo](art_sources/moonlit_dojo/). Support drawing routines adapt the supplied generators to preserve fighter proportions and palettes; the supplied files themselves remain byte-identical. This provenance does not invent a license grant for supplied or derived artwork.
+
+Only the six new native PNG strips and generated SpriteFrames resources ship alongside the original attack sheets. No diffusion, Python/Pillow, ImageMagick, SVG, browser, or Godot raster authoring was used. New manifests are separate: [moonlit_asset_manifest.json](game/tests/moonlit_asset_manifest.json) and [moonlit_assets.sha256](game/tests/moonlit_assets.sha256).

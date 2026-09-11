@@ -1,0 +1,66 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/sprites/moonlit_dojo/dojo_props_sheet.png" id="1_ksqg5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7eokd"]
+atlas = ExtResource("1_ksqg5")
+region = Rect2(32, 0, 16, 32)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n68ci"]
+atlas = ExtResource("1_ksqg5")
+region = Rect2(64, 0, 16, 32)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ta80y"]
+atlas = ExtResource("1_ksqg5")
+region = Rect2(48, 0, 16, 32)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fdy7"]
+atlas = ExtResource("1_ksqg5")
+region = Rect2(0, 0, 16, 32)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmw85"]
+atlas = ExtResource("1_ksqg5")
+region = Rect2(16, 0, 16, 32)
+filter_clip = true
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7eokd")
+}],
+"loop": false,
+"name": &"banner_gate",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n68ci")
+}],
+"loop": false,
+"name": &"banner_master",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ta80y")
+}],
+"loop": false,
+"name": &"banner_retainer",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2fdy7")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_kmw85")
+}],
+"loop": true,
+"name": &"lantern",
+"speed": 10.0
+}]

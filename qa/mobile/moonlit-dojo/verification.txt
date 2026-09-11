@@ -1,0 +1,221 @@
+$ game/tests/verify.sh
+Exit: 0
+4.5.1.stable.official.f62fdbde1
+PASS ninja: 192x32 RGBA sheet, six 32x32 RGBA frames at 100 ms, forward attack tag, layers
+PASS samurai: 192x32 RGBA sheet, six 32x32 RGBA frames at 100 ms, forward attack tag, layers
+PASS 18 checksums
+art_sources/ninja/ASSET_SPEC.md: OK
+art_sources/ninja/generate_ninja.lua: OK
+art_sources/ninja/ninja_attack.aseprite: OK
+art_sources/ninja/ninja_attack.gif: OK
+art_sources/ninja/ninja_attack_sheet.png: OK
+art_sources/ninja/ninja_attack_sheet_4x.png: OK
+art_sources/ninja/verification.txt: OK
+art_sources/ninja/verify_ninja.lua: OK
+art_sources/samurai/ASSET_SPEC.md: OK
+art_sources/samurai/generate_samurai.lua: OK
+art_sources/samurai/samurai_attack.aseprite: OK
+art_sources/samurai/samurai_attack.gif: OK
+art_sources/samurai/samurai_attack_sheet.png: OK
+art_sources/samurai/samurai_attack_sheet_4x.png: OK
+art_sources/samurai/verification.txt: OK
+art_sources/samurai/verify_samurai.lua: OK
+game/assets/sprites/ninja_attack_sheet.png: OK
+game/assets/sprites/samurai_attack_sheet.png: OK
+PASS ninja_support: 12 frames, source/runtime bytes, decoded RGBA, exact metadata
+PASS samurai_support: 9 frames, source/runtime bytes, decoded RGBA, exact metadata
+PASS dojo_backdrops: 3 frames, source/runtime bytes, decoded RGBA, exact metadata
+PASS dojo_props: 5 frames, source/runtime bytes, decoded RGBA, exact metadata
+PASS combat_fx: 12 frames, source/runtime bytes, decoded RGBA, exact metadata
+PASS dojo_icons: 10 frames, source/runtime bytes, decoded RGBA, exact metadata
+PASS six sets / 51 frames; 10391 added PNG bytes; 504320 resident atlas RGBA bytes; 34 hashes
+art_sources/moonlit_dojo/ASSET_SPEC.md: OK
+art_sources/moonlit_dojo/combat_fx.aseprite: OK
+art_sources/moonlit_dojo/combat_fx.json: OK
+art_sources/moonlit_dojo/combat_fx_sheet.png: OK
+art_sources/moonlit_dojo/dojo_backdrops.aseprite: OK
+art_sources/moonlit_dojo/dojo_backdrops.json: OK
+art_sources/moonlit_dojo/dojo_backdrops_sheet.png: OK
+art_sources/moonlit_dojo/dojo_icons.aseprite: OK
+art_sources/moonlit_dojo/dojo_icons.json: OK
+art_sources/moonlit_dojo/dojo_icons_sheet.png: OK
+art_sources/moonlit_dojo/dojo_props.aseprite: OK
+art_sources/moonlit_dojo/dojo_props.json: OK
+art_sources/moonlit_dojo/dojo_props_sheet.png: OK
+art_sources/moonlit_dojo/generate_moonlit_dojo.lua: OK
+art_sources/moonlit_dojo/ninja_support.aseprite: OK
+art_sources/moonlit_dojo/ninja_support.json: OK
+art_sources/moonlit_dojo/ninja_support_sheet.png: OK
+art_sources/moonlit_dojo/samurai_support.aseprite: OK
+art_sources/moonlit_dojo/samurai_support.json: OK
+art_sources/moonlit_dojo/samurai_support_sheet.png: OK
+art_sources/moonlit_dojo/verification.txt: OK
+art_sources/moonlit_dojo/verify_moonlit_dojo.lua: OK
+game/assets/frames/moonlit_dojo/combat_fx_frames.tres: OK
+game/assets/frames/moonlit_dojo/dojo_backdrops_frames.tres: OK
+game/assets/frames/moonlit_dojo/dojo_icons_frames.tres: OK
+game/assets/frames/moonlit_dojo/dojo_props_frames.tres: OK
+game/assets/frames/moonlit_dojo/ninja_support_frames.tres: OK
+game/assets/frames/moonlit_dojo/samurai_support_frames.tres: OK
+game/assets/sprites/moonlit_dojo/combat_fx_sheet.png: OK
+game/assets/sprites/moonlit_dojo/dojo_backdrops_sheet.png: OK
+game/assets/sprites/moonlit_dojo/dojo_icons_sheet.png: OK
+game/assets/sprites/moonlit_dojo/dojo_props_sheet.png: OK
+game/assets/sprites/moonlit_dojo/ninja_support_sheet.png: OK
+game/assets/sprites/moonlit_dojo/samurai_support_sheet.png: OK
+Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org
+
+ERROR: Condition "_sock == -1" is true. Returning: FAILED
+   at: open (drivers/unix/net_socket_unix.cpp:267)
+ERROR: Condition "err != OK" is true. Returning: ERR_CANT_CREATE
+   at: listen (core/io/tcp_server.cpp:57)
+[   0% ] first_scan_filesystem | Started Project initialization (5 steps)
+[   0% ] first_scan_filesystem | Scanning file structure...
+[  16% ] first_scan_filesystem | Loading global class names...
+[  33% ] first_scan_filesystem | Verifying GDExtensions...
+[  50% ] first_scan_filesystem | Creating autoload scripts...
+[  66% ] first_scan_filesystem | Initializing plugins...
+[  83% ] first_scan_filesystem | Starting file scan...
+[ DONE ] first_scan_filesystem
+
+[   0% ] update_scripts_classes | Started Registering global classes... (2 steps)
+[   0% ] update_scripts_classes |
+[  33% ] update_scripts_classes |
+[ DONE ] update_scripts_classes
+
+[   0% ] loading_editor_layout | Started Loading editor (5 steps)
+[   0% ] loading_editor_layout | Loading editor layout...
+[ DONE ] loading_editor_layout
+
+ERROR: Condition "_sock == -1" is true. Returning: FAILED
+   at: open (drivers/unix/net_socket_unix.cpp:267)
+ERROR: Condition "err != OK" is true. Returning: ERR_CANT_CREATE
+   at: listen (core/io/tcp_server.cpp:57)
+Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org
+
+RESULT: 3179 checks, 0 failures
+Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org
+
+Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org
+
+ERROR: Condition "_sock == -1" is true. Returning: FAILED
+   at: open (drivers/unix/net_socket_unix.cpp:267)
+ERROR: Condition "err != OK" is true. Returning: ERR_CANT_CREATE
+   at: listen (core/io/tcp_server.cpp:57)
+[   0% ] first_scan_filesystem | Started Project initialization (5 steps)
+[   0% ] first_scan_filesystem | Scanning file structure...
+[  16% ] first_scan_filesystem | Loading global class names...
+[  33% ] first_scan_filesystem | Verifying GDExtensions...
+[  50% ] first_scan_filesystem | Creating autoload scripts...
+[  66% ] first_scan_filesystem | Initializing plugins...
+[  83% ] first_scan_filesystem | Starting file scan...
+[ DONE ] first_scan_filesystem
+
+[   0% ] savepack | Started Packing (102 steps)
+[   1% ] savepack | Storing File: res://.godot/exported/133200997/export-33bfc284bb53c641a359272eba4a4f2d-combat_fx_frames.res
+[   3% ] savepack | Storing File: res://.godot/imported/combat_fx_sheet.png-f8a2f28bc23b67cb2010d0ac33bd73ab.ctex
+[   3% ] savepack | Storing File: res://assets/sprites/moonlit_dojo/combat_fx_sheet.png.import
+[   5% ] savepack | Storing File: res://.godot/exported/133200997/export-ed01b486b8d3c1ae65a3c848e1a8bb52-dojo_backdrops_frames.res
+[   8% ] savepack | Storing File: res://.godot/imported/dojo_backdrops_sheet.png-26e4076c7df84a3750ef8d6d7aef8757.ctex
+[   8% ] savepack | Storing File: res://assets/sprites/moonlit_dojo/dojo_backdrops_sheet.png.import
+[  10% ] savepack | Storing File: res://.godot/exported/133200997/export-ab483fcb64d70c0320b021e87e1ced40-dojo_icons_frames.res
+[  13% ] savepack | Storing File: res://.godot/imported/dojo_icons_sheet.png-a56728c085580460e0d7c9b128544424.ctex
+[  13% ] savepack | Storing File: res://assets/sprites/moonlit_dojo/dojo_icons_sheet.png.import
+[  15% ] savepack | Storing File: res://.godot/exported/133200997/export-f6d138861716e1a3bc80fe69b6cbf95e-dojo_props_frames.res
+[  18% ] savepack | Storing File: res://.godot/imported/dojo_props_sheet.png-4707d3a64e720f30ddd3e7a16a5cffa5.ctex
+[  18% ] savepack | Storing File: res://assets/sprites/moonlit_dojo/dojo_props_sheet.png.import
+[  20% ] savepack | Storing File: res://.godot/exported/133200997/export-55a79f6133412f1110b9dd90d3eb77c9-ninja_support_frames.res
+[  22% ] savepack | Storing File: res://.godot/imported/ninja_support_sheet.png-d1d16779a1093996f2ad6a0367c0509b.ctex
+[  22% ] savepack | Storing File: res://assets/sprites/moonlit_dojo/ninja_support_sheet.png.import
+[  25% ] savepack | Storing File: res://.godot/exported/133200997/export-8bdb33bbb6625ace453debd6337e5c00-samurai_support_frames.res
+[  27% ] savepack | Storing File: res://.godot/imported/samurai_support_sheet.png-bd3af7b97e5e7b3ccea5228addb8dc6c.ctex
+[  27% ] savepack | Storing File: res://assets/sprites/moonlit_dojo/samurai_support_sheet.png.import
+[  30% ] savepack | Storing File: res://.godot/exported/133200997/export-82721361d4a978eabbdbfdbf7434375c-ninja_frames.res
+[  32% ] savepack | Storing File: res://.godot/imported/ninja_attack_sheet.png-727d4386a790e9e4a3236f0108dd2b21.ctex
+[  32% ] savepack | Storing File: res://assets/sprites/ninja_attack_sheet.png.import
+[  34% ] savepack | Storing File: res://.godot/exported/133200997/export-ee6311b8a42dd9e390aab14e83916be6-samurai_frames.res
+[  36% ] savepack | Storing File: res://.godot/imported/samurai_attack_sheet.png-c2142a20ccc3e6fa6279933d6e4d2c1b.ctex
+[  36% ] savepack | Storing File: res://assets/sprites/samurai_attack_sheet.png.import
+[  39% ] savepack | Storing File: res://.godot/exported/133200997/export-808ba440873ba9f7bbb4c3a39f70ed73-courtyard_retainer.res
+[  41% ] savepack | Storing File: res://scripts/data/encounter_spec.gdc
+[  43% ] savepack | Storing File: res://scripts/data/pattern_spec.gdc
+[  46% ] savepack | Storing File: res://scripts/data/strike_spec.gdc
+[  48% ] savepack | Storing File: res://.godot/exported/133200997/export-5a44fc42020fd94e3d0764e9aa7c0b6c-dojo_master.res
+[  51% ] savepack | Storing File: res://.godot/exported/133200997/export-04e52c00ae8c5daad8fa6d31d8e1c870-gate_guard.res
+[  53% ] savepack | Storing File: res://.godot/exported/133200997/export-a4de5e1f3ea5bccc0e835cc4a2e40ae5-arena.scn
+[  56% ] savepack | Storing File: res://scripts/arena_view.gdc
+[  58% ] savepack | Storing File: res://.godot/exported/133200997/export-ead7262c2c1a15c79d999465febfa3c5-fighter.scn
+[  60% ] savepack | Storing File: res://scripts/fighter_view.gdc
+[  63% ] savepack | Storing File: res://scripts/effects_view.gdc
+[  65% ] savepack | Storing File: res://.godot/exported/133200997/export-5d98a3c8c3e2b122bb56851abf05577f-duel.scn
+[  67% ] savepack | Storing File: res://scripts/duel.gdc
+[  69% ] savepack | Storing File: res://.godot/exported/133200997/export-38bf74ff262409a94a41206b2b776d33-hud.scn
+[  72% ] savepack | Storing File: res://scripts/hud.gdc
+[  74% ] savepack | Storing File: res://scripts/touch_action.gdc
+[  77% ] savepack | Storing File: res://.godot/exported/133200997/export-f5754dae13bdfec22c62c4085d4e122d-run_modal.scn
+[  79% ] savepack | Storing File: res://scripts/run_modal.gdc
+[  81% ] savepack | Storing File: res://scripts/browser_lifecycle.gdc
+[  84% ] savepack | Storing File: res://.godot/exported/133200997/export-9a6adda577fe532429f54eeea7f9c564-duel_theme.res
+[  86% ] savepack | Storing File: res://scripts/combat_event.gdc
+[  89% ] savepack | Storing File: res://scripts/combat_model.gdc
+[  91% ] savepack | Storing File: res://scripts/frame_playback.gdc
+[  94% ] savepack | Storing File: res://scripts/layout_helper.gdc
+[  96% ] savepack | Storing File: res://scripts/run_model.gdc
+[  96% ] savepack | Storing File: res://assets/frames/moonlit_dojo/combat_fx_frames.tres.remap
+[  96% ] savepack | Storing File: res://assets/frames/moonlit_dojo/dojo_backdrops_frames.tres.remap
+[  96% ] savepack | Storing File: res://assets/frames/moonlit_dojo/dojo_icons_frames.tres.remap
+[  96% ] savepack | Storing File: res://assets/frames/moonlit_dojo/dojo_props_frames.tres.remap
+[  96% ] savepack | Storing File: res://assets/frames/moonlit_dojo/ninja_support_frames.tres.remap
+[  96% ] savepack | Storing File: res://assets/frames/moonlit_dojo/samurai_support_frames.tres.remap
+[  96% ] savepack | Storing File: res://assets/frames/ninja_frames.tres.remap
+[  96% ] savepack | Storing File: res://assets/frames/samurai_frames.tres.remap
+[  96% ] savepack | Storing File: res://data/encounters/courtyard_retainer.tres.remap
+[  96% ] savepack | Storing File: res://scripts/data/encounter_spec.gd.remap
+[  96% ] savepack | Storing File: res://scripts/data/pattern_spec.gd.remap
+[  96% ] savepack | Storing File: res://scripts/data/strike_spec.gd.remap
+[  96% ] savepack | Storing File: res://data/encounters/dojo_master.tres.remap
+[  96% ] savepack | Storing File: res://data/encounters/gate_guard.tres.remap
+[  96% ] savepack | Storing File: res://scenes/arena.tscn.remap
+[  96% ] savepack | Storing File: res://scripts/arena_view.gd.remap
+[  96% ] savepack | Storing File: res://scenes/fighter.tscn.remap
+[  96% ] savepack | Storing File: res://scripts/fighter_view.gd.remap
+[  96% ] savepack | Storing File: res://scripts/effects_view.gd.remap
+[  96% ] savepack | Storing File: res://scenes/duel.tscn.remap
+[  96% ] savepack | Storing File: res://scripts/duel.gd.remap
+[  96% ] savepack | Storing File: res://scenes/hud.tscn.remap
+[  96% ] savepack | Storing File: res://scripts/hud.gd.remap
+[  96% ] savepack | Storing File: res://scripts/touch_action.gd.remap
+[  96% ] savepack | Storing File: res://scenes/run_modal.tscn.remap
+[  96% ] savepack | Storing File: res://scripts/run_modal.gd.remap
+[  96% ] savepack | Storing File: res://scripts/browser_lifecycle.gd.remap
+[  96% ] savepack | Storing File: res://assets/ui/duel_theme.tres.remap
+[  96% ] savepack | Storing File: res://scripts/combat_event.gd.remap
+[  96% ] savepack | Storing File: res://scripts/combat_model.gd.remap
+[  96% ] savepack | Storing File: res://scripts/frame_playback.gd.remap
+[  96% ] savepack | Storing File: res://scripts/layout_helper.gd.remap
+[  96% ] savepack | Storing File: res://scripts/run_model.gd.remap
+[  96% ] savepack | Storing File: res://.godot/global_script_class_cache.cfg
+[  96% ] savepack | Storing File: res://.godot/uid_cache.bin
+[  96% ] savepack | Storing File: res://project.binary
+[ DONE ] savepack
+
+ERROR: Condition "_sock == -1" is true. Returning: FAILED
+   at: open (drivers/unix/net_socket_unix.cpp:267)
+ERROR: Condition "err != OK" is true. Returning: ERR_CANT_CREATE
+   at: listen (core/io/tcp_server.cpp:57)
+Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org
+
+Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org
+
+PASS exported-pack complete three-encounter run, six atlases and typed data loaded
+CREDITS.md: 2,933 bytes; gzip level 9: 1,386 bytes
+THIRD_PARTY_NOTICES.txt: 107,348 bytes; gzip level 9: 28,655 bytes
+index.audio.position.worklet.js: 2,973 bytes; gzip level 9: 1,161 bytes
+index.audio.worklet.js: 7,298 bytes; gzip level 9: 2,194 bytes
+index.html: 7,264 bytes; gzip level 9: 2,773 bytes
+index.js: 305,185 bytes; gzip level 9: 77,052 bytes
+index.pck: 84,768 bytes; gzip level 9: 45,225 bytes
+index.png: 21,443 bytes; gzip level 9: 19,328 bytes
+index.wasm: 38,034,280 bytes; gzip level 9: 9,237,412 bytes
+PASS single-threaded bundle, 85 pack entries; 38,573,492 raw bytes / 9,415,186 gzip bytes
+Verification complete. Logs: build/*.log

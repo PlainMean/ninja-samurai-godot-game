@@ -1,106 +1,86 @@
-# Ninja vs Samurai — Block & Counter
+# Moonlit Dojo: Three Seals
 
-A complete one-screen duel at a logical 390×844 portrait viewport. Tap **Start duel**, tap **Block** during “Incoming”, then tap **Strike** during “Open”. Three counters win; three missed blocks lose. **Pause** (Ⅱ), **Resume**, and **Play again** all accept touch; real mouse clicks work on desktop. Holding does not repeat. No keyboard, audio, movement, installation, or external game dependencies.
+Tap **Begin run**, read each introduction, and tap **Fight**. Start with 5 HP and face Gate Warden (3 HP), Twin-cut Retainer (4 HP), and Moonlit Master (5 HP). Health carries between encounters. Block normal CUT, Dodge HEAVY, and defend both hits of a double cut with separate taps. Each warning accepts one irreversible defense; wrong or missing defenses cost 1 HP. Strike only in the opening earned by defending the entire pattern. Every counter deals 1 damage.
 
-## Setup and run
+After the first seal, choose Mend (restore 2 HP) or Long Breath (counter windows +300 ms). After the second, choose Mend or Iron Resolve (max HP 6, restore 1 HP). Mend is disabled at full health. Rewards apply once. Defeat finishes its animation before results. Retry and New run return to the first introduction with fresh HP and no upgrades. Pause requires an explicit Resume; Return to title discards the run. Touch and real mouse work without input emulation. Holding never repeats. No keyboard, audio, storage, plugins, or network service is required.
 
-Pinned engine: **Godot 4.5.1 Standard**, `4.5.1.stable.official.f62fdbde1`, installed at `~/.local/bin/godot`. Matching templates are installed under `~/.local/share/godot/export_templates/4.5.1.stable/`, including `web_nothreads_release.zip`. Use the Standard build, not .NET. Python 3 is used only for read-only metadata/checksum/bundle validation and optionally the HTTP server. No Python or external image tool creates or edits art.
+## Pinned setup
 
-Run all commands from `/home/cmuxao/repos/ninja-samurai-godot-game`:
+Use Godot **4.5.1 Standard**, exact build `4.5.1.stable.official.f62fdbde1`, Compatibility renderer, and matching `4.5.1.stable/web_nothreads_release.zip`. Default executables are `~/.local/bin/godot` and `~/.local/bin/aseprite`. Aseprite authorship used **1.3.18.3-dev**. CI validates checked-in art and resources without Aseprite.
+
+From the repository root:
 
 ```bash
-cd /home/cmuxao/repos/ninja-samurai-godot-game
-~/.local/bin/godot --version
 game/tests/verify.sh
-~/.local/bin/godot --path game
-# Optional visual editor:
-~/.local/bin/godot --path game --editor
-```
-
-The executable `verify.sh` creates ignored, repository-local XDG directories and links to the already-installed templates so restricted runs do not need to write into the home directory. To keep subsequent editor/runtime state inside this repository too, use:
-
-```bash
 export XDG_DATA_HOME="$PWD/build/local/data"
 export XDG_CACHE_HOME="$PWD/build/local/cache"
 export XDG_CONFIG_HOME="$PWD/build/local/config"
 ~/.local/bin/godot --path game
 ```
 
-On another machine, install that exact editor and matching standard export templates, then run `GODOT_BIN=/absolute/path/to/godot GODOT_TEMPLATE_DIR=/absolute/path/to/export_templates game/tests/verify.sh`. `GODOT_TEMPLATE_DIR` is the parent of `4.5.1.stable`, not the version directory itself. No plugin installation or asset regeneration is required.
+The wrapper creates ignored XDG directories and links installed export templates. Override `GODOT_BIN` and `GODOT_TEMPLATE_DIR` (the parent of `4.5.1.stable`) for another installation. It rejects any other engine build and detects script errors even when Godot exits zero.
 
-## Exact individual verification/export commands
+## Verification and maintenance
 
-After the repository-local XDG setup above (the wrapper creates the directories and template link):
+After the XDG setup above:
 
 ```bash
 ~/.local/bin/godot --version
 python3 game/tests/check_source_assets.py
 sha256sum -c game/tests/source_assets.sha256
+python3 game/tests/check_moonlit_assets.py
+sha256sum -c game/tests/moonlit_assets.sha256
 ~/.local/bin/godot --headless --path game --editor --import
 ~/.local/bin/godot --headless --path game --script res://tests/run_tests.gd
 ~/.local/bin/godot --headless --path game --quit-after 120
-mkdir -p build/web
 ~/.local/bin/godot --headless --path game --export-release Web ../build/web/index.html
 ~/.local/bin/godot --headless --path build/web --main-pack index.pck --quit-after 120
+~/.local/bin/godot --headless --path build/web --main-pack index.pck --script "$PWD/game/tests/export_pack_smoke.gd"
 cp CREDITS.md THIRD_PARTY_NOTICES.txt build/web/
 python3 game/tests/check_web_export.py
-# This optional check needs access to the two original local repositories:
-python3 game/tests/check_source_assets.py --originals
 git diff --check
-git status --short
 ```
 
-The model runner exits nonzero on failure. The wrapper also checks logs because Godot can return zero after a script load error. Logs live under `build/`. Editor import/export may print socket-listener errors inside this managed workspace, which prohibits socket creation; tests and both runtime smoke checks are clean. Export completion and pack loading are checked independently.
-
-## Serve the release
-
-On a machine that permits listening on localhost:
+The six layered sources, canonical PNGs, JSON, specification and independent verifier live in `art_sources/moonlit_dojo/`. To reproduce them in an ignored directory:
 
 ```bash
-python3 -m http.server 8060 --bind 127.0.0.1 --directory build/web
+~/.local/bin/aseprite --version
+~/.local/bin/aseprite --batch --script-param out="$PWD/build/art-repro" --script art_sources/moonlit_dojo/generate_moonlit_dojo.lua
+~/.local/bin/aseprite --batch --script-param out="$PWD/build/art-repro" --script art_sources/moonlit_dojo/verify_moonlit_dojo.lua
+python3 game/tests/check_moonlit_assets.py
+# Rebuild metadata-driven AtlasTexture/SpriteFrames resources when maintaining assets:
+~/.local/bin/godot --headless --path game --script res://tools/import_moonlit_assets.gd
 ```
 
-In a second terminal:
+The generator uses Aseprite Sprite/Image APIs exclusively. Python performs read-only hashes, PNG decoding and metadata checks; it does not author or export art. Original ninja/samurai assets, reports, attack resources and both original manifests remain unchanged, including the original ninja's partial alpha. New alpha is binary. Runtime PNG copies match the native exports exactly. Checked-in SpriteFrames derive frame regions and duration multipliers from JSON; JSON and source archives never enter the pack.
+
+## Architecture and timing
+
+`CombatModel` consumes deterministic time boundaries, owns combat HP, and emits typed `CombatEvent` impacts. Immutable `EncounterSpec`, `PatternSpec`, and `StrikeSpec` resources describe the three fixed encounters. `RunModel` owns progression, carried HP, rewards, and aggregate statistics. `duel.gd` coordinates both, consumes terminal handoff exactly once after 400 ms, and projects state into reusable arena/fighter/HUD/modal scenes. Pooled effects do not deal damage.
+
+| Guardian | Pattern | Rest | Warnings | Counter window |
+| --- | --- | --- | --- | --- |
+| Gate Warden | Single CUT | 700 ms | 900 ms | 1,200 ms |
+| Twin-cut Retainer | Double CUT | 650 ms | 850 / 700 ms | 1,100 ms |
+| Moonlit Master | HEAVY, single CUT, double CUT | 600 ms | 1,050; 750; 750 / 650 ms | 1,000 ms |
+
+All attacks retain six original 100 ms frames, impact at 300 ms, and full 600 ms recovery. Inputs use half-open intervals. The coordinator shares one injectable monotonic clock between input and frame processing, so an interval is never consumed twice. Engine delta or wall gaps greater than 250 ms pause without unseen damage. Pre-impact enemy pauses replay the current warning while preserving earlier combo outcomes. Resolved impacts retain recovery; openings restart; player attacks retain elapsed time. Lifecycle notifications leave introductions/rewards/results inert. Decorative/effect clocks freeze during pause.
+
+Stopped AnimatedSprite2D playback uses metadata durations rounded to their authored millisecond precision. Support priority is defeat, hurt, attack, defense, warning, idle. Authored scenery is 2×; fighters are 4× with shared floor y=450 and offset (-16,-30). Only the enemy flips. Attack lunge peaks at 24 logical pixels; dodge retreats 20 pixels at impact. No runtime recolor, generated guard arcs, particles, or per-frame resource loads.
+
+Baseline logical layout is 390×844. The explicit compact layout uses logical height 780 for short available areas, raises the action row/footer and reduces empty arena space. Web content-scale size changes with this layout while retaining `canvas_items` / `keep`. Actions remain 110×96, pause 60×60; calculated CSS targets remain at least 48 px across the required portrait sizes. Containers and touch transitions have automated bounds/ownership tests; these do not replace browser visual QA.
+
+`touch_action.gd` consumes an accepted down before emitting its callback, preventing that same event from activating a newly revealed modal button after pointer cancellation. All prior release/cancel/second-finger/disabled-hold/mouse regressions remain tested. Browser lifecycle code is unchanged.
+
+## Local release and QA
 
 ```bash
-curl -fI http://127.0.0.1:8060/index.html
-curl -fI http://127.0.0.1:8060/index.wasm
-curl -fI http://127.0.0.1:8060/index.pck
+python3 -m http.server 8060 --bind 127.0.0.1 --directory build
+curl -fI http://127.0.0.1:8060/web/index.html
+curl -fI http://127.0.0.1:8060/web/index.wasm
+curl -fI http://127.0.0.1:8060/web/index.pck
 ```
 
-Open `http://127.0.0.1:8060/` in a WebGL 2/WebAssembly browser. Do not use `file://`. To test a nested URL without copying files, serve `build/` instead of `build/web/` and visit `/web/index.html`.
+Open the nested URL `http://127.0.0.1:8060/web/index.html`, never `file://`. Publish the complete `build/web/` only in an authorized deployment. It includes engine worklets and notices; no service worker, threads, SharedArrayBuffer or cross-origin isolation is required. The existing Pages workflow deploys only after successful verification on an authorized main push or dispatch. Failure logs are uploaded separately.
 
-Publish all files in `build/web/` together on an HTTPS static host, with `.wasm` served as `application/wasm`, `.pck` as `application/octet-stream`, and correct HTML/JS types. Enable gzip/Brotli on the host, preserve relative paths, and return 404 for missing assets. The export has threads, GDExtensions, PWA/service worker, and virtual keyboard disabled; it does not require cross-origin isolation headers. Standard templates emit unused audio worklet JS files even though this game has no audio. The complete output directory is the release artifact.
-
-## Rules and implementation
-
-| Phase | Time | Input / outcome |
-| --- | --- | --- |
-| Rest | 700 ms | Wait |
-| Warning | 900 ms | One fresh Block latches guard |
-| Samurai attack | 600 ms | Impact at 300 ms; a miss costs one of 3 HP |
-| Counter opening | 1,200 ms | One fresh Strike; expiration costs no HP |
-| Ninja attack | 600 ms | Impact at 300 ms removes one of 3 enemy HP |
-| Win/loss | Until retry | Final attack always finishes all 600 ms |
-
-`combat_model.gd` is a pure RefCounted state machine with a boundary-consuming `step(delta)`. It accepts input only inside half-open phase intervals and resolves each impact once. Large deltas are deterministic in model tests. `duel.gd` owns the model and projects its state into the single scene. Live frame gaps over 250 ms, measured with both engine delta and a monotonic clock, pause instead of consuming reaction windows.
-
-Pause cancels held pointers and clears the guard latch. A warning or enemy attack paused before impact returns to a fresh warning. An already-resolved impact keeps its result and remaining recovery; a successful block still earns its opening. Counter windows restart; player attacks retain their time. Resume always requires a tap. The web bridge retains its JavaScript callback and handles blur, visibility changes, and landscape; landscape also shows a readable shell overlay. Physical-device lifecycle behavior remains unverified.
-
-`touch_action.gd` handles native touch events and real mouse down/up directly, without emulation or a second built-in Button activation connection. Pointer ownership is shared across controls; release/cancel outside clears it. Disabled presses cannot become enabled actions while held. Modal and reset transitions clear ownership.
-
-## Art and presentation
-
-Only the two supplied native 192×32 sheets ship. Each SpriteFrames resource has six clipped AtlasTextures at `(i*32, 0, 32, 32)`, 10 fps, nonlooping. AnimatedSprite2D stays stopped; the model selects consecutive frames at 100 ms boundaries. Fighter scale is 4×, the shared floor is y=450, the sprite offset is `(-16,-30)`, and the samurai alone faces left. A 24-pixel lunge reaches contact at 300 ms. Guard arcs, tints, background, and UI use Godot primitives.
-
-Project importer defaults make regeneration of ignored `.import` files safe: lossless, no mipmaps, no resizing, no alpha-border modifications. Fighter CanvasItems explicitly use nearest filtering with texture repeat disabled. Tests compare imported RGBA bytes against both original runtime PNGs, preserving the ninja's partial alpha. First and final attack poses stand in for rest/recovery; there is no invented idle/block/death artwork.
-
-The existing `art_sources/` archive is preserved outside the Godot root, with `.gdignore`. [CREDITS.md](../CREDITS.md) identifies the sources. [asset_manifest.json](tests/asset_manifest.json) records every archived file plus the two runtime copies, with original absolute path, byte size, and SHA-256. Validation parses editable Aseprite frame durations, dimensions, depth, layer names, and the forward attack tag. It does not claim pixel equality between flattened Aseprite layers and PNG sheets; it establishes byte identity with the supplied files and exact PNG/imported-texture equality.
-
-## Verification record
-
-On 2026-09-10, the pinned editor version, headless import, **309 automated checks**, 120-frame scene smoke check, release Web export, and 120-frame exported-pack smoke check passed. Bundle checks confirm single-threaded settings, valid Wasm, configured sizes, presence of the combat model, and absence of tests/source archives in the 25-entry game pack.
-
-A local HTTP server was actually attempted but failed with `PermissionError: [Errno 1] Operation not permitted` at socket creation. Installed Chromium was also attempted through Playwright and failed during launch with `sandbox_host_linux.cc:41 … Operation not permitted`. No HTTP responses, browser screenshots, WebGL behavior, or physical iOS/Android results are claimed. Detailed coverage, sizes, remaining checks, and exact file inventory are in [qa/mobile/validation.md](../qa/mobile/validation.md).
-
-The approved plan is preserved unchanged. There were no commits, remote creation, or deployment in this implementation run. `.gitignore` excludes editor/import state, local dependencies, and generated builds; source scripts, UID sidecars, PNGs, resources, provenance, and documentation remain trackable.
+The current environment blocks localhost sockets and browser launch. Physical iOS/Android QA, screenshots, WebGL/readability, safe areas, network/MIME/HTTPS, device frame times, draw calls, browser memory and cold/warm load measurements remain pending. See the [dated QA record](../qa/mobile/moonlit-dojo/validation.md) for actual commands/results and complete file inventory. No live deployment is claimed.
