@@ -9,4 +9,6 @@ enemy_max_hp = 4
 backdrop_tag = &"courtyard"
 banner_tag = &"banner_retainer"
 element = 2
-intro_text = "Element: WATER · Weakness: WIND\nChoose an attack. Then the samurai acts."
+intro_text = "The WATER samurai returns.\nWIND wins; watch the mist reply."
+attack_elements = Array[int]([2, 4])
+attack_names = Array[String](["River return", "Mist cut"])

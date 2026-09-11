@@ -1,12 +1,14 @@
 class_name CombatModel
 extends RefCounted
+const EncounterData = preload("res://scripts/data/encounter_spec.gd")
 ## Sole damage authority. Time advances presentation only, never a player's choice.
 enum Phase { READY, PLAYER_TURN, PLAYER_ATTACK, ENEMY_TURN, ENEMY_ATTACK, WON, LOST }
 const ATTACK_TIME := 0.6
 const IMPACT_TIME := 0.3
 const ENEMY_TURN_TIME := 0.35
 const EPS := 0.000000001
-const DEFAULT_SPEC = preload("res://data/encounters/gate_guard.tres")
+# Runtime initialization avoids Resource/script compile-order cycles on fresh boot.
+static var DEFAULT_SPEC: EncounterSpec = load("res://data/encounters/gate_guard.tres")
 var spec: EncounterSpec = DEFAULT_SPEC
 var state: Phase = Phase.READY
 var elapsed := 0.0
@@ -75,7 +77,7 @@ func step(delta: float) -> void:
 		if is_attack() and not impact_resolved:
 			impact_resolved = true
 			var player := state == Phase.PLAYER_ATTACK
-			var element := selected_element if player else spec.element
+			var element := selected_element if player else intent_element()
 			var defender := spec.element if player else player_affinity
 			var amount := Element.damage_for(element, defender)
 			if player:
@@ -125,7 +127,7 @@ func _enter(next: Phase) -> void:
 	if terminal(): _emit(CombatEvent.Kind.WON if state == Phase.WON else CombatEvent.Kind.LOST)
 
 func enemy_intent() -> Dictionary:
-	return {"element": spec.element, "damage": 0 if terminal() else mini(player_hp, Element.damage_for(spec.element, player_affinity))}
+	return {"element": intent_element(), "name": intent_name(), "damage": 0 if terminal() else mini(player_hp, Element.damage_for(intent_element(), player_affinity))}
 
 func attack_forecast(element: Element.Type) -> Dictionary:
 	if state != Phase.PLAYER_TURN or element not in [Element.Type.FIRE, Element.Type.WATER, Element.Type.EARTH, Element.Type.WIND]: return {}
@@ -133,3 +135,9 @@ func attack_forecast(element: Element.Type) -> Dictionary:
 	return {"damage": amount, "lethal": amount == enemy_hp,
 		"reply": 0 if amount == enemy_hp else enemy_intent().damage,
 		"matchup": Element.resolve(element, spec.element)}
+
+func intent_element() -> Element.Type:
+	return spec.element if spec.attack_elements.is_empty() else spec.attack_elements[(turn_number-1) % spec.attack_elements.size()] as Element.Type
+
+func intent_name() -> String:
+	return "Strike" if spec.attack_names.is_empty() else spec.attack_names[(turn_number-1) % spec.attack_names.size()]

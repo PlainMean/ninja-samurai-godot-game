@@ -7,8 +7,8 @@ var now := 1000000
 func tap(t, viewport, button) -> void:
 	t.scene_tap(viewport, button)
 func beat(t, screen, viewport) -> void:
-	tap(t, viewport, screen.attack_buttons[3])
-	t.check(screen.model.state == C.Phase.PLAYER_ATTACK, "scene WIND accepted")
+	tap(t, viewport, screen.attack_buttons[Element.weakness(screen.run.spec().element)-1])
+	t.check(screen.model.state == C.Phase.PLAYER_ATTACK, "scene weakness accepted")
 	for frame in range(6):
 		screen.model.elapsed = frame * 0.1
 		screen._refresh()
@@ -61,9 +61,9 @@ func run(t) -> void:
 			s.pause_duel()
 			s.advance(5)
 			t.check(not s.paused and s.run.state == R.State.INTRO, "intro inert on lifecycle/time")
-			for encounter in range(3):
+			for encounter in range(8):
 				tap(t,viewport,s.primary_button)
-				t.check(s.run.state == R.State.FIGHT and s.model.enemy_hp == [3,4,5][encounter], "Fight configures encounter")
+				t.check(s.run.state == R.State.FIGHT and s.model.enemy_hp == [3,4,5,3,4,4,5,5][encounter], "Fight configures encounter")
 				while not s.model.terminal(): beat(t,s,viewport)
 				t.check(not s.modal.visible and s.run.seals == encounter, "lethal recovery before terminal handoff")
 				s.advance(0.399)
@@ -77,14 +77,14 @@ func run(t) -> void:
 				s.advance(0.001)
 				await fits(t,s)
 				t.check(s.run.seals == encounter+1 and s.modal.visible and s.samurai.sprite.animation == &"defeat" and s.samurai.sprite.frame == 2, "one seal and held defeat at 400ms")
-				if encounter < 2:
+				if encounter < 7:
 					s.pause_duel()
 					t.check(not s.paused and s.run.state == R.State.INTERMISSION, "reward lifecycle inert")
 					t.check(s.choice_a.disabled == (s.run.hp == s.run.max_hp), "Mend disabled only at full HP")
 					tap(t,viewport,s.choice_a if mend else s.choice_b)
 					t.check(s.run.state == R.State.INTRO and s.model.state == C.Phase.READY, "reward enters fresh intro without leakage " + str(s.run.state) + "/" + str(s.model.state))
-				t.check(s.run.attacks == [2,4,7][encounter], "landed attack stats")
-			t.check(s.run.state == R.State.CLEARED and s.run.seals == 3 and s.run.attacks == 7, "touch-only three encounter clear")
+				t.check(s.run.attacks == [2,4,7,9,11,13,16,19][encounter], "landed attack stats")
+			t.check(s.run.state == R.State.CLEARED and s.run.seals == 8 and s.run.attacks == 19, "touch-only eight encounter clear")
 			tap(t,viewport,s.primary_button)
 			t.check(s.run.state == R.State.INTRO and s.run.hp == 5 and s.run.upgrades.is_empty(), "New run fresh")
 			var baseline: int = s.find_children("*", "", true, false).size()
@@ -178,7 +178,7 @@ func run(t) -> void:
 		t.check(s.model.player_hp==4 and s.model.enemy_hp==2 and s.model.attacks==1 and s.model.state==C.Phase.PLAYER_TURN,"scene resume resolves once")
 	s._title()
 	s._primary()
-	s.run.encounter_index=2
+	s.run.encounter_index=7
 	s._primary()
 	t.check('Enemy: WATER · Weakness: WIND' in s.hud.get_node("ElementInfo").text,"final boss explicitly WATER with WIND weakness")
 	s._attack(Element.Type.WIND)

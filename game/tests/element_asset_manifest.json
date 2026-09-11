@@ -1,0 +1,24 @@
+{
+  "sha256": {
+    "art_sources/elements/earth.aseprite": "67530e9c2c7b624144f4c844b1104e054a8f79681a651b039c10d9c574b66dc4",
+    "art_sources/elements/earth.json": "82a7e5307a098747f41bf61e18d94699733cb8a11b5272265a2fb10f663b9c05",
+    "art_sources/elements/earth_sheet.png": "9f849eee5039a1c1de3aa7850c0fb9881def35aca692045f3f19297849f42d48",
+    "art_sources/elements/fire.aseprite": "1880c7f05f925331dad5e93d72ed9ebc9d220c29ee8296b4293743779a45b52b",
+    "art_sources/elements/fire.json": "0c70c7c24954f1364d1773c1d8a9543d13cb74eaba12b7132ecf89d91d4fce54",
+    "art_sources/elements/fire_sheet.png": "2f75ff3d8ab62f21e77fbdf6b51499446474fc73abfe411ff1d8d1daa9c3cc9a",
+    "art_sources/elements/water.aseprite": "2ac79ee645f7158728053d8a00a362259291851895593806293ac827dd6ba006",
+    "art_sources/elements/water.json": "459b5dd3f9f7cb138383a4347cb4ea00f21bb58085b61c5e12ab1b972c6ea654",
+    "art_sources/elements/water_sheet.png": "3e38328b3c4c2fa100ea2b5a6477f789a32729bb7ec4e7320037102641391bd9",
+    "art_sources/elements/wind.aseprite": "197984331dec104ebbae3d0564f581d87babfd34387fc91eaf29adf3106819c4",
+    "art_sources/elements/wind.json": "10158c00694ffc16dea2a2b8d4837ba7fd58b7fdd620228362937a5b56f66fa5",
+    "art_sources/elements/wind_sheet.png": "fca1067ee91f05b676ceee1e94e1b0fec97186b5e6f09551f324d99df8767dd8",
+    "game/assets/sprites/elements/earth_sheet.png": "9f849eee5039a1c1de3aa7850c0fb9881def35aca692045f3f19297849f42d48",
+    "game/assets/sprites/elements/fire_sheet.png": "2f75ff3d8ab62f21e77fbdf6b51499446474fc73abfe411ff1d8d1daa9c3cc9a",
+    "game/assets/sprites/elements/water_sheet.png": "3e38328b3c4c2fa100ea2b5a6477f789a32729bb7ec4e7320037102641391bd9",
+    "game/assets/sprites/elements/wind_sheet.png": "fca1067ee91f05b676ceee1e94e1b0fec97186b5e6f09551f324d99df8767dd8",
+    "game/assets/frames/elements/earth_frames.tres": "5d23396765a388fb8c148885b64f2ae7da82de73acad06124cd79b44b1e7eb01",
+    "game/assets/frames/elements/fire_frames.tres": "5a79b696122511fb113765a96b216f0113ab9f480393aac7e0506f797abb1e1a",
+    "game/assets/frames/elements/water_frames.tres": "e7327ddede01db113035208aa4f64edcc31bd2880ed1661b18a952175b739002",
+    "game/assets/frames/elements/wind_frames.tres": "d272389dc21c975871f68dec6f276cc845ede31cb5a0f7fd064c162a79f31355"
+  }
+}

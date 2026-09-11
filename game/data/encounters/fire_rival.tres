@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EncounterSpec" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/data/encounter_spec.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"fire_rival"
+display_name = "Cinder Rival"
+enemy_max_hp = 4
+backdrop_tag = &"courtyard"
+banner_tag = &"banner_retainer"
+element = 1
+intro_text = "A rival waits among the lanterns.\nWATER quenches the FIRE stance."
+attack_elements = Array[int]([1, 1, 4])
+attack_names = Array[String](["Ember cut", "Flame thrust", "Smoke sweep"])

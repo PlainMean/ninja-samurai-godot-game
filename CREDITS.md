@@ -27,3 +27,19 @@ APIs through `~/.local/bin/aseprite`. Editable sources, JSON and reproducible Lu
 `art_sources/journey/`; byte-identical runtime sheets:
 `game/assets/sprites/journey/`. Hashes: `game/tests/journey_asset_manifest.json`.
 All previously credited art and its manifests remain unchanged.
+
+## Eight Seals elemental effects — 2026-09-12
+Four original impact animations (`water`, `fire`, `earth`, `wind`) authored by
+this Codex-assisted project session exclusively through **Aseprite
+1.3.18.3-dev Sprite/Image Lua APIs**, using `~/.local/bin/aseprite`. Blue curling
+surf, red rising flame, brown shattered stone and white air arcs each contain
+four distinct 48×48 frames at 100ms. No supplied pixels were changed or copied
+into these effects. Editable sources, JSON, native PNGs and reproducible Lua:
+`art_sources/elements/`. Byte-identical runtime strips and SpriteFrames:
+`game/assets/sprites/elements/`, `game/assets/frames/elements/`.
+Independent binary source/PNG/palette verification and 20 hashes:
+`game/tests/check_element_assets.py`, `game/tests/element_asset_manifest.json`.
+Python is used only for read-only verification and textual metadata; no Pillow,
+ImageMagick, SVG, browser canvas, diffusion or Godot raster authoring was used.
+All eight guardians use the previously credited samurai art; no new character
+sprite provenance or license grant is implied.

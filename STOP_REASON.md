@@ -1,22 +1,25 @@
-# Sophistication continuation stop — 2026-09-11
+# Eight Seals stop — 2026-09-12
 
-Completed pass 3: one of up to three additional passes, three total including
-preserved passes 1–2. The reward decision now has exact health/capacity previews
-and next-guardian health information in existing controls. Both targeted and full
-verification pass 3,677 checks / zero failures; wrapper/export/pack smoke and
-whitespace gates pass. No balance, elemental matchup, encounter or art changes.
+Completed **2 of at most 5 passes** from clean `21e178f`: eight encounter
+Resources with varied affinities and named reply cycles; four Aseprite-authored
+colored impact effects for both actors; eight-level journey/shrine/archive flow;
+deterministic progression, forecasts, rewards, defeat/retry/reset and full clear.
 
-Stop at the quality boundary: native X11/Wayland still cannot initialize;
-browser/device validation remains unavailable. Ward/focus controls and enemy
-intent/status balance changes remain deferred. The safe reward presentation pass
-is complete; no further pass was started. This is not a time-ceiling claim or
-release acceptance. No new scenes, raster assets or control geometry were added.
+Final full verification: **13,944 checks / zero failures**, Web export and actual
+exported eight-level clear, independent art/metadata/hash and pack dependency
+gates. Pack: 123 entries / 111,796 bytes. All 69 pre-existing tracked art files
+remain byte-identical. No assertions skipped or behavior checks weakened.
 
-Evidence: [pass 3 QA](qa/mobile/sophistication/pass-3-validation.md).
-Roadmap: [.hermes plan](.hermes/plans/2026-09-11_171852-sophistication-roadmap.md).
-Earlier pass evidence and the dirty route/shrine/reveal/forecast work remain.
+Stop at the visual QA boundary: native X11/Wayland and Xvfb cannot initialize;
+no game screenshots captured. Four source strips were inspected. Browser WebGL,
+touch, physical iOS/Android safe areas/lifecycle/readability/performance remain
+unverified. No additional feature pass started; this is not release acceptance.
+No push or deployment. Artifact: `build/web/index.html` and its sibling bundle.
 
-All changes remain in the working tree. No commit was attempted during this
-continuation: the user explicitly prohibited it and .git/index is read-only.
-No push or deployment. Runtime model identity/effort cannot be changed or
-independently verified through workspace tools; no model-switch claim is made.
+Plan: [.hermes/plans/2026-09-12-eight-seals.md](.hermes/plans/2026-09-12-eight-seals.md).
+Actual results and retained failures: [dated QA](qa/mobile/eight-seals/2026-09-12-validation.md).
+
+Local commit was attempted but **blocked by the read-only `.git` filesystem**:
+Git could not create `.git/index.lock` (exit 128). No commit was created; verified
+changes remain in the working tree. Evidence: `qa/mobile/eight-seals/commit-attempt.txt`.
+No permission escalation, push or deployment was attempted.

@@ -9,4 +9,6 @@ enemy_max_hp = 3
 backdrop_tag = &"gate"
 banner_tag = &"banner_gate"
 element = 2
-intro_text = "Element: WATER · Weakness: WIND\nChoose an attack. Then the samurai acts."
+intro_text = "Read the weakness, then choose.\nWIND breaks this WATER guardian."
+attack_elements = Array[int]([2])
+attack_names = Array[String](["River lesson"])

@@ -86,10 +86,10 @@ func _consume_events() -> void:
 		match event.kind:
 			CombatEvent.Kind.ENEMY_HIT:
 				hurt_player = presentation_time
-				$Arena/Effects.trigger(&"hit", Vector2(195,390))
+				$Arena/Effects.trigger_element(event.element, Vector2(138,386))
 			CombatEvent.Kind.PLAYER_HIT:
 				hurt_enemy = presentation_time
-				$Arena/Effects.trigger(&"hit", Vector2(195,390))
+				$Arena/Effects.trigger_element(event.element, Vector2(252,386))
 			CombatEvent.Kind.WON, CombatEvent.Kind.LOST: terminal_time = 0.0
 		feedback_time = 0.65
 func _attack(element: Element.Type) -> void:
@@ -143,14 +143,14 @@ func _cancel_pointers() -> void:
 	for button in attack_buttons + [pause_button,primary_button,choice_a,choice_b,secondary_button]:
 		if is_instance_valid(button): button.cancel_pointer()
 func snapshot() -> Dictionary:
-	var cue: String = {Combat.Phase.READY: "Choose your element", Combat.Phase.PLAYER_TURN: "PLAYER TURN", Combat.Phase.PLAYER_ATTACK: "Resolving your attack", Combat.Phase.ENEMY_TURN: "ENEMY TURN", Combat.Phase.ENEMY_ATTACK: "Resolving WATER attack", Combat.Phase.WON: "Seal earned", Combat.Phase.LOST: "Run ended"}[model.state]
+	var cue: String = {Combat.Phase.READY: "Choose your element", Combat.Phase.PLAYER_TURN: "PLAYER TURN", Combat.Phase.PLAYER_ATTACK: "Resolving your attack", Combat.Phase.ENEMY_TURN: "ENEMY TURN", Combat.Phase.ENEMY_ATTACK: "Resolving %s attack" % Element.label(model.enemy_intent().element), Combat.Phase.WON: "Seal earned", Combat.Phase.LOST: "Run ended"}[model.state]
 	var selected := Element.label(model.selected_element)
 	var result := "Choose FIRE, WATER, EARTH or WIND"
 	if model.selected_element != Element.Type.NONE:
 		result = "%s · %s · %d damage" % [selected, Element.Matchup.keys()[Element.resolve(model.selected_element, run.spec().element)], Element.damage_for(model.selected_element, run.spec().element)]
 	return {"hp": model.player_hp if run.state == Run.State.FIGHT else run.hp, "max_hp": run.max_hp,
 		"enemy_hp": model.enemy_hp, "enemy_max_hp": run.spec().enemy_max_hp, "enemy_name": run.spec().display_name,
-		"seals": run.seals, "encounter": run.encounter_index + 1, "cue": cue,
+		"total": Run.ENCOUNTERS.size(), "seals": run.seals, "encounter": run.encounter_index + 1, "cue": cue,
 		"feedback": "\n".join(model.combat_log), "technique": "Selected: %s\n%s" % [selected, result],
 		"turn": model.turn_number, "enemy_element": Element.label(run.spec().element), "affinity": Element.label(model.player_affinity), "weakness": Element.label(Element.weakness(run.spec().element)),
 		"intent": model.enemy_intent(), "forecasts": [model.attack_forecast(Element.Type.FIRE), model.attack_forecast(Element.Type.WATER), model.attack_forecast(Element.Type.EARTH), model.attack_forecast(Element.Type.WIND)]}
@@ -175,24 +175,24 @@ func _refresh() -> void:
 	else:
 		match run.state:
 			Run.State.TITLE:
-				heading = "Three Seals"
-				instructions = "Choose an element on your turn.\nThe WATER samurai then attacks.\nWIND beats WATER: 2 damage."
+				heading = "Eight Seals"
+				instructions = "Read each guardian’s weakness.\nChoose an element; the foe replies.\nEight seals open the archive."
 				primary = "Begin run"
 			Run.State.INTRO:
 				heading = run.spec().display_name
-				instructions = "%d / 3\n%s" % [run.encounter_index + 1, run.spec().intro_text]
+				instructions = "%d / %d · %s / weak %s\n%s" % [run.encounter_index + 1, Run.ENCOUNTERS.size(), Element.label(run.spec().element), Element.label(Element.weakness(run.spec().element)), run.spec().intro_text]
 				primary = "Fight"
 			Run.State.INTERMISSION:
 				heading = "Choose a technique"
-				instructions = "Seal %d / 3 earned · HP %d / %d\n%s" % [run.seals,run.hp,run.max_hp,run.next_guardian_text()]
+				instructions = "Seal %d / %d · HP %d / %d\n%s" % [run.seals,Run.ENCOUNTERS.size(),run.hp,run.max_hp,run.next_guardian_text()]
 				choices = run.reward_choices()
 			Run.State.CLEARED:
 				heading = "Dojo cleared"
-				instructions = "Seals 3 / 3 · HP %d / %d\n%d attacks · %d damage taken" % [run.hp,run.max_hp,run.attacks,run.damage]
+				instructions = "Seals %d / %d · HP %d / %d\n%d attacks · %d damage taken" % [run.seals,Run.ENCOUNTERS.size(),run.hp,run.max_hp,run.attacks,run.damage]
 				primary = "New run"
 			Run.State.FAILED:
 				heading = "Run ended"
-				instructions = "Seals %d / 3\n%s" % [run.seals,run.loss_hint]
+				instructions = "Seals %d / %d\n%s" % [run.seals,Run.ENCOUNTERS.size(),run.loss_hint]
 				primary = "Retry run"
 	modal.present(heading,instructions,primary,choices,paused)
 	modal.present_journey(run, presentation_time, paused)

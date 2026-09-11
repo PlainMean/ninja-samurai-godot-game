@@ -1,29 +1,55 @@
-# Moonlit Dojo: Three Seals
+# Moonlit Dojo: Eight Seals
 
-Tap **Begin run**, read the introduction, and tap **Fight**. Start with 5 HP and face Gate Warden (3 HP), Twin-cut Retainer (4 HP), and Moonlit Master (5 HP). All three samurai are **WATER**; their only weakness is **WIND**, explicitly shown on the HUD and introductions, including the final boss.
+Start with 5 HP. Read the guardian’s affinity and weakness, then choose one of
+four elements. Decisions have no timer. A surviving foe replies with the
+technique shown in Intent. Your chosen attack never changes your affinity:
+the player remains NONE, so enemy replies deal one damage in this route.
 
-Choose **FIRE**, **WATER**, **EARTH**, or **WIND** on your player turn. There is no decision deadline. Your attack resolves, then a surviving samurai automatically takes one WATER turn. The next player turn waits for a fresh tap. There are no defense inputs, reaction warnings, or counter windows.
+| Attack / Defender | FIRE | WATER | EARTH | WIND | NONE |
+| --- | --- | --- | --- | --- | --- |
+| FIRE | 1 | 1 | 2 | 1 | 1 |
+| WATER | 2 | 1 | 1 | 1 | 1 |
+| EARTH | 1 | 1 | 1 | 2 | 1 |
+| WIND | 1 | 2 | 1 | 1 | 1 |
 
-Rows are attackers; columns are defenders. **E2** means EFFECTIVE / 2 damage; **N1** means NEUTRAL / 1 damage.
+Only the four directed advantages are effective. All other matchups are neutral.
+The pure model supports explicit player affinities for tests; no hidden
+randomness, defense input, reaction window, backend or audio dependency exists.
 
-| Attack \ Defense | FIRE | WATER | EARTH | WIND |
-| --- | --- | --- | --- | --- |
-| FIRE | N1 | N1 | E2 | N1 |
-| WATER | E2 | N1 | N1 | N1 |
-| EARTH | N1 | N1 | N1 | E2 |
-| WIND | N1 | E2 | N1 | N1 |
+| Resource / guardian | HP | Affinity → weakness | Repeating reply elements | Backdrop |
+| --- | ---: | --- | --- | --- |
+| gate_guard / Gate Warden | 3 | WATER → WIND | WATER | gate |
+| fire_rival / Cinder Rival | 4 | FIRE → WATER | FIRE, FIRE, WIND | courtyard |
+| earth_sentinel / Cairn Sentinel | 5 | EARTH → FIRE | EARTH, WATER | gate |
+| wind_assassin / Gale Assassin | 3 | WIND → EARTH | WIND, FIRE | courtyard |
+| courtyard_retainer / Twin-cut Retainer | 4 | WATER → WIND | WATER, WIND | courtyard |
+| ember_monk / Ash Monk | 4 | FIRE → WATER | EARTH, FIRE | dojo |
+| mixed_elite / Fourfold Ronin | 5 | EARTH → FIRE | WIND, WATER, FIRE, EARTH | courtyard |
+| dojo_master / Moonlit Master | 5 | WATER → WIND | WATER, FIRE, EARTH, WIND | dojo |
 
-The player has no affinity in this run, so WATER replies deal 1 damage. Choosing an attack does not assign an affinity. The typed model also supports an explicit affinity: WATER deals 2 against FIRE and 1 against every other affinity, including NONE. No inverse resistance is inferred.
+Each cycle starts at its first technique on encounter entry. The foe’s stance
+(affinity/weakness) stays fixed even when its attack element changes. Every
+technique has a displayed name. Enemy identities use the preserved samurai
+animations; these are eight combat roles, not eight new character sprites.
 
-Health carries between fights. After seal one, choose Mend (restore 2 HP) or Long Breath (+1 max HP and restore 1 HP). Long Breath's old timing bonus is replaced because turns have no deadline. After seal two, choose Mend or Iron Resolve (+1 max HP and restore 1 HP); the two upgrades stack to 7 max HP. Mend clamps to max HP and is disabled at full health. Rewards apply once. Retry and New run reset HP, seals, attacks, and upgrades. Pause freezes the exact phase and requires Resume; Return to title discards the run. Touch and real mouse work without input emulation; holding and multiple fingers cannot repeat an attack.
+Health carries across fights. Seven shrines offer Mend (+2 HP capped at maximum)
+or capacity (+1 maximum and +1 current HP). The first capacity gift is Long
+Breath; subsequent gifts are Iron Resolve. All seven capacity gifts stack to
+12 maximum HP. Full-health Mend is disabled. Exact HP previews and next-guardian
+health remain visible. All 128 gift combinations clear with weakness attacks:
+19 attacks, 11 enemy replies. Neutral-only play can lose at level three.
 
-The HUD shows turn number, both health values, enemy element/weakness, selected attack, matchup, damage, and the three latest combat log entries. The journey slice adds three Aseprite sheets while preserving all original asset bytes.
+Eight seals unlock the archive. Route text marks every node; existing route art
+shows three regions (levels 1–3, 4–6, 7–8). All eight seal icons appear in the
+header. Retry/New run resets HP, capacity, records, seals, gifts and technique
+position; there are no checkpoints. Return to title discards the run.
 
-## Pinned setup
+## Setup and verification
 
-Use Godot **4.5.1 Standard**, exact build `4.5.1.stable.official.f62fdbde1`, Compatibility renderer, and matching `4.5.1.stable/web_nothreads_release.zip`. Default executables are `~/.local/bin/godot` and `~/.local/bin/aseprite`. Aseprite authorship used **1.3.18.3-dev**. CI validates checked-in art and resources without Aseprite.
-
-From the repository root:
+Pinned Godot **4.5.1 Standard**, exact build `4.5.1.stable.official.f62fdbde1`,
+Compatibility renderer, 390×844 portrait with existing compact 780-high layout.
+HTML5 export uses matching `4.5.1.stable/web_nothreads_release.zip`, relative
+paths and no threads, service worker or cross-origin isolation requirement.
 
 ```bash
 game/tests/verify.sh
@@ -33,104 +59,77 @@ export XDG_CONFIG_HOME="$PWD/build/local/config"
 ~/.local/bin/godot --path game
 ```
 
-The wrapper creates ignored XDG directories and links installed export templates. Override `GODOT_BIN` and `GODOT_TEMPLATE_DIR` (the parent of `4.5.1.stable`) for another installation. It rejects any other engine build and detects script errors even when Godot exits zero.
+The wrapper runs preservation/independent asset checks, import, deterministic
+model/scene/touch/layout tests, scene smoke, Web export, actual exported-pack
+full-run clear, dependency/size checks, and copies credits/notices to `build/web/`.
+It rejects script/parse failures even if Godot exits zero. Override GODOT_BIN or
+GODOT_TEMPLATE_DIR if needed. Tests and art sources are excluded from the pack.
 
-## Verification and maintenance
+## Model and presentation
 
-After the XDG setup above:
+`EncounterSpec` Resources contain identity, HP, affinity, intro, backdrop/banner,
+and ordered attack element/name arrays. `CombatModel` alone applies HP damage
+and emits typed `CombatEvent` impacts. `RunModel` owns carried health, rewards,
+route locking and one-time terminal handoff. Views never write combat HP.
+`Element` provides the exact matrix, weakness and effect/color mapping.
+
+Each attack lasts 600ms with impact at 300ms; the six original fighter frames
+remain unchanged. ENEMY_TURN announces for 350ms. Lethal player attacks suppress
+the enemy reply. The coordinator hands off the terminal result after 400ms.
+Forecasts and intent read the same declared cycle as actual damage. A turn only
+advances after enemy recovery. Both actual and forecast damage clamp to available
+health where appropriate; event logs retain nominal damage.
+
+Stopped animation playback samples authored frame durations. Pooled effects
+consume the event’s element: blue WATER `328ee6`, red FIRE `ef493c`, brown EARTH
+`a47746`, white WIND `ffffff`. Effects land on the defending fighter and never
+deal damage. Frame sheets include accents but their stated primary color
+occupies more than half of each frame’s opaque pixels.
+
+The shared monotonic clock prevents queued/held/multifinger attacks. Gaps over
+250ms pause without unseen damage. Pause preserves impact latches, HP and elapsed
+time. Decorative clocks freeze; resume requires a fresh input. Four action
+buttons remain 83×96; pause remains 60×60. Route/shrine/reveal use the existing
+scene/control geometry. No additional action button or scene was introduced.
+
+## Aseprite pipeline
+
+Existing original, six Moonlit and three journey asset sets stay byte-identical.
+New effects live only in `art_sources/elements/` and matching runtime
+`game/assets/sprites/elements/` / `game/assets/frames/elements/` directories.
+Each of water/fire/earth/wind has an editable `.aseprite`, JSON timing, a
+192×48 PNG strip, and a SpriteFrames Resource (four 48×48 frames at 100ms).
+All new raster pixels were authored using Aseprite 1.3.18.3-dev Sprite/Image APIs.
 
 ```bash
-~/.local/bin/godot --version
-python3 game/tests/check_source_assets.py
-sha256sum -c game/tests/source_assets.sha256
-python3 game/tests/check_moonlit_assets.py
-sha256sum -c game/tests/moonlit_assets.sha256
-~/.local/bin/godot --headless --path game --editor --import
-~/.local/bin/godot --headless --path game --script res://tests/run_tests.gd
-~/.local/bin/godot --headless --path game --quit-after 120
-~/.local/bin/godot --headless --path game --export-release Web ../build/web/index.html
-~/.local/bin/godot --headless --path build/web --main-pack index.pck --quit-after 120
-~/.local/bin/godot --headless --path build/web --main-pack index.pck --script "$PWD/game/tests/export_pack_smoke.gd"
-cp CREDITS.md THIRD_PARTY_NOTICES.txt build/web/
-python3 game/tests/check_web_export.py
-git diff --check
+~/.local/bin/aseprite --batch --script-param out="$PWD/build/effect-repro" --script art_sources/elements/generate.lua
+python3 game/tests/check_element_assets.py
 ```
 
-The six layered sources, canonical PNGs, JSON, specification and independent verifier live in `art_sources/moonlit_dojo/`. To reproduce them in an ignored directory:
+Python only reads/verifies art: SHA256, PNG CRC/decoding, native Aseprite header
+and compressed cel decoding, exact source/runtime pixel agreement, dimensions,
+frame uniqueness/nonempty alpha, dominant colors, metadata and timing.
+`element_asset_manifest.json` pins 20 source/metadata/runtime/frame files.
+Runtime tests verify lossless imports, frame regions and duration, effect
+selection for both actors and cleanup on reset. No alternate raster authoring
+tool was used. Original reactive PatternSpec/StrikeSpec stay unused/excluded.
 
-```bash
-~/.local/bin/aseprite --version
-~/.local/bin/aseprite --batch --script-param out="$PWD/build/art-repro" --script art_sources/moonlit_dojo/generate_moonlit_dojo.lua
-~/.local/bin/aseprite --batch --script-param out="$PWD/build/art-repro" --script art_sources/moonlit_dojo/verify_moonlit_dojo.lua
-python3 game/tests/check_moonlit_assets.py
-# Rebuild metadata-driven AtlasTexture/SpriteFrames resources when maintaining assets:
-~/.local/bin/godot --headless --path game --script res://tools/import_moonlit_assets.gd
-```
+## Local artifact and visual QA
 
-The generator uses Aseprite Sprite/Image APIs exclusively. Python performs read-only hashes, PNG decoding and metadata checks; it does not author or export art. Original ninja/samurai assets, reports, attack resources and both original manifests remain unchanged, including the original ninja's partial alpha. New alpha is binary. Runtime PNG copies match the native exports exactly. Checked-in SpriteFrames derive frame regions and duration multipliers from JSON; JSON and source archives never enter the pack.
+Serve the entire `build/web/` bundle over HTTP, never `file://`. No push or
+Pages deployment was performed. The live deployed baseline could not be inspected
+because web access failed and curl could not resolve the hostname.
 
-## Architecture and timing
-
-`Element` defines typed elements and one deterministic directed matchup resolver. `EncounterSpec` stores enemy affinity and the existing encounter identity, health, and scenery. `CombatModel` owns damage and emits typed impact events. `RunModel` owns progression, carried HP, rewards, and attack/damage statistics. `duel.gd` coordinates them and hands terminal state to the run once after 400 ms. Pooled visual effects never deal damage.
-
-Flow: TITLE → INTRO → PLAYER_TURN → PLAYER_ATTACK → ENEMY_TURN → ENEMY_ATTACK → next PLAYER_TURN. A lethal player attack skips the enemy turn. A lethal enemy attack ends the run. Player choice is untimed; resolution retains the six original 100 ms attack frames with impact at 300 ms and completion at 600 ms. ENEMY_TURN is a 350 ms automatic announcement, with all four inputs disabled. It is not an input window.
-
-Input and rendering share one injectable monotonic clock. Input eligibility is sampled before synchronization so a tap during resolution cannot queue an attack at the next turn boundary. Engine/wall gaps above 250 ms pause without unseen damage. Pause retains exact elapsed time and the impact latch in every phase. Decorative clocks freeze. Lifecycle events leave introductions/rewards/results inert.
-
-Stopped sprite playback uses authored frame durations. Support priority is defeat, hurt, attack, idle. Authored scenery remains 2×; fighters remain 4× on the shared floor y=450. Only the enemy flips. Existing hit and seal effects are reused; no asset pixels, frame resources, or original manifests changed.
-
-Baseline layout remains 390×844, with the existing 780-high compact layout. The four equal actions are 83×96 logical pixels, with 6 px gaps; pause remains 60×60. Tests cover scaled 1×/2×/3× touch flows and target/bounds checks across five portrait sizes, including compact layouts. These checks do not establish actual visual readability.
-
-The current automated result is recorded in [elemental QA](../qa/mobile/elemental/validation.md). Native rendering capture can be run on a display-enabled host after the XDG setup:
+With display access, run after the XDG setup:
 
 ```bash
 ~/.local/bin/godot --path game --script res://tests/native_visual_smoke.gd
 ```
 
-It captures 390×844 viewport PNGs across title, intro, attacks, enemy turn, next turn, pause, rewards, boss and clear into `qa/mobile/sophistication/`. These are rendering evidence, not game art. This environment's display connection failed; no screenshots are claimed.
-
-## Local release and QA
-
-```bash
-python3 -m http.server 8060 --bind 127.0.0.1 --directory build
-curl -fI http://127.0.0.1:8060/web/index.html
-curl -fI http://127.0.0.1:8060/web/index.wasm
-curl -fI http://127.0.0.1:8060/web/index.pck
-```
-
-Open the nested URL `http://127.0.0.1:8060/web/index.html`, never `file://`. Publish the complete `build/web/` only in an authorized deployment. It includes engine worklets and notices; no service worker, threads, SharedArrayBuffer or cross-origin isolation is required. The existing Pages workflow deploys only after successful verification on an authorized main push or dispatch. Failure logs are uploaded separately.
-
-Native X11/Wayland rendering and an Xvfb fallback failed in this managed environment. Browser and physical iOS/Android visual/readability, safe areas, network/MIME/HTTPS, device frame times, draw calls, browser memory and load measurements remain pending. See [elemental QA](../qa/mobile/elemental/validation.md) for actual results. This pass does not push or deploy; historical deployment records refer to the previous combat version.
-
-
-## Journey and forecast slice — 2026-09-11
-
-The modal hosts dedicated `route.tscn`, `shrine.tscn`, and `reveal.tscn` panels.
-Route art uses the encounter index to show unlocked gates; its caption marks
-SEALED/NEXT/LOCKED. The two reward stops show an animated shrine and that fight's
-actual attack/damage totals. Three seals reveal the moonlit archive above the
-existing final stats. These are presentation scenes; RunModel retains the
-existing state transitions and records terminal outcomes once, resetting on retry.
-
-Each attack shows clamped predicted damage or SEAL when it will defeat the foe.
-The HUD states the enemy's exact intent if it survives. Model forecasts are pure,
-suppress lethal replies, and disappear during resolution. Weakness comes from
-Element's exact directed cycle. All encounters/rewards/health remain unchanged;
-no ward, new status effects, random outcomes or additional controls were added.
-
-New editable art/JSON/generator: `art_sources/journey/`. Reproduce only through
-Aseprite with workspace-local XDG directories and `--script-param out=<directory>
---script art_sources/journey/generate.lua`. Three 480×96 runtime sheets have
-three 160×96 frames at 300ms; nearest filtering and source/runtime hash checks
-are enforced. No runtime art generation is used.
-
-Actual bounded-loop results: [dated QA](../qa/mobile/sophistication/2026-09-11-validation.md).
-Native rendering and browser/device QA remain blocked, so further touch-control
-and balance expansion is deferred in [STOP_REASON.md](../STOP_REASON.md).
-
-Pass 3 adds pure `RunModel.reward_forecast()` predictions shared by reward
-application and the existing two shrine buttons. Both gifts display current and
-resulting HP/capacity; full-health Mend remains disabled. The shrine also shows
-the next guardian’s name and HP. No combat or reward values changed. Model and
-scene tests passed 3,677 checks, with the full wrapper and exported clear green.
-See [pass 3 QA](../qa/mobile/sophistication/pass-3-validation.md).
+The script captures a complete 390×844 run including every first player/enemy
+impact into `qa/mobile/eight-seals/`. Native X11/Wayland and Xvfb attempts failed
+before rendering here; no game screenshots or visual acceptance are claimed.
+The four source strips were inspected directly. Browser WebGL, touch, safe areas,
+physical iOS/Android lifecycle, readability and performance remain unverified.
+See [dated QA](../qa/mobile/eight-seals/2026-09-12-validation.md) and
+[stop reason](../STOP_REASON.md). Prior results remain in historical QA folders.

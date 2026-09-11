@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EncounterSpec" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/data/encounter_spec.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"earth_sentinel"
+display_name = "Cairn Sentinel"
+enemy_max_hp = 5
+backdrop_tag = &"gate"
+banner_tag = &"banner_gate"
+element = 3
+intro_text = "The old wall has a living sentinel.\nFIRE cracks the EARTH stance."
+attack_elements = Array[int]([3, 2])
+attack_names = Array[String](["Stone cleave", "Spring surge"])

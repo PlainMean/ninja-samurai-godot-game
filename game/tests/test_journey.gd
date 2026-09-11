@@ -2,21 +2,21 @@ extends RefCounted
 func run(t) -> void:
 	var r := RunModel.new()
 	var c := CombatModel.new()
-	t.check(r.route_status() == ["NEXT","LOCKED","LOCKED"] and r.results.is_empty(), "fresh route and empty records")
+	t.check(r.route_status() == ["NEXT","LOCKED","LOCKED","LOCKED","LOCKED","LOCKED","LOCKED","LOCKED"] and r.results.is_empty(), "fresh route and empty records")
 	r.begin_run()
-	for i in range(3):
+	for i in range(8):
 		r.begin_encounter(c)
 		while not c.terminal():
-			c.request_attack(Element.Type.WIND)
+			c.request_attack(Element.weakness(r.spec().element))
 			c.step(100)
 		r.resolve_encounter(c)
-		t.check(r.results.size() == i+1 and r.results[i].won and r.results[i].attacks == [2,2,3][i], "result records actual encounter once")
+		t.check(r.results.size() == i+1 and r.results[i].won and r.results[i].attacks == [2,2,3,2,2,2,3,3][i], "result records actual encounter once")
 		r.resolve_encounter(c)
 		t.check(r.results.size() == i+1 and r.route_status()[i] == "SEALED", "duplicate handoff cannot duplicate record")
-		if i<2: r.choose_reward(&"long_breath" if i==0 else &"iron_resolve")
-	t.check("archive" in r.journey_text() and r.route_status() == ["SEALED","SEALED","SEALED"], "final archive revealed after three seals")
+		if i<7: r.choose_reward(&"long_breath" if i==0 else &"iron_resolve")
+	t.check("archive" in r.journey_text() and r.route_status() == ["SEALED","SEALED","SEALED","SEALED","SEALED","SEALED","SEALED","SEALED"], "final archive revealed after eight seals")
 	r.begin_run()
-	t.check(r.results.is_empty() and r.route_status()==["NEXT","LOCKED","LOCKED"], "retry clears journey")
+	t.check(r.results.is_empty() and r.route_status()==["NEXT","LOCKED","LOCKED","LOCKED","LOCKED","LOCKED","LOCKED","LOCKED"], "retry clears journey")
 	r.begin_encounter(c)
 	c.player_hp = 1
 	c.request_attack(Element.Type.FIRE)
@@ -38,11 +38,11 @@ func run(t) -> void:
 			panel.present("test", 0.3)
 			t.check(panel.atlas.region == Rect2(160,0,160,96) and panel.sheet.get_size()==Vector2(480,96), "Aseprite frame sampling and dimensions")
 	s.run.state=RunModel.State.INTRO
-	for index in range(3):
+	for index in range(8):
 		s.run.encounter_index=index
 		s.presentation_time=99.0
 		s._refresh()
-		t.check(s.modal.get_node("Route").atlas.region.position.x==index*160, "route artwork tracks unlocked gates instead of animation time")
+		t.check(s.modal.get_node("Route").atlas.region.position.x==mini(2,index/3)*160, "route artwork tracks unlocked gates instead of animation time")
 	for size in [Vector2(390,844),Vector2(390,700)]:
 		preload("res://scripts/layout_helper.gd").apply(s,size)
 		t.check(s.modal.get_node("Route").get_global_rect().end.y <= s.modal.get_node("Panel").get_global_rect().position.y, "journey does not overlap modal controls")

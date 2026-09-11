@@ -1,0 +1,166 @@
+Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org
+
+SCRIPT ERROR: Invalid access to property or key 'attack_elements' on a base object of type 'Resource'.
+          at: CombatModel.intent_element (res://scripts/combat_model.gd:139)
+          GDScript backtrace (most recent call first):
+              [0] intent_element (res://scripts/combat_model.gd:139)
+              [1] enemy_intent (res://scripts/combat_model.gd:129)
+              [2] snapshot (res://scripts/duel.gd:146)
+              [3] _refresh (res://scripts/duel.gd:164)
+              [4] _ready (res://scripts/duel.gd:39)
+SCRIPT ERROR: Invalid access to property or key 'attack_names' on a base object of type 'Resource'.
+          at: CombatModel.intent_name (res://scripts/combat_model.gd:142)
+          GDScript backtrace (most recent call first):
+              [0] intent_name (res://scripts/combat_model.gd:142)
+              [1] enemy_intent (res://scripts/combat_model.gd:129)
+              [2] snapshot (res://scripts/duel.gd:146)
+              [3] _refresh (res://scripts/duel.gd:164)
+              [4] _ready (res://scripts/duel.gd:39)
+SCRIPT ERROR: Invalid access to property or key 'attack_elements' on a base object of type 'Resource'.
+          at: CombatModel.intent_element (res://scripts/combat_model.gd:139)
+          GDScript backtrace (most recent call first):
+              [0] intent_element (res://scripts/combat_model.gd:139)
+              [1] enemy_intent (res://scripts/combat_model.gd:129)
+              [2] snapshot (res://scripts/duel.gd:146)
+              [3] _refresh (res://scripts/duel.gd:164)
+              [4] _ready (res://scripts/duel.gd:39)
+SCRIPT ERROR: Invalid access to property or key 'enemy_max_hp' on a base object of type 'Resource'.
+          at: snapshot (res://scripts/duel.gd:151)
+          GDScript backtrace (most recent call first):
+              [0] snapshot (res://scripts/duel.gd:151)
+              [1] _refresh (res://scripts/duel.gd:164)
+              [2] _ready (res://scripts/duel.gd:39)
+SCRIPT ERROR: Invalid access to property or key 'total' on a base object of type 'Dictionary'.
+          at: present (res://scripts/hud.gd:15)
+          GDScript backtrace (most recent call first):
+              [0] present (res://scripts/hud.gd:15)
+              [1] _refresh (res://scripts/duel.gd:164)
+              [2] _ready (res://scripts/duel.gd:39)
+SCRIPT ERROR: Invalid type in function 'present' in base 'Node2D (arena_view.gd)'. The Object-derived class of argument 1 (Resource) is not a subclass of the expected argument class.
+          at: _refresh (res://scripts/duel.gd:165)
+          GDScript backtrace (most recent call first):
+              [0] _refresh (res://scripts/duel.gd:165)
+              [1] _ready (res://scripts/duel.gd:39)
+SCRIPT ERROR: Invalid access to property or key 'attack_elements' on a base object of type 'Resource'.
+          at: CombatModel.intent_element (res://scripts/combat_model.gd:139)
+          GDScript backtrace (most recent call first):
+              [0] intent_element (res://scripts/combat_model.gd:139)
+              [1] enemy_intent (res://scripts/combat_model.gd:129)
+              [2] snapshot (res://scripts/duel.gd:146)
+              [3] _refresh (res://scripts/duel.gd:164)
+              [4] _process (res://scripts/duel.gd:48)
+SCRIPT ERROR: Invalid access to property or key 'attack_names' on a base object of type 'Resource'.
+          at: CombatModel.intent_name (res://scripts/combat_model.gd:142)
+          GDScript backtrace (most recent call first):
+              [0] intent_name (res://scripts/combat_model.gd:142)
+              [1] enemy_intent (res://scripts/combat_model.gd:129)
+              [2] snapshot (res://scripts/duel.gd:146)
+              [3] _refresh (res://scripts/duel.gd:164)
+              [4] _process (res://scripts/duel.gd:48)
+SCRIPT ERROR: Invalid access to property or key 'attack_elements' on a base object of type 'Resource'.
+          at: CombatModel.intent_element (res://scripts/combat_model.gd:139)
+          GDScript backtrace (most recent call first):
+              [0] intent_element (res://scripts/combat_model.gd:139)
+              [1] enemy_intent (res://scripts/combat_model.gd:129)
+              [2] snapshot (res://scripts/duel.gd:146)
+              [3] _refresh (res://scripts/duel.gd:164)
+              [4] _process (res://scripts/duel.gd:48)
+SCRIPT ERROR: Invalid access to property or key 'enemy_max_hp' on a base object of type 'Resource'.
+          at: snapshot (res://scripts/duel.gd:151)
+          GDScript backtrace (most recent call first):
+              [0] snapshot (res://scripts/duel.gd:151)
+              [1] _refresh (res://scripts/duel.gd:164)
+              [2] _process (res://scripts/duel.gd:48)
+SCRIPT ERROR: Invalid access to property or key 'total' on a base object of type 'Dictionary'.
+          at: present (res://scripts/hud.gd:15)
+          GDScript backtrace (most recent call first):
+              [0] present (res://scripts/hud.gd:15)
+              [1] _refresh (res://scripts/duel.gd:164)
+              [2] _process (res://scripts/duel.gd:48)
+SCRIPT ERROR: Invalid type in function 'present' in base 'Node2D (arena_view.gd)'. The Object-derived class of argument 1 (Resource) is not a subclass of the expected argument class.
+          at: _refresh (res://scripts/duel.gd:165)
+          GDScript backtrace (most recent call first):
+              [0] _refresh (res://scripts/duel.gd:165)
+              [1] _process (res://scripts/duel.gd:48)
+SCRIPT ERROR: Invalid access to property or key 'attack_elements' on a base object of type 'Resource'.
+          at: CombatModel.intent_element (res://scripts/combat_model.gd:139)
+          GDScript backtrace (most recent call first):
+              [0] intent_element (res://scripts/combat_model.gd:139)
+              [1] enemy_intent (res://scripts/combat_model.gd:129)
+              [2] snapshot (res://scripts/duel.gd:146)
+              [3] _refresh (res://scripts/duel.gd:164)
+              [4] _process (res://scripts/duel.gd:48)
+SCRIPT ERROR: Invalid access to property or key 'attack_names' on a base object of type 'Resource'.
+          at: CombatModel.intent_name (res://scripts/combat_model.gd:142)
+          GDScript backtrace (most recent call first):
+              [0] intent_name (res://scripts/combat_model.gd:142)
+              [1] enemy_intent (res://scripts/combat_model.gd:129)
+              [2] snapshot (res://scripts/duel.gd:146)
+              [3] _refresh (res://scripts/duel.gd:164)
+              [4] _process (res://scripts/duel.gd:48)
+SCRIPT ERROR: Invalid access to property or key 'attack_elements' on a base object of type 'Resource'.
+          at: CombatModel.intent_element (res://scripts/combat_model.gd:139)
+          GDScript backtrace (most recent call first):
+              [0] intent_element (res://scripts/combat_model.gd:139)
+              [1] enemy_intent (res://scripts/combat_model.gd:129)
+              [2] snapshot (res://scripts/duel.gd:146)
+              [3] _refresh (res://scripts/duel.gd:164)
+              [4] _process (res://scripts/duel.gd:48)
+SCRIPT ERROR: Invalid access to property or key 'enemy_max_hp' on a base object of type 'Resource'.
+          at: snapshot (res://scripts/duel.gd:151)
+          GDScript backtrace (most recent call first):
+              [0] snapshot (res://scripts/duel.gd:151)
+              [1] _refresh (res://scripts/duel.gd:164)
+              [2] _process (res://scripts/duel.gd:48)
+SCRIPT ERROR: Invalid access to property or key 'total' on a base object of type 'Dictionary'.
+          at: present (res://scripts/hud.gd:15)
+          GDScript backtrace (most recent call first):
+              [0] present (res://scripts/hud.gd:15)
+              [1] _refresh (res://scripts/duel.gd:164)
+              [2] _process (res://scripts/duel.gd:48)
+SCRIPT ERROR: Invalid type in function 'present' in base 'Node2D (arena_view.gd)'. The Object-derived class of argument 1 (Resource) is not a subclass of the expected argument class.
+          at: _refresh (res://scripts/duel.gd:165)
+          GDScript backtrace (most recent call first):
+              [0] _refresh (res://scripts/duel.gd:165)
+              [1] _process (res://scripts/duel.gd:48)
+SCRIPT ERROR: Invalid access to property or key 'attack_elements' on a base object of type 'Resource'.
+          at: CombatModel.intent_element (res://scripts/combat_model.gd:139)
+          GDScript backtrace (most recent call first):
+              [0] intent_element (res://scripts/combat_model.gd:139)
+              [1] enemy_intent (res://scripts/combat_model.gd:129)
+              [2] snapshot (res://scripts/duel.gd:146)
+              [3] _refresh (res://scripts/duel.gd:164)
+              [4] _process (res://scripts/duel.gd:48)
+SCRIPT ERROR: Invalid access to property or key 'attack_names' on a base object of type 'Resource'.
+          at: CombatModel.intent_name (res://scripts/combat_model.gd:142)
+          GDScript backtrace (most recent call first):
+              [0] intent_name (res://scripts/combat_model.gd:142)
+              [1] enemy_intent (res://scripts/combat_model.gd:129)
+              [2] snapshot (res://scripts/duel.gd:146)
+              [3] _refresh (res://scripts/duel.gd:164)
+              [4] _process (res://scripts/duel.gd:48)
+SCRIPT ERROR: Invalid access to property or key 'attack_elements' on a base object of type 'Resource'.
+          at: CombatModel.intent_element (res://scripts/combat_model.gd:139)
+          GDScript backtrace (most recent call first):
+              [0] intent_element (res://scripts/combat_model.gd:139)
+              [1] enemy_intent (res://scripts/combat_model.gd:129)
+              [2] snapshot (res://scripts/duel.gd:146)
+              [3] _refresh (res://scripts/duel.gd:164)
+              [4] _process (res://scripts/duel.gd:48)
+SCRIPT ERROR: Invalid access to property or key 'enemy_max_hp' on a base object of type 'Resource'.
+          at: snapshot (res://scripts/duel.gd:151)
+          GDScript backtrace (most recent call first):
+              [0] snapshot (res://scripts/duel.gd:151)
+              [1] _refresh (res://scripts/duel.gd:164)
+              [2] _process (res://scripts/duel.gd:48)
+SCRIPT ERROR: Invalid access to property or key 'total' on a base object of type 'Dictionary'.
+          at: present (res://scripts/hud.gd:15)
+          GDScript backtrace (most recent call first):
+              [0] present (res://scripts/hud.gd:15)
+              [1] _refresh (res://scripts/duel.gd:164)
+              [2] _process (res://scripts/duel.gd:48)
+SCRIPT ERROR: Invalid type in function 'present' in base 'Node2D (arena_view.gd)'. The Object-derived class of argument 1 (Resource) is not a subclass of the expected argument class.
+          at: _refresh (res://scripts/duel.gd:165)
+          GDScript backtrace (most recent call first):
+              [0] _refresh (res://scripts/duel.gd:165)
+              [1] _process (res://scripts/duel.gd:48)

@@ -1,7 +1,7 @@
 extends RefCounted
 func run(t) -> void:
-	for gate in range(2):
-		for capacity in range(5, 7):
+	for gate in range(7):
+		for capacity in range(5, 12):
 			for health in range(1, capacity + 1):
 				for id in [&"mend", &"long_breath" if gate == 0 else &"iron_resolve"]:
 					var r := RunModel.new()
@@ -34,7 +34,7 @@ func run(t) -> void:
 	s.set_process(false)
 	for available in [Vector2(390,844), Vector2(390,700), Vector2(360,800), Vector2(393,852), Vector2(430,932)]:
 		preload("res://scripts/layout_helper.gd").apply(s, available)
-		for gate in range(2):
+		for gate in range(7):
 			for health in [1, 5]:
 				s.run.state = RunModel.State.INTERMISSION
 				s.run.encounter_index = gate
@@ -45,7 +45,7 @@ func run(t) -> void:
 				await t.process_frame
 				t.check(s.choice_a.disabled == (health == 5) and not s.choice_b.disabled, "scene reward eligibility matches preview")
 				t.check(s.choice_b.text == ("Long Breath" if gate == 0 else "Iron Resolve") + "\n%d / 5 → %d / 6 HP" % [health, health + 1], "scene displays exact capacity reward")
-				t.check(s.run.next_guardian_text() in s.modal.get_node("Panel/Content/Instructions").text and str([4,5][gate]) + " HP" in s.run.next_guardian_text(), "shrine previews next guardian health")
+				t.check(s.run.next_guardian_text() in s.modal.get_node("Panel/Content/Instructions").text and str([4,5,3,4,4,5,5][gate]) + " HP" in s.run.next_guardian_text(), "shrine previews next guardian health")
 				for button in [s.choice_a, s.choice_b]:
 					var font: Font = button.get_theme_font("font")
 					var font_size: int = button.get_theme_font_size("font_size")

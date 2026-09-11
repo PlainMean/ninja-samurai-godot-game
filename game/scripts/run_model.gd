@@ -1,10 +1,18 @@
 class_name RunModel
 extends RefCounted
+const EncounterData = preload("res://scripts/data/encounter_spec.gd")
 enum State { TITLE, INTRO, FIGHT, INTERMISSION, CLEARED, FAILED }
-const ENCOUNTERS: Array[EncounterSpec] = [
-	preload("res://data/encounters/gate_guard.tres"),
-	preload("res://data/encounters/courtyard_retainer.tres"),
-	preload("res://data/encounters/dojo_master.tres")]
+# Load after scripts compile: const preloads can instantiate uncompiled Resource scripts
+# when the main scene (rather than the test runner) is the first entry point.
+static var ENCOUNTERS: Array[EncounterSpec] = [
+	load("res://data/encounters/gate_guard.tres"),
+	load("res://data/encounters/fire_rival.tres"),
+	load("res://data/encounters/earth_sentinel.tres"),
+	load("res://data/encounters/wind_assassin.tres"),
+	load("res://data/encounters/courtyard_retainer.tres"),
+	load("res://data/encounters/ember_monk.tres"),
+	load("res://data/encounters/mixed_elite.tres"),
+	load("res://data/encounters/dojo_master.tres")]
 var state: State = State.TITLE
 var encounter_index := 0
 var max_hp := 5
@@ -53,12 +61,12 @@ func resolve_encounter(combat: CombatModel) -> bool:
 	attacks += combat.attacks
 	damage += combat.damage
 	if combat.state == CombatModel.Phase.LOST:
-		loss_hint = "WIND deals 2 damage to WATER.\nMend restores health between fights."
+		loss_hint = "%s deals 2 damage to %s.\nMend restores health between fights." % [Element.label(Element.weakness(spec().element)), Element.label(spec().element)]
 		state = State.FAILED
 	else:
 		seals += 1
 		reward_claimed = false
-		state = State.CLEARED if seals == 3 else State.INTERMISSION
+		state = State.CLEARED if seals == ENCOUNTERS.size() else State.INTERMISSION
 	return true
 
 func rewards() -> Array[StringName]:
@@ -109,7 +117,7 @@ func return_to_title() -> bool:
 
 func route_status() -> Array[String]:
 	var result: Array[String] = []
-	for i in range(3):
+	for i in range(ENCOUNTERS.size()):
 		result.append("SEALED" if i < seals else ("NEXT" if i == encounter_index else "LOCKED"))
 	return result
 
@@ -120,4 +128,4 @@ func journey_text() -> String:
 		return "Shrine of renewal\n%d attacks · %d damage taken" % [results.back().attacks, results.back().damage] if not results.is_empty() else "Shrine of renewal\nOne gift before the next guardian."
 	if state == State.FAILED:
 		return "The archive waits.\nEvery new run begins at the gate."
-	return "Gate %s  ·  Court %s\nMaster %s" % route_status()
+	return "1 %s · 2 %s · 3 %s · 4 %s\n5 %s · 6 %s · 7 %s · 8 %s\n✓ sealed · NOW next · — locked" % route_status().map(func(status): return {"SEALED": "✓", "NEXT": "NOW", "LOCKED": "—"}[status])

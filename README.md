@@ -1,27 +1,35 @@
-# Moonlit Dojo: Three Seals
+# Moonlit Dojo: Eight Seals
 
-A portrait turn-based touch game built with Godot 4.5.1 Standard. Choose **FIRE**, **WATER**, **EARTH**, or **WIND**, then watch the samurai's automatic WATER turn. **WIND is effective against WATER.** Carry health through three encounters and choose a reward after each of the first two victories.
+A portrait, touch-first elemental duel journey built with Godot 4.5.1 Standard.
+Read the guardian’s affinity and weakness, choose FIRE, WATER, EARTH or WIND,
+and watch its announced reply. Eight seals open the moonlit archive.
+
+| Level | Guardian | HP | Affinity | Weakness |
+| --- | --- | ---: | --- | --- |
+| 1 | Gate Warden — tutorial | 3 | WATER | WIND |
+| 2 | Cinder Rival | 4 | FIRE | WATER |
+| 3 | Cairn Sentinel | 5 | EARTH | FIRE |
+| 4 | Gale Assassin | 3 | WIND | EARTH |
+| 5 | Twin-cut Retainer — rematch | 4 | WATER | WIND |
+| 6 | Ash Monk | 4 | FIRE | WATER |
+| 7 | Fourfold Ronin — mixed elite | 5 | EARTH | FIRE |
+| 8 | Moonlit Master — final duel | 5 | WATER | WIND |
+
+Water attacks show blue surf, fire red flames, earth brown stone fragments,
+and wind white air arcs. Both fighters use the actual attack element’s authored
+animation. Guardians share preserved samurai artwork, with distinct names,
+affinities, health and deterministic technique cycles across three backdrops.
 
 ```bash
 game/tests/verify.sh
 ~/.local/bin/godot --path game
 ```
 
-The verification wrapper checks preserved artwork, six preserved Aseprite asset sets plus three journey sheets, deterministic mechanics, full-run touch flows, lifecycle/layout, imports, scene smoke, HTML5 export, and an actual exported-pack three-encounter clear. The complete local artifact is `build/web/`.
+Keep health through seven shrines; choose capped Mend healing or increased
+capacity. Forecasts predict actual damage and suppress a defeated foe’s reply.
+Retry resets the entire route. Mouse and touch use the same four buttons.
 
-See [game setup and architecture](game/README.md), [actual verification and pending browser/device QA](qa/mobile/elemental/validation.md), and [artwork provenance](CREDITS.md). Implementation plans remain in `.hermes/plans/`. This revision is local only; no push or deployment was performed.
-
-The local sophistication slice adds dedicated route, renewal-shrine and archive
-reveal scenes, three Aseprite-authored support sheets, per-encounter result records,
-and deterministic attack damage/SEAL previews with enemy intent. The three WATER
-encounters and exact elemental cycle retain their existing balance. Route art
-tracks unlocked gates; shrine and reveal glow through three authored frames.
-See the [bounded roadmap](.hermes/plans/2026-09-11_171852-sophistication-roadmap.md),
-[dated QA](qa/mobile/sophistication/2026-09-11-validation.md), and
-[stop reason](STOP_REASON.md). Three improvement passes completed locally; native
-rendering and browser/device acceptance remain blocked. No push or deployment.
-
-Shrine gifts now preview exact current-to-result HP for both choices, including
-capped Mend healing, alongside the next guardian’s name and HP. Existing reward
-values and touch controls are unchanged. Pass 3 passed 3,677 checks and the full
-export gate; see [continuation QA](qa/mobile/sophistication/pass-3-validation.md).
+[Architecture and setup](game/README.md) · [Plan](.hermes/plans/2026-09-12-eight-seals.md)
+· [Dated QA](qa/mobile/eight-seals/2026-09-12-validation.md) · [Credits](CREDITS.md).
+Local Web artifact: `build/web/index.html` with its complete sibling bundle.
+Native/browser/device visual acceptance remains pending. No push or deployment.

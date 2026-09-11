@@ -24,7 +24,7 @@ func run(t) -> void:
 	s.set_process(false)
 	s._primary()
 	s._primary()
-	t.check(s.hud.get_node("Intent").text=="Intent: WATER · 1 dmg if foe survives", "visible exact enemy intent")
+	t.check(s.hud.get_node("Intent").text=="Intent: WATER · 1 dmg if foe survives\nRiver lesson", "visible exact enemy intent")
 	for i in range(4):
 		t.check(s.attack_buttons[i].get_node("Forecast").text==("2 dmg" if i==3 else "1 dmg"), "visible touch damage forecast")
 	s._attack(Element.Type.WIND)

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EncounterSpec" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/data/encounter_spec.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"gate_guard"
+display_name = "Gate Warden"
+enemy_max_hp = 3
+backdrop_tag = &"gate"
+banner_tag = &"banner_gate"
+element = 2
+intro_text = "Element: WATER · Weakness: WIND\nChoose an attack. Then the samurai acts."

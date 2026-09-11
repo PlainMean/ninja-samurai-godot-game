@@ -1,7 +1,7 @@
 extends RefCounted
 ## Element matrix and exhaustive resolution boundaries replace reactive patterns.
 const C = preload("res://scripts/combat_model.gd")
-const R = preload("res://scripts/run_model.gd")
+const R = preload("res://tests/fixtures/legacy_encounters.gd")
 const E = Element.Type
 
 func make(index := 0, hp := 5, affinity: Element.Type = E.NONE) -> CombatModel:

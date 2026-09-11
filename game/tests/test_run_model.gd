@@ -9,25 +9,25 @@ func run(t) -> void:
 			var m := C.new()
 			t.check(not r.begin_encounter(m) and not r.choose_reward(first) and not r.resolve_encounter(m),"invalid title actions inert")
 			t.check(r.begin_run() and not r.begin_run() and r.hp==5 and r.max_hp==5,"initial run")
-			for index in range(3):
-				t.check(r.encounter_index==index and r.spec().enemy_max_hp==[3,4,5][index] and r.spec().element==E.WATER,"fixed encounter order/hp/element")
+			for index in range(8):
+				t.check(r.encounter_index==index and r.spec().enemy_max_hp==[3,4,5,3,4,4,5,5][index] and r.spec().element==[2,1,3,4,2,1,3,2][index],"fixed encounter order/hp/element")
 				var starting_hp := r.hp
 				t.check(r.begin_encounter(m) and not r.begin_encounter(m),"fresh encounter once")
 				t.check(m.player_hp==starting_hp and m.turn_number==1 and m.selected_element==E.NONE and m.player_affinity==E.NONE,"health carry/fresh turn")
 				t.check(not r.choose_reward(first) and not r.resolve_encounter(m),"fight cannot choose/handoff early")
 				while not m.terminal():
-					t.check(m.request_attack(E.WIND),"run WIND accepted")
+					t.check(m.request_attack(Element.weakness(r.spec().element)),"run weakness accepted")
 					m.step(100)
 				t.check(r.resolve_encounter(m) and not r.resolve_encounter(m),"handoff once")
 				t.check(r.seals==index+1 and r.hp==m.player_hp,"one seal and final health copied")
-				if index<2:
-					var id: StringName = first if index==0 else second
+				if index<7:
+					var id: StringName = first if index==0 else (second if index==1 else &"mend")
 					var before := r.hp
 					var max_before := r.max_hp
 					t.check(r.choose_reward(id) and not r.choose_reward(id),"reward one tap once")
 					t.check(r.hp==(mini(r.max_hp,before+2) if id==&"mend" else before+1),"reward numeric healing")
 					t.check(r.max_hp==max_before+int(id!=&"mend"),"reward numeric max health")
-			t.check(r.state==R.State.CLEARED and r.seals==3 and r.attacks==7 and r.damage==4 and not r.begin_encounter(m),"no fourth encounter; seven effective attacks/four enemy hits")
+			t.check(r.state==R.State.CLEARED and r.seals==8 and r.attacks==19 and r.damage==11 and not r.begin_encounter(m),"no ninth encounter; nineteen effective attacks/eleven enemy hits")
 			t.check(r.max_hp==5+int(first==&"long_breath")+int(second==&"iron_resolve"),"upgrade combinations stack")
 			r.begin_run()
 			t.check(r.hp==5 and r.max_hp==5 and r.seals==0 and r.upgrades.is_empty() and r.attacks==0 and r.damage==0,"full reset")
@@ -51,7 +51,7 @@ func run(t) -> void:
 	r.begin_run()
 	t.check(r.encounter_index==0 and r.seals==0,"retry no checkpoint")
 	t.check(r.return_to_title() and r.state==R.State.TITLE and not r.return_to_title(),"return discards run")
-	# A real neutral-only run exhausts health on the master, without injected HP.
+	# A real neutral-only run exhausts health on the sentinel, without injected HP.
 	for reward in [&"mend", &"long_breath"]:
 		r=R.new()
 		m=C.new()
@@ -59,7 +59,7 @@ func run(t) -> void:
 		for index in range(3):
 			r.begin_encounter(m)
 			while not m.terminal():
-				t.check(m.request_attack(E.WATER), "neutral-only run attack")
+				t.check(m.request_attack(r.spec().element), "neutral-only run attack")
 				m.step(100)
 				r.resolve_encounter(m)
 			if index<2: r.choose_reward(reward if index==0 else (&"mend" if reward==&"mend" else &"iron_resolve"))

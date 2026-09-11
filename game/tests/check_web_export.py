@@ -39,7 +39,7 @@ for script in ['run_model','combat_event','data/element','data/encounter_spec','
 for scene in ['route','shrine','reveal']:
     assert any(p.endswith('scenes/'+scene+'.tscn.remap') or p.endswith('scenes/'+scene+'.tscn') for p in paths), scene
     assert any(scene+'_sheet.png-' in p and p.endswith('.ctex') for p in paths), scene
-for encounter in ['gate_guard','courtyard_retainer','dojo_master']:
+for encounter in ['gate_guard','fire_rival','earth_sentinel','wind_assassin','courtyard_retainer','ember_monk','mixed_elite','dojo_master']:
     assert any(p.endswith('data/encounters/'+encounter+'.tres.remap') or p.endswith('data/encounters/'+encounter+'.tres') for p in paths), encounter
 for name in ['ninja_support','samurai_support','dojo_backdrops','dojo_props','combat_fx','dojo_icons']:
     assert any(p.endswith('assets/frames/moonlit_dojo/'+name+'_frames.tres.remap') or p.endswith('assets/frames/moonlit_dojo/'+name+'_frames.tres') for p in paths), name
@@ -47,6 +47,9 @@ for name in ['ninja_support','samurai_support','dojo_backdrops','dojo_props','co
 for name in ['ninja','samurai']:
     assert any(name+'_attack_sheet.png-' in p and p.endswith('.ctex') for p in paths), name
 assert not any(p.endswith(('scripts/data/pattern_spec.gdc', 'scripts/data/strike_spec.gdc')) for p in paths)
+for name in ['water','fire','earth','wind']:
+    assert any(p.endswith('assets/frames/elements/'+name+'_frames.tres.remap') or p.endswith('assets/frames/elements/'+name+'_frames.tres') for p in paths), name
+    assert any(name+'_sheet.png-' in p and p.endswith('.ctex') for p in paths), name
 assert len(pck) <= 1048576, 'PCK exceeds 1 MiB'
 
 raw = compressed = 0

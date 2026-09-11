@@ -1,7 +1,7 @@
 config_version=5
 
 [application]
-config/name="Moonlit Dojo: Three Seals"
+config/name="Moonlit Dojo: Eight Seals"
 run/main_scene="res://scenes/duel.tscn"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 

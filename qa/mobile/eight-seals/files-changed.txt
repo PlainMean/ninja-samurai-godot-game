@@ -1,0 +1,45 @@
+ M CREDITS.md
+ M README.md
+ M STOP_REASON.md
+ M game/README.md
+ M game/data/encounters/courtyard_retainer.tres
+ M game/data/encounters/dojo_master.tres
+ M game/data/encounters/gate_guard.tres
+ M game/export_presets.cfg
+ M game/project.godot
+ M game/scenes/hud.tscn
+ M game/scripts/combat_model.gd
+ M game/scripts/data/element.gd
+ M game/scripts/data/encounter_spec.gd
+ M game/scripts/duel.gd
+ M game/scripts/effects_view.gd
+ M game/scripts/hud.gd
+ M game/scripts/run_modal.gd
+ M game/scripts/run_model.gd
+ M game/tests/check_web_export.py
+ M game/tests/export_pack_smoke.gd
+ M game/tests/native_visual_smoke.gd
+ M game/tests/run_tests.gd
+ M game/tests/test_encounter_patterns.gd
+ M game/tests/test_forecast.gd
+ M game/tests/test_journey.gd
+ M game/tests/test_reward_forecast.gd
+ M game/tests/test_run_model.gd
+ M game/tests/test_run_scene.gd
+ M game/tests/verify.sh
+ M game/web/shell.html
+?? .hermes/plans/2026-09-12-eight-seals.md
+?? art_sources/elements/
+?? game/assets/frames/elements/
+?? game/assets/sprites/elements/
+?? game/data/encounters/earth_sentinel.tres
+?? game/data/encounters/ember_monk.tres
+?? game/data/encounters/fire_rival.tres
+?? game/data/encounters/mixed_elite.tres
+?? game/data/encounters/wind_assassin.tres
+?? game/tests/check_element_assets.py
+?? game/tests/element_asset_manifest.json
+?? game/tests/fixtures/
+?? game/tests/test_eight_seals.gd
+?? game/tests/test_eight_seals.gd.uid
+?? qa/mobile/eight-seals/

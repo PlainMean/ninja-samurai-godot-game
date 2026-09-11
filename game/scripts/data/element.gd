@@ -22,3 +22,9 @@ static func weakness(defender: Type) -> Type:
 	for attacker in [Type.FIRE, Type.WATER, Type.EARTH, Type.WIND]:
 		if resolve(attacker, defender) == Matchup.EFFECTIVE: return attacker
 	return Type.NONE
+
+static func effect_tag(value: Type) -> StringName:
+	return StringName(label(value).to_lower()) if value != Type.NONE else &"hit"
+
+static func effect_color(value: Type) -> Color:
+	return [Color.WHITE, Color("ef493c"), Color("328ee6"), Color("a47746"), Color.WHITE][value]

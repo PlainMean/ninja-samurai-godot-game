@@ -9,4 +9,6 @@ enemy_max_hp = 5
 backdrop_tag = &"dojo"
 banner_tag = &"banner_master"
 element = 2
-intro_text = "Element: WATER · Weakness: WIND\nChoose an attack. Then the samurai acts."
+intro_text = "The final duel opens the archive.\nWIND breaks the master’s WATER stance."
+attack_elements = Array[int]([2, 1, 3, 4])
+attack_names = Array[String](["Moon tide", "Dawn flame", "Mountain cut", "Sky return"])

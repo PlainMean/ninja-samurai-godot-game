@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EncounterSpec" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/data/encounter_spec.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"ember_monk"
+display_name = "Ash Monk"
+enemy_max_hp = 4
+backdrop_tag = &"dojo"
+banner_tag = &"banner_master"
+element = 1
+intro_text = "At the shrine, ash precedes flame.\nWATER beats the monk’s FIRE stance."
+attack_elements = Array[int]([3, 1])
+attack_names = Array[String](["Ash fall", "Coal palm"])
