@@ -152,7 +152,8 @@ func snapshot() -> Dictionary:
 		"enemy_hp": model.enemy_hp, "enemy_max_hp": run.spec().enemy_max_hp, "enemy_name": run.spec().display_name,
 		"seals": run.seals, "encounter": run.encounter_index + 1, "cue": cue,
 		"feedback": "\n".join(model.combat_log), "technique": "Selected: %s\n%s" % [selected, result],
-		"turn": model.turn_number, "enemy_element": Element.label(run.spec().element), "affinity": Element.label(model.player_affinity)}
+		"turn": model.turn_number, "enemy_element": Element.label(run.spec().element), "affinity": Element.label(model.player_affinity), "weakness": Element.label(Element.weakness(run.spec().element)),
+		"intent": model.enemy_intent(), "forecasts": [model.attack_forecast(Element.Type.FIRE), model.attack_forecast(Element.Type.WATER), model.attack_forecast(Element.Type.EARTH), model.attack_forecast(Element.Type.WIND)]}
 func _refresh() -> void:
 	var show_modal := paused or run.state != Run.State.FIGHT
 	if modal.visible != show_modal: _cancel_pointers()
@@ -183,9 +184,8 @@ func _refresh() -> void:
 				primary = "Fight"
 			Run.State.INTERMISSION:
 				heading = "Choose a technique"
-				instructions = "Seal %d / 3 earned · HP %d / %d" % [run.seals,run.hp,run.max_hp]
-				choices = [{"text": "Mend — Health full" if run.hp == run.max_hp else "Mend — Restore 2 HP\n%d → %d / %d HP" % [run.hp, mini(run.max_hp,run.hp+2),run.max_hp], "enabled": run.can_choose(&"mend")},
-					{"text": "Long Breath\nMax HP +1 · Restore 1 HP" if run.encounter_index == 0 else "Iron Resolve — Max HP +1\n%d / %d → %d / %d HP" % [run.hp,run.max_hp,run.hp+1,run.max_hp+1], "enabled": true}]
+				instructions = "Seal %d / 3 earned · HP %d / %d\n%s" % [run.seals,run.hp,run.max_hp,run.next_guardian_text()]
+				choices = run.reward_choices()
 			Run.State.CLEARED:
 				heading = "Dojo cleared"
 				instructions = "Seals 3 / 3 · HP %d / %d\n%d attacks · %d damage taken" % [run.hp,run.max_hp,run.attacks,run.damage]
@@ -195,6 +195,7 @@ func _refresh() -> void:
 				instructions = "Seals %d / 3\n%s" % [run.seals,run.loss_hint]
 				primary = "Retry run"
 	modal.present(heading,instructions,primary,choices,paused)
+	modal.present_journey(run, presentation_time, paused)
 func _present_fighters() -> void:
 	for fighter in [ninja,samurai]:
 		var player: bool = fighter == ninja

@@ -123,3 +123,13 @@ func _enter(next: Phase) -> void:
 	elapsed = 0.0
 	if is_attack(): impact_resolved = false
 	if terminal(): _emit(CombatEvent.Kind.WON if state == Phase.WON else CombatEvent.Kind.LOST)
+
+func enemy_intent() -> Dictionary:
+	return {"element": spec.element, "damage": 0 if terminal() else mini(player_hp, Element.damage_for(spec.element, player_affinity))}
+
+func attack_forecast(element: Element.Type) -> Dictionary:
+	if state != Phase.PLAYER_TURN or element not in [Element.Type.FIRE, Element.Type.WATER, Element.Type.EARTH, Element.Type.WIND]: return {}
+	var amount := mini(enemy_hp, Element.damage_for(element, spec.element))
+	return {"damage": amount, "lethal": amount == enemy_hp,
+		"reply": 0 if amount == enemy_hp else enemy_intent().damage,
+		"matchup": Element.resolve(element, spec.element)}

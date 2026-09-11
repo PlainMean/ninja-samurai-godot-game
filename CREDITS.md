@@ -18,3 +18,12 @@ Godot Engine 4.5.1 Standard provides the engine, default font, and UI primitives
 Six additional layered assets were authored locally by Codex using **Aseprite 1.3.18.3-dev Sprite/Image Lua APIs**: `ninja_support`, `samurai_support`, `dojo_backdrops`, `dojo_props`, `combat_fx`, and `dojo_icons`. Their 51 frames, native PNG strips, JSON metadata, reproducible generator, specification, and independent source-to-sheet verifier are archived in [art_sources/moonlit_dojo](art_sources/moonlit_dojo/). Support drawing routines adapt the supplied generators to preserve fighter proportions and palettes; the supplied files themselves remain byte-identical. This provenance does not invent a license grant for supplied or derived artwork.
 
 Only the six new native PNG strips and generated SpriteFrames resources ship alongside the original attack sheets. No diffusion, Python/Pillow, ImageMagick, SVG, browser, or Godot raster authoring was used. New manifests are separate: [moonlit_asset_manifest.json](game/tests/moonlit_asset_manifest.json) and [moonlit_assets.sha256](game/tests/moonlit_assets.sha256).
+
+## Journey illustrations (2026-09-11)
+Original route gates, renewal shrine and moonlit archive reveal by this project's
+Codex-assisted authoring session. Three 160×96 illustrations, each with three
+300ms support frames, authored/exported exclusively using Aseprite Sprite/Image
+APIs through `~/.local/bin/aseprite`. Editable sources, JSON and reproducible Lua:
+`art_sources/journey/`; byte-identical runtime sheets:
+`game/assets/sprites/journey/`. Hashes: `game/tests/journey_asset_manifest.json`.
+All previously credited art and its manifests remain unchanged.

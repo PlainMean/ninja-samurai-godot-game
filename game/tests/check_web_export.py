@@ -36,6 +36,9 @@ assert any(p.endswith('scripts/combat_model.gdc') for p in paths), paths
 assert not any('/tests/' in p or '/tools/' in p or '/web/' in p or 'art_sources/' in p or p.endswith(('.json','.aseprite','.lua','.gif','.gd')) for p in paths)
 for script in ['run_model','combat_event','data/element','data/encounter_spec','duel','arena_view','fighter_view','hud','run_modal','effects_view','frame_playback','layout_helper','touch_action','browser_lifecycle']:
     assert any(p.endswith('scripts/'+script+'.gdc') for p in paths), script
+for scene in ['route','shrine','reveal']:
+    assert any(p.endswith('scenes/'+scene+'.tscn.remap') or p.endswith('scenes/'+scene+'.tscn') for p in paths), scene
+    assert any(scene+'_sheet.png-' in p and p.endswith('.ctex') for p in paths), scene
 for encounter in ['gate_guard','courtyard_retainer','dojo_master']:
     assert any(p.endswith('data/encounters/'+encounter+'.tres.remap') or p.endswith('data/encounters/'+encounter+'.tres') for p in paths), encounter
 for name in ['ninja_support','samurai_support','dojo_backdrops','dojo_props','combat_fx','dojo_icons']:

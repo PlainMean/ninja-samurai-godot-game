@@ -17,3 +17,8 @@ static func resolve(attacker: Type, defender: Type) -> Matchup:
 
 static func damage_for(attacker: Type, defender: Type) -> int:
 	return 2 if resolve(attacker, defender) == Matchup.EFFECTIVE else 1
+
+static func weakness(defender: Type) -> Type:
+	for attacker in [Type.FIRE, Type.WATER, Type.EARTH, Type.WIND]:
+		if resolve(attacker, defender) == Matchup.EFFECTIVE: return attacker
+	return Type.NONE

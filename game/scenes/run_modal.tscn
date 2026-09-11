@@ -1,6 +1,9 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=7 format=3]
 [ext_resource type="Script" path="res://scripts/run_modal.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/touch_action.gd" id="3"]
+[ext_resource type="PackedScene" path="res://scenes/route.tscn" id="route"]
+[ext_resource type="PackedScene" path="res://scenes/shrine.tscn" id="shrine"]
+[ext_resource type="PackedScene" path="res://scenes/reveal.tscn" id="reveal"]
 [sub_resource type="StyleBoxFlat" id="panel"]
 bg_color = Color(0.137, 0.145, 0.243, 1)
 content_margin_left = 20.0
@@ -33,6 +36,12 @@ anchor_bottom = 1.0
 mouse_filter = 2
 color = Color(0.125, 0.141, 0.22, 0.45)
 
+[node name="Route" parent="." instance=ExtResource("route")]
+visible = false
+[node name="Shrine" parent="." instance=ExtResource("shrine")]
+visible = false
+[node name="Reveal" parent="." instance=ExtResource("reveal")]
+visible = false
 [node name="Panel" type="PanelContainer" parent="."]
 layout_mode = 0
 offset_left = 20.0

@@ -11,7 +11,7 @@ func capture(label: String) -> void:
 	await RenderingServer.frame_post_draw
 	var picture := root.get_texture().get_image()
 	assert(picture.get_size()==Vector2i(390,844))
-	assert(picture.save_png("res://../qa/mobile/elemental/"+label+".png")==OK)
+	assert(picture.save_png("res://../qa/mobile/sophistication/"+label+".png")==OK)
 	checks += 1
 func run() -> void:
 	assert(DisplayServer.get_name()!="headless")

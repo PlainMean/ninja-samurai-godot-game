@@ -12,3 +12,8 @@ static func apply(screen: Control, available: Vector2) -> void:
 	screen.get_node("HUD/Feedback").position.y = 524 - shift
 	screen.get_node("Arena").position.y = -shift * 0.5
 	screen.get_node("Modal/Panel").position.y = 482 - shift
+
+	for panel in ["Route", "Shrine", "Reveal"]:
+		var journey: Control = screen.get_node("Modal/" + panel)
+		journey.position = Vector2(37.5, 154) if layout.compact else Vector2(20, 170)
+		journey.scale = Vector2(0.9, 0.9) if layout.compact else Vector2.ONE

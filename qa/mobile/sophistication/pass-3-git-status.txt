@@ -1,0 +1,35 @@
+ M CREDITS.md
+ M README.md
+ M game/README.md
+ M game/scenes/hud.tscn
+ M game/scenes/run_modal.tscn
+ M game/scripts/combat_model.gd
+ M game/scripts/data/element.gd
+ M game/scripts/duel.gd
+ M game/scripts/hud.gd
+ M game/scripts/layout_helper.gd
+ M game/scripts/run_modal.gd
+ M game/scripts/run_model.gd
+ M game/tests/check_web_export.py
+ M game/tests/export_pack_smoke.gd
+ M game/tests/native_visual_smoke.gd
+ M game/tests/run_tests.gd
+ M game/tests/verify.sh
+?? .hermes/plans/2026-09-11_171852-sophistication-roadmap.md
+?? STOP_REASON.md
+?? art_sources/journey/
+?? game/assets/sprites/journey/
+?? game/scenes/reveal.tscn
+?? game/scenes/route.tscn
+?? game/scenes/shrine.tscn
+?? game/scripts/journey_panel.gd
+?? game/scripts/journey_panel.gd.uid
+?? game/tests/check_journey_assets.py
+?? game/tests/journey_asset_manifest.json
+?? game/tests/test_forecast.gd
+?? game/tests/test_forecast.gd.uid
+?? game/tests/test_journey.gd
+?? game/tests/test_journey.gd.uid
+?? game/tests/test_reward_forecast.gd
+?? game/tests/test_reward_forecast.gd.uid
+?? qa/mobile/sophistication/

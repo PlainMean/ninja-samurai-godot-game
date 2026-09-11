@@ -27,6 +27,7 @@ run version "$GODOT_BIN" --version
 [[ "$(cat build/version.log)" == "4.5.1.stable.official.f62fdbde1" ]]
 python3 game/tests/check_source_assets.py
 sha256sum -c game/tests/source_assets.sha256
+python3 game/tests/check_journey_assets.py
 python3 game/tests/check_moonlit_assets.py
 sha256sum -c game/tests/moonlit_assets.sha256
 run import "$GODOT_BIN" --headless --path game --editor --import

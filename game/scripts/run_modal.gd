@@ -17,3 +17,10 @@ func present(heading: String, instructions: String, primary: String, choices: Ar
 
 	# Restore fixed bounds after a previous modal with a larger minimum size.
 	if $Panel.size != Vector2(350,326): $Panel.set_deferred("size", Vector2(350,326))
+
+func present_journey(run: RunModel, time: float, paused: bool) -> void:
+	for panel in [$Route, $Shrine, $Reveal]:
+		panel.visible = visible and not paused and panel.name == ("Shrine" if run.state == RunModel.State.INTERMISSION else ("Reveal" if run.state == RunModel.State.CLEARED else "Route"))
+		if panel.visible:
+			# Route frames depict unlocked gates; only shrine/reveal animate.
+			panel.present(run.journey_text(), run.encounter_index * 0.3 if panel == $Route else time)

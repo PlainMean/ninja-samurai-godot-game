@@ -17,7 +17,7 @@ The player has no affinity in this run, so WATER replies deal 1 damage. Choosing
 
 Health carries between fights. After seal one, choose Mend (restore 2 HP) or Long Breath (+1 max HP and restore 1 HP). Long Breath's old timing bonus is replaced because turns have no deadline. After seal two, choose Mend or Iron Resolve (+1 max HP and restore 1 HP); the two upgrades stack to 7 max HP. Mend clamps to max HP and is disabled at full health. Rewards apply once. Retry and New run reset HP, seals, attacks, and upgrades. Pause freezes the exact phase and requires Resume; Return to title discards the run. Touch and real mouse work without input emulation; holding and multiple fingers cannot repeat an attack.
 
-The HUD shows turn number, both health values, enemy element/weakness, selected attack, matchup, damage, and the three latest combat log entries. No new artwork was needed; all original asset bytes are preserved.
+The HUD shows turn number, both health values, enemy element/weakness, selected attack, matchup, damage, and the three latest combat log entries. The journey slice adds three Aseprite sheets while preserving all original asset bytes.
 
 ## Pinned setup
 
@@ -87,7 +87,7 @@ The current automated result is recorded in [elemental QA](../qa/mobile/elementa
 ~/.local/bin/godot --path game --script res://tests/native_visual_smoke.gd
 ```
 
-It captures 390×844 viewport PNGs across title, intro, attacks, enemy turn, next turn, pause, rewards, boss and clear into `qa/mobile/elemental/`. These are rendering evidence, not game art. This environment's display connection failed; no screenshots are claimed.
+It captures 390×844 viewport PNGs across title, intro, attacks, enemy turn, next turn, pause, rewards, boss and clear into `qa/mobile/sophistication/`. These are rendering evidence, not game art. This environment's display connection failed; no screenshots are claimed.
 
 ## Local release and QA
 
@@ -101,3 +101,36 @@ curl -fI http://127.0.0.1:8060/web/index.pck
 Open the nested URL `http://127.0.0.1:8060/web/index.html`, never `file://`. Publish the complete `build/web/` only in an authorized deployment. It includes engine worklets and notices; no service worker, threads, SharedArrayBuffer or cross-origin isolation is required. The existing Pages workflow deploys only after successful verification on an authorized main push or dispatch. Failure logs are uploaded separately.
 
 Native X11/Wayland rendering and an Xvfb fallback failed in this managed environment. Browser and physical iOS/Android visual/readability, safe areas, network/MIME/HTTPS, device frame times, draw calls, browser memory and load measurements remain pending. See [elemental QA](../qa/mobile/elemental/validation.md) for actual results. This pass does not push or deploy; historical deployment records refer to the previous combat version.
+
+
+## Journey and forecast slice — 2026-09-11
+
+The modal hosts dedicated `route.tscn`, `shrine.tscn`, and `reveal.tscn` panels.
+Route art uses the encounter index to show unlocked gates; its caption marks
+SEALED/NEXT/LOCKED. The two reward stops show an animated shrine and that fight's
+actual attack/damage totals. Three seals reveal the moonlit archive above the
+existing final stats. These are presentation scenes; RunModel retains the
+existing state transitions and records terminal outcomes once, resetting on retry.
+
+Each attack shows clamped predicted damage or SEAL when it will defeat the foe.
+The HUD states the enemy's exact intent if it survives. Model forecasts are pure,
+suppress lethal replies, and disappear during resolution. Weakness comes from
+Element's exact directed cycle. All encounters/rewards/health remain unchanged;
+no ward, new status effects, random outcomes or additional controls were added.
+
+New editable art/JSON/generator: `art_sources/journey/`. Reproduce only through
+Aseprite with workspace-local XDG directories and `--script-param out=<directory>
+--script art_sources/journey/generate.lua`. Three 480×96 runtime sheets have
+three 160×96 frames at 300ms; nearest filtering and source/runtime hash checks
+are enforced. No runtime art generation is used.
+
+Actual bounded-loop results: [dated QA](../qa/mobile/sophistication/2026-09-11-validation.md).
+Native rendering and browser/device QA remain blocked, so further touch-control
+and balance expansion is deferred in [STOP_REASON.md](../STOP_REASON.md).
+
+Pass 3 adds pure `RunModel.reward_forecast()` predictions shared by reward
+application and the existing two shrine buttons. Both gifts display current and
+resulting HP/capacity; full-health Mend remains disabled. The shrine also shows
+the next guardian’s name and HP. No combat or reward values changed. Model and
+scene tests passed 3,677 checks, with the full wrapper and exported clear green.
+See [pass 3 QA](../qa/mobile/sophistication/pass-3-validation.md).

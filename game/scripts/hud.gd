@@ -11,6 +11,13 @@ func present(s: Dictionary) -> void:
 	set_text(^"Cue", s.cue)
 	set_text(^"Feedback", s.feedback)
 	set_text(^"Hint", s.technique)
-	set_text(^"ElementInfo", "Enemy: %s · Weakness: WIND\nTurn %d · Your affinity: %s" % [s.enemy_element, s.turn, s.affinity])
+	set_text(^"ElementInfo", "Enemy: %s · Weakness: %s\nTurn %d · Your affinity: %s" % [s.enemy_element, s.weakness, s.turn, s.affinity])
 	$Heart.texture = Icons.get_frame_texture(&"heart_full" if s.hp > 0 else &"heart_empty", 0)
 	for i in range(3): get_node("Seal%d" % i).texture = Icons.get_frame_texture(&"seal_full" if i < s.seals else &"seal_empty", 0)
+
+	set_text(^"Intent", "Intent: %s · %d dmg if foe survives" % [Element.label(s.intent.element), s.intent.damage])
+	for i in range(4):
+		var forecast: Dictionary = s.forecasts[i]
+		var label: Label = $Actions.get_child(i).get_node("Forecast")
+		label.text = "" if forecast.is_empty() else ("SEAL" if forecast.lethal else "%d dmg" % forecast.damage)
+		label.modulate = Color("f6e3ad") if not forecast.is_empty() and forecast.matchup == Element.Matchup.EFFECTIVE else Color.WHITE

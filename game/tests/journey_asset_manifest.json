@@ -1,0 +1,18 @@
+{
+  "authoring_tool": "Aseprite Sprite/Image APIs",
+  "sha256": {
+    "art_sources/journey/generate.lua": "59fec891c3503797d6413d893f1dc92ebee698357251758d8141a59f168e8e40",
+    "art_sources/journey/reveal.aseprite": "b0b8fccecd0918140917c113ce3ae11e4fd35c34b53ed5d189bd9af70232d5a9",
+    "art_sources/journey/reveal.json": "5c4f492ad478ebf008c438ec73226a2bc3ab1c6165b3a48002248d7a7b329f0b",
+    "art_sources/journey/reveal_sheet.png": "960cbecf97ba8cf5ebd842effb5e77f981a1fb9f1668706bd6b43f2d57868244",
+    "art_sources/journey/route.aseprite": "50a12049685064610932fd46b4110d6ea717a56bf8858727458ffb946c0bec50",
+    "art_sources/journey/route.json": "4de43cee36022e48a6a18b00456e4489c2ba9dab8dfe7948a528a4f8cbee8430",
+    "art_sources/journey/route_sheet.png": "e2899ceb9dea0fa13124eb0c834727beda7bce23392d4bd0829da977799fcfce",
+    "art_sources/journey/shrine.aseprite": "d9e63c86701f57018c47b968ed09b1ae59df794f62e75122eaeba93eb16eee48",
+    "art_sources/journey/shrine.json": "d4192ddbb8a9be3229e5555d114b7d1b5f82a93978e145123b4c8ff65e10e325",
+    "art_sources/journey/shrine_sheet.png": "2c6648e3005cb6b11cb771618b64359d719fe535f8ace83574f8a6cc90283922",
+    "game/assets/sprites/journey/reveal_sheet.png": "960cbecf97ba8cf5ebd842effb5e77f981a1fb9f1668706bd6b43f2d57868244",
+    "game/assets/sprites/journey/route_sheet.png": "e2899ceb9dea0fa13124eb0c834727beda7bce23392d4bd0829da977799fcfce",
+    "game/assets/sprites/journey/shrine_sheet.png": "2c6648e3005cb6b11cb771618b64359d719fe535f8ace83574f8a6cc90283922"
+  }
+}

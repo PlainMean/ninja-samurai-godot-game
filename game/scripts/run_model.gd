@@ -11,6 +11,7 @@ var max_hp := 5
 var hp := 5
 var seals := 0
 var upgrades: Array[StringName] = []
+var results: Array[Dictionary] = []
 var attacks := 0
 var damage := 0
 var reward_claimed := false
@@ -27,6 +28,7 @@ func begin_run() -> bool:
 	hp = 5
 	seals = 0
 	upgrades.clear()
+	results.clear()
 	attacks = 0
 	damage = 0
 	reward_claimed = false
@@ -46,6 +48,7 @@ func begin_encounter(combat: CombatModel) -> bool:
 func resolve_encounter(combat: CombatModel) -> bool:
 	if state != State.FIGHT or terminal_handoff or not combat.terminal(): return false
 	terminal_handoff = true
+	results.append({"name": spec().display_name, "won": combat.state == CombatModel.Phase.WON, "attacks": combat.attacks, "damage": combat.damage})
 	hp = combat.player_hp
 	attacks += combat.attacks
 	damage += combat.damage
@@ -65,17 +68,33 @@ func rewards() -> Array[StringName]:
 func can_choose(id: StringName) -> bool:
 	return state == State.INTERMISSION and not reward_claimed and id in rewards() and (id != &"mend" or hp < max_hp)
 
+func reward_forecast(id: StringName) -> Dictionary:
+	if state != State.INTERMISSION or reward_claimed or id not in rewards(): return {}
+	var capacity := max_hp + (0 if id == &"mend" else 1)
+	var restored := mini(capacity - hp, 2 if id == &"mend" else 1)
+	return {"hp": hp + restored, "max_hp": capacity, "restored": restored, "enabled": can_choose(id)}
+
+func reward_choices() -> Array[Dictionary]:
+	var choices: Array[Dictionary] = []
+	for id in rewards():
+		var forecast := reward_forecast(id)
+		if forecast.is_empty(): return []
+		var title: String = {&"mend": "Mend", &"long_breath": "Long Breath", &"iron_resolve": "Iron Resolve"}[id]
+		var detail := "Health full" if not forecast.enabled else "%d / %d → %d / %d HP" % [hp, max_hp, forecast.hp, forecast.max_hp]
+		choices.append({"text": "%s\n%s" % [title, detail], "enabled": forecast.enabled})
+	return choices
+
+func next_guardian_text() -> String:
+	if state != State.INTERMISSION or encounter_index >= ENCOUNTERS.size() - 1: return ""
+	var next := ENCOUNTERS[encounter_index + 1]
+	return "Next: %s · %d HP" % [next.display_name, next.enemy_max_hp]
+
 func choose_reward(id: StringName) -> bool:
-	if not can_choose(id): return false
+	var forecast := reward_forecast(id)
+	if forecast.is_empty() or not forecast.enabled: return false
 	reward_claimed = true
-	match id:
-		&"mend": hp = mini(max_hp, hp + 2)
-		&"long_breath":
-			max_hp += 1
-			hp = mini(max_hp, hp + 1)
-		&"iron_resolve":
-			max_hp += 1
-			hp = mini(max_hp, hp + 1)
+	hp = forecast.hp
+	max_hp = forecast.max_hp
 	upgrades.append(id)
 	encounter_index += 1
 	state = State.INTRO
@@ -87,3 +106,18 @@ func return_to_title() -> bool:
 	begin_run()
 	state = State.TITLE
 	return true
+
+func route_status() -> Array[String]:
+	var result: Array[String] = []
+	for i in range(3):
+		result.append("SEALED" if i < seals else ("NEXT" if i == encounter_index else "LOCKED"))
+	return result
+
+func journey_text() -> String:
+	if state == State.CLEARED:
+		return "The seals open the moonlit archive.\nYour training becomes its next legend."
+	if state == State.INTERMISSION:
+		return "Shrine of renewal\n%d attacks · %d damage taken" % [results.back().attacks, results.back().damage] if not results.is_empty() else "Shrine of renewal\nOne gift before the next guardian."
+	if state == State.FAILED:
+		return "The archive waits.\nEvery new run begins at the gate."
+	return "Gate %s  ·  Court %s\nMaster %s" % route_status()
