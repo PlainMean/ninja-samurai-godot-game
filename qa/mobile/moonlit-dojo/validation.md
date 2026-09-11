@@ -1,6 +1,6 @@
 # Moonlit Dojo expansion validation — 2026-09-11
 
-Local implementation and verification are complete. Browser/device release acceptance remains incomplete because this managed environment blocks socket creation and Chromium launch, and no physical iOS/Android device is available to this session. No commit, push, publication, workflow dispatch, or live HTTPS validation was performed.
+Local implementation and verification are complete. Browser/device release acceptance remains incomplete because this managed environment blocks socket creation and Chromium launch, and no physical iOS/Android device is available to this session. The deployment follow-up below records the later authorized commit, push, workflow, and live HTTPS validation.
 
 ## Actual tools and results
 
@@ -21,6 +21,14 @@ Commands ran from `/home/cmuxao/repos/ninja-samurai-godot-game`, with `XDG_DATA_
 | `python3 game/tests/check_moonlit_assets.py`; `sha256sum -c game/tests/moonlit_assets.sha256` | Exit 0; six exact specifications, native/runtime equality, 51 distinct frames, 34 new hashes and budgets |
 | Final `game/tests/verify.sh` | Exit 0; exact engine pin, both asset checks, headless editor import, **3,179 checks / 0 failures**, 120-frame scene smoke, release Web export, 120-frame exported-pack smoke, complete exported-pack three-encounter clear, notices copy, pack/bundle checker |
 | `git diff --check` | Exit 0; no whitespace errors |
+
+## Deployment follow-up
+
+The user-authorized release was committed as `6889955 feat: expand duel into moonlit dojo three seals` and pushed to `PlainMean/ninja-samurai-godot-game` on `main`. GitHub Actions run [34573481618](https://github.com/PlainMean/ninja-samurai-godot-game/actions/runs/34573481618) completed successfully: the `Test and export Web` job passed in 6m1s and `Deploy to GitHub Pages` passed in 9s. Pages is configured with `build_type=workflow` and HTTPS enforcement enabled.
+
+Live URL: https://plainmean.github.io/ninja-samurai-godot-game/
+
+Read-back checks on 2026-09-11 returned HTTP 200 for `index.html` (`text/html`, 7,264 bytes), `index.js` (`application/javascript`, 305,185 bytes), `index.wasm` (`application/wasm`, 38,034,280 bytes), and `index.pck` (`application/octet-stream`, 84,784 bytes). The served HTML contains the title `Moonlit Dojo: Three Seals`, the portrait viewport, and the accessible canvas label. These checks prove Pages is serving the new exported artifact; in-browser interaction/device acceptance remains pending as documented below.
 
 The full runner retains original mechanics/asset/input coverage while replacing obsolete 3-player-HP and one-duel expectations with five HP, explicit run introductions and typed events. New suites cover all warning/opening boundaries, heavy and double-cut rules, all reward branches, pause on each side of impacts, coarse/fine determinism, complete clears at 1×/2×/3× with both reward choices, 20 loss/retry cycles per flow, stable node/connection counts, stopped attack/support frames, imported RGBA, compact target calculations, actual container layout bounds, and input-time synchronization. The exported-pack test completes the three encounters with packaged resources; its external test script is not included in the release.
 
@@ -77,4 +85,4 @@ Gzip figures are calculated locally; no HTTP compression or transfer timing is c
 
 All requested screenshots remain pending: `390x844-title.png`, `390x844-gate-cut.png`, `390x844-double-cut-2.png`, `390x844-heavy-dodge.png`, `390x844-opening.png`, `390x844-technique.png`, `390x844-cleared.png`, `390x844-failed.png`, `ios-safari-portrait.png`, `android-chrome-portrait.png`, and `compact-360x740.png`. No fabricated screenshots, console/network traces or performance values are provided.
 
-[files-changed.txt](files-changed.txt) records every modified/untracked path at completion, including changes inherited from the previous run. Generated `build/`, `.godot/` and texture import caches remain ignored. Work is uncommitted and unpublished.
+[files-changed.txt](files-changed.txt) records every modified/untracked path at completion, including changes inherited from the previous run. Generated `build/`, `.godot/` and texture import caches remain ignored. The implementation is committed and published; the working tree was clean after the deployment follow-up.

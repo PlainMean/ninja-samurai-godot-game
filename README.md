@@ -9,4 +9,4 @@ game/tests/verify.sh
 
 The verification wrapper checks preserved artwork, six new Aseprite asset sets, deterministic mechanics, full-run touch flows, lifecycle/layout, imports, scene smoke, HTML5 export, and an actual exported-pack three-encounter clear. The complete local artifact is `build/web/`.
 
-See [game setup and architecture](game/README.md), [actual verification and pending browser/device QA](qa/mobile/moonlit-dojo/validation.md), and [artwork provenance](CREDITS.md). Both implementation plans remain in `.hermes/plans/`. No publication is part of local verification.
+See [game setup and architecture](game/README.md), [actual verification and pending browser/device QA](qa/mobile/moonlit-dojo/validation.md), and [artwork provenance](CREDITS.md). Both implementation plans remain in `.hermes/plans/`. The verified GitHub Pages deployment is available at https://plainmean.github.io/ninja-samurai-godot-game/.
