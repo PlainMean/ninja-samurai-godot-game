@@ -11,6 +11,7 @@ web = root / 'build/web'
 html = (web / 'index.html').read_text()
 assert 'const GODOT_THREADS_ENABLED = false;' in html
 assert '$GODOT_' not in html
+assert 'turn-based FIRE, WATER, EARTH, WIND' in html
 config = json.loads(re.search(r'const GODOT_CONFIG = (.+);', html)[1])
 assert config['canvasResizePolicy'] == 0
 assert not config.get('serviceWorker') and not config.get('experimentalVK')
@@ -33,7 +34,7 @@ for _ in range(count):
     pos += length + 8 + 8 + 16 + 4
 assert any(p.endswith('scripts/combat_model.gdc') for p in paths), paths
 assert not any('/tests/' in p or '/tools/' in p or '/web/' in p or 'art_sources/' in p or p.endswith(('.json','.aseprite','.lua','.gif','.gd')) for p in paths)
-for script in ['run_model','combat_event','data/strike_spec','data/pattern_spec','data/encounter_spec','duel','arena_view','fighter_view','hud','run_modal','effects_view','frame_playback','layout_helper','touch_action','browser_lifecycle']:
+for script in ['run_model','combat_event','data/element','data/encounter_spec','duel','arena_view','fighter_view','hud','run_modal','effects_view','frame_playback','layout_helper','touch_action','browser_lifecycle']:
     assert any(p.endswith('scripts/'+script+'.gdc') for p in paths), script
 for encounter in ['gate_guard','courtyard_retainer','dojo_master']:
     assert any(p.endswith('data/encounters/'+encounter+'.tres.remap') or p.endswith('data/encounters/'+encounter+'.tres') for p in paths), encounter
@@ -42,6 +43,7 @@ for name in ['ninja_support','samurai_support','dojo_backdrops','dojo_props','co
     assert any(name+'_sheet.png-' in p and p.endswith('.ctex') for p in paths), name
 for name in ['ninja','samurai']:
     assert any(name+'_attack_sheet.png-' in p and p.endswith('.ctex') for p in paths), name
+assert not any(p.endswith(('scripts/data/pattern_spec.gdc', 'scripts/data/strike_spec.gdc')) for p in paths)
 assert len(pck) <= 1048576, 'PCK exceeds 1 MiB'
 
 raw = compressed = 0

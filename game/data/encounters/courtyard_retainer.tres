@@ -1,32 +1,12 @@
-[gd_resource type="Resource" script_class="EncounterSpec" load_steps=7 format=3]
-
+[gd_resource type="Resource" script_class="EncounterSpec" load_steps=2 format=3]
 [ext_resource type="Script" path="res://scripts/data/encounter_spec.gd" id="1"]
-[ext_resource type="Script" path="res://scripts/data/pattern_spec.gd" id="2"]
-[ext_resource type="Script" path="res://scripts/data/strike_spec.gd" id="3"]
-
-[sub_resource type="Resource" id="s0_0"]
-script = ExtResource("3")
-defense_required = 1
-warning_ms = 850
-
-[sub_resource type="Resource" id="s0_1"]
-script = ExtResource("3")
-defense_required = 1
-warning_ms = 700
-
-[sub_resource type="Resource" id="p0"]
-script = ExtResource("2")
-id = &"double_cut"
-strikes = Array[ExtResource("3")]([SubResource("s0_0"), SubResource("s0_1")])
 
 [resource]
 script = ExtResource("1")
 id = &"courtyard_retainer"
 display_name = "Twin-cut Retainer"
 enemy_max_hp = 4
-rest_ms = 650
-counter_ms = 1100
 backdrop_tag = &"courtyard"
 banner_tag = &"banner_retainer"
-intro_text = "Block both cuts. Release between taps. Counter after cut 2."
-patterns = Array[ExtResource("2")]([SubResource("p0")])
+element = 2
+intro_text = "Element: WATER · Weakness: WIND\nChoose an attack. Then the samurai acts."

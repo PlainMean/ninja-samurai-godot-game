@@ -6,28 +6,25 @@ const Layout = preload("res://scripts/layout_helper.gd")
 var now := 1000000
 func tap(t, viewport, button) -> void:
 	t.scene_tap(viewport, button)
-func beat(t, screen, viewport, wrong := false) -> void:
-	screen.advance(screen.model.duration())
-	while screen.model.state == C.Phase.TELEGRAPH:
-		var dodge: bool = screen.model.strike().defense_required == StrikeSpec.Defense.DODGE
-		if wrong: dodge = not dodge
-		tap(t, viewport, screen.dodge_button if dodge else screen.block_button)
-		t.check(screen.model.block_latched, "scene defense accepted")
-		screen.advance(screen.model.duration())
+func beat(t, screen, viewport) -> void:
+	tap(t, viewport, screen.attack_buttons[3])
+	t.check(screen.model.state == C.Phase.PLAYER_ATTACK, "scene WIND accepted")
+	for frame in range(6):
+		screen.model.elapsed = frame * 0.1
+		screen._refresh()
+		t.check(screen.ninja.sprite.frame == frame and not screen.ninja.sprite.is_playing(), "six original player frames")
+	screen.model.elapsed = 0.0
+	screen.advance(0.6)
+	if not screen.model.terminal():
+		t.check(screen.model.state == C.Phase.ENEMY_TURN and screen.hud.get_node("Cue").text == "ENEMY TURN", "visible automatic enemy turn")
+		screen.advance(0.35)
 		for frame in range(6):
 			screen.model.elapsed = frame * 0.1
-			screen._refresh()
+			screen.hud.present(screen.snapshot())
+			# Isolate animation sampling from the recent hurt overlay.
+			screen.hurt_enemy = -1.0
+			screen._present_fighters()
 			t.check(screen.samurai.sprite.frame == frame and not screen.samurai.sprite.is_playing(), "six original enemy frames")
-		# Restore elapsed; advance through the actual authoritative impact/recovery.
-		screen.model.elapsed = 0.0
-		screen.advance(0.6)
-	if screen.model.state == C.Phase.COUNTER_WINDOW:
-		tap(t, viewport, screen.strike_button)
-		t.check(screen.model.state == C.Phase.PLAYER_ATTACK, "scene Strike accepted")
-		for frame in range(6):
-			screen.model.elapsed = frame * 0.1
-			screen._refresh()
-			t.check(screen.ninja.sprite.frame == frame and not screen.ninja.sprite.is_playing(), "six original player frames")
 		screen.model.elapsed = 0.0
 		screen.advance(0.6)
 func fits(t, screen) -> void:
@@ -39,8 +36,8 @@ func fits(t, screen) -> void:
 		for label in screen.get_node("Modal/Panel/Content").get_children():
 			if label.visible:
 				t.check(panel.get_global_rect().encloses(label.get_global_rect()), "modal child inside panel " + label.name)
-	for button in [screen.block_button,screen.dodge_button,screen.strike_button]:
-		t.check(button.size == Vector2(110,96), "three equal action targets")
+	for button in screen.attack_buttons:
+		t.check(button.size == Vector2(83,96), "four equal action targets")
 func run(t) -> void:
 	for factor in [1,2,3]:
 		for mend in [false,true]:
@@ -57,7 +54,7 @@ func run(t) -> void:
 			await t.process_frame
 			await t.process_frame
 			await fits(t,s)
-			t.check(s.modal.visible and s.block_button.disabled and s.dodge_button.disabled and s.strike_button.disabled, "title blocks all combat")
+			t.check(s.modal.visible and s.attack_buttons.all(func(button): return button.disabled), "title blocks all combat")
 			t.check(not s.ninja.sprite.flip_h and s.samurai.sprite.flip_h, "only enemy flipped")
 			tap(t,viewport,s.primary_button)
 			t.check(s.run.state == R.State.INTRO, "Begin enters intro without tap leakage")
@@ -67,7 +64,6 @@ func run(t) -> void:
 			for encounter in range(3):
 				tap(t,viewport,s.primary_button)
 				t.check(s.run.state == R.State.FIGHT and s.model.enemy_hp == [3,4,5][encounter], "Fight configures encounter")
-				if mend and encounter < 2: beat(t,s,viewport,true)
 				while not s.model.terminal(): beat(t,s,viewport)
 				t.check(not s.modal.visible and s.run.seals == encounter, "lethal recovery before terminal handoff")
 				s.advance(0.399)
@@ -87,14 +83,16 @@ func run(t) -> void:
 					t.check(s.choice_a.disabled == (s.run.hp == s.run.max_hp), "Mend disabled only at full HP")
 					tap(t,viewport,s.choice_a if mend else s.choice_b)
 					t.check(s.run.state == R.State.INTRO and s.model.state == C.Phase.READY, "reward enters fresh intro without leakage " + str(s.run.state) + "/" + str(s.model.state))
-				t.check(s.run.counters == [3,7,12][encounter], "landed counter stats")
-			t.check(s.run.state == R.State.CLEARED and s.run.seals == 3 and s.run.counters == 12, "touch-only three encounter clear")
+				t.check(s.run.attacks == [2,4,7][encounter], "landed attack stats")
+			t.check(s.run.state == R.State.CLEARED and s.run.seals == 3 and s.run.attacks == 7, "touch-only three encounter clear")
 			tap(t,viewport,s.primary_button)
 			t.check(s.run.state == R.State.INTRO and s.run.hp == 5 and s.run.upgrades.is_empty(), "New run fresh")
 			var baseline: int = s.find_children("*", "", true, false).size()
 			for retry in range(20):
 				tap(t,viewport,s.primary_button)
-				while not s.model.terminal(): s.advance(s.model.duration() - s.model.elapsed)
+				s.model.player_hp = 1
+				s._attack(Element.Type.FIRE)
+				s.advance(1.55)
 				t.check(s.model.state == C.Phase.LOST and not s.modal.visible, "loss recovery before result")
 				s.advance(0.4)
 				t.check(s.run.state == R.State.FAILED and s.modal.visible, "touch-started loss")
@@ -116,57 +114,75 @@ func run(t) -> void:
 			t.check(baseline <= 200, "scene node budget")
 			viewport.queue_free()
 			await t.process_frame
-	# Input and process share one monotonic interval, including exact deadlines.
+	# Input eligibility and processing share one monotonic interval.
 	var s = load("res://scenes/duel.tscn").instantiate()
 	t.root.add_child(s)
 	s.set_process(false)
 	s.clock = func(): return now
 	s._primary()
 	s._primary()
-	s.advance(0.7)
-	s.advance(0.7)
+	for i in range(4):
+		t.check(s.attack_buttons[i].text == ["FIRE","WATER","EARTH","WIND"][i],"explicit elemental touch label")
+	s.advance(100)
+	t.check(s.model.state==C.Phase.PLAYER_TURN and s.model.player_hp==5,"scene waits indefinitely")
+	s._attack(Element.Type.WATER)
 	now += 199000
-	s._block()
-	t.check(s.model.block_latched and is_equal_approx(s.model.elapsed,0.899), "input synchronizes last-ms defense")
+	s._attack(Element.Type.WIND)
+	t.check(s.model.selected_element==Element.Type.WATER and is_equal_approx(s.model.elapsed,0.199),"resolution tap cannot replace choice")
 	s._process(0.199)
-	t.check(is_equal_approx(s.model.elapsed,0.899), "process does not consume input interval twice")
-	s.model.prepare_resume()
-	s.model.step(0.7)
+	t.check(is_equal_approx(s.model.elapsed,0.199),"process does not consume input interval twice")
+	s.advance(1.151)
 	now += 200000
-	s._block()
-	t.check(s.model.state == C.Phase.ENEMY_ATTACK and not s.model.block_latched, "exact input deadline advances before defense")
+	s._attack(Element.Type.WIND)
+	t.check(s.model.state==C.Phase.PLAYER_TURN and s.model.attacks==1,"resolution tap cannot queue next-turn attack")
 	for available in [Vector2(390,844),Vector2(360,800),Vector2(430,932),Vector2(360,740),Vector2(390,700)]:
 		var metrics := Layout.metrics(available)
 		Layout.apply(s,available)
-		t.check(60 * metrics.scale >= 48 and 96 * metrics.scale >= 48, "CSS targets " + str(available))
+		t.check(60 * metrics.scale >= 48 and 83 * metrics.scale >= 48 and 96 * metrics.scale >= 48, "CSS targets " + str(available))
 		t.check(s.get_node("HUD/Actions").position.y + 96 <= metrics.height and s.get_node("Modal/Panel").position.y + 326 <= metrics.height, "compact controls inside canvas")
-	# Combo warning 2 keeps first outcome across lifecycle pause and requires release.
-	s._title()
-	s.run.begin_run()
-	s.run.encounter_index = 1
-	s._primary()
-	s.advance(0.65)
-	t.touch(s.block_button,0,true,s.block_button.get_global_rect().get_center())
-	s.advance(1.45)
-	t.check(s.model.strike_index == 1 and not s.model.block_latched, "second cut clears only defense latch")
-	t.touch(s.block_button,0,true,s.block_button.get_global_rect().get_center())
-	t.check(not s.model.block_latched, "held defense never repeats on cut two")
-	t.touch(s.block_button,0,false,Vector2(-10,-10))
-	t.touch(s.dodge_button,1,true,s.dodge_button.get_global_rect().get_center())
-	t.touch(s.block_button,2,true,s.block_button.get_global_rect().get_center())
-	t.check(s.model.selected_defense == StrikeSpec.Defense.DODGE, "second finger cannot correct wrong defense")
+		t.check(s.get_node("HUD/Feedback").get_rect().end.y <= s.get_node("HUD/Hint").position.y and s.get_node("HUD/Hint").get_rect().end.y <= s.get_node("HUD/Actions").position.y,"log selection and controls do not overlap")
+	Layout.apply(s,Vector2(390,844))
+	# Held touch and second finger cannot create extra turns.
+	t.touch(s.attack_buttons[0],0,true,s.attack_buttons[0].get_global_rect().get_center())
+	t.touch(s.attack_buttons[3],1,true,s.attack_buttons[3].get_global_rect().get_center())
+	t.check(s.model.selected_element==Element.Type.FIRE,"second finger cannot replace attack")
+	s.advance(1.55)
+	t.touch(s.attack_buttons[0],0,true,s.attack_buttons[0].get_global_rect().get_center())
+	t.check(s.model.state==C.Phase.PLAYER_TURN and s.model.attacks==2,"held attack never repeats next turn")
+	t.touch(s.attack_buttons[0],0,false,Vector2(-10,-10))
 	s.pause_duel()
-	t.check(s.model.strike_index == 1 and s.model.all_defended and not s.model.block_latched and Touch.pointer_owner == null, "combo pause retains first defense and cancels pointers")
+	var frozen := [s.model.state,s.model.elapsed,s.model.player_hp,s.model.enemy_hp]
+	s._attack(Element.Type.WIND)
+	s.advance(100)
+	t.check(frozen==[s.model.state,s.model.elapsed,s.model.player_hp,s.model.enemy_hp] and Touch.pointer_owner==null,"modal blocks damage/input and cancels pointers")
 	s._primary()
-	s._block()
-	s.advance(1.3)
-	t.check(s.model.state == C.Phase.COUNTER_WINDOW and s.model.player_hp == 5, "resumed cut two earns opening once")
-	# Exact presentation handoff also consumes the remainder of a coarse scene interval.
-	s.model.enemy_hp = 1
-	s._strike()
+	s._attack(Element.Type.WIND)
 	s.advance(0.999)
 	t.check(s.run.state == R.State.FIGHT and is_equal_approx(s.terminal_time,0.399), "coarse attack to terminal preserves remaining time")
 	s.advance(0.001)
-	t.check(s.run.state == R.State.INTERMISSION, "coarse handoff exact 1000ms after strike")
+	t.check(s.run.state == R.State.INTERMISSION, "coarse handoff exact 1000ms after attack")
+	# Pause on both sides of both impact boundaries via the scene coordinator.
+	for at in [0.299,0.3,0.6,1.249,1.25]:
+		s._title()
+		s._primary()
+		s._primary()
+		s._attack(Element.Type.FIRE)
+		s.advance(at)
+		frozen=[s.model.state,s.model.elapsed,s.model.player_hp,s.model.enemy_hp]
+		s.pause_duel()
+		s.advance(100)
+		s._attack(Element.Type.WIND)
+		t.check(frozen==[s.model.state,s.model.elapsed,s.model.player_hp,s.model.enemy_hp],"scene pause preserves impact state")
+		s._primary()
+		s.advance(1.55-at)
+		t.check(s.model.player_hp==4 and s.model.enemy_hp==2 and s.model.attacks==1 and s.model.state==C.Phase.PLAYER_TURN,"scene resume resolves once")
+	s._title()
+	s._primary()
+	s.run.encounter_index=2
+	s._primary()
+	t.check('Enemy: WATER · Weakness: WIND' in s.hud.get_node("ElementInfo").text,"final boss explicitly WATER with WIND weakness")
+	s._attack(Element.Type.WIND)
+	s.advance(1.55)
+	t.check('WIND · EFFECTIVE · 2 damage' in s.hud.get_node("Hint").text and 'Foe WATER · NEUTRAL · 1 dmg' in s.hud.get_node("Feedback").text and 'Turn 2' in s.hud.get_node("ElementInfo").text,"visible selection matchup damage log and turn")
 	s.queue_free()
 	await t.process_frame

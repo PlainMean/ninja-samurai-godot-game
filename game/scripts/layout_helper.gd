@@ -8,7 +8,7 @@ static func apply(screen: Control, available: Vector2) -> void:
 	var shift := 64.0 if layout.compact else 0.0
 	screen.get_node("HUD/Actions").position.y = 656 - shift
 	screen.get_node("HUD/Footer").position.y = 780 - shift
-	screen.get_node("HUD/Hint").position.y = 574 - shift * 0.5
-	screen.get_node("HUD/Feedback").position.y = 524 - shift * 0.5
+	screen.get_node("HUD/Hint").position.y = 596 - shift
+	screen.get_node("HUD/Feedback").position.y = 524 - shift
 	screen.get_node("Arena").position.y = -shift * 0.5
 	screen.get_node("Modal/Panel").position.y = 482 - shift

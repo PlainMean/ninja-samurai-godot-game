@@ -1,5 +1,7 @@
 # Moonlit Dojo expansion validation — 2026-09-11
 
+Historical reactive-combat record. The current elemental revision and its local-only checks are documented in [elemental validation](../elemental/validation.md).
+
 Local implementation and verification are complete. Browser/device release acceptance remains incomplete because this managed environment blocks socket creation and Chromium launch, and no physical iOS/Android device is available to this session. The deployment follow-up below records the later authorized commit, push, workflow, and live HTTPS validation.
 
 ## Actual tools and results

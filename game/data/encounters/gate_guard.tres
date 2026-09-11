@@ -1,27 +1,12 @@
-[gd_resource type="Resource" script_class="EncounterSpec" load_steps=6 format=3]
-
+[gd_resource type="Resource" script_class="EncounterSpec" load_steps=2 format=3]
 [ext_resource type="Script" path="res://scripts/data/encounter_spec.gd" id="1"]
-[ext_resource type="Script" path="res://scripts/data/pattern_spec.gd" id="2"]
-[ext_resource type="Script" path="res://scripts/data/strike_spec.gd" id="3"]
-
-[sub_resource type="Resource" id="s0_0"]
-script = ExtResource("3")
-defense_required = 1
-warning_ms = 900
-
-[sub_resource type="Resource" id="p0"]
-script = ExtResource("2")
-id = &"single_cut"
-strikes = Array[ExtResource("3")]([SubResource("s0_0")])
 
 [resource]
 script = ExtResource("1")
 id = &"gate_guard"
 display_name = "Gate Warden"
 enemy_max_hp = 3
-rest_ms = 700
-counter_ms = 1200
 backdrop_tag = &"gate"
 banner_tag = &"banner_gate"
-intro_text = "Tap Block during CUT. Then Strike when OPEN."
-patterns = Array[ExtResource("2")]([SubResource("p0")])
+element = 2
+intro_text = "Element: WATER · Weakness: WIND\nChoose an attack. Then the samurai acts."

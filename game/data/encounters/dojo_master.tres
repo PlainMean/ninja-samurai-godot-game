@@ -1,52 +1,12 @@
-[gd_resource type="Resource" script_class="EncounterSpec" load_steps=11 format=3]
-
+[gd_resource type="Resource" script_class="EncounterSpec" load_steps=2 format=3]
 [ext_resource type="Script" path="res://scripts/data/encounter_spec.gd" id="1"]
-[ext_resource type="Script" path="res://scripts/data/pattern_spec.gd" id="2"]
-[ext_resource type="Script" path="res://scripts/data/strike_spec.gd" id="3"]
-
-[sub_resource type="Resource" id="s0_0"]
-script = ExtResource("3")
-defense_required = 2
-warning_ms = 1050
-
-[sub_resource type="Resource" id="p0"]
-script = ExtResource("2")
-id = &"heavy_cut"
-strikes = Array[ExtResource("3")]([SubResource("s0_0")])
-
-[sub_resource type="Resource" id="s1_0"]
-script = ExtResource("3")
-defense_required = 1
-warning_ms = 750
-
-[sub_resource type="Resource" id="p1"]
-script = ExtResource("2")
-id = &"single_cut"
-strikes = Array[ExtResource("3")]([SubResource("s1_0")])
-
-[sub_resource type="Resource" id="s2_0"]
-script = ExtResource("3")
-defense_required = 1
-warning_ms = 750
-
-[sub_resource type="Resource" id="s2_1"]
-script = ExtResource("3")
-defense_required = 1
-warning_ms = 650
-
-[sub_resource type="Resource" id="p2"]
-script = ExtResource("2")
-id = &"double_cut"
-strikes = Array[ExtResource("3")]([SubResource("s2_0"), SubResource("s2_1")])
 
 [resource]
 script = ExtResource("1")
 id = &"dojo_master"
 display_name = "Moonlit Master"
 enemy_max_hp = 5
-rest_ms = 600
-counter_ms = 1000
 backdrop_tag = &"dojo"
 banner_tag = &"banner_master"
-intro_text = "Dodge HEAVY. Block CUT. Two cuts need two blocks."
-patterns = Array[ExtResource("2")]([SubResource("p0"), SubResource("p1"), SubResource("p2")])
+element = 2
+intro_text = "Element: WATER · Weakness: WIND\nChoose an attack. Then the samurai acts."

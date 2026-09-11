@@ -1,6 +1,4 @@
 extends Control
-const StrikeData = preload("res://scripts/data/strike_spec.gd")
-const PatternData = preload("res://scripts/data/pattern_spec.gd")
 const EncounterData = preload("res://scripts/data/encounter_spec.gd")
 const Combat = preload("res://scripts/combat_model.gd")
 const Run = preload("res://scripts/run_model.gd")
@@ -16,23 +14,19 @@ var feedback_time := 0.0
 var feedback_text := ""
 var hurt_player := -1.0
 var hurt_enemy := -1.0
-var defense_time := 0.0
 @onready var ninja = $Arena/Ninja
 @onready var samurai = $Arena/Samurai
 @onready var hud = $HUD
 @onready var modal = $Modal
-@onready var block_button = $HUD/Actions/BlockButton
-@onready var dodge_button = $HUD/Actions/DodgeButton
-@onready var strike_button = $HUD/Actions/StrikeButton
+@onready var attack_buttons: Array[Button] = [$HUD/Actions/FireButton, $HUD/Actions/WaterButton, $HUD/Actions/EarthButton, $HUD/Actions/WindButton]
 @onready var pause_button = $HUD/PauseButton
 @onready var primary_button = $Modal/Panel/Content/PrimaryButton
 @onready var choice_a = $Modal/Panel/Content/ChoiceAButton
 @onready var choice_b = $Modal/Panel/Content/ChoiceBButton
 @onready var secondary_button = $Modal/Panel/Content/SecondaryButton
 func _ready() -> void:
-	block_button.activated.connect(_block)
-	dodge_button.activated.connect(_dodge)
-	strike_button.activated.connect(_strike)
+	for i in range(4):
+		attack_buttons[i].activated.connect(_attack.bind((i + 1) as Element.Type))
 	pause_button.activated.connect(pause_duel)
 	primary_button.activated.connect(_primary)
 	choice_a.activated.connect(func(): _reward(&"mend"))
@@ -70,7 +64,7 @@ func advance(delta: float) -> void:
 	if paused or run.state != Run.State.FIGHT or not is_finite(delta) or delta <= 0: return
 	var remaining := delta
 	while remaining > Combat.EPS and run.state == Run.State.FIGHT:
-		var boundary := 0.4 - terminal_time if model.terminal() else model.duration() - model.elapsed
+		var boundary := 0.4 - terminal_time if model.terminal() else (model.duration() - model.elapsed if model.duration() > 0 else remaining)
 		if model.is_attack() and not model.impact_resolved: boundary = Combat.IMPACT_TIME - model.elapsed
 		var consumed := minf(remaining, boundary)
 		presentation_time += consumed
@@ -90,32 +84,20 @@ func advance(delta: float) -> void:
 func _consume_events() -> void:
 	for event in model.drain_events():
 		match event.kind:
-			CombatEvent.Kind.DEFENSE_SELECTED:
-				defense_time = presentation_time
-				feedback_text = "Guard set" if event.selected_defense == StrikeSpec.Defense.BLOCK else "Dodge set"
-			CombatEvent.Kind.DEFENDED:
-				feedback_text = "Blocked!" if event.selected_defense == StrikeSpec.Defense.BLOCK else "Dodged!"
-				$Arena/Effects.trigger(&"block" if event.selected_defense == StrikeSpec.Defense.BLOCK else &"dodge", Vector2(195,390) if event.selected_defense == StrikeSpec.Defense.BLOCK else Vector2(111,444))
-			CombatEvent.Kind.DAMAGE:
+			CombatEvent.Kind.ENEMY_HIT:
 				hurt_player = presentation_time
-				feedback_text = "Hit! Dodge HEAVY." if event.defense_required == StrikeSpec.Defense.DODGE else "Hit! Block each CUT."
 				$Arena/Effects.trigger(&"hit", Vector2(195,390))
-			CombatEvent.Kind.COUNTER:
+			CombatEvent.Kind.PLAYER_HIT:
 				hurt_enemy = presentation_time
-				feedback_text = "Counter landed!"
 				$Arena/Effects.trigger(&"hit", Vector2(195,390))
 			CombatEvent.Kind.WON, CombatEvent.Kind.LOST: terminal_time = 0.0
 		feedback_time = 0.65
-func _block() -> void: _action(StrikeSpec.Defense.BLOCK)
-func _dodge() -> void: _action(StrikeSpec.Defense.DODGE)
-func _action(defense: StrikeSpec.Defense) -> void:
+func _attack(element: Element.Type) -> void:
+	# Input eligibility is sampled before synchronizing: a tap during resolution
+	# cannot become a queued attack when that synchronization reaches PLAYER_TURN.
+	var eligible := not paused and run.state == Run.State.FIGHT and model.state == Combat.Phase.PLAYER_TURN
 	_sync_time()
-	if not paused and run.state == Run.State.FIGHT: model.request_defense(defense)
-	_consume_events()
-	_refresh()
-func _strike() -> void:
-	_sync_time()
-	if not paused and run.state == Run.State.FIGHT: model.request_strike()
+	if eligible and not paused and run.state == Run.State.FIGHT: model.request_attack(element)
 	_refresh()
 func _clear_presentation() -> void:
 	terminal_time = 0.0
@@ -124,7 +106,6 @@ func _clear_presentation() -> void:
 	feedback_text = ""
 	hurt_player = -1.0
 	hurt_enemy = -1.0
-	defense_time = 0.0
 	$Arena/Effects.clear()
 func _primary() -> void:
 	_cancel_pointers()
@@ -141,7 +122,7 @@ func _primary() -> void:
 func _reward(id: StringName) -> void:
 	if run.choose_reward(id):
 		_cancel_pointers()
-		model.configure(run.spec(), run.hp, run.max_hp, run.counter_bonus_ms)
+		model.configure(run.spec(), run.hp, run.max_hp)
 		_clear_presentation()
 	_refresh()
 func _title() -> void:
@@ -159,35 +140,25 @@ func pause_duel() -> void:
 	model.drain_events()
 	_refresh()
 func _cancel_pointers() -> void:
-	for button in [block_button,dodge_button,strike_button,pause_button,primary_button,choice_a,choice_b,secondary_button]:
+	for button in attack_buttons + [pause_button,primary_button,choice_a,choice_b,secondary_button]:
 		if is_instance_valid(button): button.cancel_pointer()
 func snapshot() -> Dictionary:
-	var cue := "Read the cue."
-	var icon := &"cut"
-	if model.strike().defense_required == StrikeSpec.Defense.DODGE: icon = &"heavy"
-	elif model.pattern().strikes.size() == 2: icon = &"double_cut"
-	match model.state:
-		Combat.Phase.REST: cue = "Get ready…"
-		Combat.Phase.TELEGRAPH:
-			cue = "HEAVY — DODGE" if icon == &"heavy" else "CUT %d / %d — BLOCK" % [model.strike_index + 1, model.pattern().strikes.size()]
-		Combat.Phase.ENEMY_ATTACK: cue = "HEAVY" if icon == &"heavy" else "CUT %d / %d" % [model.strike_index + 1, model.pattern().strikes.size()]
-		Combat.Phase.COUNTER_WINDOW: cue = "OPEN — STRIKE"
-		Combat.Phase.PLAYER_ATTACK: cue = "Counterattack!"
-		Combat.Phase.WON: cue = "Seal earned"
-		Combat.Phase.LOST: cue = "Run ended"
+	var cue: String = {Combat.Phase.READY: "Choose your element", Combat.Phase.PLAYER_TURN: "PLAYER TURN", Combat.Phase.PLAYER_ATTACK: "Resolving your attack", Combat.Phase.ENEMY_TURN: "ENEMY TURN", Combat.Phase.ENEMY_ATTACK: "Resolving WATER attack", Combat.Phase.WON: "Seal earned", Combat.Phase.LOST: "Run ended"}[model.state]
+	var selected := Element.label(model.selected_element)
+	var result := "Choose FIRE, WATER, EARTH or WIND"
+	if model.selected_element != Element.Type.NONE:
+		result = "%s · %s · %d damage" % [selected, Element.Matchup.keys()[Element.resolve(model.selected_element, run.spec().element)], Element.damage_for(model.selected_element, run.spec().element)]
 	return {"hp": model.player_hp if run.state == Run.State.FIGHT else run.hp, "max_hp": run.max_hp,
 		"enemy_hp": model.enemy_hp, "enemy_max_hp": run.spec().enemy_max_hp, "enemy_name": run.spec().display_name,
-		"seals": run.seals, "encounter": run.encounter_index + 1, "cue": cue, "icon": icon,
-		"feedback": feedback_text if feedback_time > 0 else "",
-		"technique": " · ".join(run.upgrades.map(func(id): return {&"mend": "Mend", &"long_breath": "Long Breath", &"iron_resolve": "Iron Resolve"}[id])) if not run.upgrades.is_empty() else "Block CUT. Dodge HEAVY.\nStrike only when OPEN.",
-		"progress": 100.0 * (1.0 - model.elapsed / model.duration()) if model.state in [Combat.Phase.TELEGRAPH, Combat.Phase.COUNTER_WINDOW] else 0.0}
+		"seals": run.seals, "encounter": run.encounter_index + 1, "cue": cue,
+		"feedback": "\n".join(model.combat_log), "technique": "Selected: %s\n%s" % [selected, result],
+		"turn": model.turn_number, "enemy_element": Element.label(run.spec().element), "affinity": Element.label(model.player_affinity)}
 func _refresh() -> void:
 	var show_modal := paused or run.state != Run.State.FIGHT
 	if modal.visible != show_modal: _cancel_pointers()
 	modal.visible = show_modal
-	block_button.disabled = show_modal or model.state != Combat.Phase.TELEGRAPH or model.block_latched
-	dodge_button.disabled = block_button.disabled
-	strike_button.disabled = show_modal or model.state != Combat.Phase.COUNTER_WINDOW
+	for button in attack_buttons:
+		button.disabled = show_modal or model.state != Combat.Phase.PLAYER_TURN
 	pause_button.disabled = show_modal
 	hud.present(snapshot())
 	$Arena.present(run.spec(), presentation_time)
@@ -204,7 +175,7 @@ func _refresh() -> void:
 		match run.state:
 			Run.State.TITLE:
 				heading = "Three Seals"
-				instructions = "Read the cue. Defend. Counter.\nChallenge three dojo guardians."
+				instructions = "Choose an element on your turn.\nThe WATER samurai then attacks.\nWIND beats WATER: 2 damage."
 				primary = "Begin run"
 			Run.State.INTRO:
 				heading = run.spec().display_name
@@ -214,10 +185,10 @@ func _refresh() -> void:
 				heading = "Choose a technique"
 				instructions = "Seal %d / 3 earned · HP %d / %d" % [run.seals,run.hp,run.max_hp]
 				choices = [{"text": "Mend — Health full" if run.hp == run.max_hp else "Mend — Restore 2 HP\n%d → %d / %d HP" % [run.hp, mini(run.max_hp,run.hp+2),run.max_hp], "enabled": run.can_choose(&"mend")},
-					{"text": "Long Breath\nCounter windows +300 ms" if run.encounter_index == 0 else "Iron Resolve — Max HP +1\n%d / %d → %d / 6 HP" % [run.hp,run.max_hp,mini(6,run.hp+1)], "enabled": true}]
+					{"text": "Long Breath\nMax HP +1 · Restore 1 HP" if run.encounter_index == 0 else "Iron Resolve — Max HP +1\n%d / %d → %d / %d HP" % [run.hp,run.max_hp,run.hp+1,run.max_hp+1], "enabled": true}]
 			Run.State.CLEARED:
 				heading = "Dojo cleared"
-				instructions = "Seals 3 / 3 · HP %d / %d\n%d counters · %d defenses" % [run.hp,run.max_hp,run.counters,run.defenses]
+				instructions = "Seals 3 / 3 · HP %d / %d\n%d attacks · %d damage taken" % [run.hp,run.max_hp,run.attacks,run.damage]
 				primary = "New run"
 			Run.State.FAILED:
 				heading = "Run ended"
@@ -241,9 +212,4 @@ func _present_fighters() -> void:
 		elif attack:
 			tag = &"attack"
 			time = model.elapsed
-		elif player and model.block_latched and model.state in [Combat.Phase.TELEGRAPH,Combat.Phase.ENEMY_ATTACK]:
-			tag = &"guard" if model.selected_defense == StrikeSpec.Defense.BLOCK else &"dodge"
-			time = presentation_time - defense_time
-		elif not player and model.state == Combat.Phase.TELEGRAPH:
-			tag = &"warn_heavy" if model.strike().defense_required == StrikeSpec.Defense.DODGE else &"warn_cut"
-		fighter.present(tag,time,attack,model.elapsed,player and model.state == Combat.Phase.ENEMY_ATTACK and model.selected_defense == StrikeSpec.Defense.DODGE)
+		fighter.present(tag,time,attack,model.elapsed,false)

@@ -11,7 +11,6 @@ func present(s: Dictionary) -> void:
 	set_text(^"Cue", s.cue)
 	set_text(^"Feedback", s.feedback)
 	set_text(^"Hint", s.technique)
-	$PhaseProgress.value = s.progress
-	$CueIcon.texture = Icons.get_frame_texture(s.icon, 0)
+	set_text(^"ElementInfo", "Enemy: %s · Weakness: WIND\nTurn %d · Your affinity: %s" % [s.enemy_element, s.turn, s.affinity])
 	$Heart.texture = Icons.get_frame_texture(&"heart_full" if s.hp > 0 else &"heart_empty", 0)
 	for i in range(3): get_node("Seal%d" % i).texture = Icons.get_frame_texture(&"seal_full" if i < s.seals else &"seal_empty", 0)

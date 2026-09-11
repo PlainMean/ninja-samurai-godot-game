@@ -50,35 +50,37 @@ offset_left = 14.0
 offset_top = 174.0
 offset_right = 376.0
 offset_bottom = 224.0
-theme_override_font_sizes/font_size = 24
-text = "Ready your guard"
+theme_override_font_sizes/font_size = 22
+text = "PLAYER TURN"
 horizontal_alignment = 1
 
-[node name="PhaseProgress" type="ProgressBar" parent="."]
+[node name="ElementInfo" type="Label" parent="."]
 layout_mode = 0
-offset_left = 56.0
-offset_top = 234.0
-offset_right = 334.0
-offset_bottom = 242.0
+offset_left = 14.0
+offset_top = 228.0
+offset_right = 376.0
+offset_bottom = 276.0
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
 mouse_filter = 2
-show_percentage = false
 
 [node name="Feedback" type="Label" parent="."]
 layout_mode = 0
 offset_left = 14.0
 offset_top = 524.0
 offset_right = 376.0
-offset_bottom = 558.0
+offset_bottom = 586.0
+theme_override_font_sizes/font_size = 16
 horizontal_alignment = 1
 
 [node name="Hint" type="Label" parent="."]
 layout_mode = 0
 offset_left = 20.0
-offset_top = 574.0
+offset_top = 596.0
 offset_right = 370.0
-offset_bottom = 618.0
+offset_bottom = 644.0
 theme_override_font_sizes/font_size = 18
-text = "Block the warning. Then counter."
+text = "Selected: NONE"
 horizontal_alignment = 1
 
 [node name="Actions" type="HBoxContainer" parent="."]
@@ -87,28 +89,39 @@ offset_left = 20.0
 offset_top = 656.0
 offset_right = 370.0
 offset_bottom = 752.0
-theme_override_constants/separation = 10
+theme_override_constants/separation = 6
 mouse_filter = 2
 
-[node name="BlockButton" type="Button" parent="Actions"]
-custom_minimum_size = Vector2(110, 96)
+[node name="FireButton" type="Button" parent="Actions"]
+custom_minimum_size = Vector2(83, 96)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Block"
+theme_override_font_sizes/font_size = 17
+text = "FIRE"
 script = ExtResource("3")
 
-[node name="DodgeButton" type="Button" parent="Actions"]
-custom_minimum_size = Vector2(110, 96)
+[node name="WaterButton" type="Button" parent="Actions"]
+custom_minimum_size = Vector2(83, 96)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Dodge"
+theme_override_font_sizes/font_size = 17
+text = "WATER"
 script = ExtResource("3")
 
-[node name="StrikeButton" type="Button" parent="Actions"]
-custom_minimum_size = Vector2(110, 96)
+[node name="EarthButton" type="Button" parent="Actions"]
+custom_minimum_size = Vector2(83, 96)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Strike"
+theme_override_font_sizes/font_size = 17
+text = "EARTH"
+script = ExtResource("3")
+
+[node name="WindButton" type="Button" parent="Actions"]
+custom_minimum_size = Vector2(83, 96)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 17
+text = "WIND"
 script = ExtResource("3")
 
 [node name="Footer" type="Label" parent="."]
@@ -118,7 +131,7 @@ offset_top = 780.0
 offset_right = 370.0
 offset_bottom = 808.0
 theme_override_font_sizes/font_size = 16
-text = "Read the cue. Defend. Counter."
+text = "EFFECTIVE = 2 · NEUTRAL = 1"
 horizontal_alignment = 1
 
 
@@ -172,15 +185,6 @@ offset_left = 20.0
 offset_top = 122.0
 offset_right = 44.0
 offset_bottom = 146.0
-expand_mode = 1
-texture_filter = 1
-mouse_filter = 2
-
-[node name="CueIcon" type="TextureRect" parent="."]
-offset_left = 20.0
-offset_top = 190.0
-offset_right = 44.0
-offset_bottom = 214.0
 expand_mode = 1
 texture_filter = 1
 mouse_filter = 2

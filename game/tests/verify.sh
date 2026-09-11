@@ -30,6 +30,7 @@ sha256sum -c game/tests/source_assets.sha256
 python3 game/tests/check_moonlit_assets.py
 sha256sum -c game/tests/moonlit_assets.sha256
 run import "$GODOT_BIN" --headless --path game --editor --import
+run native-script-check "$GODOT_BIN" --headless --path game --check-only --script res://tests/native_visual_smoke.gd
 run tests "$GODOT_BIN" --headless --path game --script res://tests/run_tests.gd
 run smoke "$GODOT_BIN" --headless --path game --quit-after 120
 run export "$GODOT_BIN" --headless --path game --export-release Web ../build/web/index.html
