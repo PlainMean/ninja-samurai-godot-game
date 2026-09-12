@@ -166,7 +166,7 @@ func snapshot() -> Dictionary:
 	if model.selected_element != Element.Type.NONE:
 		result = "%s · %s · %d damage" % [selected, Element.Matchup.keys()[Element.resolve(model.selected_element, run.spec().element)], Element.damage_for(model.selected_element, run.spec().element)]
 	return {"levels": run.techniques if run.area_mode else [1,1,1,1,1], "hp": model.player_hp if run.state == Run.State.FIGHT else run.hp, "max_hp": run.max_hp,
-		"enemy_hp": model.enemy_hp, "enemy_max_hp": run.spec().enemy_max_hp, "enemy_name": ("BOSS · " if run.area_mode and run.current_node % 3 == 2 else "") + run.spec().display_name,
+		"enemy_hp": model.enemy_hp, "enemy_max_hp": run.spec().enemy_max_hp, "enemy_role": run.spec().unit.role if run.spec().unit != null else "", "enemy_name": ("BOSS · " if run.area_mode and run.current_node % 3 == 2 else "") + run.spec().display_name,
 		"total": 12 if run.area_mode else run.encounter_count(), "seals": run.seals, "encounter": run.encounter_index + 1, "cue": cue,
 		"feedback": "\n".join(model.combat_log), "technique": ("%s · %s\nRoll 1–4 · same +1–2\nTechnique +0–2 · matchup +0–1" % [run.equipped_weapon().display_name, Element.label(run.equipped_weapon().element)]) if run.area_mode else "Selected: %s\n%s" % [selected, result],
 		"turn": model.turn_number, "area": run.AREA_NAMES[run.current_node / 3] if run.area_mode else "", "enemy_element": Element.label(run.spec().element), "affinity": Element.label(model.player_affinity), "weakness": Element.label(Element.weakness(run.spec().element)),
@@ -200,6 +200,7 @@ func _refresh() -> void:
 				heading = ("BOSS · " if run.area_mode and run.current_node % 3 == 2 else "") + run.spec().display_name
 				instructions = "%d / %d · %s / weak %s\n%s" % [run.encounter_index + 1, run.encounter_count(), Element.label(run.spec().element), Element.label(Element.weakness(run.spec().element)), run.spec().intro_text]
 				if run.area_mode: instructions = "%s · Node %d\n%s · weak %s · %d HP\nNext: victory loot → shrine → map" % [run.AREA_NAMES[run.current_node / 3],run.current_node % 3 + 1,Element.label(run.spec().element),Element.label(Element.weakness(run.spec().element)),run.spec().enemy_max_hp]
+				if run.spec().unit != null: instructions += "\n" + run.spec().unit.role
 				primary = "Fight"
 			Run.State.INTERMISSION:
 				heading = "Choose a technique"
@@ -217,6 +218,7 @@ func _refresh() -> void:
 	modal.present_journey(run, presentation_time, paused)
 	_present_area_panel()
 func _present_fighters() -> void:
+	samurai.configure_unit(run.spec().unit)
 	for fighter in [ninja,samurai]:
 		var player: bool = fighter == ninja
 		var attack: bool = model.state == (Combat.Phase.PLAYER_ATTACK if player else Combat.Phase.ENEMY_ATTACK)

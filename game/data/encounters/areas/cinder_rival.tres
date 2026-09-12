@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EncounterSpec" load_steps=3 format=3]
+[ext_resource type="Script" path="res://scripts/data/encounter_spec.gd" id="1"]
+[ext_resource type="Resource" path="res://data/units/cinder_rival.tres" id="2"]
+[resource]
+script = ExtResource("1")
+id = &"area_0"
+display_name = "Cinder Rival"
+unit = ExtResource("2")
+element = 1
+enemy_max_hp = 8
+backdrop_tag = &"courtyard"
+banner_tag = &"banner_retainer"
+intro_text = "Fire duelist"
+attack_elements = Array[int]([1, 2, 1])
+attack_names = Array[String](["Guard cut", "Crosswind", "Return cut"])

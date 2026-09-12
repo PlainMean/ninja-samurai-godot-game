@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EncounterSpec" load_steps=3 format=3]
+[ext_resource type="Script" path="res://scripts/data/encounter_spec.gd" id="1"]
+[ext_resource type="Resource" path="res://data/units/earth_sentinel.tres" id="2"]
+[resource]
+script = ExtResource("1")
+id = &"area_6"
+display_name = "Earth Sentinel"
+unit = ExtResource("2")
+element = 3
+enemy_max_hp = 8
+backdrop_tag = &"gate"
+banner_tag = &"banner_gate"
+intro_text = "Shield sentinel"
+attack_elements = Array[int]([3, 4, 3])
+attack_names = Array[String](["Guard cut", "Crosswind", "Return cut"])

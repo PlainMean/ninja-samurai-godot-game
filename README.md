@@ -7,10 +7,10 @@ opponent swords, and unlock or develop techniques at shrines.
 
 | Area | Guard 1 | Guard 2 | Boss |
 | --- | --- | --- | --- |
-| Fire Land | Cinder Rival | Ember Monk | Ash Shogun |
-| Water Shrine | Gate Guard | Courtyard Retainer | Moonlit Master |
+| Fire Land | Cinder Rival | Ash Monk | Ash Shogun |
+| Water Shrine | Gate Guard | Twin-cut Retainer | Moonlit Master |
 | Earth Marches | Earth Sentinel | Iron Vanguard | Mountain Regent |
-| Wind Coast | Wind Assassin | Coast Ronin | Tempest Sovereign |
+| Wind Coast | Gale Assassin | Coast Ronin | Tempest Sovereign |
 
 Each area has two 8-HP guards, selectable in either order, then a 16-HP boss.
 Fire starts unlocked. Bosses open neighbors on the ring Fire ↔ Water ↔ Earth ↔
@@ -36,10 +36,13 @@ XDG_DATA_HOME="$PWD/build/local/data" ~/.local/bin/godot --path game
 ```
 
 The original eight encounters and full legacy regression campaign remain intact.
-No artwork changed. Blue water, red fire, brown earth and white wind retain their
+Twelve new Aseprite-authored unit sets give every node its own weapon, silhouette,
+palette and four-frame attack. Bosses have distinct crowns/helms/mantles and larger
+scale, with BOSS markers. Unit roles appear on the map, HUD, intro and loot.
+Every previous art file is byte-preserved. Blue water, red fire, brown earth and white wind retain their
 authored impacts. Pause/resume, full-run retry/reset and the archive reveal remain.
 
-[Architecture](game/README.md) · [Plan](.hermes/plans/2026-09-12_123553-area-map-weapons.md)
-· [QA](qa/mobile/area-map/2026-09-12-validation.md) · [Roadmap](.hermes/plans/2026-09-12-area-roadmap.md)
+[Architecture](game/README.md) · [Plan](.hermes/plans/2026-09-12_210613-distinct-units.md)
+· [QA](qa/mobile/distinct-units/2026-09-12-validation.md) · [Roadmap](.hermes/plans/2026-09-12-area-roadmap.md)
 · [Credits](CREDITS.md). Local Web bundle: `build/web/index.html` and siblings.
 No push or deployment. Browser/device visual acceptance remains pending.

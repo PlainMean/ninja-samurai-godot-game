@@ -1,27 +1,29 @@
-# Four Lands stop — 2026-09-12
+# Distinct units complete — 2026-09-12
 
-Implemented the requested slice in three bounded passes from clean `cce61af`:
-four areas, twelve encounters, four bosses, six WeaponSpec swords, all six
-starting technique pairs, level 1–3 progression, seeded damage, touch map,
-loot/equip/inventory, shrine healing, pause/reset and archive reveal.
-The original eight Resource encounters and all prior assertions remain.
+Implemented twelve distinct animated enemy unit sets from clean HEAD `9b6b1b7`
+in three bounded, fully gated passes. Every area node references a unique
+UnitSpec and SpriteFrames; all four bosses have distinct silhouettes, larger
+scale and BOSS markers. Names/roles appear on map, HUD, intro and loot.
 
-Each pass passed the full `game/tests/verify.sh` gate before proceeding. Final
-verification includes 19,840 checks with zero failures, asset byte preservation,
-Web export, actual exported legacy and full area/boss clears, and dependency
-coverage. `git diff --check` passes. No art was added or modified.
+Every raster was authored/exported through Aseprite Sprite/Image APIs. Editable
+sources, JSON metadata, native/runtime PNGs and SpriteFrames are retained in the
+new units directories. All 91 prior tracked art files are byte-preserved.
+Attack has four 100ms poses per unit; support tags reuse those poses. Combat,
+weapons, exact elemental cycle/colors, RNG, rewards and full-clear rules remain.
 
-Local artifact: `build/web/index.html` and its complete sibling bundle.
-No push or deployment. Native X11/Wayland and Xvfb could not initialize in this
-sandbox; no screenshot was captured. Browser WebGL/HTTP, physical iOS/Android
-touch scrolling, safe areas, lifecycle, readability and performance remain
-unverified. This is an implemented/tested slice, not device release acceptance.
+Final targeted and full `game/tests/verify.sh`: **20,286 checks, zero failures**.
+Independent checks passed 48 source/export frame matches, 60 hashes, 66 silhouette
+pairs and twelve reproducible PNGs. Web export and actual exported legacy/area
+full clears passed. PCK: 195,756 bytes / 237 entries. `git diff --check` passed.
+Artifact: `build/web/index.html` and siblings. No push/deployment.
 
-[Plan](.hermes/plans/2026-09-12_123553-area-map-weapons.md) ·
-[QA](qa/mobile/area-map/2026-09-12-validation.md) ·
-[Roadmap](.hermes/plans/2026-09-12-area-roadmap.md).
-Commit result is recorded in the QA report and `commit-attempt.txt`.
+All twelve sprite strips were inspected. Native 390×844 capture was blocked by
+unavailable X11/Wayland and Xvfb socket permissions; no game screenshot captured.
+Browser WebGL/HTTP and physical device visual/touch/performance acceptance remain.
 
-Local commit was attempted and blocked: `.git/index.lock` cannot be created on
-the read-only filesystem (exit 128). No commit exists; all verified changes are
-left in the working tree for the parent workspace to commit.
+A local commit was attempted and blocked by read-only `.git/index.lock` (128).
+HEAD remains `9b6b1b7`; verified changes are left unstaged for the parent workspace.
+
+[Plan](.hermes/plans/2026-09-12_210613-distinct-units.md) ·
+[QA and exact roster](qa/mobile/distinct-units/2026-09-12-validation.md) ·
+[Art specification](art_sources/units/ASSET_SPEC.md).

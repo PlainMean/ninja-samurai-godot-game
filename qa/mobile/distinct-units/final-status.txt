@@ -1,0 +1,31 @@
+ M CREDITS.md
+ M README.md
+ M STOP_REASON.md
+ M game/README.md
+ M game/export_presets.cfg
+ M game/scripts/area_panel.gd
+ M game/scripts/data/encounter_spec.gd
+ M game/scripts/duel.gd
+ M game/scripts/fighter_view.gd
+ M game/scripts/hud.gd
+ M game/scripts/run_model.gd
+ M game/tests/check_web_export.py
+ M game/tests/export_pack_smoke.gd
+ M game/tests/run_tests.gd
+ M game/tests/verify.sh
+?? .hermes/plans/2026-09-12_210613-distinct-units.md
+?? art_sources/units/
+?? game/assets/frames/units/
+?? game/assets/sprites/units/
+?? game/data/encounters/areas/
+?? game/data/units/
+?? game/scripts/data/unit_spec.gd
+?? game/scripts/data/unit_spec.gd.uid
+?? game/tests/check_unit_assets.py
+?? game/tests/native_units_smoke.gd
+?? game/tests/native_units_smoke.gd.uid
+?? game/tests/prior_unit_art.sha256
+?? game/tests/test_units.gd
+?? game/tests/test_units.gd.uid
+?? game/tests/unit_asset_manifest.json
+?? qa/mobile/distinct-units/

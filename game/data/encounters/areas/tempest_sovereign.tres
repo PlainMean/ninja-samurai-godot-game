@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EncounterSpec" load_steps=3 format=3]
+[ext_resource type="Script" path="res://scripts/data/encounter_spec.gd" id="1"]
+[ext_resource type="Resource" path="res://data/units/tempest_sovereign.tres" id="2"]
+[resource]
+script = ExtResource("1")
+id = &"area_11"
+display_name = "Tempest Sovereign"
+unit = ExtResource("2")
+element = 4
+enemy_max_hp = 16
+backdrop_tag = &"dojo"
+banner_tag = &"banner_master"
+intro_text = "Storm glaive lord"
+attack_elements = Array[int]([4, 1, 2, 4])
+attack_names = Array[String](["Crown strike", "Crosswind", "Sovereign cut", "Throne return"])

@@ -149,6 +149,19 @@ func journey_text() -> String:
 	return "1 %s · 2 %s · 3 %s · 4 %s\n5 %s · 6 %s · 7 %s · 8 %s\n✓ sealed · NOW next · — locked" % route_status().map(func(status): return {"SEALED": "✓", "NEXT": "NOW", "LOCKED": "—"}[status])
 
 # The original eight-seal campaign remains available through begin_run().
+const AREA_ENCOUNTER_PATHS = [
+	"res://data/encounters/areas/cinder_rival.tres",
+	"res://data/encounters/areas/ash_monk.tres",
+	"res://data/encounters/areas/ash_shogun.tres",
+	"res://data/encounters/areas/gate_guard.tres",
+	"res://data/encounters/areas/twin_cut_retainer.tres",
+	"res://data/encounters/areas/moonlit_master.tres",
+	"res://data/encounters/areas/earth_sentinel.tres",
+	"res://data/encounters/areas/iron_vanguard.tres",
+	"res://data/encounters/areas/mountain_regent.tres",
+	"res://data/encounters/areas/gale_assassin.tres",
+	"res://data/encounters/areas/coast_ronin.tres",
+	"res://data/encounters/areas/tempest_sovereign.tres"]
 const AREA_NAMES = ["Fire Land", "Water Shrine", "Earth Marches", "Wind Coast"]
 const WeaponData = preload("res://scripts/data/weapon_spec.gd")
 static var WEAPONS: Array[Resource] = [
@@ -182,20 +195,8 @@ func begin_area_run(seed_value := 1) -> void:
 	techniques.assign([0,0,0,0,0])
 	pending_loot = -1
 	area_encounters.clear()
-	var originals := [1,5,7,0,4,7,2,6,7,3,6,7]
-	var names := ["Cinder Rival", "Ember Monk", "Ash Shogun", "Gate Guard", "Courtyard Retainer", "Moonlit Master", "Earth Sentinel", "Iron Vanguard", "Mountain Regent", "Wind Assassin", "Coast Ronin", "Tempest Sovereign"]
-	for i in range(12):
-		var entry: EncounterSpec = ENCOUNTERS[originals[i]].duplicate()
-		entry.id = StringName("area_%d" % i)
-		entry.display_name = names[i]
-		entry.element = (i / 3 + 1) as Element.Type
-		entry.enemy_max_hp = 16 if i % 3 == 2 else 8
-		entry.attack_elements.assign([int(entry.element), (int(entry.element) % 4) + 1, int(entry.element)])
-		entry.attack_names.assign(["Guard cut", "Crosswind", "Crown strike" if i % 3 == 2 else "Return cut"])
-		if i % 3 == 2:
-			entry.attack_elements.assign([int(entry.element), (int(entry.element) % 4) + 1, ((int(entry.element) + 1) % 4) + 1, int(entry.element)])
-			entry.attack_names.assign(["Crown strike", "Crosswind", "Sovereign cut", "Throne return"])
-		area_encounters.append(entry)
+	for path in AREA_ENCOUNTER_PATHS:
+		area_encounters.append(load(path))
 	state = State.LOADOUT
 
 func choose_loadout(sword: int, pair: Array) -> bool:
@@ -261,7 +262,7 @@ func bosses_defeated() -> int:
 	return cleared_nodes.filter(func(n): return n % 3 == 2).size()
 
 func node_label(node: int) -> String:
-	return "%s · %s%s" % [AREA_NAMES[node / 3], area_encounters[node].display_name, " · BOSS" if node % 3 == 2 else ""]
+	return "%s · %s%s" % [AREA_NAMES[node / 3], area_encounters[node].display_name + " · " + area_encounters[node].unit.role, " · BOSS" if node % 3 == 2 else ""]
 
 func encounter_count() -> int:
 	return 12 if area_mode else ENCOUNTERS.size()

@@ -64,3 +64,12 @@ print(f'PASS single-threaded bundle, {count} pack entries; {raw:,} raw bytes / {
 
 for name in ["cinder","tide","stone","gale","dawn","moon"]:
     assert any(p.endswith("data/weapons/"+name+".tres.remap") or p.endswith("data/weapons/"+name+".tres") for p in paths), name
+
+units=json.loads((root/'game/tests/unit_asset_manifest.json').read_text())['units']
+for u in units:
+    uid=u['unit_id']
+    for resource in [f'data/units/{uid}.tres',f'data/encounters/areas/{uid}.tres',f'assets/frames/units/{uid}_frames.tres']:
+        assert any(p.endswith(resource) or p.endswith(resource+'.remap') for p in paths), resource
+    assert any(uid+'_sheet.png-' in p and p.endswith('.ctex') for p in paths), uid
+assert any(p.endswith('scripts/data/unit_spec.gdc') for p in paths)
+print('PASS all 12 unit specs, encounters, SpriteFrames and imported atlases in release pack')

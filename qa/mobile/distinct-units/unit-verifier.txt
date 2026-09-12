@@ -1,0 +1,13 @@
+PASS cinder_rival: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS ash_monk: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS ash_shogun: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS gate_guard: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS twin_cut_retainer: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS moonlit_master: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS earth_sentinel: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS iron_vanguard: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS mountain_regent: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS gale_assassin: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS coast_ronin: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS tempest_sovereign: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS 12 units / 48 frames / 60 hashes / 66 pairwise silhouette comparisons

@@ -43,9 +43,19 @@ func run() -> void:
 	scene._title()
 	scene._primary()
 	scene._area_action("pair",0)
+	var unit_ids := []
 	for step in range(12):
 		scene._area_action("node",scene.run.next_nodes()[0])
 		scene._primary()
+		var unit = scene.run.spec().unit
+		assert(unit != null and unit.unit_id not in unit_ids)
+		unit_ids.append(unit.unit_id)
+		assert(unit.element == scene.run.current_node / 3 + 1 and unit.boss == (scene.run.current_node % 3 == 2))
+		assert(scene.samurai.selected_unit == unit and scene.samurai.sprite.sprite_frames == unit.attack_animation)
+		assert(unit.attack_animation.get_frame_count("attack") == 4)
+		assert(scene.hud.get_node("UnitRole").text == unit.role)
+		assert(("BOSS" in scene.hud.get_node("EnemyName").text) == unit.boss)
+		assert(scene.ninja.frames.resource_path == "res://assets/frames/ninja_frames.tres")
 		while not scene.model.terminal():
 			scene._attack(1)
 			scene.advance(1.55)
@@ -55,7 +65,7 @@ func run() -> void:
 		var e := 1
 		while e < 5 and scene.run.techniques[e] == 3: e += 1
 		scene._area_action("train",0 if e == 5 else e)
-	assert(scene.run.state == RunModel.State.CLEARED and scene.run.bosses_defeated() == 4)
+	assert(scene.run.state == RunModel.State.CLEARED and scene.run.bosses_defeated() == 4 and unit_ids.size() == 12)
 	print("PASS exported-pack area map, twelve nodes, four bosses, loot and technique full clear")
 	scene.queue_free()
 	await process_frame

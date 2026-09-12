@@ -16,6 +16,13 @@ func present(s: Dictionary) -> void:
 	set_text(^"Header/PlayerHealth", "You %d / %d" % [s.hp, s.max_hp])
 	set_text(^"Header/EnemyHealth", "Enemy %d / %d" % [s.enemy_hp, s.enemy_max_hp])
 	set_text(^"EnemyName", s.enemy_name)
+	if not has_node("UnitRole"):
+		var role := Label.new()
+		role.name = "UnitRole"
+		role.position = Vector2(20,151)
+		role.add_theme_font_size_override("font_size",14)
+		add_child(role)
+	set_text(^"UnitRole", s.enemy_role)
 	set_text(^"Progress", ("%s · Node %d · %d/12 seals" % [s.area,(s.encounter-1)%3+1,s.seals]) if s.has("area") and not s.area.is_empty() else "Seals %d / %d · Level %d / %d" % [s.seals, s.total, s.encounter, s.total])
 	set_text(^"Cue", s.cue)
 	set_text(^"Feedback", s.feedback)

@@ -1,0 +1,260 @@
+{
+  "native_size": 48,
+  "duration_ms": 100,
+  "units": [
+    {
+      "unit_id": "cinder_rival",
+      "display_name": "Cinder Rival",
+      "role": "Fire duelist",
+      "element": 1,
+      "boss": false,
+      "scale": 2.5,
+      "palette": [
+        "171d30",
+        "ba453a",
+        "f5b65d",
+        "652934",
+        "d8aa83",
+        "eef0da"
+      ]
+    },
+    {
+      "unit_id": "ash_monk",
+      "display_name": "Ash Monk",
+      "role": "Staff monk",
+      "element": 1,
+      "boss": false,
+      "scale": 2.5,
+      "palette": [
+        "171d30",
+        "b76b42",
+        "f8d28b",
+        "673b42",
+        "d8aa83",
+        "eef0da"
+      ]
+    },
+    {
+      "unit_id": "ash_shogun",
+      "display_name": "Ash Shogun",
+      "role": "Helmed warlord",
+      "element": 1,
+      "boss": true,
+      "scale": 3.0,
+      "palette": [
+        "171d30",
+        "953c47",
+        "ffd077",
+        "422c49",
+        "d8aa83",
+        "eef0da"
+      ]
+    },
+    {
+      "unit_id": "gate_guard",
+      "display_name": "Gate Guard",
+      "role": "Spear guardian",
+      "element": 2,
+      "boss": false,
+      "scale": 2.5,
+      "palette": [
+        "171d30",
+        "327ea4",
+        "9bdfef",
+        "254761",
+        "d8aa83",
+        "eef0da"
+      ]
+    },
+    {
+      "unit_id": "twin_cut_retainer",
+      "display_name": "Twin-cut Retainer",
+      "role": "Dual blades",
+      "element": 2,
+      "boss": false,
+      "scale": 2.5,
+      "palette": [
+        "171d30",
+        "526cb1",
+        "b4d5ff",
+        "303758",
+        "d8aa83",
+        "eef0da"
+      ]
+    },
+    {
+      "unit_id": "moonlit_master",
+      "display_name": "Moonlit Master",
+      "role": "Moon fan master",
+      "element": 2,
+      "boss": true,
+      "scale": 3.0,
+      "palette": [
+        "171d30",
+        "408e9c",
+        "dbf7f1",
+        "2c526e",
+        "d8aa83",
+        "eef0da"
+      ]
+    },
+    {
+      "unit_id": "earth_sentinel",
+      "display_name": "Earth Sentinel",
+      "role": "Shield sentinel",
+      "element": 3,
+      "boss": false,
+      "scale": 2.5,
+      "palette": [
+        "171d30",
+        "8e7947",
+        "d9c48b",
+        "49482d",
+        "d8aa83",
+        "eef0da"
+      ]
+    },
+    {
+      "unit_id": "iron_vanguard",
+      "display_name": "Iron Vanguard",
+      "role": "Hammer vanguard",
+      "element": 3,
+      "boss": false,
+      "scale": 2.5,
+      "palette": [
+        "171d30",
+        "777d79",
+        "ded2aa",
+        "434a4d",
+        "d8aa83",
+        "eef0da"
+      ]
+    },
+    {
+      "unit_id": "mountain_regent",
+      "display_name": "Mountain Regent",
+      "role": "Stone axe regent",
+      "element": 3,
+      "boss": true,
+      "scale": 3.0,
+      "palette": [
+        "171d30",
+        "9d684a",
+        "f0c28c",
+        "543c38",
+        "d8aa83",
+        "eef0da"
+      ]
+    },
+    {
+      "unit_id": "gale_assassin",
+      "display_name": "Gale Assassin",
+      "role": "Sickle assassin",
+      "element": 4,
+      "boss": false,
+      "scale": 2.5,
+      "palette": [
+        "171d30",
+        "76988b",
+        "e3f5cf",
+        "314b50",
+        "d8aa83",
+        "eef0da"
+      ]
+    },
+    {
+      "unit_id": "coast_ronin",
+      "display_name": "Coast Ronin",
+      "role": "Straw-hat ronin",
+      "element": 4,
+      "boss": false,
+      "scale": 2.5,
+      "palette": [
+        "171d30",
+        "657f9e",
+        "f4ead0",
+        "363e60",
+        "d8aa83",
+        "eef0da"
+      ]
+    },
+    {
+      "unit_id": "tempest_sovereign",
+      "display_name": "Tempest Sovereign",
+      "role": "Storm glaive lord",
+      "element": 4,
+      "boss": true,
+      "scale": 3.0,
+      "palette": [
+        "171d30",
+        "8977ad",
+        "ffffff",
+        "47405f",
+        "d8aa83",
+        "eef0da"
+      ]
+    }
+  ],
+  "sha256": {
+    "art_sources/units/cinder_rival.aseprite": "74687bd3fdf58f581c35ce79083e3fbb1c478a7f02824bc1c57150e942bbf9f9",
+    "art_sources/units/cinder_rival.json": "aa3ac9bb60ede3ecb51edce0bf4ef77359a6fb514d89e63a9fd7ce663a0295d5",
+    "art_sources/units/cinder_rival_sheet.png": "b9740f8373338324ec28613d562ed069d5ca03ee9f50683c62d5ae15aefff283",
+    "game/assets/sprites/units/cinder_rival_sheet.png": "b9740f8373338324ec28613d562ed069d5ca03ee9f50683c62d5ae15aefff283",
+    "game/assets/frames/units/cinder_rival_frames.tres": "2a2ba40615c7e7433b7cf3c0befdd742dfe6f86e63b52e25db2426f51abd35e7",
+    "art_sources/units/ash_monk.aseprite": "1be21a54a67c8b69b29fa88916ed8066f7f1e984804e558821ea96dfc45717cc",
+    "art_sources/units/ash_monk.json": "625e61909ee2193e51110d5b5ebf81b546ed058a5a71d32e39d5daf77e79f027",
+    "art_sources/units/ash_monk_sheet.png": "d95acf01c1c94ccaf7d1ac9b13a3cd0652c3f392feb7801f36ad926705ca949a",
+    "game/assets/sprites/units/ash_monk_sheet.png": "d95acf01c1c94ccaf7d1ac9b13a3cd0652c3f392feb7801f36ad926705ca949a",
+    "game/assets/frames/units/ash_monk_frames.tres": "64c1b3ae47d641af2f51165349390c054aca1b1dacb9cb58f663643552f2cc36",
+    "art_sources/units/ash_shogun.aseprite": "13452210aaf55614265ccf8d833202665abb373d16927c6855c8038aa7fb5124",
+    "art_sources/units/ash_shogun.json": "8caa537890d94baca5b4d6b7a9c6395443e71ebc62374b673feb53738b98ddc2",
+    "art_sources/units/ash_shogun_sheet.png": "4a4e16352ef6f0158cec4f5fbe026e469759955251d6888dcd1f251339053f84",
+    "game/assets/sprites/units/ash_shogun_sheet.png": "4a4e16352ef6f0158cec4f5fbe026e469759955251d6888dcd1f251339053f84",
+    "game/assets/frames/units/ash_shogun_frames.tres": "c24d308904010e42f813fcb3f9f22b9c1e6a2630de15df1142b04b086ce470e4",
+    "art_sources/units/gate_guard.aseprite": "49c630f56b59942fd437cbf0582cab86176dbc70af4d001cdb257f0e32108474",
+    "art_sources/units/gate_guard.json": "ca40f750213a0f7632f5512578d3d2cf58e39a021763ea07c280cfc1ec291833",
+    "art_sources/units/gate_guard_sheet.png": "b3d8f486a8175924220ceb732292bf81a7c0ddf5e13cfc320435637af1c53144",
+    "game/assets/sprites/units/gate_guard_sheet.png": "b3d8f486a8175924220ceb732292bf81a7c0ddf5e13cfc320435637af1c53144",
+    "game/assets/frames/units/gate_guard_frames.tres": "1fdf81786ac608a5fe24be492bf834e0032c19b2a9bdfab8ae2e9da293b9a458",
+    "art_sources/units/twin_cut_retainer.aseprite": "9b304ef80a98d83c5a794a68ef3cb5dcb3a5cf18e7c41b662a137dce77bd6a8e",
+    "art_sources/units/twin_cut_retainer.json": "c498f5941e59ece8a58a62304aef39a904a15013187b2d1557d535644b4e3dd2",
+    "art_sources/units/twin_cut_retainer_sheet.png": "ab88cc2b92f2b2cea122a7c6b01e73360ca3404b5b51b1aa404e9e7327bf011c",
+    "game/assets/sprites/units/twin_cut_retainer_sheet.png": "ab88cc2b92f2b2cea122a7c6b01e73360ca3404b5b51b1aa404e9e7327bf011c",
+    "game/assets/frames/units/twin_cut_retainer_frames.tres": "32dcd22e7286402a90d095d716c4321c271636512c5c8fb02eda361552289521",
+    "art_sources/units/moonlit_master.aseprite": "6245306fb2db64fc411b042be278c5030d3cb92655adcad04b28c21442c2c68f",
+    "art_sources/units/moonlit_master.json": "7f6ce5c46753f0d1426f87166d70c8ae95424270bc504be63fa97faf0e1cc750",
+    "art_sources/units/moonlit_master_sheet.png": "70a3992c5ba3f6228c832d0755332aded5ec924d4c5cd2a9dd0df31205548f3a",
+    "game/assets/sprites/units/moonlit_master_sheet.png": "70a3992c5ba3f6228c832d0755332aded5ec924d4c5cd2a9dd0df31205548f3a",
+    "game/assets/frames/units/moonlit_master_frames.tres": "729f6c316889b5b04aae6ba5c95a86559195b8f530e1d3abaf3a02b6ac9368f2",
+    "art_sources/units/earth_sentinel.aseprite": "8da43f000987878776cd26785c1fc30f30747f9afe532e31feeeefef04e12677",
+    "art_sources/units/earth_sentinel.json": "1390a4ce2369cd05466c7358df01d3e56cd7035e03f86f36bac82ad248e6f722",
+    "art_sources/units/earth_sentinel_sheet.png": "e09096b6bc365ccd8c4c60c39cb085c5b63cc0d36a1758f9561b0c453b6c4737",
+    "game/assets/sprites/units/earth_sentinel_sheet.png": "e09096b6bc365ccd8c4c60c39cb085c5b63cc0d36a1758f9561b0c453b6c4737",
+    "game/assets/frames/units/earth_sentinel_frames.tres": "a13520ae5378556b090ef818c2bde353aa6b688041fd104a6ac2f731fb7fae79",
+    "art_sources/units/iron_vanguard.aseprite": "a46a921008d6d836850dc23eeb1be4685701ec470a0e827d917da46d928d7e0a",
+    "art_sources/units/iron_vanguard.json": "54f1824facc2085903c79ab6c92dce630d1d6ea5d4b0850c5a05864bbeee7f8a",
+    "art_sources/units/iron_vanguard_sheet.png": "3a7f2b9e03346fd3a54604c1332bc4ddbfc8dca2d899b6b048b1a3ddfdab75e4",
+    "game/assets/sprites/units/iron_vanguard_sheet.png": "3a7f2b9e03346fd3a54604c1332bc4ddbfc8dca2d899b6b048b1a3ddfdab75e4",
+    "game/assets/frames/units/iron_vanguard_frames.tres": "145451b6a64f5d1a01c1dfe90d7f74d4f36c506befacfb3b19ef93a4940c7cef",
+    "art_sources/units/mountain_regent.aseprite": "701afabf5cd496b98a481ae385727aa9ebeea285c298bbd23e39f6e29bdfbab9",
+    "art_sources/units/mountain_regent.json": "ac7c32f0145ebbcd714c5f7521bc63a88179521a5da568b74340ccc6daa66767",
+    "art_sources/units/mountain_regent_sheet.png": "4e46957ba6c66a4f636ea9f8448e2dfbe8523425e85dd9d1a244f02cb34fe95d",
+    "game/assets/sprites/units/mountain_regent_sheet.png": "4e46957ba6c66a4f636ea9f8448e2dfbe8523425e85dd9d1a244f02cb34fe95d",
+    "game/assets/frames/units/mountain_regent_frames.tres": "feaa8d4224be103f9f582e9cd043321e996e0d18c2114df27b460c80bece4109",
+    "art_sources/units/gale_assassin.aseprite": "a06a7267f1712c0fa137bf6aa73ae086af4d06dd18fc3cfae56221994069bc0a",
+    "art_sources/units/gale_assassin.json": "8c17b12f90e660abbf19da97e1178a7caa0aaa1ee9e47dd28b6cdbc5a9f82780",
+    "art_sources/units/gale_assassin_sheet.png": "413228b42a882080cd4a7a03dfdb4e1b2b6b9713bdb8b8b50a562fbbb34b6e0b",
+    "game/assets/sprites/units/gale_assassin_sheet.png": "413228b42a882080cd4a7a03dfdb4e1b2b6b9713bdb8b8b50a562fbbb34b6e0b",
+    "game/assets/frames/units/gale_assassin_frames.tres": "841323ec59f373a1653d595516f4ad8d6900accf4677f6ed7899cfdd102f0973",
+    "art_sources/units/coast_ronin.aseprite": "aa47ffab6133f39b46088ebff3f7a96f0564da610d9b7d32538d475bb394d40c",
+    "art_sources/units/coast_ronin.json": "f005d0b615f20ab78fb61bc8732182c7e51182d4ab8835aa1ced30a83b4db2e3",
+    "art_sources/units/coast_ronin_sheet.png": "2ec15596b820ed0ad09501c102268c407c35544ea39a588e100f022511d3770a",
+    "game/assets/sprites/units/coast_ronin_sheet.png": "2ec15596b820ed0ad09501c102268c407c35544ea39a588e100f022511d3770a",
+    "game/assets/frames/units/coast_ronin_frames.tres": "8bd12670c9ad4759ede104fae66ec4bfde7b60d5ba94b70c9781746c2c7d1edc",
+    "art_sources/units/tempest_sovereign.aseprite": "42d5257007a3ef894febae92ed3b706aa5d8dbc1d1df64d6fd3ccd60be1d7970",
+    "art_sources/units/tempest_sovereign.json": "0bf6079da675ccccd0206583f3172394f37d538d55839c9bc16ede7188ddf0fe",
+    "art_sources/units/tempest_sovereign_sheet.png": "0095dfe3ae22c06cc102d8bfc7b78099b1b8b95d10c8876b086710ec612f8c5f",
+    "game/assets/sprites/units/tempest_sovereign_sheet.png": "0095dfe3ae22c06cc102d8bfc7b78099b1b8b95d10c8876b086710ec612f8c5f",
+    "game/assets/frames/units/tempest_sovereign_frames.tres": "ec151048b93bf0e38d36243f9ddd68d53d452f5d25ac77f04bf79cef891ef40d"
+  }
+}

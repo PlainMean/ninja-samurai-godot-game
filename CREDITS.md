@@ -43,3 +43,25 @@ Python is used only for read-only verification and textual metadata; no Pillow,
 ImageMagick, SVG, browser canvas, diffusion or Godot raster authoring was used.
 All eight guardians use the previously credited samurai art; no new character
 sprite provenance or license grant is implied.
+
+## Distinct area units (2026-09-12)
+
+Original project pixel art authored with Aseprite Sprite/Image APIs in
+`art_sources/units/generate.lua`; no external art or raster generator.
+Each set has an editable `.aseprite`, Aseprite `.json` and `_sheet.png` in
+`art_sources/units/`, matching runtime `_sheet.png` in
+`game/assets/sprites/units/` and `_frames.tres` in `game/assets/frames/units/`.
+Support tags reuse the authored attack poses.
+
+- **Cinder Rival** — Fire duelist; source/runtime basename `cinder_rival`.
+- **Ash Monk** — Staff monk; source/runtime basename `ash_monk`.
+- **Ash Shogun** — Helmed warlord; source/runtime basename `ash_shogun`.
+- **Gate Guard** — Spear guardian; source/runtime basename `gate_guard`.
+- **Twin-cut Retainer** — Dual blades; source/runtime basename `twin_cut_retainer`.
+- **Moonlit Master** — Moon fan master; source/runtime basename `moonlit_master`.
+- **Earth Sentinel** — Shield sentinel; source/runtime basename `earth_sentinel`.
+- **Iron Vanguard** — Hammer vanguard; source/runtime basename `iron_vanguard`.
+- **Mountain Regent** — Stone axe regent; source/runtime basename `mountain_regent`.
+- **Gale Assassin** — Sickle assassin; source/runtime basename `gale_assassin`.
+- **Coast Ronin** — Straw-hat ronin; source/runtime basename `coast_ronin`.
+- **Tempest Sovereign** — Storm glaive lord; source/runtime basename `tempest_sovereign`.

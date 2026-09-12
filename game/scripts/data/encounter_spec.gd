@@ -9,3 +9,4 @@ extends Resource
 @export var intro_text: String
 @export var attack_elements: Array[int] = []
 @export var attack_names: Array[String] = []
+@export var unit: UnitSpec

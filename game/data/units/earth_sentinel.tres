@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="UnitSpec" load_steps=3 format=3]
+[ext_resource type="Script" path="res://scripts/data/unit_spec.gd" id="1"]
+[ext_resource type="SpriteFrames" path="res://assets/frames/units/earth_sentinel_frames.tres" id="2"]
+[resource]
+script = ExtResource("1")
+unit_id = &"earth_sentinel"
+display_name = "Earth Sentinel"
+role = "Shield sentinel"
+element = 3
+attack_animation = ExtResource("2")
+visual_scale = 2.5
+boss = false

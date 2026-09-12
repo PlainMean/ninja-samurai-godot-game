@@ -75,7 +75,7 @@ func present(run: RunModel, area: int, sword: int, inventory_open: bool) -> void
    for slot in range(3):
     var n := area * 3 + slot
     var spec := run.area_encounters[n]
-    button("%d. %s%s\n%s · weak %s · %d HP%s" % [slot+1,"BOSS · " if slot == 2 else "",spec.display_name,Element.label(spec.element),Element.label(Element.weakness(spec.element)),spec.enemy_max_hp," · ✓" if n in run.cleared_nodes else ""],"node",n,n in run.next_nodes(),int(spec.element))
+    button("%d. %s%s\n%s · %s\nweak %s · %d HP%s" % [slot+1,"BOSS · " if slot == 2 else "",spec.display_name,spec.unit.role,Element.label(spec.element),Element.label(Element.weakness(spec.element)),spec.enemy_max_hp," · ✓" if n in run.cleared_nodes else ""],"node",n,n in run.next_nodes(),int(spec.element))
    label_text("Equipped: " + run.equipped_weapon().display_name)
    button("Inventory · switch sword" if not inventory_open else "Close inventory","inventory")
    if inventory_open: inventory(run)

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="UnitSpec" load_steps=3 format=3]
+[ext_resource type="Script" path="res://scripts/data/unit_spec.gd" id="1"]
+[ext_resource type="SpriteFrames" path="res://assets/frames/units/moonlit_master_frames.tres" id="2"]
+[resource]
+script = ExtResource("1")
+unit_id = &"moonlit_master"
+display_name = "Moonlit Master"
+role = "Moon fan master"
+element = 2
+attack_animation = ExtResource("2")
+visual_scale = 3.0
+boss = true

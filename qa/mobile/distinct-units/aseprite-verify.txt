@@ -1,0 +1,1 @@
+PASS Aseprite reopened 12 editable sources; 48 source/export poses, attack tags, 100ms timing

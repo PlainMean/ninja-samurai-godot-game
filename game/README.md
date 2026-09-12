@@ -1,8 +1,8 @@
 # Moonlit Dojo: Four Lands
 
 The default UI now runs the area campaign described in [the root README](../README.md).
-`RunModel.begin_area_run(seed)` initializes twelve specs by duplicating the eight
-preserved Resources, without mutating them. `begin_run()` retains the original
+`RunModel.begin_area_run(seed)` loads twelve dedicated area EncounterSpec resources from
+`data/encounters/areas/`. Each references a unique data-only UnitSpec in `data/units/`. `begin_run()` retains the original
 legacy campaign; old tests explicitly select it. The historical details below
 apply to that legacy mode.
 
@@ -29,9 +29,22 @@ scroll targets reject input. Inventory is reachable on every map and loot screen
 the equipped weapon remains visible during combat. Shrines fully heal and add
 one technique point, bounded to level 3. Retry starts the whole campaign.
 
-Run `res://tests/native_area_smoke.gd` for native 390×844 capture when a display
-is available. Current [area QA](../qa/mobile/area-map/2026-09-12-validation.md)
-records actual attempts. No raster assets were added or edited in this slice.
+Run `res://tests/native_units_smoke.gd` for native 390×844 capture when a display
+is available. Current [unit QA](../qa/mobile/distinct-units/2026-09-12-validation.md)
+records actual attempts. FighterView selects the encounter unit's SpriteFrames for
+attack and support poses, with nearest filtering. Units use 48×48 native cells,
+2.5× guard / 3× boss scale; the player and legacy route retain their old frames.
+Only attack has four newly authored poses; idle/guard/hurt/defeat deliberately
+reuse those poses. This is visual unit variety, not new enemy combat mechanics.
+
+The Aseprite-only pipeline and palette inventory are documented in
+[`art_sources/units/ASSET_SPEC.md`](../art_sources/units/ASSET_SPEC.md).
+`check_unit_assets.py` independently decompresses native cels and PNGs, checks
+60 source/runtime hashes and rejects shared silhouettes. `test_units.gd` checks
+all twelve identities, palettes via manifest hashes, roles, area/boss mappings,
+SpriteFrames, view selection and a full clear. The exported-pack smoke repeats
+selection through all twelve nodes; the explicit export roots include each area
+resource and pull in its unit/atlas dependencies.
 
 ## Preserved eight-seal campaign
 

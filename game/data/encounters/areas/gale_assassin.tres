@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EncounterSpec" load_steps=3 format=3]
+[ext_resource type="Script" path="res://scripts/data/encounter_spec.gd" id="1"]
+[ext_resource type="Resource" path="res://data/units/gale_assassin.tres" id="2"]
+[resource]
+script = ExtResource("1")
+id = &"area_9"
+display_name = "Gale Assassin"
+unit = ExtResource("2")
+element = 4
+enemy_max_hp = 8
+backdrop_tag = &"courtyard"
+banner_tag = &"banner_retainer"
+intro_text = "Sickle assassin"
+attack_elements = Array[int]([4, 1, 4])
+attack_names = Array[String](["Guard cut", "Crosswind", "Return cut"])
