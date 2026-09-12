@@ -30,6 +30,7 @@ func run(t) -> void:
 		if state != RunModel.State.INTERMISSION:
 			t.check(r.reward_forecast(&"mend").is_empty() and r.reward_choices().is_empty() and r.next_guardian_text().is_empty(), "reward previews absent outside shrine")
 	var s = load("res://scenes/duel.tscn").instantiate()
+	s.area_campaign = false
 	t.root.add_child(s)
 	s.set_process(false)
 	for available in [Vector2(390,844), Vector2(390,700), Vector2(360,800), Vector2(393,852), Vector2(430,932)]:

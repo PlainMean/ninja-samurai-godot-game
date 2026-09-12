@@ -5,6 +5,12 @@ const Run = preload("res://scripts/run_model.gd")
 const Layout = preload("res://scripts/layout_helper.gd")
 var model := Combat.new()
 var run := Run.new()
+var area_campaign := true
+var area_panel: Control
+var map_area := 0
+var starting_sword := 0
+var inventory_open := false
+var area_signature := ""
 var paused := false
 var last_tick_usec := 0
 var clock: Callable = func(): return Time.get_ticks_usec()
@@ -34,6 +40,9 @@ func _ready() -> void:
 	secondary_button.activated.connect(_title)
 	$BrowserLifecycle.pause_requested.connect(pause_duel)
 	get_viewport().size_changed.connect(_layout)
+	area_panel = preload("res://scripts/area_panel.gd").new()
+	modal.add_child(area_panel)
+	area_panel.action.connect(_area_action)
 	_layout()
 	last_tick_usec = clock.call()
 	_refresh()
@@ -43,6 +52,9 @@ func _layout() -> void:
 		var desired := Vector2i(390, int(Layout.metrics(available).height))
 		if get_window().content_scale_size != desired: get_window().content_scale_size = desired
 	Layout.apply(self, available)
+	if area_panel != null:
+		area_panel.position.y = 120 if Layout.metrics(available).compact else 142
+		area_panel.size.y = 630 if Layout.metrics(available).compact else 660
 func _process(delta: float) -> void:
 	_sync_time(delta)
 	_refresh()
@@ -112,7 +124,12 @@ func _primary() -> void:
 	last_tick_usec = clock.call()
 	if paused: paused = false
 	elif run.state in [Run.State.TITLE, Run.State.CLEARED, Run.State.FAILED]:
-		run.begin_run()
+		if area_campaign:
+			run.begin_area_run()
+			map_area = 0
+			starting_sword = 0
+			inventory_open = false
+		else: run.begin_run()
 		model.reset()
 		_clear_presentation()
 	elif run.state == Run.State.INTRO:
@@ -148,18 +165,18 @@ func snapshot() -> Dictionary:
 	var result := "Choose FIRE, WATER, EARTH or WIND"
 	if model.selected_element != Element.Type.NONE:
 		result = "%s · %s · %d damage" % [selected, Element.Matchup.keys()[Element.resolve(model.selected_element, run.spec().element)], Element.damage_for(model.selected_element, run.spec().element)]
-	return {"hp": model.player_hp if run.state == Run.State.FIGHT else run.hp, "max_hp": run.max_hp,
-		"enemy_hp": model.enemy_hp, "enemy_max_hp": run.spec().enemy_max_hp, "enemy_name": run.spec().display_name,
-		"total": Run.ENCOUNTERS.size(), "seals": run.seals, "encounter": run.encounter_index + 1, "cue": cue,
-		"feedback": "\n".join(model.combat_log), "technique": "Selected: %s\n%s" % [selected, result],
-		"turn": model.turn_number, "enemy_element": Element.label(run.spec().element), "affinity": Element.label(model.player_affinity), "weakness": Element.label(Element.weakness(run.spec().element)),
+	return {"levels": run.techniques if run.area_mode else [1,1,1,1,1], "hp": model.player_hp if run.state == Run.State.FIGHT else run.hp, "max_hp": run.max_hp,
+		"enemy_hp": model.enemy_hp, "enemy_max_hp": run.spec().enemy_max_hp, "enemy_name": ("BOSS · " if run.area_mode and run.current_node % 3 == 2 else "") + run.spec().display_name,
+		"total": 12 if run.area_mode else run.encounter_count(), "seals": run.seals, "encounter": run.encounter_index + 1, "cue": cue,
+		"feedback": "\n".join(model.combat_log), "technique": ("%s · %s\nRoll 1–4 · same +1–2\nTechnique +0–2 · matchup +0–1" % [run.equipped_weapon().display_name, Element.label(run.equipped_weapon().element)]) if run.area_mode else "Selected: %s\n%s" % [selected, result],
+		"turn": model.turn_number, "area": run.AREA_NAMES[run.current_node / 3] if run.area_mode else "", "enemy_element": Element.label(run.spec().element), "affinity": Element.label(model.player_affinity), "weakness": Element.label(Element.weakness(run.spec().element)),
 		"intent": model.enemy_intent(), "forecasts": [model.attack_forecast(Element.Type.FIRE), model.attack_forecast(Element.Type.WATER), model.attack_forecast(Element.Type.EARTH), model.attack_forecast(Element.Type.WIND)]}
 func _refresh() -> void:
 	var show_modal := paused or run.state != Run.State.FIGHT
 	if modal.visible != show_modal: _cancel_pointers()
 	modal.visible = show_modal
 	for button in attack_buttons:
-		button.disabled = show_modal or model.state != Combat.Phase.PLAYER_TURN
+		button.disabled = show_modal or model.state != Combat.Phase.PLAYER_TURN or (run.area_mode and run.techniques[attack_buttons.find(button)+1] == 0)
 	pause_button.disabled = show_modal
 	hud.present(snapshot())
 	$Arena.present(run.spec(), presentation_time)
@@ -175,27 +192,30 @@ func _refresh() -> void:
 	else:
 		match run.state:
 			Run.State.TITLE:
-				heading = "Eight Seals"
+				heading = "Moonlit Dojo" if area_campaign else "Eight Seals"
 				instructions = "Read each guardian’s weakness.\nChoose an element; the foe replies.\nEight seals open the archive."
+				if area_campaign: instructions = "Four lands. Four bosses.\nChoose your swords and techniques.\nTap your path to the archive."
 				primary = "Begin run"
 			Run.State.INTRO:
-				heading = run.spec().display_name
-				instructions = "%d / %d · %s / weak %s\n%s" % [run.encounter_index + 1, Run.ENCOUNTERS.size(), Element.label(run.spec().element), Element.label(Element.weakness(run.spec().element)), run.spec().intro_text]
+				heading = ("BOSS · " if run.area_mode and run.current_node % 3 == 2 else "") + run.spec().display_name
+				instructions = "%d / %d · %s / weak %s\n%s" % [run.encounter_index + 1, run.encounter_count(), Element.label(run.spec().element), Element.label(Element.weakness(run.spec().element)), run.spec().intro_text]
+				if run.area_mode: instructions = "%s · Node %d\n%s · weak %s · %d HP\nNext: victory loot → shrine → map" % [run.AREA_NAMES[run.current_node / 3],run.current_node % 3 + 1,Element.label(run.spec().element),Element.label(Element.weakness(run.spec().element)),run.spec().enemy_max_hp]
 				primary = "Fight"
 			Run.State.INTERMISSION:
 				heading = "Choose a technique"
-				instructions = "Seal %d / %d · HP %d / %d\n%s" % [run.seals,Run.ENCOUNTERS.size(),run.hp,run.max_hp,run.next_guardian_text()]
+				instructions = "Seal %d / %d · HP %d / %d\n%s" % [run.seals,run.encounter_count(),run.hp,run.max_hp,run.next_guardian_text()]
 				choices = run.reward_choices()
 			Run.State.CLEARED:
 				heading = "Dojo cleared"
-				instructions = "Seals %d / %d · HP %d / %d\n%d attacks · %d damage taken" % [run.seals,Run.ENCOUNTERS.size(),run.hp,run.max_hp,run.attacks,run.damage]
+				instructions = "Seals %d / %d · HP %d / %d\n%d attacks · %d damage taken" % [run.seals,run.encounter_count(),run.hp,run.max_hp,run.attacks,run.damage]
 				primary = "New run"
 			Run.State.FAILED:
 				heading = "Run ended"
-				instructions = "Seals %d / %d\n%s" % [run.seals,Run.ENCOUNTERS.size(),run.loss_hint]
+				instructions = "Seals %d / %d\n%s" % [run.seals,run.encounter_count(),run.loss_hint]
 				primary = "Retry run"
 	modal.present(heading,instructions,primary,choices,paused)
 	modal.present_journey(run, presentation_time, paused)
+	_present_area_panel()
 func _present_fighters() -> void:
 	for fighter in [ninja,samurai]:
 		var player: bool = fighter == ninja
@@ -214,3 +234,34 @@ func _present_fighters() -> void:
 			tag = &"attack"
 			time = model.elapsed
 		fighter.present(tag,time,attack,model.elapsed,false)
+
+func _present_area_panel() -> void:
+	if area_panel == null: return
+	var active := run.area_mode and not paused and run.state in [Run.State.LOADOUT, Run.State.MAP, Run.State.LOOT, Run.State.TRAINING]
+	area_panel.visible = active
+	modal.get_node("Panel").visible = not active
+	if not active: return
+	for child in modal.get_children():
+		if child != area_panel and child.name != "Scrim": child.visible = false
+	var signature := str([run.state,run.equipped,run.techniques,run.cleared_nodes,map_area,starting_sword,inventory_open])
+	if signature != area_signature:
+		area_signature = signature
+		area_panel.present(run,map_area,starting_sword,inventory_open)
+
+func _area_action(id: String, value: int) -> void:
+	_cancel_pointers()
+	match id:
+		"sword": starting_sword = value
+		"pair":
+			var pairs := [[1,2],[1,3],[1,4],[2,3],[2,4],[3,4]]
+			run.choose_loadout(starting_sword,pairs[value])
+		"area": map_area = value
+		"node": run.choose_node(value)
+		"inventory": inventory_open = not inventory_open
+		"equip": run.equip_weapon(value)
+		"loot":
+			run.finish_loot()
+			inventory_open = false
+		"train": run.train(value)
+		"title": _title()
+	_refresh()

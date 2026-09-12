@@ -47,6 +47,7 @@ func run(t) -> void:
 			viewport.size_2d_override_stretch = true
 			t.root.add_child(viewport)
 			var s = load("res://scenes/duel.tscn").instantiate()
+			s.area_campaign = false
 			viewport.add_child(s)
 			s.set_process(false)
 			s.clock = func(): return now
@@ -116,6 +117,7 @@ func run(t) -> void:
 			await t.process_frame
 	# Input eligibility and processing share one monotonic interval.
 	var s = load("res://scenes/duel.tscn").instantiate()
+	s.area_campaign = false
 	t.root.add_child(s)
 	s.set_process(false)
 	s.clock = func(): return now

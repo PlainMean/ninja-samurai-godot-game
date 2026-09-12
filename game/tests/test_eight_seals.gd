@@ -87,6 +87,7 @@ func run(t) -> void:
 			cfg.load("res://assets/sprites/elements/%s_sheet.png.import" % tag)
 			t.check(cfg.get_value("params","compress/mode")==0 and not cfg.get_value("params","mipmaps/generate") and not cfg.get_value("params","process/fix_alpha_border"), "element import preserves pixels and nearest atlas")
 	var s=load("res://scenes/duel.tscn").instantiate()
+	s.area_campaign = false
 	t.root.add_child(s)
 	s.set_process(false)
 	s.clock=func(): return 1000000

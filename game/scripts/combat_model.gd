@@ -22,12 +22,17 @@ var impact_resolved := false
 var attacks := 0
 var damage := 0
 var events: Array[CombatEvent] = []
+var weapon_run: RunModel
+var last_roll := 0
+var last_bonus := 0
+var last_level := 0
 var combat_log: Array[String] = []
 
 func reset() -> void:
 	configure(DEFAULT_SPEC, 5, 5)
 
 func configure(encounter: EncounterSpec, hp: int, max_hp: int, affinity: Element.Type = Element.Type.NONE) -> void:
+	weapon_run = null
 	spec = encounter
 	player_hp = hp
 	player_max_hp = max_hp
@@ -49,6 +54,7 @@ func start() -> void:
 func request_attack(element: Element.Type) -> bool:
 	if state != Phase.PLAYER_TURN or element not in [Element.Type.FIRE, Element.Type.WATER, Element.Type.EARTH, Element.Type.WIND]:
 		return false
+	if weapon_run != null and weapon_run.techniques[element] == 0: return false
 	selected_element = element
 	_enter(Phase.PLAYER_ATTACK)
 	return true
@@ -80,6 +86,11 @@ func step(delta: float) -> void:
 			var element := selected_element if player else intent_element()
 			var defender := spec.element if player else player_affinity
 			var amount := Element.damage_for(element, defender)
+			if player and weapon_run != null:
+				last_roll = weapon_run.roll_weapon()
+				last_bonus = 1 + last_roll % 2 if element == weapon_run.equipped_weapon().element else 0
+				last_level = weapon_run.techniques[element]
+				amount = last_roll + last_bonus + last_level - 1 + int(Element.resolve(element, defender))
 			if player:
 				enemy_hp = maxi(0, enemy_hp - amount)
 				attacks += 1
@@ -112,6 +123,11 @@ func _emit(kind: CombatEvent.Kind, element: Element.Type = Element.Type.NONE, ma
 	event.element = element
 	event.matchup = matchup
 	event.damage = amount
+	if kind == CombatEvent.Kind.PLAYER_HIT and weapon_run != null:
+		event.roll = last_roll
+		event.weapon_bonus = last_bonus
+		event.technique_level = last_level
+		event.matchup_bonus = int(matchup)
 	event.turn = turn_number
 	event.player_hp = player_hp
 	event.enemy_hp = enemy_hp
@@ -131,6 +147,14 @@ func enemy_intent() -> Dictionary:
 
 func attack_forecast(element: Element.Type) -> Dictionary:
 	if state != Phase.PLAYER_TURN or element not in [Element.Type.FIRE, Element.Type.WATER, Element.Type.EARTH, Element.Type.WIND]: return {}
+	if weapon_run != null:
+		if weapon_run.techniques[element] == 0: return {}
+		var level := weapon_run.techniques[element]
+		var same: bool = element == weapon_run.equipped_weapon().element
+		var matchup := int(Element.resolve(element, spec.element))
+		var low := 1 + (2 if same else 0) + level - 1 + matchup
+		var high := 4 + (1 if same else 0) + level - 1 + matchup
+		return {"damage": low, "min": low, "max": high, "lethal": low >= enemy_hp, "reply": 0 if low >= enemy_hp else enemy_intent().damage, "matchup": matchup, "range": "%d–%d" % [low,high]}
 	var amount := mini(enemy_hp, Element.damage_for(element, spec.element))
 	return {"damage": amount, "lethal": amount == enemy_hp,
 		"reply": 0 if amount == enemy_hp else enemy_intent().damage,
@@ -141,3 +165,6 @@ func intent_element() -> Element.Type:
 
 func intent_name() -> String:
 	return "Strike" if spec.attack_names.is_empty() else spec.attack_names[(turn_number-1) % spec.attack_names.size()]
+
+func configure_weapon(owner_run: RunModel) -> void:
+	weapon_run = owner_run

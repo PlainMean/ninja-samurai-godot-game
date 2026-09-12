@@ -1,4 +1,40 @@
-# Moonlit Dojo: Eight Seals
+# Moonlit Dojo: Four Lands
+
+The default UI now runs the area campaign described in [the root README](../README.md).
+`RunModel.begin_area_run(seed)` initializes twelve specs by duplicating the eight
+preserved Resources, without mutating them. `begin_run()` retains the original
+legacy campaign; old tests explicitly select it. The historical details below
+apply to that legacy mode.
+
+RunModel owns the map frontier, node locks, inventory indices, equipped immutable
+WeaponSpec, technique levels, rewards and RNG. Four areas form a ring; both guards
+must be sealed before that area’s boss. Cleared bosses open neighboring areas.
+The map may revisit any unlocked frontier; no movement cost or random encounters.
+Each node’s sword is deterministic, so route order changes access to loot.
+
+The Park–Miller stream uses state = (state × 16807) modulo 2147483647;
+roll = state modulo 4 + 1. Seed defaults to 1, normalized into 1…2147483646.
+Only player impacts advance it. Retry resets it. A matching-sword bonus is
+1 + roll modulo 2; technique bonus is level − 1; directed advantage adds 1.
+Thus a matching sword contributes 3…5 before technique/matchup, while a
+nonmatching sword contributes 1…4. Forecasts consume no RNG and show nominal
+inclusive ranges; guaranteed lethal requires the minimum to cover remaining HP.
+CombatModel resolves damage and emits typed roll/weapon/level/matchup/total fields.
+Views only issue commands and present state/events.
+
+The four existing action targets retain 83×96 geometry with locked states and
+level/range labels. A scrollable area panel uses 60-pixel targets for swords,
+all six starting pairs, regions, nodes, loot and technique upgrades. Clipped
+scroll targets reject input. Inventory is reachable on every map and loot screen;
+the equipped weapon remains visible during combat. Shrines fully heal and add
+one technique point, bounded to level 3. Retry starts the whole campaign.
+
+Run `res://tests/native_area_smoke.gd` for native 390×844 capture when a display
+is available. Current [area QA](../qa/mobile/area-map/2026-09-12-validation.md)
+records actual attempts. No raster assets were added or edited in this slice.
+
+## Preserved eight-seal campaign
+
 
 Start with 5 HP. Read the guardian’s affinity and weakness, then choose one of
 four elements. Decisions have no timer. A surviving foe replies with the

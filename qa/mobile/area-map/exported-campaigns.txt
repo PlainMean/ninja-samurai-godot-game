@@ -1,0 +1,4 @@
+Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org
+
+PASS exported-pack complete eight-encounter run, nineteen effective attacks, eleven varied replies, all effect atlases and typed elements loaded
+PASS exported-pack area map, twelve nodes, four bosses, loot and technique full clear

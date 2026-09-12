@@ -17,6 +17,7 @@ func run() -> void:
 	assert(DisplayServer.get_name()!="headless")
 	root.size=Vector2i(390,844)
 	screen=load("res://scenes/duel.tscn").instantiate()
+	screen.area_campaign = false
 	root.add_child(screen)
 	screen.set_process(false)
 	screen.clock=func(): return 1000000

@@ -22,13 +22,13 @@ func _input(event: InputEvent) -> void:
 		if event.canceled or not event.pressed:
 			if pointer_id == event.index:
 				cancel_pointer()
-		elif get_global_rect().has_point(event.position):
+		elif _point_visible(event.position):
 			_accept_down(event.index)
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if not event.pressed:
 			if pointer_id == -1:
 				cancel_pointer()
-		elif get_global_rect().has_point(event.position):
+		elif _point_visible(event.position):
 			_accept_down(-1)
 
 func _accept_down(index: int) -> void:
@@ -42,3 +42,11 @@ func _accept_down(index: int) -> void:
 		# Consume this down before callbacks change visibility and clear ownership.
 		get_viewport().set_input_as_handled()
 		activated.emit()
+
+func _point_visible(point: Vector2) -> bool:
+	if not get_global_rect().has_point(point): return false
+	var ancestor := get_parent()
+	while ancestor != null:
+		if ancestor is Control and ancestor.clip_contents and not ancestor.get_global_rect().has_point(point): return false
+		ancestor = ancestor.get_parent()
+	return true

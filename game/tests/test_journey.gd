@@ -24,6 +24,7 @@ func run(t) -> void:
 	r.resolve_encounter(c)
 	t.check(r.results.size()==1 and not r.results[0].won and r.results[0].damage==1 and r.seals==0, "loss records actual result without awarding seal")
 	var s = load("res://scenes/duel.tscn").instantiate()
+	s.area_campaign = false
 	t.root.add_child(s)
 	s.set_process(false)
 	await t.process_frame

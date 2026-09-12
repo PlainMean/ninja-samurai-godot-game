@@ -1,0 +1,1 @@
+fatal: Unable to create '/home/cmuxao/repos/ninja-samurai-godot-game/.git/index.lock': Read-only file system

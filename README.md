@@ -1,35 +1,45 @@
-# Moonlit Dojo: Eight Seals
+# Moonlit Dojo: Four Lands
 
-A portrait, touch-first elemental duel journey built with Godot 4.5.1 Standard.
-Read the guardian’s affinity and weakness, choose FIRE, WATER, EARTH or WIND,
-and watch its announced reply. Eight seals open the moonlit archive.
+A touch-first, portrait elemental sword journey for Godot 4.5.1 Standard.
+Choose one of four starting swords and any two of FIRE, WATER, EARTH and WIND.
+Tap the Area Map to choose your next guard, defeat each region’s boss, collect
+opponent swords, and unlock or develop techniques at shrines.
 
-| Level | Guardian | HP | Affinity | Weakness |
-| --- | --- | ---: | --- | --- |
-| 1 | Gate Warden — tutorial | 3 | WATER | WIND |
-| 2 | Cinder Rival | 4 | FIRE | WATER |
-| 3 | Cairn Sentinel | 5 | EARTH | FIRE |
-| 4 | Gale Assassin | 3 | WIND | EARTH |
-| 5 | Twin-cut Retainer — rematch | 4 | WATER | WIND |
-| 6 | Ash Monk | 4 | FIRE | WATER |
-| 7 | Fourfold Ronin — mixed elite | 5 | EARTH | FIRE |
-| 8 | Moonlit Master — final duel | 5 | WATER | WIND |
+| Area | Guard 1 | Guard 2 | Boss |
+| --- | --- | --- | --- |
+| Fire Land | Cinder Rival | Ember Monk | Ash Shogun |
+| Water Shrine | Gate Guard | Courtyard Retainer | Moonlit Master |
+| Earth Marches | Earth Sentinel | Iron Vanguard | Mountain Regent |
+| Wind Coast | Wind Assassin | Coast Ronin | Tempest Sovereign |
 
-Water attacks show blue surf, fire red flames, earth brown stone fragments,
-and wind white air arcs. Both fighters use the actual attack element’s authored
-animation. Guardians share preserved samurai artwork, with distinct names,
-affinities, health and deterministic technique cycles across three backdrops.
+Each area has two 8-HP guards, selectable in either order, then a 16-HP boss.
+Fire starts unlocked. Bosses open neighbors on the ring Fire ↔ Water ↔ Earth ↔
+Wind ↔ Fire. After Fire, choose Water or Wind; all twelve nodes can be cleared.
+All enemies in a region use its affinity; bosses have longer four-strike cycles.
+
+Inventory: **Cinder Fang, Tideglass, Stone Oath, Gale Feather, Dawnbrand,
+Moonwake**. The first four are starting swords. Every victory collects the foe’s
+sword and lets you equip it or another inventory sword. Shrines restore 12 HP
+and grant one technique unlock/level increase. Levels cap at 3; once all four
+are mastered, continue without further power growth.
+
+Every player impact consumes one explicit seeded roll: **1–4 + matching sword
+bonus + technique bonus + matchup bonus**. A matching sword adds **1 on even
+rolls, 2 on odd rolls**; level adds **0/1/2**. Only WATER→FIRE, FIRE→EARTH,
+EARTH→WIND and WIND→WATER add **+1**. All other pairings are neutral. The UI
+shows total ranges and technique levels. Enemy replies retain 1/2 semantics;
+with the neutral player affinity they deal 1. Nothing rolls on a forecast or tap.
 
 ```bash
-game/tests/verify.sh
-~/.local/bin/godot --path game
+bash game/tests/verify.sh
+XDG_DATA_HOME="$PWD/build/local/data" ~/.local/bin/godot --path game
 ```
 
-Keep health through seven shrines; choose capped Mend healing or increased
-capacity. Forecasts predict actual damage and suppress a defeated foe’s reply.
-Retry resets the entire route. Mouse and touch use the same four buttons.
+The original eight encounters and full legacy regression campaign remain intact.
+No artwork changed. Blue water, red fire, brown earth and white wind retain their
+authored impacts. Pause/resume, full-run retry/reset and the archive reveal remain.
 
-[Architecture and setup](game/README.md) · [Plan](.hermes/plans/2026-09-12-eight-seals.md)
-· [Dated QA](qa/mobile/eight-seals/2026-09-12-validation.md) · [Credits](CREDITS.md).
-Local Web artifact: `build/web/index.html` with its complete sibling bundle.
-Native/browser/device visual acceptance remains pending. No push or deployment.
+[Architecture](game/README.md) · [Plan](.hermes/plans/2026-09-12_123553-area-map-weapons.md)
+· [QA](qa/mobile/area-map/2026-09-12-validation.md) · [Roadmap](.hermes/plans/2026-09-12-area-roadmap.md)
+· [Credits](CREDITS.md). Local Web bundle: `build/web/index.html` and siblings.
+No push or deployment. Browser/device visual acceptance remains pending.

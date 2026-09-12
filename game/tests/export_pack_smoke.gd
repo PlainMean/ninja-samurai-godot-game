@@ -4,6 +4,7 @@ func _initialize() -> void:
 	call_deferred("run")
 func run() -> void:
 	var scene = load("res://scenes/duel.tscn").instantiate()
+	scene.area_campaign = false
 	root.add_child(scene)
 	scene.set_process(false)
 	await process_frame
@@ -35,6 +36,27 @@ func run() -> void:
 		var frames: SpriteFrames=load("res://assets/frames/elements/%s_frames.tres" % name)
 		assert(frames.get_frame_count(name)==4 and frames.get_frame_texture(name,0).get_size()==Vector2(48,48))
 	print("PASS exported-pack complete eight-encounter run, nineteen effective attacks, eleven varied replies, all effect atlases and typed elements loaded")
+
+	scene.clock = func(): return 1000000
+	scene.last_tick_usec = 1000000
+	scene.area_campaign = true
+	scene._title()
+	scene._primary()
+	scene._area_action("pair",0)
+	for step in range(12):
+		scene._area_action("node",scene.run.next_nodes()[0])
+		scene._primary()
+		while not scene.model.terminal():
+			scene._attack(1)
+			scene.advance(1.55)
+		scene.advance(0.4)
+		assert(scene.run.state == RunModel.State.LOOT)
+		scene._area_action("loot",0)
+		var e := 1
+		while e < 5 and scene.run.techniques[e] == 3: e += 1
+		scene._area_action("train",0 if e == 5 else e)
+	assert(scene.run.state == RunModel.State.CLEARED and scene.run.bosses_defeated() == 4)
+	print("PASS exported-pack area map, twelve nodes, four bosses, loot and technique full clear")
 	scene.queue_free()
 	await process_frame
 	quit()

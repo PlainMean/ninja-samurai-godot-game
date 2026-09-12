@@ -34,7 +34,7 @@ for _ in range(count):
     pos += length + 8 + 8 + 16 + 4
 assert any(p.endswith('scripts/combat_model.gdc') for p in paths), paths
 assert not any('/tests/' in p or '/tools/' in p or '/web/' in p or 'art_sources/' in p or p.endswith(('.json','.aseprite','.lua','.gif','.gd')) for p in paths)
-for script in ['run_model','combat_event','data/element','data/encounter_spec','duel','arena_view','fighter_view','hud','run_modal','effects_view','frame_playback','layout_helper','touch_action','browser_lifecycle']:
+for script in ['area_panel','data/weapon_spec','run_model','combat_event','data/element','data/encounter_spec','duel','arena_view','fighter_view','hud','run_modal','effects_view','frame_playback','layout_helper','touch_action','browser_lifecycle']:
     assert any(p.endswith('scripts/'+script+'.gdc') for p in paths), script
 for scene in ['route','shrine','reveal']:
     assert any(p.endswith('scenes/'+scene+'.tscn.remap') or p.endswith('scenes/'+scene+'.tscn') for p in paths), scene
@@ -61,3 +61,6 @@ for path in sorted(web.iterdir()):
         compressed += gz
         print(f'{path.name}: {len(data):,} bytes; gzip level 9: {gz:,} bytes')
 print(f'PASS single-threaded bundle, {count} pack entries; {raw:,} raw bytes / {compressed:,} gzip bytes')
+
+for name in ["cinder","tide","stone","gale","dawn","moon"]:
+    assert any(p.endswith("data/weapons/"+name+".tres.remap") or p.endswith("data/weapons/"+name+".tres") for p in paths), name

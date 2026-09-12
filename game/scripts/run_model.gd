@@ -1,7 +1,7 @@
 class_name RunModel
 extends RefCounted
 const EncounterData = preload("res://scripts/data/encounter_spec.gd")
-enum State { TITLE, INTRO, FIGHT, INTERMISSION, CLEARED, FAILED }
+enum State { TITLE, INTRO, FIGHT, INTERMISSION, CLEARED, FAILED, MAP, LOADOUT, LOOT, TRAINING }
 # Load after scripts compile: const preloads can instantiate uncompiled Resource scripts
 # when the main scene (rather than the test runner) is the first entry point.
 static var ENCOUNTERS: Array[EncounterSpec] = [
@@ -27,10 +27,18 @@ var terminal_handoff := false
 var loss_hint := "WIND is EFFECTIVE against WATER."
 
 func spec() -> EncounterSpec:
-	return ENCOUNTERS[encounter_index]
+	return area_encounters[current_node] if area_mode else ENCOUNTERS[encounter_index]
 
 func begin_run() -> bool:
 	if state not in [State.TITLE, State.CLEARED, State.FAILED]: return false
+	area_mode = false
+	pending_loot = -1
+	current_node = 0
+	equipped = 0
+	cleared_nodes.clear()
+	inventory.clear()
+	techniques.assign([0,0,0,0,0])
+	rng_state = initial_seed
 	encounter_index = 0
 	max_hp = 5
 	hp = 5
@@ -48,6 +56,7 @@ func begin_run() -> bool:
 func begin_encounter(combat: CombatModel) -> bool:
 	if state != State.INTRO: return false
 	combat.configure(spec(), hp, max_hp)
+	if area_mode: combat.configure_weapon(self)
 	combat.start()
 	terminal_handoff = false
 	state = State.FIGHT
@@ -65,6 +74,12 @@ func resolve_encounter(combat: CombatModel) -> bool:
 		state = State.FAILED
 	else:
 		seals += 1
+		if area_mode:
+			cleared_nodes.append(current_node)
+			pending_loot = [0,4,4,1,5,5,2,2,2,3,3,3][current_node]
+			if pending_loot not in inventory: inventory.append(pending_loot)
+			state = State.LOOT
+			return true
 		reward_claimed = false
 		state = State.CLEARED if seals == ENCOUNTERS.size() else State.INTERMISSION
 	return true
@@ -122,6 +137,9 @@ func route_status() -> Array[String]:
 	return result
 
 func journey_text() -> String:
+	if area_mode:
+		if state == State.CLEARED: return "Four bosses fall. The archive opens.\nYour techniques become its next legend."
+		return "The four lands guard the archive.\n%d / 12 seals · %d / 4 bosses" % [seals, bosses_defeated()]
 	if state == State.CLEARED:
 		return "The seals open the moonlit archive.\nYour training becomes its next legend."
 	if state == State.INTERMISSION:
@@ -129,3 +147,121 @@ func journey_text() -> String:
 	if state == State.FAILED:
 		return "The archive waits.\nEvery new run begins at the gate."
 	return "1 %s · 2 %s · 3 %s · 4 %s\n5 %s · 6 %s · 7 %s · 8 %s\n✓ sealed · NOW next · — locked" % route_status().map(func(status): return {"SEALED": "✓", "NEXT": "NOW", "LOCKED": "—"}[status])
+
+# The original eight-seal campaign remains available through begin_run().
+const AREA_NAMES = ["Fire Land", "Water Shrine", "Earth Marches", "Wind Coast"]
+const WeaponData = preload("res://scripts/data/weapon_spec.gd")
+static var WEAPONS: Array[Resource] = [
+	load("res://data/weapons/cinder.tres"), load("res://data/weapons/tide.tres"),
+	load("res://data/weapons/stone.tres"), load("res://data/weapons/gale.tres"),
+	load("res://data/weapons/dawn.tres"), load("res://data/weapons/moon.tres")]
+var area_mode := false
+var area_encounters: Array[EncounterSpec] = []
+var current_node := -1
+var cleared_nodes: Array[int] = []
+var inventory: Array[int] = []
+var equipped := 0
+var techniques: Array[int] = [0,0,0,0,0]
+var rng_state := 1
+var initial_seed := 1
+var pending_loot := -1
+
+func begin_area_run(seed_value := 1) -> void:
+	area_mode = false
+	state = State.TITLE
+	begin_run()
+	area_mode = true
+	initial_seed = maxi(1, posmod(seed_value, 2147483647))
+	rng_state = initial_seed
+	hp = 12
+	max_hp = 12
+	current_node = 0
+	cleared_nodes.clear()
+	inventory.assign([0,1,2,3])
+	equipped = 0
+	techniques.assign([0,0,0,0,0])
+	pending_loot = -1
+	area_encounters.clear()
+	var originals := [1,5,7,0,4,7,2,6,7,3,6,7]
+	var names := ["Cinder Rival", "Ember Monk", "Ash Shogun", "Gate Guard", "Courtyard Retainer", "Moonlit Master", "Earth Sentinel", "Iron Vanguard", "Mountain Regent", "Wind Assassin", "Coast Ronin", "Tempest Sovereign"]
+	for i in range(12):
+		var entry: EncounterSpec = ENCOUNTERS[originals[i]].duplicate()
+		entry.id = StringName("area_%d" % i)
+		entry.display_name = names[i]
+		entry.element = (i / 3 + 1) as Element.Type
+		entry.enemy_max_hp = 16 if i % 3 == 2 else 8
+		entry.attack_elements.assign([int(entry.element), (int(entry.element) % 4) + 1, int(entry.element)])
+		entry.attack_names.assign(["Guard cut", "Crosswind", "Crown strike" if i % 3 == 2 else "Return cut"])
+		if i % 3 == 2:
+			entry.attack_elements.assign([int(entry.element), (int(entry.element) % 4) + 1, ((int(entry.element) + 1) % 4) + 1, int(entry.element)])
+			entry.attack_names.assign(["Crown strike", "Crosswind", "Sovereign cut", "Throne return"])
+		area_encounters.append(entry)
+	state = State.LOADOUT
+
+func choose_loadout(sword: int, pair: Array) -> bool:
+	if state != State.LOADOUT or sword not in inventory or pair.size() != 2 or pair[0] == pair[1]: return false
+	for e in pair:
+		if e not in [1,2,3,4]: return false
+	equipped = sword
+	for e in pair: techniques[e] = 1
+	state = State.MAP
+	return true
+
+func area_unlocked(area: int) -> bool:
+	if area < 0 or area > 3: return false
+	# Ring adjacency from Fire; conquered neighbors unlock entry to a region.
+	return area == 0 or ((area + 3) % 4) * 3 + 2 in cleared_nodes or ((area + 1) % 4) * 3 + 2 in cleared_nodes
+
+func next_nodes() -> Array[int]:
+	var choices: Array[int] = []
+	for area in range(4):
+		if not area_unlocked(area): continue
+		for slot in range(3):
+			var node := area * 3 + slot
+			if node in cleared_nodes: continue
+			if slot < 2 or (area * 3 in cleared_nodes and area * 3 + 1 in cleared_nodes): choices.append(node)
+	return choices
+
+func choose_node(node: int) -> bool:
+	if state != State.MAP or node not in next_nodes(): return false
+	current_node = node
+	encounter_index = node
+	state = State.INTRO
+	return true
+
+func equipped_weapon() -> Resource:
+	return WEAPONS[equipped]
+
+func equip_weapon(index: int) -> bool:
+	if not area_mode or state not in [State.LOADOUT, State.MAP, State.LOOT, State.TRAINING] or index not in inventory: return false
+	equipped = index
+	return true
+
+func finish_loot() -> bool:
+	if state != State.LOOT: return false
+	pending_loot = -1
+	hp = max_hp
+	state = State.TRAINING
+	return true
+
+func train(element: int) -> bool:
+	if state == State.TRAINING and element == 0 and techniques.slice(1).min() == 3:
+		state = State.CLEARED if cleared_nodes.size() == 12 else State.MAP
+		return true
+	if state != State.TRAINING or element not in [1,2,3,4] or techniques[element] >= 3: return false
+	techniques[element] += 1
+	state = State.CLEARED if cleared_nodes.size() == 12 else State.MAP
+	return true
+
+func roll_weapon() -> int:
+	rng_state = (rng_state * 16807) % 2147483647
+	return rng_state % 4 + 1
+
+func bosses_defeated() -> int:
+	return cleared_nodes.filter(func(n): return n % 3 == 2).size()
+
+func node_label(node: int) -> String:
+	return "%s · %s%s" % [AREA_NAMES[node / 3], area_encounters[node].display_name, " · BOSS" if node % 3 == 2 else ""]
+
+func encounter_count() -> int:
+	return 12 if area_mode else ENCOUNTERS.size()

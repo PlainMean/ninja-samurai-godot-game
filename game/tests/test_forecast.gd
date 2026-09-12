@@ -20,6 +20,7 @@ func run(t) -> void:
 				c.step(100)
 				t.check(hp-c.enemy_hp==forecast.damage and c.damage==forecast.reply and c.terminal(), "forecast equals actual deterministic resolution")
 	var s=load("res://scenes/duel.tscn").instantiate()
+	s.area_campaign = false
 	t.root.add_child(s)
 	s.set_process(false)
 	s._primary()
