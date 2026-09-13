@@ -12,6 +12,18 @@ func set_text(path: NodePath, value: String) -> void:
 	var label = get_node(path)
 	if label.text != value: label.text = value
 func present(s: Dictionary) -> void:
+	if not has_node("EquippedSwordIcon"):
+		var icon := TextureRect.new()
+		icon.name = "EquippedSwordIcon"
+		icon.position = Vector2(20,596)
+		icon.size = Vector2(32,48)
+		icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		icon.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		add_child(icon)
+	$EquippedSwordIcon.position.y = $Hint.position.y
+	$EquippedSwordIcon.texture = s.weapon.visual().frames.get_frame_texture(&"sword",0)
+	$EquippedSwordIcon.tooltip_text = "%s · %s" % [s.weapon.display_name,Element.label(s.weapon.element)]
 	ensure_seals(s.total)
 	set_text(^"Header/PlayerHealth", "You %d / %d" % [s.hp, s.max_hp])
 	set_text(^"Header/EnemyHealth", "Enemy %d / %d" % [s.enemy_hp, s.enemy_max_hp])

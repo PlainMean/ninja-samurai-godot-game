@@ -34,6 +34,11 @@ func button(text: String, id: String, value := 0, enabled := true, element := 0,
  b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
  b.add_theme_font_size_override("font_size",16)
  b.disabled = not enabled
+ if id in ["sword","equip"]:
+  b.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+  b.icon = WeaponSpec.VISUALS[element].frames.get_frame_texture(&"sword",0)
+  b.expand_icon = true
+  b.add_theme_constant_override("icon_max_width",32)
  if element > 0: b.add_theme_color_override("font_color",Element.effect_color(element))
  b.activated.connect(func(): action.emit(id,value))
  (content if parent == null else parent).add_child(b)
@@ -49,13 +54,28 @@ func present(run: RunModel, area: int, sword: int, inventory_open: bool) -> void
   content.remove_child(child)
   child.queue_free()
  scroll.scroll_vertical = 0
+ var weapon: WeaponSpec = run.WEAPONS[sword] if run.state == RunModel.State.LOADOUT else run.equipped_weapon()
+ var row := HBoxContainer.new()
+ content.add_child(row)
+ var icon := TextureRect.new()
+ icon.name = "EquippedSwordIcon"
+ icon.texture = weapon.visual().frames.get_frame_texture(&"sword",0)
+ icon.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+ icon.custom_minimum_size = Vector2(24,24)
+ icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+ icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+ row.add_child(icon)
+ var title := Label.new()
+ title.text = "%s · %s" % [weapon.display_name,Element.label(weapon.element)]
+ title.add_theme_font_size_override("font_size",14)
+ row.add_child(title)
  match run.state:
   RunModel.State.LOADOUT:
    label_text("Choose your path",true)
    label_text("1. Starting sword · seeded 1–4\nMatch its element for +1 or +2.")
    var swords := grid()
    for i in range(4):
-    button(("✓ " if sword == i else "") + run.WEAPONS[i].display_name,"sword",i,true,run.WEAPONS[i].element,swords)
+    button(("✓ " if sword == i else "") + run.WEAPONS[i].display_name + "\n" + Element.label(run.WEAPONS[i].element),"sword",i,true,run.WEAPONS[i].element,swords)
    label_text("2. Tap your two starting techniques\nOthers unlock at shrines. Levels 1–3.")
    var pairs := [[1,2],[1,3],[1,4],[2,3],[2,4],[3,4]]
    var pair_grid := grid()
@@ -63,7 +83,6 @@ func present(run: RunModel, area: int, sword: int, inventory_open: bool) -> void
   RunModel.State.MAP:
    if inventory_open:
     label_text("Sword inventory",true)
-    label_text("Equipped: " + run.equipped_weapon().display_name)
     inventory(run)
     button("Return to Area Map","inventory")
     return
@@ -76,7 +95,6 @@ func present(run: RunModel, area: int, sword: int, inventory_open: bool) -> void
     var n := area * 3 + slot
     var spec := run.area_encounters[n]
     button("%d. %s%s\n%s · %s\nweak %s · %d HP%s" % [slot+1,"BOSS · " if slot == 2 else "",spec.display_name,spec.unit.role,Element.label(spec.element),Element.label(Element.weakness(spec.element)),spec.enemy_max_hp," · ✓" if n in run.cleared_nodes else ""],"node",n,n in run.next_nodes(),int(spec.element))
-   label_text("Equipped: " + run.equipped_weapon().display_name)
    button("Inventory · switch sword" if not inventory_open else "Close inventory","inventory")
    if inventory_open: inventory(run)
   RunModel.State.LOOT:

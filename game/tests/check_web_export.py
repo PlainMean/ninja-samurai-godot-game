@@ -80,3 +80,12 @@ assert any(p.endswith('assets/sprites/heroes/kira_sheet.png.import') for p in pa
 assert any('kira_sheet.png-' in p and p.endswith('.ctex') for p in paths)
 assert any(p.endswith('scripts/data/hero_spec.gdc') for p in paths)
 print('PASS companion spec, SpriteFrames, PNG import, compressed texture and typed script in release pack')
+
+for name in ['fire','water','earth','wind']:
+ for resource in [f'data/weapon_visuals/{name}.tres',f'assets/frames/weapons/{name}_frames.tres']:
+  assert any(p.endswith(resource) or p.endswith(resource+'.remap') for p in paths),resource
+ assert any(p.endswith(f'assets/sprites/weapons/{name}_sheet.png.import') for p in paths)
+for name in ['player_attack','player_support']:
+ assert any(name+'_sheet.png-' in p and p.endswith('.ctex') for p in paths)
+assert any(p.endswith('scripts/data/weapon_visual_spec.gdc') for p in paths)
+print('PASS four sword resources, imported sheets, body sheets and visual mapping in release pack')

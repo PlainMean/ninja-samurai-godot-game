@@ -78,3 +78,18 @@ SpriteFrames: `game/assets/frames/heroes/kira_frames.tres`.
 Four 48×48 poses, `support` tag, 100ms each. Palette: `16283e`, `246e78`,
 `51c9bd`, `e5f4d6`, `dcaa87`, `ba7b51`, `34475c`, plus transparency.
 Existing WATER FX are reused; every previous tracked art/frame file is preserved.
+
+## Elemental equipped swords — 2026-09-13
+
+Original pixel artwork authored for Moonlit Dojo using Aseprite Sprite/Image Lua
+APIs (`~/.local/bin/aseprite`, 1.3.18.3-dev): WATER tideglass crescent, FIRE cinder
+flame, EARTH faceted ore blade, WIND silver feather. Four editable `.aseprite`
+sources, JSON metadata and four-frame PNG sheets live in `art_sources/weapons`;
+runtime copies and SpriteFrames live in `game/assets/{sprites,frames}/weapons`.
+Palettes and reproducible authorship are recorded in `art_sources/weapons/ASSET_SPEC.md`.
+No external raster generator or third-party sword artwork was used.
+
+The new player attack/support documents are Aseprite-derived copies of the
+existing credited ninja art, with only weapon-layer visibility disabled. All
+original documents, body cels and prior runtime art are preserved. Kira’s
+previously credited crescent poleblade remains unchanged.

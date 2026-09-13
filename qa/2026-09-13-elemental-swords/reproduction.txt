@@ -1,0 +1,12 @@
+PASS generated four elemental swords, sixteen 48x48 frames at 100ms
+PASS derived player copies with original body layers and timing, old steel hidden
+PASS Aseprite reopened four swords: four source/export poses, sword tag, 100ms timing
+PASS water: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS fire: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS earth: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS wind: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS 4 swords, 16 distinct frames, 20 file hashes, 6 silhouette comparisons, 163 preserved art hashes
+PASS player attack: 6 original cel sets/timings/tags, hidden steel, pixel-exact exported body
+PASS player support: 12 original cel sets/timings/tags, hidden steel, pixel-exact exported body
+PASS 10 derived player file hashes
+PASS six PNG sheets and six JSON documents reproduced byte-for-byte with Aseprite

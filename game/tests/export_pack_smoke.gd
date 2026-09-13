@@ -85,6 +85,18 @@ func run() -> void:
 	assert(scene.run.state == RunModel.State.CLEARED and scene.run.bosses_defeated() == 4 and unit_ids.size() == 12)
 	print("PASS exported companion spec, four imported frames, recruitment and later combat projection")
 	print("PASS exported-pack area map, twelve nodes, four bosses, loot and technique full clear")
+	# Real exported scene selection for every weapon, including duplicate affinities.
+	scene._title()
+	scene._primary()
+	scene._area_action("pair",0)
+	scene.run.inventory.assign([0,1,2,3,4,5])
+	for i in range(6):
+		scene._area_action("equip",i)
+		var weapon = scene.run.equipped_weapon()
+		assert(scene.ninja.sword.sprite_frames == weapon.visual().frames)
+		assert(scene.hud.get_node("EquippedSwordIcon").texture == weapon.visual().frames.get_frame_texture(&"sword",0))
+		assert(scene.ninja.sprite.sprite_frames == scene.ninja.PlayerSupport)
+	print("PASS exported four sword specs, six equip selections, body frames and HUD icons")
 	scene.queue_free()
 	await process_frame
 	quit()

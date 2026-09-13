@@ -54,3 +54,10 @@ authored impacts. Pause/resume, full-run retry/reset and the archive reveal rema
 · [QA](qa/2026-09-13-companion/validation.md) · [Roadmap](.hermes/plans/2026-09-12-area-roadmap.md)
 · [Credits](CREDITS.md). Local Web bundle: `build/web/index.html` and siblings.
 No push or deployment. Browser/device visual acceptance remains pending.
+
+Four equipped elemental swords now have distinct Aseprite graphics: blue
+Tideglass/Moonwake, orange Cinder Fang/Dawnbrand, brown Stone Oath and silver
+Gale Feather. The player’s sword swaps immediately when equipped; loadout,
+loot, inventory, map and combat HUD show the matching icon. Original ninja
+art and Kira’s poleblade are preserved. See the [sword QA](qa/2026-09-13-elemental-swords/validation.md)
+and [four-sword contact sheet](qa/2026-09-13-elemental-swords/four-swords.png).

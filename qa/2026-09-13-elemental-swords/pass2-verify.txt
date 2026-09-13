@@ -1,0 +1,354 @@
+4.5.1.stable.official.f62fdbde1
+PASS water: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS fire: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS earth: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS wind: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS 4 swords, 16 distinct frames, 20 file hashes, 6 silhouette comparisons, 163 preserved art hashes
+PASS ninja: 192x32 RGBA sheet, six 32x32 RGBA frames at 100 ms, forward attack tag, layers
+PASS samurai: 192x32 RGBA sheet, six 32x32 RGBA frames at 100 ms, forward attack tag, layers
+PASS 18 checksums
+art_sources/ninja/ASSET_SPEC.md: OK
+art_sources/ninja/generate_ninja.lua: OK
+art_sources/ninja/ninja_attack.aseprite: OK
+art_sources/ninja/ninja_attack.gif: OK
+art_sources/ninja/ninja_attack_sheet.png: OK
+art_sources/ninja/ninja_attack_sheet_4x.png: OK
+art_sources/ninja/verification.txt: OK
+art_sources/ninja/verify_ninja.lua: OK
+art_sources/samurai/ASSET_SPEC.md: OK
+art_sources/samurai/generate_samurai.lua: OK
+art_sources/samurai/samurai_attack.aseprite: OK
+art_sources/samurai/samurai_attack.gif: OK
+art_sources/samurai/samurai_attack_sheet.png: OK
+art_sources/samurai/samurai_attack_sheet_4x.png: OK
+art_sources/samurai/verification.txt: OK
+art_sources/samurai/verify_samurai.lua: OK
+game/assets/sprites/ninja_attack_sheet.png: OK
+game/assets/sprites/samurai_attack_sheet.png: OK
+PASS journey route: Aseprite source, 3 distinct 300ms frames, opaque RGBA, source/runtime hashes
+PASS journey shrine: Aseprite source, 3 distinct 300ms frames, opaque RGBA, source/runtime hashes
+PASS journey reveal: Aseprite source, 3 distinct 300ms frames, opaque RGBA, source/runtime hashes
+PASS water: native cel/PNG pixel equality, 4 distinct nonempty 48x48/100ms frames, exact dominant color, hashes
+PASS fire: native cel/PNG pixel equality, 4 distinct nonempty 48x48/100ms frames, exact dominant color, hashes
+PASS earth: native cel/PNG pixel equality, 4 distinct nonempty 48x48/100ms frames, exact dominant color, hashes
+PASS wind: native cel/PNG pixel equality, 4 distinct nonempty 48x48/100ms frames, exact dominant color, hashes
+PASS four effects / 16 frames / 20 immutable hashes
+PASS kira: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS Kira: 4 frame hashes, 6 file hashes, 192 prior-enemy silhouette comparisons
+art_sources/elements/earth.aseprite: OK
+art_sources/elements/earth_sheet.png: OK
+art_sources/elements/fire.aseprite: OK
+art_sources/elements/fire_sheet.png: OK
+art_sources/elements/water.aseprite: OK
+art_sources/elements/water_sheet.png: OK
+art_sources/elements/wind.aseprite: OK
+art_sources/elements/wind_sheet.png: OK
+art_sources/journey/reveal.aseprite: OK
+art_sources/journey/reveal_sheet.png: OK
+art_sources/journey/route.aseprite: OK
+art_sources/journey/route_sheet.png: OK
+art_sources/journey/shrine.aseprite: OK
+art_sources/journey/shrine_sheet.png: OK
+art_sources/moonlit_dojo/combat_fx.aseprite: OK
+art_sources/moonlit_dojo/combat_fx_sheet.png: OK
+art_sources/moonlit_dojo/dojo_backdrops.aseprite: OK
+art_sources/moonlit_dojo/dojo_backdrops_sheet.png: OK
+art_sources/moonlit_dojo/dojo_icons.aseprite: OK
+art_sources/moonlit_dojo/dojo_icons_sheet.png: OK
+art_sources/moonlit_dojo/dojo_props.aseprite: OK
+art_sources/moonlit_dojo/dojo_props_sheet.png: OK
+art_sources/moonlit_dojo/ninja_support.aseprite: OK
+art_sources/moonlit_dojo/ninja_support_sheet.png: OK
+art_sources/moonlit_dojo/samurai_support.aseprite: OK
+art_sources/moonlit_dojo/samurai_support_sheet.png: OK
+art_sources/ninja/ninja_attack.aseprite: OK
+art_sources/ninja/ninja_attack.gif: OK
+art_sources/ninja/ninja_attack_sheet.png: OK
+art_sources/ninja/ninja_attack_sheet_4x.png: OK
+art_sources/samurai/samurai_attack.aseprite: OK
+art_sources/samurai/samurai_attack.gif: OK
+art_sources/samurai/samurai_attack_sheet.png: OK
+art_sources/samurai/samurai_attack_sheet_4x.png: OK
+art_sources/units/ash_monk.aseprite: OK
+art_sources/units/ash_monk_sheet.png: OK
+art_sources/units/ash_shogun.aseprite: OK
+art_sources/units/ash_shogun_sheet.png: OK
+art_sources/units/cinder_rival.aseprite: OK
+art_sources/units/cinder_rival_sheet.png: OK
+art_sources/units/coast_ronin.aseprite: OK
+art_sources/units/coast_ronin_sheet.png: OK
+art_sources/units/earth_sentinel.aseprite: OK
+art_sources/units/earth_sentinel_sheet.png: OK
+art_sources/units/gale_assassin.aseprite: OK
+art_sources/units/gale_assassin_sheet.png: OK
+art_sources/units/gate_guard.aseprite: OK
+art_sources/units/gate_guard_sheet.png: OK
+art_sources/units/iron_vanguard.aseprite: OK
+art_sources/units/iron_vanguard_sheet.png: OK
+art_sources/units/moonlit_master.aseprite: OK
+art_sources/units/moonlit_master_sheet.png: OK
+art_sources/units/mountain_regent.aseprite: OK
+art_sources/units/mountain_regent_sheet.png: OK
+art_sources/units/tempest_sovereign.aseprite: OK
+art_sources/units/tempest_sovereign_sheet.png: OK
+art_sources/units/twin_cut_retainer.aseprite: OK
+art_sources/units/twin_cut_retainer_sheet.png: OK
+game/assets/frames/elements/earth_frames.tres: OK
+game/assets/frames/elements/fire_frames.tres: OK
+game/assets/frames/elements/water_frames.tres: OK
+game/assets/frames/elements/wind_frames.tres: OK
+game/assets/frames/moonlit_dojo/combat_fx_frames.tres: OK
+game/assets/frames/moonlit_dojo/dojo_backdrops_frames.tres: OK
+game/assets/frames/moonlit_dojo/dojo_icons_frames.tres: OK
+game/assets/frames/moonlit_dojo/dojo_props_frames.tres: OK
+game/assets/frames/moonlit_dojo/ninja_support_frames.tres: OK
+game/assets/frames/moonlit_dojo/samurai_support_frames.tres: OK
+game/assets/frames/ninja_frames.tres: OK
+game/assets/frames/samurai_frames.tres: OK
+game/assets/frames/units/ash_monk_frames.tres: OK
+game/assets/frames/units/ash_shogun_frames.tres: OK
+game/assets/frames/units/cinder_rival_frames.tres: OK
+game/assets/frames/units/coast_ronin_frames.tres: OK
+game/assets/frames/units/earth_sentinel_frames.tres: OK
+game/assets/frames/units/gale_assassin_frames.tres: OK
+game/assets/frames/units/gate_guard_frames.tres: OK
+game/assets/frames/units/iron_vanguard_frames.tres: OK
+game/assets/frames/units/moonlit_master_frames.tres: OK
+game/assets/frames/units/mountain_regent_frames.tres: OK
+game/assets/frames/units/tempest_sovereign_frames.tres: OK
+game/assets/frames/units/twin_cut_retainer_frames.tres: OK
+game/assets/sprites/elements/earth_sheet.png: OK
+game/assets/sprites/elements/fire_sheet.png: OK
+game/assets/sprites/elements/water_sheet.png: OK
+game/assets/sprites/elements/wind_sheet.png: OK
+game/assets/sprites/journey/reveal_sheet.png: OK
+game/assets/sprites/journey/route_sheet.png: OK
+game/assets/sprites/journey/shrine_sheet.png: OK
+game/assets/sprites/moonlit_dojo/combat_fx_sheet.png: OK
+game/assets/sprites/moonlit_dojo/dojo_backdrops_sheet.png: OK
+game/assets/sprites/moonlit_dojo/dojo_icons_sheet.png: OK
+game/assets/sprites/moonlit_dojo/dojo_props_sheet.png: OK
+game/assets/sprites/moonlit_dojo/ninja_support_sheet.png: OK
+game/assets/sprites/moonlit_dojo/samurai_support_sheet.png: OK
+game/assets/sprites/ninja_attack_sheet.png: OK
+game/assets/sprites/samurai_attack_sheet.png: OK
+game/assets/sprites/units/ash_monk_sheet.png: OK
+game/assets/sprites/units/ash_shogun_sheet.png: OK
+game/assets/sprites/units/cinder_rival_sheet.png: OK
+game/assets/sprites/units/coast_ronin_sheet.png: OK
+game/assets/sprites/units/earth_sentinel_sheet.png: OK
+game/assets/sprites/units/gale_assassin_sheet.png: OK
+game/assets/sprites/units/gate_guard_sheet.png: OK
+game/assets/sprites/units/iron_vanguard_sheet.png: OK
+game/assets/sprites/units/moonlit_master_sheet.png: OK
+game/assets/sprites/units/mountain_regent_sheet.png: OK
+game/assets/sprites/units/tempest_sovereign_sheet.png: OK
+game/assets/sprites/units/twin_cut_retainer_sheet.png: OK
+game/assets/ui/duel_theme.tres: OK
+PASS cinder_rival: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS ash_monk: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS ash_shogun: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS gate_guard: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS twin_cut_retainer: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS moonlit_master: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS earth_sentinel: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS iron_vanguard: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS mountain_regent: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS gale_assassin: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS coast_ronin: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS tempest_sovereign: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS 12 units / 48 frames / 60 hashes / 66 pairwise silhouette comparisons
+art_sources/.gdignore: OK
+art_sources/elements/ASSET_SPEC.md: OK
+art_sources/elements/earth.aseprite: OK
+art_sources/elements/earth.json: OK
+art_sources/elements/earth_sheet.png: OK
+art_sources/elements/fire.aseprite: OK
+art_sources/elements/fire.json: OK
+art_sources/elements/fire_sheet.png: OK
+art_sources/elements/generate.lua: OK
+art_sources/elements/water.aseprite: OK
+art_sources/elements/water.json: OK
+art_sources/elements/water_sheet.png: OK
+art_sources/elements/wind.aseprite: OK
+art_sources/elements/wind.json: OK
+art_sources/elements/wind_sheet.png: OK
+art_sources/journey/generate.lua: OK
+art_sources/journey/reveal.aseprite: OK
+art_sources/journey/reveal.json: OK
+art_sources/journey/reveal_sheet.png: OK
+art_sources/journey/route.aseprite: OK
+art_sources/journey/route.json: OK
+art_sources/journey/route_sheet.png: OK
+art_sources/journey/shrine.aseprite: OK
+art_sources/journey/shrine.json: OK
+art_sources/journey/shrine_sheet.png: OK
+art_sources/moonlit_dojo/ASSET_SPEC.md: OK
+art_sources/moonlit_dojo/combat_fx.aseprite: OK
+art_sources/moonlit_dojo/combat_fx.json: OK
+art_sources/moonlit_dojo/combat_fx_sheet.png: OK
+art_sources/moonlit_dojo/dojo_backdrops.aseprite: OK
+art_sources/moonlit_dojo/dojo_backdrops.json: OK
+art_sources/moonlit_dojo/dojo_backdrops_sheet.png: OK
+art_sources/moonlit_dojo/dojo_icons.aseprite: OK
+art_sources/moonlit_dojo/dojo_icons.json: OK
+art_sources/moonlit_dojo/dojo_icons_sheet.png: OK
+art_sources/moonlit_dojo/dojo_props.aseprite: OK
+art_sources/moonlit_dojo/dojo_props.json: OK
+art_sources/moonlit_dojo/dojo_props_sheet.png: OK
+art_sources/moonlit_dojo/generate_moonlit_dojo.lua: OK
+art_sources/moonlit_dojo/ninja_support.aseprite: OK
+art_sources/moonlit_dojo/ninja_support.json: OK
+art_sources/moonlit_dojo/ninja_support_sheet.png: OK
+art_sources/moonlit_dojo/samurai_support.aseprite: OK
+art_sources/moonlit_dojo/samurai_support.json: OK
+art_sources/moonlit_dojo/samurai_support_sheet.png: OK
+art_sources/moonlit_dojo/verification.txt: OK
+art_sources/moonlit_dojo/verify_moonlit_dojo.lua: OK
+art_sources/ninja/ASSET_SPEC.md: OK
+art_sources/ninja/generate_ninja.lua: OK
+art_sources/ninja/ninja_attack.aseprite: OK
+art_sources/ninja/ninja_attack.gif: OK
+art_sources/ninja/ninja_attack_sheet.png: OK
+art_sources/ninja/ninja_attack_sheet_4x.png: OK
+art_sources/ninja/verification.txt: OK
+art_sources/ninja/verify_ninja.lua: OK
+art_sources/samurai/ASSET_SPEC.md: OK
+art_sources/samurai/generate_samurai.lua: OK
+art_sources/samurai/samurai_attack.aseprite: OK
+art_sources/samurai/samurai_attack.gif: OK
+art_sources/samurai/samurai_attack_sheet.png: OK
+art_sources/samurai/samurai_attack_sheet_4x.png: OK
+art_sources/samurai/verification.txt: OK
+art_sources/samurai/verify_samurai.lua: OK
+game/assets/frames/elements/earth_frames.tres: OK
+game/assets/frames/elements/fire_frames.tres: OK
+game/assets/frames/elements/water_frames.tres: OK
+game/assets/frames/elements/wind_frames.tres: OK
+game/assets/frames/moonlit_dojo/combat_fx_frames.tres: OK
+game/assets/frames/moonlit_dojo/dojo_backdrops_frames.tres: OK
+game/assets/frames/moonlit_dojo/dojo_icons_frames.tres: OK
+game/assets/frames/moonlit_dojo/dojo_props_frames.tres: OK
+game/assets/frames/moonlit_dojo/ninja_support_frames.tres: OK
+game/assets/frames/moonlit_dojo/samurai_support_frames.tres: OK
+game/assets/frames/ninja_frames.tres: OK
+game/assets/frames/samurai_frames.tres: OK
+game/assets/sprites/elements/earth_sheet.png: OK
+game/assets/sprites/elements/fire_sheet.png: OK
+game/assets/sprites/elements/water_sheet.png: OK
+game/assets/sprites/elements/wind_sheet.png: OK
+game/assets/sprites/journey/reveal_sheet.png: OK
+game/assets/sprites/journey/route_sheet.png: OK
+game/assets/sprites/journey/shrine_sheet.png: OK
+game/assets/sprites/moonlit_dojo/combat_fx_sheet.png: OK
+game/assets/sprites/moonlit_dojo/dojo_backdrops_sheet.png: OK
+game/assets/sprites/moonlit_dojo/dojo_icons_sheet.png: OK
+game/assets/sprites/moonlit_dojo/dojo_props_sheet.png: OK
+game/assets/sprites/moonlit_dojo/ninja_support_sheet.png: OK
+game/assets/sprites/moonlit_dojo/samurai_support_sheet.png: OK
+game/assets/sprites/ninja_attack_sheet.png: OK
+game/assets/sprites/samurai_attack_sheet.png: OK
+game/assets/ui/duel_theme.tres: OK
+PASS ninja_support: 12 frames, source/runtime bytes, decoded RGBA, exact metadata
+PASS samurai_support: 9 frames, source/runtime bytes, decoded RGBA, exact metadata
+PASS dojo_backdrops: 3 frames, source/runtime bytes, decoded RGBA, exact metadata
+PASS dojo_props: 5 frames, source/runtime bytes, decoded RGBA, exact metadata
+PASS combat_fx: 12 frames, source/runtime bytes, decoded RGBA, exact metadata
+PASS dojo_icons: 10 frames, source/runtime bytes, decoded RGBA, exact metadata
+PASS six sets / 51 frames; 10391 added PNG bytes; 504320 resident atlas RGBA bytes; 34 hashes
+art_sources/moonlit_dojo/ASSET_SPEC.md: OK
+art_sources/moonlit_dojo/combat_fx.aseprite: OK
+art_sources/moonlit_dojo/combat_fx.json: OK
+art_sources/moonlit_dojo/combat_fx_sheet.png: OK
+art_sources/moonlit_dojo/dojo_backdrops.aseprite: OK
+art_sources/moonlit_dojo/dojo_backdrops.json: OK
+art_sources/moonlit_dojo/dojo_backdrops_sheet.png: OK
+art_sources/moonlit_dojo/dojo_icons.aseprite: OK
+art_sources/moonlit_dojo/dojo_icons.json: OK
+art_sources/moonlit_dojo/dojo_icons_sheet.png: OK
+art_sources/moonlit_dojo/dojo_props.aseprite: OK
+art_sources/moonlit_dojo/dojo_props.json: OK
+art_sources/moonlit_dojo/dojo_props_sheet.png: OK
+art_sources/moonlit_dojo/generate_moonlit_dojo.lua: OK
+art_sources/moonlit_dojo/ninja_support.aseprite: OK
+art_sources/moonlit_dojo/ninja_support.json: OK
+art_sources/moonlit_dojo/ninja_support_sheet.png: OK
+art_sources/moonlit_dojo/samurai_support.aseprite: OK
+art_sources/moonlit_dojo/samurai_support.json: OK
+art_sources/moonlit_dojo/samurai_support_sheet.png: OK
+art_sources/moonlit_dojo/verification.txt: OK
+art_sources/moonlit_dojo/verify_moonlit_dojo.lua: OK
+game/assets/frames/moonlit_dojo/combat_fx_frames.tres: OK
+game/assets/frames/moonlit_dojo/dojo_backdrops_frames.tres: OK
+game/assets/frames/moonlit_dojo/dojo_icons_frames.tres: OK
+game/assets/frames/moonlit_dojo/dojo_props_frames.tres: OK
+game/assets/frames/moonlit_dojo/ninja_support_frames.tres: OK
+game/assets/frames/moonlit_dojo/samurai_support_frames.tres: OK
+game/assets/sprites/moonlit_dojo/combat_fx_sheet.png: OK
+game/assets/sprites/moonlit_dojo/dojo_backdrops_sheet.png: OK
+game/assets/sprites/moonlit_dojo/dojo_icons_sheet.png: OK
+game/assets/sprites/moonlit_dojo/dojo_props_sheet.png: OK
+game/assets/sprites/moonlit_dojo/ninja_support_sheet.png: OK
+game/assets/sprites/moonlit_dojo/samurai_support_sheet.png: OK
+Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org
+
+ERROR: Condition "_sock == -1" is true. Returning: FAILED
+   at: open (drivers/unix/net_socket_unix.cpp:267)
+ERROR: Condition "err != OK" is true. Returning: ERR_CANT_CREATE
+   at: listen (core/io/tcp_server.cpp:57)
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Started Project initialization (5 steps)[39m[0m
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Scanning file structure...[39m[0m
+[  16% ] [90m[1mfirst_scan_filesystem[22m | Loading global class names...[39m[0m
+[  33% ] [90m[1mfirst_scan_filesystem[22m | Verifying GDExtensions...[39m[0m
+[  50% ] [90m[1mfirst_scan_filesystem[22m | Creating autoload scripts...[39m[0m
+[  66% ] [90m[1mfirst_scan_filesystem[22m | Initializing plugins...[39m[0m
+[  83% ] [90m[1mfirst_scan_filesystem[22m | Starting file scan...[39m[0m
+[92m[ DONE ][39m [1mfirst_scan_filesystem[22m
+[0m
+[   0% ] [90m[1mupdate_scripts_classes[22m | Started Registering global classes... (4 steps)[39m[0m
+[   0% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  20% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  40% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  60% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[92m[ DONE ][39m [1mupdate_scripts_classes[22m
+[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Started Loading editor (5 steps)[39m[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Loading editor layout...[39m[0m
+[92m[ DONE ][39m [1mloading_editor_layout[22m
+[0m
+ERROR: Condition "_sock == -1" is true. Returning: FAILED
+   at: open (drivers/unix/net_socket_unix.cpp:267)
+ERROR: Condition "err != OK" is true. Returning: ERR_CANT_CREATE
+   at: listen (core/io/tcp_server.cpp:57)
+Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org
+
+Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org
+
+Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org
+
+Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org
+
+RESULT: 199 sword checks, 0 failures
+Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org
+
+RESULT: 96 companion checks, 0 failures
+Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org
+
+Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org
+
+ERROR: FAIL: every region map fits 390x844 panel
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/run_tests.gd:12)
+       [1] run (res://tests/test_units.gd:42)
+ERROR: FAIL: every region map fits 390x844 panel
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/run_tests.gd:12)
+       [1] run (res://tests/test_units.gd:42)
+ERROR: FAIL: every region map fits 390x844 panel
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/run_tests.gd:12)
+       [1] run (res://tests/test_units.gd:42)
+RESULT: 20775 checks, 3 failures

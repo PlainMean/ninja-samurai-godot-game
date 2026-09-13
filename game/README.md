@@ -238,3 +238,23 @@ The four source strips were inspected directly. Browser WebGL, touch, safe areas
 physical iOS/Android lifecycle, readability and performance remain unverified.
 See [dated QA](../qa/mobile/eight-seals/2026-09-12-validation.md) and
 [stop reason](../STOP_REASON.md). Prior results remain in historical QA folders.
+
+## Equipped sword presentation
+
+`WeaponSpec.visual()` maps the six existing weapon resources through four
+`WeaponVisualSpec` resources under `data/weapon_visuals`. No combat or ownership
+rules live in these resources. `Duel._present_fighters()` projects the current
+weapon on every refresh. `FighterView` attaches a nearest-filtered sword overlay
+to the original hand/tip pose coordinates for attack, idle, guard, dodge, hurt
+and defeat. Aseprite-derived body sheets hide old steel layers while retaining
+all original body cels and animation timing. The original frame resources remain
+available for enemy/legacy use. Kira retains her independent sprite and poleblade.
+
+AreaPanel shows elemental icons for preview, equipped inventory/map and loot;
+HUD follows the same weapon, including compact layout. New resources are in the
+Web export allowlist. Run `res://tests/sword_gate.gd` for targeted selection and
+equip checks; `verify.sh` also gates native-script parsing, independent sword/body
+asset verification and exported-pack selection. All previous assertions remain.
+
+Sources, palette and reproduction instructions: `art_sources/weapons/ASSET_SPEC.md`.
+QA and the Aseprite contact sheet: `qa/2026-09-13-elemental-swords/`.

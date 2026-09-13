@@ -1,0 +1,12 @@
+{
+  "art_sources/weapons/player_attack_sheet.png": "182990b405c3ed6fbae2b4bdb05fe9e0eb43b19e34304e48c258699943a0092d",
+  "game/assets/sprites/weapons/player_attack_sheet.png": "182990b405c3ed6fbae2b4bdb05fe9e0eb43b19e34304e48c258699943a0092d",
+  "game/assets/frames/weapons/player_attack_frames.tres": "e2bce1a0cc03c3c8dc7b5d8dd44707153a0fd7af77fb52d3018b32badd710fef",
+  "art_sources/weapons/player_attack.aseprite": "0581f5fbf2d8b5033fcb23eaf76f18fae4b7e74d0637dea095aded1b5f20545b",
+  "art_sources/weapons/player_attack.json": "7e1a4d34b3eeb21818583500972cedfde71c234c2fdc62017a979ff8049370ba",
+  "art_sources/weapons/player_support_sheet.png": "0588e802450ff8f0da9c24be32a90568d8172f1ef5705e21b0f93b7421fece15",
+  "game/assets/sprites/weapons/player_support_sheet.png": "0588e802450ff8f0da9c24be32a90568d8172f1ef5705e21b0f93b7421fece15",
+  "game/assets/frames/weapons/player_support_frames.tres": "feab0b3592794b388fe54daf25acaf967081d319811bc12e79f70ee372a22b0b",
+  "art_sources/weapons/player_support.aseprite": "1f070786bb1f61c260a6cca4926eeea09aa806abcbbe15d75cac8a3d4eb1c84f",
+  "art_sources/weapons/player_support.json": "2a1a3e177ba76affb8fa6e4ed529ce325efb295d46bb06f79032e940b5dc91bf"
+}

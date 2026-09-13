@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="WeaponVisualSpec" load_steps=3 format=3]
+[ext_resource type="Script" path="res://scripts/data/weapon_visual_spec.gd" id="1"]
+[ext_resource type="SpriteFrames" path="res://assets/frames/weapons/earth_frames.tres" id="2"]
+[resource]
+script = ExtResource("1")
+element = 3
+frames = ExtResource("2")

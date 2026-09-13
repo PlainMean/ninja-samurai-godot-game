@@ -1,0 +1,88 @@
+{
+  "native_size": 48,
+  "duration_ms": 100,
+  "swords": {
+    "water": {
+      "palette": [
+        "122e57",
+        "225dba",
+        "359ceb",
+        "91e6ff",
+        "d5f8ff"
+      ],
+      "frame_sha256": [
+        "573523a138e05845373569a8384fef747dce81ec0eb2e8e09c79a0d9cc7d2da2",
+        "82a47c685e8846feea50eacd19f67cca8e18f397b9cc3e4985deec0c12bb2b1c",
+        "f0eae3f9da77c3cf8e85db67af4c21ec982f5128cd0439c14b6813216012985f",
+        "2bf20f0fac4e05e186d8fa6973cb57c135a66c0c1dfba2389db9b3163bb938f7"
+      ]
+    },
+    "fire": {
+      "palette": [
+        "501b2e",
+        "ad3026",
+        "ef5726",
+        "ffac38",
+        "ffe59a"
+      ],
+      "frame_sha256": [
+        "cccfe2270ecb04ba60c4cd9aeee1a5d43e8c063f524f62c7f9ee0938b7d8d4d0",
+        "e62dbfacc962cba9e4769ef147dde3a74de0e37ed0bf0c8f4b8ec3f9435a4f85",
+        "ed39c08e8a043b9b5290dd0780fa7efe0f80345757d27a0031d15720a376d3ca",
+        "258b710ee72cb7f14812c3aeb8c1db1804a6acf70fcdd209f4e6613d0005460e"
+      ]
+    },
+    "earth": {
+      "palette": [
+        "302329",
+        "644331",
+        "99643e",
+        "c28b54",
+        "e3bf82"
+      ],
+      "frame_sha256": [
+        "30d6340320427158451bdb06d966cbad06cbf5d59cf7c7d791d53033ab3da5d1",
+        "c2ac47e2e66aa56a985b4dcc0e3e72e72746ee7684fc83e2be135bc56ea64183",
+        "713cf7295dc714ef2ef008bd9f1939b286ffc2d93c71fe460190affe1977de72",
+        "e5113ce72fd3c9829a069452e3951789c8d5bdea9a4f5afd77b47ec73d2b9830"
+      ]
+    },
+    "wind": {
+      "palette": [
+        "303949",
+        "737f96",
+        "bdcad8",
+        "e3ecf4",
+        "ffffff"
+      ],
+      "frame_sha256": [
+        "21e4e2cd62d2bfd32d4e0a238f303e59b6a59f4d084bf9461a62a298edba33e6",
+        "bada30097ff64a3cdf9777021dc1441dfa9a2e4f99e523989aed58b1d76eda5d",
+        "6719e2342a59634ab394db9eb3903f6898439e09104c709ce4c9d942094fe46e",
+        "8a592d55c162ac49b74844a975b09dfd501b7852984882b3ac04152ec17b4156"
+      ]
+    }
+  },
+  "sha256": {
+    "art_sources/weapons/water.aseprite": "befeb007f4d5cceaf22d93f21c6dcca587d98af4ffbc8873fcb08d4adcfe6c66",
+    "art_sources/weapons/water.json": "4915b584aeaa0fab99a43e2734f49734183e5ec8c0931a261edf4b1481e9f74e",
+    "art_sources/weapons/water_sheet.png": "35923dcf19a5630fdcf644dbade0580ca8b5fd7661a17f80d8147b7cc08a59f6",
+    "game/assets/sprites/weapons/water_sheet.png": "35923dcf19a5630fdcf644dbade0580ca8b5fd7661a17f80d8147b7cc08a59f6",
+    "game/assets/frames/weapons/water_frames.tres": "3696489fd3e7288e5e007943f2b9b6ae02aef777ef89a96083b4c3ff6a9db171",
+    "art_sources/weapons/fire.aseprite": "afcb9959bd271ca893c0ea4d993a94c700a7ed0239a44b2cf83b914cfae6ca9e",
+    "art_sources/weapons/fire.json": "a88249dd64bdee4b7aa9285f45cb5b6a00e3d90590262cdf9c74ba0b99860465",
+    "art_sources/weapons/fire_sheet.png": "1b3292d4711f22148063779756ccfe902c1d5128d3f1ba2bcd9eff913d15b004",
+    "game/assets/sprites/weapons/fire_sheet.png": "1b3292d4711f22148063779756ccfe902c1d5128d3f1ba2bcd9eff913d15b004",
+    "game/assets/frames/weapons/fire_frames.tres": "e7a3c53f3b7389b1113ca8ac6e8707f56321810acdc5badbf6ca8a4a6c0ff7f7",
+    "art_sources/weapons/earth.aseprite": "e0902f97b594541bc13430576753940a0a889a5cc65e2c95f629bbb60689f030",
+    "art_sources/weapons/earth.json": "5258b5482770776a7b519877e785ce20ec0e802eb6622629909c533bda5efa31",
+    "art_sources/weapons/earth_sheet.png": "0315b038b66ceabc3201b5f9647523a5e278dbafdc5f3512c0f5b8303bc12056",
+    "game/assets/sprites/weapons/earth_sheet.png": "0315b038b66ceabc3201b5f9647523a5e278dbafdc5f3512c0f5b8303bc12056",
+    "game/assets/frames/weapons/earth_frames.tres": "e4426c567e8a9f7b1ab5d8c05501a96be64838d419900d5c037335a83756553c",
+    "art_sources/weapons/wind.aseprite": "d5d1bde38aeeb49e3af2d8509cd847b6bcd1551a0f58ca03b0e282d59a549a86",
+    "art_sources/weapons/wind.json": "2abb4d90e39f31cb9575c9959ab8a089c2c93baf68f4fc3cbdbd3a4150ab225e",
+    "art_sources/weapons/wind_sheet.png": "c8e4cc6e00dff7c2d0cfafd7b4da46f1ab8a4a99946c616694db4ff9085e95cf",
+    "game/assets/sprites/weapons/wind_sheet.png": "c8e4cc6e00dff7c2d0cfafd7b4da46f1ab8a4a99946c616694db4ff9085e95cf",
+    "game/assets/frames/weapons/wind_frames.tres": "3e590d1ce462655656bdeaeb61c2f0edd2f9b160708da2855b4ffff06dbcf14b"
+  }
+}

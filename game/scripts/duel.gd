@@ -170,7 +170,7 @@ func snapshot() -> Dictionary:
 	var result := "Choose FIRE, WATER, EARTH or WIND"
 	if model.selected_element != Element.Type.NONE:
 		result = "%s · %s · %d damage" % [selected, Element.Matchup.keys()[Element.resolve(model.selected_element, run.spec().element)], Element.damage_for(model.selected_element, run.spec().element)]
-	return {"levels": run.techniques if run.area_mode else [1,1,1,1,1], "hp": model.player_hp if run.state == Run.State.FIGHT else run.hp, "max_hp": run.max_hp,
+	return {"weapon": run.equipped_weapon(), "levels": run.techniques if run.area_mode else [1,1,1,1,1], "hp": model.player_hp if run.state == Run.State.FIGHT else run.hp, "max_hp": run.max_hp,
 		"enemy_hp": model.enemy_hp, "enemy_max_hp": run.spec().enemy_max_hp, "enemy_role": run.spec().unit.role if run.spec().unit != null else "", "enemy_name": ("BOSS · " if run.area_mode and run.current_node % 3 == 2 else "") + run.spec().display_name,
 		"total": 12 if run.area_mode else run.encounter_count(), "seals": run.seals, "encounter": run.encounter_index + 1, "cue": cue,
 		"feedback": "\n".join(model.combat_log), "technique": ("%s · %s\nRoll 1–4 · same +1–2\nTechnique +0–2 · matchup +0–1" % [run.equipped_weapon().display_name, Element.label(run.equipped_weapon().element)]) if run.area_mode else "Selected: %s\n%s" % [selected, result],
@@ -227,6 +227,7 @@ func _refresh() -> void:
 	modal.present_journey(run, presentation_time, paused)
 	_present_area_panel()
 func _present_fighters() -> void:
+	ninja.equip_visual(run.equipped_weapon())
 	companion.visible = run.companion_joined
 	$HUD/CompanionStatus.visible = run.companion_joined and run.state == Run.State.FIGHT
 	$HUD/CompanionStatus.text = model.companion_status()
