@@ -76,6 +76,9 @@ func run(t) -> void:
 				t.check(s.paused and s.terminal_time == frozen and s.presentation_time == decorative, "pause freezes terminal and decoration")
 				tap(t,viewport,s.primary_button)
 				s.advance(0.001)
+				if s.run.state == R.State.RECRUIT:
+					t.check(s.run.first_boss_defeated and s.primary_button.text == "Continue with Kira", "touch join modal")
+					tap(t,viewport,s.primary_button)
 				await fits(t,s)
 				t.check(s.run.seals == encounter+1 and s.modal.visible and s.samurai.sprite.animation == &"defeat" and s.samurai.sprite.frame == 2, "one seal and held defeat at 400ms")
 				if encounter < 7:

@@ -10,8 +10,10 @@ func run(t) -> void:
 			c.request_attack(Element.weakness(r.spec().element))
 			c.step(100)
 		r.resolve_encounter(c)
+		if r.state == RunModel.State.RECRUIT: t.check(r.continue_recruit(), "explicit first-boss join acknowledgment")
 		t.check(r.results.size() == i+1 and r.results[i].won and r.results[i].attacks == [2,2,3,2,2,2,3,3][i], "result records actual encounter once")
 		r.resolve_encounter(c)
+		if r.state == RunModel.State.RECRUIT: t.check(r.continue_recruit(), "explicit first-boss join acknowledgment")
 		t.check(r.results.size() == i+1 and r.route_status()[i] == "SEALED", "duplicate handoff cannot duplicate record")
 		if i<7: r.choose_reward(&"long_breath" if i==0 else &"iron_resolve")
 	t.check("archive" in r.journey_text() and r.route_status() == ["SEALED","SEALED","SEALED","SEALED","SEALED","SEALED","SEALED","SEALED"], "final archive revealed after eight seals")
@@ -22,6 +24,7 @@ func run(t) -> void:
 	c.request_attack(Element.Type.FIRE)
 	c.step(100)
 	r.resolve_encounter(c)
+	if r.state == RunModel.State.RECRUIT: t.check(r.continue_recruit(), "explicit first-boss join acknowledgment")
 	t.check(r.results.size()==1 and not r.results[0].won and r.results[0].damage==1 and r.seals==0, "loss records actual result without awarding seal")
 	var s = load("res://scenes/duel.tscn").instantiate()
 	s.area_campaign = false

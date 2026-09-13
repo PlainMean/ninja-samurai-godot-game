@@ -5,6 +5,14 @@ Choose one of four starting swords and any two of FIRE, WATER, EARTH and WIND.
 Tap the Area Map to choose your next guard, defeat each region’s boss, collect
 opponent swords, and unlock or develop techniques at shrines.
 
+**Kira the Tideblade joins after your first boss victory.** Confirm the join
+with Continue, then this WATER tide warden supports your attacks automatically.
+Her copper braid, ivory armor and crescent poleblade have a dedicated animated
+silhouette. She has 6 HP; surviving enemy replies cost her 1 HP. At zero she
+falls until the next shrine restores her. Choose Support Strike or Ward Pulse
+and develop her to level 3 at shrines, alongside your existing training.
+Retry removes Kira and starts solo again.
+
 | Area | Guard 1 | Guard 2 | Boss |
 | --- | --- | --- | --- |
 | Fire Land | Cinder Rival | Ash Monk | Ash Shogun |
@@ -28,7 +36,7 @@ bonus + technique bonus + matchup bonus**. A matching sword adds **1 on even
 rolls, 2 on odd rolls**; level adds **0/1/2**. Only WATER→FIRE, FIRE→EARTH,
 EARTH→WIND and WIND→WATER add **+1**. All other pairings are neutral. The UI
 shows total ranges and technique levels. Enemy replies retain 1/2 semantics;
-with the neutral player affinity they deal 1. Nothing rolls on a forecast or tap.
+with the neutral player affinity they deal 1 before Kira’s optional ward. Nothing rolls on a forecast or tap.
 
 ```bash
 bash game/tests/verify.sh
@@ -42,7 +50,7 @@ scale, with BOSS markers. Unit roles appear on the map, HUD, intro and loot.
 Every previous art file is byte-preserved. Blue water, red fire, brown earth and white wind retain their
 authored impacts. Pause/resume, full-run retry/reset and the archive reveal remain.
 
-[Architecture](game/README.md) · [Plan](.hermes/plans/2026-09-12_210613-distinct-units.md)
-· [QA](qa/mobile/distinct-units/2026-09-12-validation.md) · [Roadmap](.hermes/plans/2026-09-12-area-roadmap.md)
+[Architecture](game/README.md) · [Plan](.hermes/plans/2026-09-13_164500-companion-hero.md)
+· [QA](qa/2026-09-13-companion/validation.md) · [Roadmap](.hermes/plans/2026-09-12-area-roadmap.md)
 · [Credits](CREDITS.md). Local Web bundle: `build/web/index.html` and siblings.
 No push or deployment. Browser/device visual acceptance remains pending.

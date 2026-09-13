@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="HeroSpec" load_steps=3 format=3]
+[ext_resource type="Script" path="res://scripts/data/hero_spec.gd" id="1"]
+[ext_resource type="SpriteFrames" path="res://assets/frames/heroes/kira_frames.tres" id="2"]
+[resource]
+script = ExtResource("1")
+id = &"kira"
+display_name = "Kira the Tideblade"
+description = "A tide warden with a copper braid and crescent poleblade. She guards the archive’s travelers."
+role = "Tide warden"
+element = 2
+max_hp = 6
+ability_id = &"support_strike"
+attack_min = 1
+attack_max = 2
+sprite_frames = ExtResource("2")
+join_condition = &"first_boss_victory"

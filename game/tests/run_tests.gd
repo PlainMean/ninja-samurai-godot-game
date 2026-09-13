@@ -40,6 +40,7 @@ func run() -> void:
 	await preload("res://tests/test_area_campaign.gd").new().run(self)
 	await preload("res://tests/test_area_scene.gd").new().run(self)
 	await preload("res://tests/test_units.gd").new().run(self)
+	await preload("res://tests/test_companion.gd").new().run(self)
 	# Feed the same native touch/mouse event classes as a viewport.
 	var button = Touch.new()
 	button.position = Vector2(20, 20)

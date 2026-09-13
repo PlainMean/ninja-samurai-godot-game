@@ -46,6 +46,62 @@ SpriteFrames, view selection and a full clear. The exported-pack smoke repeats
 selection through all twelve nodes; the explicit export roots include each area
 resource and pull in its unit/atlas dependencies.
 
+## Companion rules and resources
+
+`data/heroes/kira.tres` is a data-only `HeroSpec`: Kira the Tideblade, WATER tide
+warden, 6 HP, Support Strike, base attack range 1–2, SpriteFrames and the
+`first_boss_victory` join condition. RunModel owns her joined/HP/ability/mastery
+state and `first_boss_defeated`. A victorious boss terminal handoff seals the
+node and enters RECRUIT exactly once, before loot, shrine, map or archive.
+The 64px Continue button is required. Boss detection uses node slot, independent
+of the selected region; Fire remains the shipped starting area. The legacy
+route has one boss, its final Moonlit Master, so its exact 19 attacks/11 replies
+remain unchanged and recruitment precedes its archive reveal.
+
+CombatModel resolves the main hit first at the existing 300ms impact boundary.
+If the enemy survives and Kira is alive, she acts once: Support Strike deals
+`1 + mastery + WATER matchup` (1–2 / 2–3 / 3–4), or Ward Pulse blocks
+`1 + mastery` damage from that turn’s reply. Mastery starts at zero and caps at
+two, displayed as levels 1–3. Neither support nor forecasts consume RNG. Main
+sword damage and the directed elemental cycle are unchanged. Either lethal hit
+suppresses the enemy reply. A surviving foe replies to the player in the existing
+order, then deals one fatigue damage to Kira. Fallen Kira stops acting; the
+main player remains controllable. Typed events carry companion HP and support
+or ward amounts. The intent/attack forecasts include support lethal and ward.
+
+HP persists through handoff and loot; entering the shrine restores Kira to six,
+including revival. Once per shrine, optionally choose Support Strike, Ward Pulse,
+or an upgrade before taking the existing player technique choice. This extra
+choice consumes no player technique reward; the existing sword/inventory flow
+is preserved. Her choice/mastery persists across later nodes; retry/title clears
+all ally state. HUD shows element, HP, ability level and ready/next-turn/fallen
+availability; WATER FX reuse existing permitted assets. The separate arena
+sprite and join portrait only project model state. There is no second combat tap.
+
+All new rasters were authored/exported by Aseprite Lua Sprite/Image APIs in
+`art_sources/heroes/generate.lua`. The editable source, JSON and 192×48 strip
+contain four distinct 48×48 poses, one `support` tag and 100ms timing. Nearest
+filtering, lossless imports and no mipmaps preserve pixels. The manifest pins
+six file hashes, four RGBA frame hashes and seven palette colors. The independent
+read-only decoder checks compressed source cels against decoded PNGs, and 192
+silhouette comparisons against all old enemy poses. `prior_hero_art.sha256`
+protects all 110 prior tracked art/frame assets.
+
+```bash
+XDG_CONFIG_HOME="$PWD/build/local/config" ~/.local/bin/aseprite -b --script-param out="$PWD/build/hero-repro" --script art_sources/heroes/generate.lua
+XDG_CONFIG_HOME="$PWD/build/local/config" ~/.local/bin/aseprite -b --script-param src="$PWD/art_sources/heroes" --script art_sources/heroes/verify.lua
+python3 game/tests/check_hero_assets.py
+XDG_DATA_HOME="$PWD/build/local/data" ~/.local/bin/godot --headless --path game --script res://tests/companion_gate.gd
+bash game/tests/verify.sh
+```
+
+The explicit export roots include HeroSpec, Kira’s resource, SpriteFrames and
+PNG. Pack checks verify import/texture entries and load/select her during a full
+four-area clear, alongside the full legacy clear. Native capture entry point:
+`res://tests/native_companion_smoke.gd`. This session’s X11 and Wayland attempt
+failed before rendering; no game screenshots or browser/device acceptance are
+claimed. See [companion QA](../qa/2026-09-13-companion/validation.md).
+
 ## Preserved eight-seal campaign
 
 
@@ -139,7 +195,7 @@ The shared monotonic clock prevents queued/held/multifinger attacks. Gaps over
 250ms pause without unseen damage. Pause preserves impact latches, HP and elapsed
 time. Decorative clocks freeze; resume requires a fresh input. Four action
 buttons remain 83×96; pause remains 60×60. Route/shrine/reveal use the existing
-scene/control geometry. No additional action button or scene was introduced.
+scene/control geometry. The legacy combat action controls retain their original geometry.
 
 ## Aseprite pipeline
 

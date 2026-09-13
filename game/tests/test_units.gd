@@ -58,6 +58,9 @@ func run(t) -> void:
    s._attack(1)
    s.advance(1.55)
   s.advance(0.4)
+  if s.run.state == RunModel.State.RECRUIT:
+   assert(s.run.first_boss_defeated and s.primary_button.text == "Continue with Kira")
+   s._primary()
   t.check(s.run.state == RunModel.State.LOOT and u.role in s.run.node_label(i), "unit victory loot identity")
   s._area_action("loot",0)
   var e := 1

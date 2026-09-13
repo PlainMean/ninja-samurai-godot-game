@@ -1,0 +1,27 @@
+{
+  "native_size": 48,
+  "duration_ms": 100,
+  "palette": [
+    "16283e",
+    "246e78",
+    "51c9bd",
+    "e5f4d6",
+    "dcaa87",
+    "ba7b51",
+    "34475c"
+  ],
+  "sha256": {
+    "art_sources/heroes/kira.json": "77b8b2dea2021fe9a7107804ce8271ea7ca9e444733797752e5466de2acbba77",
+    "art_sources/heroes/kira.aseprite": "ef4114e16b7b5b8d5c0def650356e529aa7b3357ee2ce2b0c5ac744c491d5267",
+    "art_sources/heroes/kira_sheet.png": "c62a391ec3398e39cbf915820bc66d701dc28fd7e0a09af00b2103e83a8dfd6d",
+    "game/assets/sprites/heroes/kira_sheet.png": "c62a391ec3398e39cbf915820bc66d701dc28fd7e0a09af00b2103e83a8dfd6d",
+    "game/assets/frames/heroes/kira_frames.tres": "bcb6a4b1d70240bdf26a44a2ad0f6faf02037a86a21bd0eacf1ebe3d99305683",
+    "game/data/heroes/kira.tres": "33146b00e7668c3712ec0e0570d8b13c278d4acdf76877efb94605eaa480f023"
+  },
+  "frame_sha256": [
+    "178206d454bcbeff55c3b90f1945b105b347b8903181fa3eb4ab32080540fa76",
+    "bf87e3568733bd46170d8fc92343a6e25b1c5de78b37232fe13e95b40b43a3f1",
+    "529d4a21c70e1492c0ee1d543c29bbd101933f005fa69bebefd94267c4e72c05",
+    "7a745e95dce3c969ae5c0ae969abb650ca1c5a6efef8f41ede5cc72c810a038f"
+  ]
+}

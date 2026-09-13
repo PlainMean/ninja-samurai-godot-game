@@ -6,6 +6,7 @@ static func metrics(available: Vector2) -> Dictionary:
 static func apply(screen: Control, available: Vector2) -> void:
 	var layout := metrics(available)
 	var shift := 64.0 if layout.compact else 0.0
+	screen.get_node("HUD/CompanionStatus").position.y = 461 - shift * 0.5
 	screen.get_node("HUD/Actions").position.y = 656 - shift
 	screen.get_node("HUD/Footer").position.y = 780 - shift
 	screen.get_node("HUD/Hint").position.y = 596 - shift

@@ -1,0 +1,2 @@
+PASS kira: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS Kira: 4 frame hashes, 6 file hashes, 192 prior-enemy silhouette comparisons

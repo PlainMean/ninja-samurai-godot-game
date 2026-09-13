@@ -20,6 +20,7 @@ var feedback_time := 0.0
 var feedback_text := ""
 var hurt_player := -1.0
 var hurt_enemy := -1.0
+@onready var companion = $Arena/Companion
 @onready var ninja = $Arena/Ninja
 @onready var samurai = $Arena/Samurai
 @onready var hud = $HUD
@@ -99,7 +100,9 @@ func _consume_events() -> void:
 			CombatEvent.Kind.ENEMY_HIT:
 				hurt_player = presentation_time
 				$Arena/Effects.trigger_element(event.element, Vector2(138,386))
-			CombatEvent.Kind.PLAYER_HIT:
+			CombatEvent.Kind.COMPANION_WARD:
+				$Arena/Effects.trigger_element(event.element, Vector2(138,386))
+			CombatEvent.Kind.PLAYER_HIT, CombatEvent.Kind.COMPANION_HIT:
 				hurt_enemy = presentation_time
 				$Arena/Effects.trigger_element(event.element, Vector2(252,386))
 			CombatEvent.Kind.WON, CombatEvent.Kind.LOST: terminal_time = 0.0
@@ -132,6 +135,8 @@ func _primary() -> void:
 		else: run.begin_run()
 		model.reset()
 		_clear_presentation()
+	elif run.state == Run.State.RECRUIT:
+		run.continue_recruit()
 	elif run.state == Run.State.INTRO:
 		run.begin_encounter(model)
 		_clear_presentation()
@@ -191,6 +196,10 @@ func _refresh() -> void:
 		primary = "Resume"
 	else:
 		match run.state:
+			Run.State.RECRUIT:
+				heading = "Kira has joined!"
+				instructions = "Kira the Tideblade · WATER\nTide warden · 6 HP\nHer crescent blade strikes after you.\nFoe replies cost her 1 HP.\nShrines revive and develop her."
+				primary = "Continue with Kira"
 			Run.State.TITLE:
 				heading = "Moonlit Dojo" if area_campaign else "Eight Seals"
 				instructions = "Read each guardian’s weakness.\nChoose an element; the foe replies.\nEight seals open the archive."
@@ -218,6 +227,15 @@ func _refresh() -> void:
 	modal.present_journey(run, presentation_time, paused)
 	_present_area_panel()
 func _present_fighters() -> void:
+	companion.visible = run.companion_joined
+	$HUD/CompanionStatus.visible = run.companion_joined and run.state == Run.State.FIGHT
+	$HUD/CompanionStatus.text = model.companion_status()
+	$HUD/Feedback.add_theme_font_size_override("font_size", 14 if run.companion_joined else 16)
+	if companion.visible:
+		var fallen: bool = (model.companion_hp if run.state == Run.State.FIGHT else run.companion_hp) == 0
+		companion.modulate = Color(0.5,0.5,0.6,1) if fallen else Color.WHITE
+		companion.get_node("Visual").rotation = -0.5 if fallen else 0.0
+		preload("res://scripts/frame_playback.gd").show_frame(companion.get_node("Visual/Sprite"), run.COMPANION.sprite_frames, &"support", model.elapsed if model.state == Combat.Phase.PLAYER_ATTACK else 0.0)
 	samurai.configure_unit(run.spec().unit)
 	for fighter in [ninja,samurai]:
 		var player: bool = fighter == ninja
@@ -245,7 +263,7 @@ func _present_area_panel() -> void:
 	if not active: return
 	for child in modal.get_children():
 		if child != area_panel and child.name != "Scrim": child.visible = false
-	var signature := str([run.state,run.equipped,run.techniques,run.cleared_nodes,map_area,starting_sword,inventory_open])
+	var signature := str([run.state,run.equipped,run.techniques,run.cleared_nodes,run.companion_ability,run.companion_level,run.companion_trained,map_area,starting_sword,inventory_open])
 	if signature != area_signature:
 		area_signature = signature
 		area_panel.present(run,map_area,starting_sword,inventory_open)
@@ -264,6 +282,7 @@ func _area_action(id: String, value: int) -> void:
 		"loot":
 			run.finish_loot()
 			inventory_open = false
+		"companion": run.develop_companion([&"support_strike", &"ward_pulse", &"upgrade"][value])
 		"train": run.train(value)
 		"title": _title()
 	_refresh()

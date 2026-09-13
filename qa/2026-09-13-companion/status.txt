@@ -1,0 +1,65 @@
+Base and current HEAD: e71a0a216e49b597228f8f3add338881020a05eb
+No commit, push or deployment. Changes remain local.
+
+ M CREDITS.md
+ M README.md
+ M STOP_REASON.md
+ M game/README.md
+ M game/export_presets.cfg
+ M game/scenes/arena.tscn
+ M game/scenes/hud.tscn
+ M game/scenes/run_modal.tscn
+ M game/scripts/area_panel.gd
+ M game/scripts/combat_event.gd
+ M game/scripts/combat_model.gd
+ M game/scripts/duel.gd
+ M game/scripts/layout_helper.gd
+ M game/scripts/run_modal.gd
+ M game/scripts/run_model.gd
+ M game/tests/check_web_export.py
+ M game/tests/export_pack_smoke.gd
+ M game/tests/native_area_smoke.gd
+ M game/tests/native_units_smoke.gd
+ M game/tests/native_visual_smoke.gd
+ M game/tests/run_tests.gd
+ M game/tests/test_area_campaign.gd
+ M game/tests/test_eight_seals.gd
+ M game/tests/test_journey.gd
+ M game/tests/test_run_model.gd
+ M game/tests/test_run_scene.gd
+ M game/tests/test_units.gd
+ M game/tests/verify.sh
+?? .hermes/plans/2026-09-13_164500-companion-hero.md
+?? art_sources/heroes/ASSET_SPEC.md
+?? art_sources/heroes/generate.lua
+?? art_sources/heroes/kira.aseprite
+?? art_sources/heroes/kira.json
+?? art_sources/heroes/kira_sheet.png
+?? art_sources/heroes/verify.lua
+?? game/assets/frames/heroes/kira_frames.tres
+?? game/assets/sprites/heroes/kira_sheet.png
+?? game/data/heroes/kira.tres
+?? game/scripts/data/hero_spec.gd
+?? game/scripts/data/hero_spec.gd.uid
+?? game/tests/check_hero_assets.py
+?? game/tests/companion_gate.gd
+?? game/tests/companion_gate.gd.uid
+?? game/tests/hero_asset_manifest.json
+?? game/tests/native_companion_smoke.gd
+?? game/tests/native_companion_smoke.gd.uid
+?? game/tests/prior_hero_art.sha256
+?? game/tests/test_companion.gd
+?? game/tests/test_companion.gd.uid
+?? qa/2026-09-13-companion/aseprite-generator.txt
+?? qa/2026-09-13-companion/aseprite-native.txt
+?? qa/2026-09-13-companion/diff-check.txt
+?? qa/2026-09-13-companion/files.txt
+?? qa/2026-09-13-companion/independent-assets.txt
+?? qa/2026-09-13-companion/native-capture.txt
+?? qa/2026-09-13-companion/pass1-verify.txt
+?? qa/2026-09-13-companion/pass2-targeted.txt
+?? qa/2026-09-13-companion/pass2-verify.txt
+?? qa/2026-09-13-companion/pass3-targeted.txt
+?? qa/2026-09-13-companion/pass3-verify.txt
+?? qa/2026-09-13-companion/status.txt
+?? qa/2026-09-13-companion/validation.md

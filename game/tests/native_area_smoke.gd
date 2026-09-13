@@ -40,6 +40,9 @@ func run() -> void:
    if screen.model.turn_number == 1: await capture("07-impact-%02d" % n)
    screen.advance(1.25)
   screen.advance(0.4)
+  if screen.run.state == RunModel.State.RECRUIT:
+   assert(screen.run.first_boss_defeated and screen.primary_button.text == "Continue with Kira")
+   screen._primary()
   assert(screen.run.state == RunModel.State.LOOT)
   if n == 0: await capture("08-loot")
   screen._area_action("loot",0)

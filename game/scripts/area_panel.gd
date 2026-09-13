@@ -68,7 +68,7 @@ func present(run: RunModel, area: int, sword: int, inventory_open: bool) -> void
     button("Return to Area Map","inventory")
     return
    label_text("Area Map · %d / 12 seals" % run.seals,true)
-   label_text("Two guards → boss → neighbors")
+   label_text("ALLY Kira · WATER · %d/6 HP · L%d" % [run.companion_hp,run.companion_level+1] if run.companion_joined else "Two guards → boss → neighbors")
    var areas := grid()
    for i in range(4): button(run.AREA_NAMES[i] + (" ✓" if i*3+2 in run.cleared_nodes else ""),"area",i,run.area_unlocked(i),i+1,areas)
    label_text(run.AREA_NAMES[area] + " · tap next node",true)
@@ -88,6 +88,12 @@ func present(run: RunModel, area: int, sword: int, inventory_open: bool) -> void
   RunModel.State.TRAINING:
    label_text("Shrine of renewal",true)
    label_text("Health restored · %d / %d\nChoose one technique to unlock or develop.\nLevel contributes +0 / +1 / +2 damage." % [run.hp,run.max_hp])
+   if run.companion_joined:
+    label_text("Kira · WATER · %d/6 HP\n%s L%d · choose or upgrade once; then train yourself." % [run.companion_hp,run.companion_ability_name(),run.companion_level+1])
+    var allies := grid()
+    button("Support Strike\n%d–%d damage" % [1+run.companion_level,2+run.companion_level],"companion",0,not run.companion_trained,2,allies)
+    button("Ward Pulse\nBlock %d damage" % (1+run.companion_level),"companion",1,not run.companion_trained,2,allies)
+    button("Develop Kira · L%d → L%d" % [run.companion_level+1,mini(3,run.companion_level+2)],"companion",2,not run.companion_trained and run.companion_level<2)
    for e in range(1,5): button("%s · %s" % [Element.label(e),"Unlock level 1" if run.techniques[e] == 0 else "Level %d → %d" % [run.techniques[e],mini(3,run.techniques[e]+1)]],"train",e,run.techniques[e]<3,e)
    if run.techniques.slice(1).min() == 3: button("All mastered → continue","train",0)
 func inventory(run: RunModel) -> void:

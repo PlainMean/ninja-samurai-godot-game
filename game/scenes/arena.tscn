@@ -41,3 +41,18 @@ support = ExtResource("6")
 faces_left = true
 [node name="Effects" type="Node2D" parent="."]
 script = ExtResource("7")
+
+[node name="Companion" type="Node2D" parent="."]
+visible = false
+position = Vector2(57, 450)
+[node name="Visual" type="Node2D" parent="Companion"]
+scale = Vector2(2, 2)
+[node name="Sprite" type="AnimatedSprite2D" parent="Companion/Visual"]
+texture_filter = 1
+position = Vector2(-24, -44)
+centered = false
+[node name="Label" type="Label" parent="Companion"]
+offset_left = -27.0
+offset_top = -106.0
+theme_override_font_sizes/font_size = 14
+text = "ALLY"

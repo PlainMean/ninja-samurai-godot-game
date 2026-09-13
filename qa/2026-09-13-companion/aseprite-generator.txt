@@ -1,0 +1,1 @@
+PASS Kira: four independently posed 48px/100ms Aseprite frames

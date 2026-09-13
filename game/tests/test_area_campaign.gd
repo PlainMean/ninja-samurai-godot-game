@@ -34,6 +34,7 @@ func run(t) -> void:
      t.check(event.damage >= forecast.min and event.damage <= forecast.max, "forecast encloses actual")
    c.step(1.25)
   t.check(c.state == CombatModel.Phase.WON and r.resolve_encounter(c), "balanced full clear victory")
+  if r.state == RunModel.State.RECRUIT: t.check(r.continue_recruit(), "explicit first-boss join acknowledgment")
   t.check(r.pending_loot in r.inventory and r.equip_weapon(0), "loot inventory and switch")
   t.check(r.finish_loot(), "loot confirmation shrine healing")
   var train_element := 1
@@ -68,6 +69,7 @@ func run(t) -> void:
      t.check(c.state == CombatModel.Phase.WON, "all starting builds deterministic victory")
      if c.state != CombatModel.Phase.WON: return
      r.resolve_encounter(c)
+     if r.state == RunModel.State.RECRUIT: t.check(r.continue_recruit(), "explicit first-boss join acknowledgment")
      t.check(r.WEAPONS[r.pending_loot].element == r.spec().element, "opponent sword matches affinity")
      r.finish_loot()
      var e := 1

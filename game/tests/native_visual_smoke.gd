@@ -44,6 +44,9 @@ func run() -> void:
 					await capture("08-pause")
 					screen._primary()
 		screen.advance(0.4)
+		if screen.run.state == RunModel.State.RECRUIT:
+			assert(screen.run.first_boss_defeated and screen.primary_button.text == "Continue with Kira")
+			screen._primary()
 		await capture("09-result-%d" % (encounter+1))
 		if encounter<7: screen._reward(&"long_breath" if encounter==0 else &"iron_resolve")
 	assert(screen.run.state==RunModel.State.CLEARED and screen.run.seals==8)

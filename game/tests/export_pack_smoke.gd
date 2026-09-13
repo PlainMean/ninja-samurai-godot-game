@@ -24,6 +24,9 @@ func run() -> void:
 			scene.advance(0.3)
 			if not scene.model.terminal(): scene.advance(0.95)
 		scene.advance(0.4)
+		if scene.run.state == RunModel.State.RECRUIT:
+			assert(scene.run.first_boss_defeated and scene.primary_button.text == "Continue with Kira")
+			scene._primary()
 		assert(scene.run.seals == encounter + 1)
 		assert(scene.run.results.size() == encounter + 1)
 		assert(scene.modal.get_node("Shrine" if encounter < 7 else "Reveal").visible)
@@ -43,10 +46,21 @@ func run() -> void:
 	scene._title()
 	scene._primary()
 	scene._area_action("pair",0)
+	var hero = load("res://data/heroes/kira.tres")
+	assert(hero.id == &"kira" and hero.max_hp == 6 and hero.element == Element.Type.WATER)
+	assert(hero.sprite_frames.get_frame_count(&"support") == 4)
+	assert(hero.sprite_frames.get_animation_speed(&"support") == 10)
+	assert(load("res://assets/sprites/heroes/kira_sheet.png").get_size() == Vector2(192,48))
 	var unit_ids := []
 	for step in range(12):
 		scene._area_action("node",scene.run.next_nodes()[0])
 		scene._primary()
+		assert(scene.run.companion_joined == (step >= 3))
+		assert(scene.companion.visible == (step >= 3))
+		if step >= 3:
+			assert(scene.model.companion_spec == hero and scene.model.companion_hp == 6)
+			assert(scene.companion.get_node("Visual/Sprite").sprite_frames == hero.sprite_frames)
+			assert(scene.hud.get_node("CompanionStatus").visible)
 		var unit = scene.run.spec().unit
 		assert(unit != null and unit.unit_id not in unit_ids)
 		unit_ids.append(unit.unit_id)
@@ -60,12 +74,16 @@ func run() -> void:
 			scene._attack(1)
 			scene.advance(1.55)
 		scene.advance(0.4)
+		if scene.run.state == RunModel.State.RECRUIT:
+			assert(scene.run.first_boss_defeated and scene.primary_button.text == "Continue with Kira")
+			scene._primary()
 		assert(scene.run.state == RunModel.State.LOOT)
 		scene._area_action("loot",0)
 		var e := 1
 		while e < 5 and scene.run.techniques[e] == 3: e += 1
 		scene._area_action("train",0 if e == 5 else e)
 	assert(scene.run.state == RunModel.State.CLEARED and scene.run.bosses_defeated() == 4 and unit_ids.size() == 12)
+	print("PASS exported companion spec, four imported frames, recruitment and later combat projection")
 	print("PASS exported-pack area map, twelve nodes, four bosses, loot and technique full clear")
 	scene.queue_free()
 	await process_frame

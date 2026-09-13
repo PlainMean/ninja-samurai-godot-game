@@ -67,6 +67,7 @@ func run(t) -> void:
 				c.request_attack(WEAKNESSES[i] as Element.Type)
 				c.step(100)
 			t.check(r.resolve_encounter(c) and not r.resolve_encounter(c) and r.seals==i+1, "every path single deterministic handoff")
+			if r.state == RunModel.State.RECRUIT: t.check(r.continue_recruit(), "explicit first-boss join acknowledgment")
 			if i<7:
 				var gift: StringName = &"mend" if mask & (1<<i) else (&"long_breath" if i==0 else &"iron_resolve")
 				t.check(r.choose_reward(gift) and not r.choose_reward(gift), "all reward paths claim once")

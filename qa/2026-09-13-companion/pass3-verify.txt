@@ -1,0 +1,618 @@
+4.5.1.stable.official.f62fdbde1
+PASS ninja: 192x32 RGBA sheet, six 32x32 RGBA frames at 100 ms, forward attack tag, layers
+PASS samurai: 192x32 RGBA sheet, six 32x32 RGBA frames at 100 ms, forward attack tag, layers
+PASS 18 checksums
+art_sources/ninja/ASSET_SPEC.md: OK
+art_sources/ninja/generate_ninja.lua: OK
+art_sources/ninja/ninja_attack.aseprite: OK
+art_sources/ninja/ninja_attack.gif: OK
+art_sources/ninja/ninja_attack_sheet.png: OK
+art_sources/ninja/ninja_attack_sheet_4x.png: OK
+art_sources/ninja/verification.txt: OK
+art_sources/ninja/verify_ninja.lua: OK
+art_sources/samurai/ASSET_SPEC.md: OK
+art_sources/samurai/generate_samurai.lua: OK
+art_sources/samurai/samurai_attack.aseprite: OK
+art_sources/samurai/samurai_attack.gif: OK
+art_sources/samurai/samurai_attack_sheet.png: OK
+art_sources/samurai/samurai_attack_sheet_4x.png: OK
+art_sources/samurai/verification.txt: OK
+art_sources/samurai/verify_samurai.lua: OK
+game/assets/sprites/ninja_attack_sheet.png: OK
+game/assets/sprites/samurai_attack_sheet.png: OK
+PASS journey route: Aseprite source, 3 distinct 300ms frames, opaque RGBA, source/runtime hashes
+PASS journey shrine: Aseprite source, 3 distinct 300ms frames, opaque RGBA, source/runtime hashes
+PASS journey reveal: Aseprite source, 3 distinct 300ms frames, opaque RGBA, source/runtime hashes
+PASS water: native cel/PNG pixel equality, 4 distinct nonempty 48x48/100ms frames, exact dominant color, hashes
+PASS fire: native cel/PNG pixel equality, 4 distinct nonempty 48x48/100ms frames, exact dominant color, hashes
+PASS earth: native cel/PNG pixel equality, 4 distinct nonempty 48x48/100ms frames, exact dominant color, hashes
+PASS wind: native cel/PNG pixel equality, 4 distinct nonempty 48x48/100ms frames, exact dominant color, hashes
+PASS four effects / 16 frames / 20 immutable hashes
+PASS kira: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS Kira: 4 frame hashes, 6 file hashes, 192 prior-enemy silhouette comparisons
+art_sources/elements/earth.aseprite: OK
+art_sources/elements/earth_sheet.png: OK
+art_sources/elements/fire.aseprite: OK
+art_sources/elements/fire_sheet.png: OK
+art_sources/elements/water.aseprite: OK
+art_sources/elements/water_sheet.png: OK
+art_sources/elements/wind.aseprite: OK
+art_sources/elements/wind_sheet.png: OK
+art_sources/journey/reveal.aseprite: OK
+art_sources/journey/reveal_sheet.png: OK
+art_sources/journey/route.aseprite: OK
+art_sources/journey/route_sheet.png: OK
+art_sources/journey/shrine.aseprite: OK
+art_sources/journey/shrine_sheet.png: OK
+art_sources/moonlit_dojo/combat_fx.aseprite: OK
+art_sources/moonlit_dojo/combat_fx_sheet.png: OK
+art_sources/moonlit_dojo/dojo_backdrops.aseprite: OK
+art_sources/moonlit_dojo/dojo_backdrops_sheet.png: OK
+art_sources/moonlit_dojo/dojo_icons.aseprite: OK
+art_sources/moonlit_dojo/dojo_icons_sheet.png: OK
+art_sources/moonlit_dojo/dojo_props.aseprite: OK
+art_sources/moonlit_dojo/dojo_props_sheet.png: OK
+art_sources/moonlit_dojo/ninja_support.aseprite: OK
+art_sources/moonlit_dojo/ninja_support_sheet.png: OK
+art_sources/moonlit_dojo/samurai_support.aseprite: OK
+art_sources/moonlit_dojo/samurai_support_sheet.png: OK
+art_sources/ninja/ninja_attack.aseprite: OK
+art_sources/ninja/ninja_attack.gif: OK
+art_sources/ninja/ninja_attack_sheet.png: OK
+art_sources/ninja/ninja_attack_sheet_4x.png: OK
+art_sources/samurai/samurai_attack.aseprite: OK
+art_sources/samurai/samurai_attack.gif: OK
+art_sources/samurai/samurai_attack_sheet.png: OK
+art_sources/samurai/samurai_attack_sheet_4x.png: OK
+art_sources/units/ash_monk.aseprite: OK
+art_sources/units/ash_monk_sheet.png: OK
+art_sources/units/ash_shogun.aseprite: OK
+art_sources/units/ash_shogun_sheet.png: OK
+art_sources/units/cinder_rival.aseprite: OK
+art_sources/units/cinder_rival_sheet.png: OK
+art_sources/units/coast_ronin.aseprite: OK
+art_sources/units/coast_ronin_sheet.png: OK
+art_sources/units/earth_sentinel.aseprite: OK
+art_sources/units/earth_sentinel_sheet.png: OK
+art_sources/units/gale_assassin.aseprite: OK
+art_sources/units/gale_assassin_sheet.png: OK
+art_sources/units/gate_guard.aseprite: OK
+art_sources/units/gate_guard_sheet.png: OK
+art_sources/units/iron_vanguard.aseprite: OK
+art_sources/units/iron_vanguard_sheet.png: OK
+art_sources/units/moonlit_master.aseprite: OK
+art_sources/units/moonlit_master_sheet.png: OK
+art_sources/units/mountain_regent.aseprite: OK
+art_sources/units/mountain_regent_sheet.png: OK
+art_sources/units/tempest_sovereign.aseprite: OK
+art_sources/units/tempest_sovereign_sheet.png: OK
+art_sources/units/twin_cut_retainer.aseprite: OK
+art_sources/units/twin_cut_retainer_sheet.png: OK
+game/assets/frames/elements/earth_frames.tres: OK
+game/assets/frames/elements/fire_frames.tres: OK
+game/assets/frames/elements/water_frames.tres: OK
+game/assets/frames/elements/wind_frames.tres: OK
+game/assets/frames/moonlit_dojo/combat_fx_frames.tres: OK
+game/assets/frames/moonlit_dojo/dojo_backdrops_frames.tres: OK
+game/assets/frames/moonlit_dojo/dojo_icons_frames.tres: OK
+game/assets/frames/moonlit_dojo/dojo_props_frames.tres: OK
+game/assets/frames/moonlit_dojo/ninja_support_frames.tres: OK
+game/assets/frames/moonlit_dojo/samurai_support_frames.tres: OK
+game/assets/frames/ninja_frames.tres: OK
+game/assets/frames/samurai_frames.tres: OK
+game/assets/frames/units/ash_monk_frames.tres: OK
+game/assets/frames/units/ash_shogun_frames.tres: OK
+game/assets/frames/units/cinder_rival_frames.tres: OK
+game/assets/frames/units/coast_ronin_frames.tres: OK
+game/assets/frames/units/earth_sentinel_frames.tres: OK
+game/assets/frames/units/gale_assassin_frames.tres: OK
+game/assets/frames/units/gate_guard_frames.tres: OK
+game/assets/frames/units/iron_vanguard_frames.tres: OK
+game/assets/frames/units/moonlit_master_frames.tres: OK
+game/assets/frames/units/mountain_regent_frames.tres: OK
+game/assets/frames/units/tempest_sovereign_frames.tres: OK
+game/assets/frames/units/twin_cut_retainer_frames.tres: OK
+game/assets/sprites/elements/earth_sheet.png: OK
+game/assets/sprites/elements/fire_sheet.png: OK
+game/assets/sprites/elements/water_sheet.png: OK
+game/assets/sprites/elements/wind_sheet.png: OK
+game/assets/sprites/journey/reveal_sheet.png: OK
+game/assets/sprites/journey/route_sheet.png: OK
+game/assets/sprites/journey/shrine_sheet.png: OK
+game/assets/sprites/moonlit_dojo/combat_fx_sheet.png: OK
+game/assets/sprites/moonlit_dojo/dojo_backdrops_sheet.png: OK
+game/assets/sprites/moonlit_dojo/dojo_icons_sheet.png: OK
+game/assets/sprites/moonlit_dojo/dojo_props_sheet.png: OK
+game/assets/sprites/moonlit_dojo/ninja_support_sheet.png: OK
+game/assets/sprites/moonlit_dojo/samurai_support_sheet.png: OK
+game/assets/sprites/ninja_attack_sheet.png: OK
+game/assets/sprites/samurai_attack_sheet.png: OK
+game/assets/sprites/units/ash_monk_sheet.png: OK
+game/assets/sprites/units/ash_shogun_sheet.png: OK
+game/assets/sprites/units/cinder_rival_sheet.png: OK
+game/assets/sprites/units/coast_ronin_sheet.png: OK
+game/assets/sprites/units/earth_sentinel_sheet.png: OK
+game/assets/sprites/units/gale_assassin_sheet.png: OK
+game/assets/sprites/units/gate_guard_sheet.png: OK
+game/assets/sprites/units/iron_vanguard_sheet.png: OK
+game/assets/sprites/units/moonlit_master_sheet.png: OK
+game/assets/sprites/units/mountain_regent_sheet.png: OK
+game/assets/sprites/units/tempest_sovereign_sheet.png: OK
+game/assets/sprites/units/twin_cut_retainer_sheet.png: OK
+game/assets/ui/duel_theme.tres: OK
+PASS cinder_rival: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS ash_monk: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS ash_shogun: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS gate_guard: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS twin_cut_retainer: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS moonlit_master: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS earth_sentinel: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS iron_vanguard: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS mountain_regent: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS gale_assassin: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS coast_ronin: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS tempest_sovereign: source/export equality, four distinct poses, timing, alpha, palette, hashes
+PASS 12 units / 48 frames / 60 hashes / 66 pairwise silhouette comparisons
+art_sources/.gdignore: OK
+art_sources/elements/ASSET_SPEC.md: OK
+art_sources/elements/earth.aseprite: OK
+art_sources/elements/earth.json: OK
+art_sources/elements/earth_sheet.png: OK
+art_sources/elements/fire.aseprite: OK
+art_sources/elements/fire.json: OK
+art_sources/elements/fire_sheet.png: OK
+art_sources/elements/generate.lua: OK
+art_sources/elements/water.aseprite: OK
+art_sources/elements/water.json: OK
+art_sources/elements/water_sheet.png: OK
+art_sources/elements/wind.aseprite: OK
+art_sources/elements/wind.json: OK
+art_sources/elements/wind_sheet.png: OK
+art_sources/journey/generate.lua: OK
+art_sources/journey/reveal.aseprite: OK
+art_sources/journey/reveal.json: OK
+art_sources/journey/reveal_sheet.png: OK
+art_sources/journey/route.aseprite: OK
+art_sources/journey/route.json: OK
+art_sources/journey/route_sheet.png: OK
+art_sources/journey/shrine.aseprite: OK
+art_sources/journey/shrine.json: OK
+art_sources/journey/shrine_sheet.png: OK
+art_sources/moonlit_dojo/ASSET_SPEC.md: OK
+art_sources/moonlit_dojo/combat_fx.aseprite: OK
+art_sources/moonlit_dojo/combat_fx.json: OK
+art_sources/moonlit_dojo/combat_fx_sheet.png: OK
+art_sources/moonlit_dojo/dojo_backdrops.aseprite: OK
+art_sources/moonlit_dojo/dojo_backdrops.json: OK
+art_sources/moonlit_dojo/dojo_backdrops_sheet.png: OK
+art_sources/moonlit_dojo/dojo_icons.aseprite: OK
+art_sources/moonlit_dojo/dojo_icons.json: OK
+art_sources/moonlit_dojo/dojo_icons_sheet.png: OK
+art_sources/moonlit_dojo/dojo_props.aseprite: OK
+art_sources/moonlit_dojo/dojo_props.json: OK
+art_sources/moonlit_dojo/dojo_props_sheet.png: OK
+art_sources/moonlit_dojo/generate_moonlit_dojo.lua: OK
+art_sources/moonlit_dojo/ninja_support.aseprite: OK
+art_sources/moonlit_dojo/ninja_support.json: OK
+art_sources/moonlit_dojo/ninja_support_sheet.png: OK
+art_sources/moonlit_dojo/samurai_support.aseprite: OK
+art_sources/moonlit_dojo/samurai_support.json: OK
+art_sources/moonlit_dojo/samurai_support_sheet.png: OK
+art_sources/moonlit_dojo/verification.txt: OK
+art_sources/moonlit_dojo/verify_moonlit_dojo.lua: OK
+art_sources/ninja/ASSET_SPEC.md: OK
+art_sources/ninja/generate_ninja.lua: OK
+art_sources/ninja/ninja_attack.aseprite: OK
+art_sources/ninja/ninja_attack.gif: OK
+art_sources/ninja/ninja_attack_sheet.png: OK
+art_sources/ninja/ninja_attack_sheet_4x.png: OK
+art_sources/ninja/verification.txt: OK
+art_sources/ninja/verify_ninja.lua: OK
+art_sources/samurai/ASSET_SPEC.md: OK
+art_sources/samurai/generate_samurai.lua: OK
+art_sources/samurai/samurai_attack.aseprite: OK
+art_sources/samurai/samurai_attack.gif: OK
+art_sources/samurai/samurai_attack_sheet.png: OK
+art_sources/samurai/samurai_attack_sheet_4x.png: OK
+art_sources/samurai/verification.txt: OK
+art_sources/samurai/verify_samurai.lua: OK
+game/assets/frames/elements/earth_frames.tres: OK
+game/assets/frames/elements/fire_frames.tres: OK
+game/assets/frames/elements/water_frames.tres: OK
+game/assets/frames/elements/wind_frames.tres: OK
+game/assets/frames/moonlit_dojo/combat_fx_frames.tres: OK
+game/assets/frames/moonlit_dojo/dojo_backdrops_frames.tres: OK
+game/assets/frames/moonlit_dojo/dojo_icons_frames.tres: OK
+game/assets/frames/moonlit_dojo/dojo_props_frames.tres: OK
+game/assets/frames/moonlit_dojo/ninja_support_frames.tres: OK
+game/assets/frames/moonlit_dojo/samurai_support_frames.tres: OK
+game/assets/frames/ninja_frames.tres: OK
+game/assets/frames/samurai_frames.tres: OK
+game/assets/sprites/elements/earth_sheet.png: OK
+game/assets/sprites/elements/fire_sheet.png: OK
+game/assets/sprites/elements/water_sheet.png: OK
+game/assets/sprites/elements/wind_sheet.png: OK
+game/assets/sprites/journey/reveal_sheet.png: OK
+game/assets/sprites/journey/route_sheet.png: OK
+game/assets/sprites/journey/shrine_sheet.png: OK
+game/assets/sprites/moonlit_dojo/combat_fx_sheet.png: OK
+game/assets/sprites/moonlit_dojo/dojo_backdrops_sheet.png: OK
+game/assets/sprites/moonlit_dojo/dojo_icons_sheet.png: OK
+game/assets/sprites/moonlit_dojo/dojo_props_sheet.png: OK
+game/assets/sprites/moonlit_dojo/ninja_support_sheet.png: OK
+game/assets/sprites/moonlit_dojo/samurai_support_sheet.png: OK
+game/assets/sprites/ninja_attack_sheet.png: OK
+game/assets/sprites/samurai_attack_sheet.png: OK
+game/assets/ui/duel_theme.tres: OK
+PASS ninja_support: 12 frames, source/runtime bytes, decoded RGBA, exact metadata
+PASS samurai_support: 9 frames, source/runtime bytes, decoded RGBA, exact metadata
+PASS dojo_backdrops: 3 frames, source/runtime bytes, decoded RGBA, exact metadata
+PASS dojo_props: 5 frames, source/runtime bytes, decoded RGBA, exact metadata
+PASS combat_fx: 12 frames, source/runtime bytes, decoded RGBA, exact metadata
+PASS dojo_icons: 10 frames, source/runtime bytes, decoded RGBA, exact metadata
+PASS six sets / 51 frames; 10391 added PNG bytes; 504320 resident atlas RGBA bytes; 34 hashes
+art_sources/moonlit_dojo/ASSET_SPEC.md: OK
+art_sources/moonlit_dojo/combat_fx.aseprite: OK
+art_sources/moonlit_dojo/combat_fx.json: OK
+art_sources/moonlit_dojo/combat_fx_sheet.png: OK
+art_sources/moonlit_dojo/dojo_backdrops.aseprite: OK
+art_sources/moonlit_dojo/dojo_backdrops.json: OK
+art_sources/moonlit_dojo/dojo_backdrops_sheet.png: OK
+art_sources/moonlit_dojo/dojo_icons.aseprite: OK
+art_sources/moonlit_dojo/dojo_icons.json: OK
+art_sources/moonlit_dojo/dojo_icons_sheet.png: OK
+art_sources/moonlit_dojo/dojo_props.aseprite: OK
+art_sources/moonlit_dojo/dojo_props.json: OK
+art_sources/moonlit_dojo/dojo_props_sheet.png: OK
+art_sources/moonlit_dojo/generate_moonlit_dojo.lua: OK
+art_sources/moonlit_dojo/ninja_support.aseprite: OK
+art_sources/moonlit_dojo/ninja_support.json: OK
+art_sources/moonlit_dojo/ninja_support_sheet.png: OK
+art_sources/moonlit_dojo/samurai_support.aseprite: OK
+art_sources/moonlit_dojo/samurai_support.json: OK
+art_sources/moonlit_dojo/samurai_support_sheet.png: OK
+art_sources/moonlit_dojo/verification.txt: OK
+art_sources/moonlit_dojo/verify_moonlit_dojo.lua: OK
+game/assets/frames/moonlit_dojo/combat_fx_frames.tres: OK
+game/assets/frames/moonlit_dojo/dojo_backdrops_frames.tres: OK
+game/assets/frames/moonlit_dojo/dojo_icons_frames.tres: OK
+game/assets/frames/moonlit_dojo/dojo_props_frames.tres: OK
+game/assets/frames/moonlit_dojo/ninja_support_frames.tres: OK
+game/assets/frames/moonlit_dojo/samurai_support_frames.tres: OK
+game/assets/sprites/moonlit_dojo/combat_fx_sheet.png: OK
+game/assets/sprites/moonlit_dojo/dojo_backdrops_sheet.png: OK
+game/assets/sprites/moonlit_dojo/dojo_icons_sheet.png: OK
+game/assets/sprites/moonlit_dojo/dojo_props_sheet.png: OK
+game/assets/sprites/moonlit_dojo/ninja_support_sheet.png: OK
+game/assets/sprites/moonlit_dojo/samurai_support_sheet.png: OK
+Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org
+
+ERROR: Condition "_sock == -1" is true. Returning: FAILED
+   at: open (drivers/unix/net_socket_unix.cpp:267)
+ERROR: Condition "err != OK" is true. Returning: ERR_CANT_CREATE
+   at: listen (core/io/tcp_server.cpp:57)
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Started Project initialization (5 steps)[39m[0m
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Scanning file structure...[39m[0m
+[  16% ] [90m[1mfirst_scan_filesystem[22m | Loading global class names...[39m[0m
+[  33% ] [90m[1mfirst_scan_filesystem[22m | Verifying GDExtensions...[39m[0m
+[  50% ] [90m[1mfirst_scan_filesystem[22m | Creating autoload scripts...[39m[0m
+[  66% ] [90m[1mfirst_scan_filesystem[22m | Initializing plugins...[39m[0m
+[  83% ] [90m[1mfirst_scan_filesystem[22m | Starting file scan...[39m[0m
+[92m[ DONE ][39m [1mfirst_scan_filesystem[22m
+[0m
+[   0% ] [90m[1mupdate_scripts_classes[22m | Started Registering global classes... (2 steps)[39m[0m
+[   0% ] [90m[1mupdate_scripts_classes[22m | CombatModel[39m[0m
+[  33% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[92m[ DONE ][39m [1mupdate_scripts_classes[22m
+[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Started Loading editor (5 steps)[39m[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Loading editor layout...[39m[0m
+[92m[ DONE ][39m [1mloading_editor_layout[22m
+[0m
+ERROR: Condition "_sock == -1" is true. Returning: FAILED
+   at: open (drivers/unix/net_socket_unix.cpp:267)
+ERROR: Condition "err != OK" is true. Returning: ERR_CANT_CREATE
+   at: listen (core/io/tcp_server.cpp:57)
+Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org
+
+Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org
+
+Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org
+
+Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org
+
+RESULT: 96 companion checks, 0 failures
+Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org
+
+Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org
+
+RESULT: 20576 checks, 0 failures
+Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org
+
+Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org
+
+ERROR: Condition "_sock == -1" is true. Returning: FAILED
+   at: open (drivers/unix/net_socket_unix.cpp:267)
+ERROR: Condition "err != OK" is true. Returning: ERR_CANT_CREATE
+   at: listen (core/io/tcp_server.cpp:57)
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Started Project initialization (5 steps)[39m[0m
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Scanning file structure...[39m[0m
+[  16% ] [90m[1mfirst_scan_filesystem[22m | Loading global class names...[39m[0m
+[  33% ] [90m[1mfirst_scan_filesystem[22m | Verifying GDExtensions...[39m[0m
+[  50% ] [90m[1mfirst_scan_filesystem[22m | Creating autoload scripts...[39m[0m
+[  66% ] [90m[1mfirst_scan_filesystem[22m | Initializing plugins...[39m[0m
+[  83% ] [90m[1mfirst_scan_filesystem[22m | Starting file scan...[39m[0m
+[92m[ DONE ][39m [1mfirst_scan_filesystem[22m
+[0m
+[   0% ] [90m[1msavepack[22m | Started Packing (102 steps)[39m[0m
+[   1% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-13f7067ab2d8292e3560293c415d406e-kira.res[39m[0m
+[   1% ] [90m[1msavepack[22m | Storing File: res://scripts/data/hero_spec.gdc[39m[0m
+[   2% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-21ae9aeac2de4b65788916fb7dedbe5c-kira_frames.res[39m[0m
+[   3% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/kira_sheet.png-58c90e82fec8cf0a6cad6008188c2da6.ctex[39m[0m
+[   3% ] [90m[1msavepack[22m | Storing File: res://assets/sprites/heroes/kira_sheet.png.import[39m[0m
+[   4% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-0f015c563cfa4221dd995aa9edb70c35-cinder_rival.res[39m[0m
+[   5% ] [90m[1msavepack[22m | Storing File: res://scripts/data/encounter_spec.gdc[39m[0m
+[   5% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-7ea4f927781a2a0bc2b0aac76431a01c-cinder_rival.res[39m[0m
+[   6% ] [90m[1msavepack[22m | Storing File: res://scripts/data/unit_spec.gdc[39m[0m
+[   7% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-59f39c2e06faf46a6d857a918447c76c-cinder_rival_frames.res[39m[0m
+[   8% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/cinder_rival_sheet.png-d7bed666f580be64977dd9edb9f5a204.ctex[39m[0m
+[   8% ] [90m[1msavepack[22m | Storing File: res://assets/sprites/units/cinder_rival_sheet.png.import[39m[0m
+[   9% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-60da5ecc67dc8f08b6a4564df52b9b51-ash_monk.res[39m[0m
+[  10% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-50fbe8f6909651f58751fc93f5526ad9-ash_monk.res[39m[0m
+[  10% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-199231ad7f42b080d164c728e657a5d0-ash_monk_frames.res[39m[0m
+[  11% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/ash_monk_sheet.png-7374236b76a55338fbee3a9a54930f02.ctex[39m[0m
+[  11% ] [90m[1msavepack[22m | Storing File: res://assets/sprites/units/ash_monk_sheet.png.import[39m[0m
+[  12% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-ae3c7605e63535ea06036ea291790be7-ash_shogun.res[39m[0m
+[  13% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-9c93d52042cd71ff2abfbd06175a3e50-ash_shogun.res[39m[0m
+[  14% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-e6933b6939a228942a754e5dcd5b4cf0-ash_shogun_frames.res[39m[0m
+[  15% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/ash_shogun_sheet.png-e6755f1390c7cd6d2cef5c0584b77c9b.ctex[39m[0m
+[  15% ] [90m[1msavepack[22m | Storing File: res://assets/sprites/units/ash_shogun_sheet.png.import[39m[0m
+[  15% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-fc6a3f5ef881c5d4c1697b6f2f8814a4-gate_guard.res[39m[0m
+[  16% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-942cac32a733ab9bfe65767f455d51fa-gate_guard.res[39m[0m
+[  17% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-383f2c7b3fadb53b785221a710ea7d19-gate_guard_frames.res[39m[0m
+[  18% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/gate_guard_sheet.png-054b95830095aeb64a8d87d7a238d97c.ctex[39m[0m
+[  18% ] [90m[1msavepack[22m | Storing File: res://assets/sprites/units/gate_guard_sheet.png.import[39m[0m
+[  19% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-a992ce625bb1b449a73bf2e9478649c1-twin_cut_retainer.res[39m[0m
+[  20% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-f1cd4fa9b85170ad319b6948f0e18dea-twin_cut_retainer.res[39m[0m
+[  20% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-f4b02bdbe1cbf16cc672af23ffc639fe-twin_cut_retainer_frames.res[39m[0m
+[  21% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/twin_cut_retainer_sheet.png-3eba83a076b7adfe9bb84175ffc91231.ctex[39m[0m
+[  21% ] [90m[1msavepack[22m | Storing File: res://assets/sprites/units/twin_cut_retainer_sheet.png.import[39m[0m
+[  22% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-260d1b415ad1d39c1b580eb2a11f1b82-moonlit_master.res[39m[0m
+[  23% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-78178c06750743bcbe5b013cd14a3c5c-moonlit_master.res[39m[0m
+[  24% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-cd2cf65b825e7b31c97c067f381af43e-moonlit_master_frames.res[39m[0m
+[  24% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/moonlit_master_sheet.png-5ba215b0fcddf128ecb523f9dd01f9cf.ctex[39m[0m
+[  24% ] [90m[1msavepack[22m | Storing File: res://assets/sprites/units/moonlit_master_sheet.png.import[39m[0m
+[  25% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-8a09ae5667d77731da54ec89320e4f76-earth_sentinel.res[39m[0m
+[  26% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-24ed5bd50e76a17506751c5579d925d8-earth_sentinel.res[39m[0m
+[  27% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-43d9e04bf83b0c8f87368558ae2272eb-earth_sentinel_frames.res[39m[0m
+[  28% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/earth_sentinel_sheet.png-52518de94268c601b51f908c2b4b8312.ctex[39m[0m
+[  28% ] [90m[1msavepack[22m | Storing File: res://assets/sprites/units/earth_sentinel_sheet.png.import[39m[0m
+[  29% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-09192ff8eac083398e055aca7cc326b3-iron_vanguard.res[39m[0m
+[  29% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-baefdbb769db626e165b4dcec0060413-iron_vanguard.res[39m[0m
+[  30% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-d0f4e3366fb18ee7b88c4e83db33152b-iron_vanguard_frames.res[39m[0m
+[  31% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/iron_vanguard_sheet.png-67afa23b705bf676fbad6f5ec35dafbe.ctex[39m[0m
+[  31% ] [90m[1msavepack[22m | Storing File: res://assets/sprites/units/iron_vanguard_sheet.png.import[39m[0m
+[  32% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-d11428bc4841558ee8a7edcaa653554f-mountain_regent.res[39m[0m
+[  33% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-a30efbf285d28535f6e1870570e88686-mountain_regent.res[39m[0m
+[  33% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-bd93289dd5e8f842239744f01bd8c01e-mountain_regent_frames.res[39m[0m
+[  33% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/mountain_regent_sheet.png-7a211888776ed976e4c3ca69998108da.ctex[39m[0m
+[  33% ] [90m[1msavepack[22m | Storing File: res://assets/sprites/units/mountain_regent_sheet.png.import[39m[0m
+[  34% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-dafbd0d870de14b759d6169de27a01bd-gale_assassin.res[39m[0m
+[  35% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-6aa744a0507fc117691333fa28163dda-gale_assassin.res[39m[0m
+[  36% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-b5ed9e0e86a44163463a6a901854a1c5-gale_assassin_frames.res[39m[0m
+[  37% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/gale_assassin_sheet.png-e694af6e2bb8941994037843cd484c89.ctex[39m[0m
+[  37% ] [90m[1msavepack[22m | Storing File: res://assets/sprites/units/gale_assassin_sheet.png.import[39m[0m
+[  38% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-5fadb964914211b9a069bb47afe6f18c-coast_ronin.res[39m[0m
+[  38% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-14cf9810dd210c763ced42eddff1e72a-coast_ronin.res[39m[0m
+[  39% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-1c4de448c408548d416344fc7d4c4d80-coast_ronin_frames.res[39m[0m
+[  40% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/coast_ronin_sheet.png-d55db2ebc328afcf3f72dd997df24ce1.ctex[39m[0m
+[  40% ] [90m[1msavepack[22m | Storing File: res://assets/sprites/units/coast_ronin_sheet.png.import[39m[0m
+[  41% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-812b3316f049aa3b26aa40a7a5e5bed2-tempest_sovereign.res[39m[0m
+[  42% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-598ef399611b1d814dcb51f94cc177d3-tempest_sovereign.res[39m[0m
+[  42% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-ac2acc4f2ef1819af44fdc439547ea3d-tempest_sovereign_frames.res[39m[0m
+[  43% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/tempest_sovereign_sheet.png-2d0211cdabcff5344ac846fed14a6818.ctex[39m[0m
+[  43% ] [90m[1msavepack[22m | Storing File: res://assets/sprites/units/tempest_sovereign_sheet.png.import[39m[0m
+[  44% ] [90m[1msavepack[22m | Storing File: res://scripts/area_panel.gdc[39m[0m
+[  45% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-fbac1f1fffa630aeb99edb82f9b7cfaf-gale.res[39m[0m
+[  46% ] [90m[1msavepack[22m | Storing File: res://scripts/data/weapon_spec.gdc[39m[0m
+[  47% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-321c32c29530faee384f93c4a190ae48-tide.res[39m[0m
+[  47% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-77cc925d8c0289e0eac663703d20f429-cinder.res[39m[0m
+[  48% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-98c8c93b60007808401cb8e6dde1226b-stone.res[39m[0m
+[  49% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-4d242070922f23db095b614a324a2e9a-dawn.res[39m[0m
+[  50% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-8675f8922b7fff86a309a7f77e7457b1-moon.res[39m[0m
+[  51% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-3d5045fbd22109e329cd96796ceb5b9e-water_frames.res[39m[0m
+[  52% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/water_sheet.png-724d86263edacceae2ffc1bf527b801c.ctex[39m[0m
+[  52% ] [90m[1msavepack[22m | Storing File: res://assets/sprites/elements/water_sheet.png.import[39m[0m
+[  52% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-663d784e99b6fe6e0e8720ed34ddb441-fire_frames.res[39m[0m
+[  53% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/fire_sheet.png-41684e2d181421f2462e708cc96132a7.ctex[39m[0m
+[  53% ] [90m[1msavepack[22m | Storing File: res://assets/sprites/elements/fire_sheet.png.import[39m[0m
+[  54% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-fe22ae3ccb340d5875cf147e9c0d578f-earth_frames.res[39m[0m
+[  55% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/earth_sheet.png-eefadf16f48d8d0581f852b1d8f9c100.ctex[39m[0m
+[  55% ] [90m[1msavepack[22m | Storing File: res://assets/sprites/elements/earth_sheet.png.import[39m[0m
+[  56% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-9a577ef0568bd33edd8099ddaefe2e40-wind_frames.res[39m[0m
+[  57% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/wind_sheet.png-6bdff4d82361518950a74144a8146c1b.ctex[39m[0m
+[  57% ] [90m[1msavepack[22m | Storing File: res://assets/sprites/elements/wind_sheet.png.import[39m[0m
+[  57% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-86cc843335cdaca4ff35e27b6517b7df-fire_rival.res[39m[0m
+[  58% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-6ed162d3671e2b45b501c3fc6750dbf9-earth_sentinel.res[39m[0m
+[  59% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-81975507624598d081adeba5e81d849d-wind_assassin.res[39m[0m
+[  60% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-cb8de59126ca54d97e417d29df4363d0-ember_monk.res[39m[0m
+[  61% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-f9edb75a75ae157f5afacf6b23cd565d-mixed_elite.res[39m[0m
+[  61% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-33bfc284bb53c641a359272eba4a4f2d-combat_fx_frames.res[39m[0m
+[  62% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/combat_fx_sheet.png-f8a2f28bc23b67cb2010d0ac33bd73ab.ctex[39m[0m
+[  62% ] [90m[1msavepack[22m | Storing File: res://assets/sprites/moonlit_dojo/combat_fx_sheet.png.import[39m[0m
+[  63% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-ed01b486b8d3c1ae65a3c848e1a8bb52-dojo_backdrops_frames.res[39m[0m
+[  64% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/dojo_backdrops_sheet.png-26e4076c7df84a3750ef8d6d7aef8757.ctex[39m[0m
+[  64% ] [90m[1msavepack[22m | Storing File: res://assets/sprites/moonlit_dojo/dojo_backdrops_sheet.png.import[39m[0m
+[  65% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-ab483fcb64d70c0320b021e87e1ced40-dojo_icons_frames.res[39m[0m
+[  66% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/dojo_icons_sheet.png-a56728c085580460e0d7c9b128544424.ctex[39m[0m
+[  66% ] [90m[1msavepack[22m | Storing File: res://assets/sprites/moonlit_dojo/dojo_icons_sheet.png.import[39m[0m
+[  66% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-f6d138861716e1a3bc80fe69b6cbf95e-dojo_props_frames.res[39m[0m
+[  66% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/dojo_props_sheet.png-4707d3a64e720f30ddd3e7a16a5cffa5.ctex[39m[0m
+[  66% ] [90m[1msavepack[22m | Storing File: res://assets/sprites/moonlit_dojo/dojo_props_sheet.png.import[39m[0m
+[  67% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-55a79f6133412f1110b9dd90d3eb77c9-ninja_support_frames.res[39m[0m
+[  68% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/ninja_support_sheet.png-d1d16779a1093996f2ad6a0367c0509b.ctex[39m[0m
+[  68% ] [90m[1msavepack[22m | Storing File: res://assets/sprites/moonlit_dojo/ninja_support_sheet.png.import[39m[0m
+[  69% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-8bdb33bbb6625ace453debd6337e5c00-samurai_support_frames.res[39m[0m
+[  70% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/samurai_support_sheet.png-bd3af7b97e5e7b3ccea5228addb8dc6c.ctex[39m[0m
+[  70% ] [90m[1msavepack[22m | Storing File: res://assets/sprites/moonlit_dojo/samurai_support_sheet.png.import[39m[0m
+[  70% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-82721361d4a978eabbdbfdbf7434375c-ninja_frames.res[39m[0m
+[  71% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/ninja_attack_sheet.png-727d4386a790e9e4a3236f0108dd2b21.ctex[39m[0m
+[  71% ] [90m[1msavepack[22m | Storing File: res://assets/sprites/ninja_attack_sheet.png.import[39m[0m
+[  72% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-ee6311b8a42dd9e390aab14e83916be6-samurai_frames.res[39m[0m
+[  73% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/samurai_attack_sheet.png-c2142a20ccc3e6fa6279933d6e4d2c1b.ctex[39m[0m
+[  73% ] [90m[1msavepack[22m | Storing File: res://assets/sprites/samurai_attack_sheet.png.import[39m[0m
+[  74% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-808ba440873ba9f7bbb4c3a39f70ed73-courtyard_retainer.res[39m[0m
+[  75% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-5a44fc42020fd94e3d0764e9aa7c0b6c-dojo_master.res[39m[0m
+[  75% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-04e52c00ae8c5daad8fa6d31d8e1c870-gate_guard.res[39m[0m
+[  76% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-a4de5e1f3ea5bccc0e835cc4a2e40ae5-arena.scn[39m[0m
+[  77% ] [90m[1msavepack[22m | Storing File: res://scripts/arena_view.gdc[39m[0m
+[  78% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-ead7262c2c1a15c79d999465febfa3c5-fighter.scn[39m[0m
+[  79% ] [90m[1msavepack[22m | Storing File: res://scripts/fighter_view.gdc[39m[0m
+[  79% ] [90m[1msavepack[22m | Storing File: res://scripts/effects_view.gdc[39m[0m
+[  80% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-5d98a3c8c3e2b122bb56851abf05577f-duel.scn[39m[0m
+[  81% ] [90m[1msavepack[22m | Storing File: res://scripts/duel.gdc[39m[0m
+[  82% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-38bf74ff262409a94a41206b2b776d33-hud.scn[39m[0m
+[  83% ] [90m[1msavepack[22m | Storing File: res://scripts/hud.gdc[39m[0m
+[  84% ] [90m[1msavepack[22m | Storing File: res://scripts/touch_action.gdc[39m[0m
+[  84% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-f5754dae13bdfec22c62c4085d4e122d-run_modal.scn[39m[0m
+[  85% ] [90m[1msavepack[22m | Storing File: res://scripts/run_modal.gdc[39m[0m
+[  86% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-c6e2b2a8aa0cc68a76c08aabc74ff2d6-route.scn[39m[0m
+[  87% ] [90m[1msavepack[22m | Storing File: res://scripts/journey_panel.gdc[39m[0m
+[  88% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/route_sheet.png-8d5cec1673b94339e23e857f7c184c15.ctex[39m[0m
+[  88% ] [90m[1msavepack[22m | Storing File: res://assets/sprites/journey/route_sheet.png.import[39m[0m
+[  89% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-7b892c789a9b2a3d077fa7177209d1c9-shrine.scn[39m[0m
+[  89% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/shrine_sheet.png-fe26558c775fc24af12934c67a6a62ab.ctex[39m[0m
+[  89% ] [90m[1msavepack[22m | Storing File: res://assets/sprites/journey/shrine_sheet.png.import[39m[0m
+[  90% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-8c10415ab9b112c2853e3308780ae45e-reveal.scn[39m[0m
+[  91% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/reveal_sheet.png-86d3ece774b98e2dcd155beb1aac59db.ctex[39m[0m
+[  91% ] [90m[1msavepack[22m | Storing File: res://assets/sprites/journey/reveal_sheet.png.import[39m[0m
+[  92% ] [90m[1msavepack[22m | Storing File: res://scripts/browser_lifecycle.gdc[39m[0m
+[  93% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-9a6adda577fe532429f54eeea7f9c564-duel_theme.res[39m[0m
+[  94% ] [90m[1msavepack[22m | Storing File: res://scripts/combat_event.gdc[39m[0m
+[  94% ] [90m[1msavepack[22m | Storing File: res://scripts/combat_model.gdc[39m[0m
+[  95% ] [90m[1msavepack[22m | Storing File: res://scripts/data/element.gdc[39m[0m
+[  96% ] [90m[1msavepack[22m | Storing File: res://scripts/frame_playback.gdc[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://scripts/layout_helper.gdc[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://scripts/run_model.gdc[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/heroes/kira.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://scripts/data/hero_spec.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://assets/frames/heroes/kira_frames.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/encounters/areas/cinder_rival.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://scripts/data/encounter_spec.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/units/cinder_rival.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://scripts/data/unit_spec.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://assets/frames/units/cinder_rival_frames.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/encounters/areas/ash_monk.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/units/ash_monk.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://assets/frames/units/ash_monk_frames.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/encounters/areas/ash_shogun.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/units/ash_shogun.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://assets/frames/units/ash_shogun_frames.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/encounters/areas/gate_guard.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/units/gate_guard.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://assets/frames/units/gate_guard_frames.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/encounters/areas/twin_cut_retainer.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/units/twin_cut_retainer.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://assets/frames/units/twin_cut_retainer_frames.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/encounters/areas/moonlit_master.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/units/moonlit_master.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://assets/frames/units/moonlit_master_frames.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/encounters/areas/earth_sentinel.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/units/earth_sentinel.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://assets/frames/units/earth_sentinel_frames.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/encounters/areas/iron_vanguard.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/units/iron_vanguard.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://assets/frames/units/iron_vanguard_frames.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/encounters/areas/mountain_regent.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/units/mountain_regent.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://assets/frames/units/mountain_regent_frames.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/encounters/areas/gale_assassin.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/units/gale_assassin.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://assets/frames/units/gale_assassin_frames.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/encounters/areas/coast_ronin.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/units/coast_ronin.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://assets/frames/units/coast_ronin_frames.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/encounters/areas/tempest_sovereign.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/units/tempest_sovereign.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://assets/frames/units/tempest_sovereign_frames.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://scripts/area_panel.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/weapons/gale.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://scripts/data/weapon_spec.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/weapons/tide.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/weapons/cinder.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/weapons/stone.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/weapons/dawn.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/weapons/moon.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://assets/frames/elements/water_frames.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://assets/frames/elements/fire_frames.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://assets/frames/elements/earth_frames.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://assets/frames/elements/wind_frames.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/encounters/fire_rival.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/encounters/earth_sentinel.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/encounters/wind_assassin.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/encounters/ember_monk.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/encounters/mixed_elite.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://assets/frames/moonlit_dojo/combat_fx_frames.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://assets/frames/moonlit_dojo/dojo_backdrops_frames.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://assets/frames/moonlit_dojo/dojo_icons_frames.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://assets/frames/moonlit_dojo/dojo_props_frames.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://assets/frames/moonlit_dojo/ninja_support_frames.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://assets/frames/moonlit_dojo/samurai_support_frames.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://assets/frames/ninja_frames.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://assets/frames/samurai_frames.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/encounters/courtyard_retainer.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/encounters/dojo_master.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://data/encounters/gate_guard.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://scenes/arena.tscn.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://scripts/arena_view.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://scenes/fighter.tscn.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://scripts/fighter_view.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://scripts/effects_view.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://scenes/duel.tscn.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://scripts/duel.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://scenes/hud.tscn.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://scripts/hud.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://scripts/touch_action.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://scenes/run_modal.tscn.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://scripts/run_modal.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://scenes/route.tscn.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://scripts/journey_panel.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://scenes/shrine.tscn.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://scenes/reveal.tscn.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://scripts/browser_lifecycle.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://assets/ui/duel_theme.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://scripts/combat_event.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://scripts/combat_model.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://scripts/data/element.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://scripts/frame_playback.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://scripts/layout_helper.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://scripts/run_model.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://.godot/global_script_class_cache.cfg[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://.godot/uid_cache.bin[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://project.binary[39m[0m
+[92m[ DONE ][39m [1msavepack[22m
+[0m
+ERROR: Condition "_sock == -1" is true. Returning: FAILED
+   at: open (drivers/unix/net_socket_unix.cpp:267)
+ERROR: Condition "err != OK" is true. Returning: ERR_CANT_CREATE
+   at: listen (core/io/tcp_server.cpp:57)
+Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org
+
+Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org
+
+PASS exported-pack complete eight-encounter run, nineteen effective attacks, eleven varied replies, all effect atlases and typed elements loaded
+PASS exported companion spec, four imported frames, recruitment and later combat projection
+PASS exported-pack area map, twelve nodes, four bosses, loot and technique full clear
+CREDITS.md: 6,780 bytes; gzip level 9: 2,780 bytes
+THIRD_PARTY_NOTICES.txt: 107,348 bytes; gzip level 9: 28,655 bytes
+index.audio.position.worklet.js: 2,973 bytes; gzip level 9: 1,161 bytes
+index.audio.worklet.js: 7,298 bytes; gzip level 9: 2,194 bytes
+index.html: 7,280 bytes; gzip level 9: 2,789 bytes
+index.js: 305,185 bytes; gzip level 9: 77,052 bytes
+index.pck: 206,960 bytes; gzip level 9: 91,889 bytes
+index.png: 21,443 bytes; gzip level 9: 19,328 bytes
+index.wasm: 38,034,280 bytes; gzip level 9: 9,237,412 bytes
+PASS single-threaded bundle, 245 pack entries; 38,699,547 raw bytes / 9,463,260 gzip bytes
+PASS all 12 unit specs, encounters, SpriteFrames and imported atlases in release pack
+PASS companion spec, SpriteFrames, PNG import, compressed texture and typed script in release pack
+Verification complete. Logs: build/*.log

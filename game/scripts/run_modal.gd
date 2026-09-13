@@ -19,8 +19,11 @@ func present(heading: String, instructions: String, primary: String, choices: Ar
 	if $Panel.size != Vector2(350,326): $Panel.set_deferred("size", Vector2(350,326))
 
 func present_journey(run: RunModel, time: float, paused: bool) -> void:
+	$RecruitPortrait.visible = visible and not paused and run.state == RunModel.State.RECRUIT
+	if $RecruitPortrait.visible:
+		preload("res://scripts/frame_playback.gd").show_frame($RecruitPortrait, run.COMPANION.sprite_frames, &"support", time)
 	for panel in [$Route, $Shrine, $Reveal]:
-		panel.visible = visible and not paused and panel.name == ("Shrine" if run.state == RunModel.State.INTERMISSION else ("Reveal" if run.state == RunModel.State.CLEARED else "Route"))
+		panel.visible = visible and not paused and run.state != RunModel.State.RECRUIT and panel.name == ("Shrine" if run.state == RunModel.State.INTERMISSION else ("Reveal" if run.state == RunModel.State.CLEARED else "Route"))
 		if panel.visible:
 			# Route frames depict unlocked gates; only shrine/reveal animate.
 			panel.present(run.journey_text(), mini(2, run.encounter_index / 3) * 0.3 if panel == $Route else time)

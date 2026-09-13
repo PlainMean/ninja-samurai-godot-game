@@ -73,3 +73,10 @@ for u in units:
     assert any(uid+'_sheet.png-' in p and p.endswith('.ctex') for p in paths), uid
 assert any(p.endswith('scripts/data/unit_spec.gdc') for p in paths)
 print('PASS all 12 unit specs, encounters, SpriteFrames and imported atlases in release pack')
+
+for resource in ['data/heroes/kira.tres','assets/frames/heroes/kira_frames.tres']:
+    assert any(p.endswith(resource) or p.endswith(resource+'.remap') for p in paths), resource
+assert any(p.endswith('assets/sprites/heroes/kira_sheet.png.import') for p in paths)
+assert any('kira_sheet.png-' in p and p.endswith('.ctex') for p in paths)
+assert any(p.endswith('scripts/data/hero_spec.gdc') for p in paths)
+print('PASS companion spec, SpriteFrames, PNG import, compressed texture and typed script in release pack')

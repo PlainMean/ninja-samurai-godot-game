@@ -1,0 +1,1 @@
+PASS Aseprite reopened Kira: four source/export poses, support tag, 100ms timing

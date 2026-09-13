@@ -19,6 +19,7 @@ func run(t) -> void:
 					t.check(m.request_attack(Element.weakness(r.spec().element)),"run weakness accepted")
 					m.step(100)
 				t.check(r.resolve_encounter(m) and not r.resolve_encounter(m),"handoff once")
+				if r.state == RunModel.State.RECRUIT: t.check(r.continue_recruit(), "explicit first-boss join acknowledgment")
 				t.check(r.seals==index+1 and r.hp==m.player_hp,"one seal and final health copied")
 				if index<7:
 					var id: StringName = first if index==0 else (second if index==1 else &"mend")
@@ -40,6 +41,7 @@ func run(t) -> void:
 	m.request_attack(E.WIND)
 	m.step(100)
 	r.resolve_encounter(m)
+	if r.state == RunModel.State.RECRUIT: t.check(r.continue_recruit(), "explicit first-boss join acknowledgment")
 	t.check(not r.can_choose(&"mend") and not r.choose_reward(&"mend") and r.can_choose(&"long_breath"),"full health mend disabled")
 	r.hp=4
 	t.check(r.choose_reward(&"mend") and r.hp==5,"healing clamps")
@@ -62,6 +64,7 @@ func run(t) -> void:
 				t.check(m.request_attack(r.spec().element), "neutral-only run attack")
 				m.step(100)
 				r.resolve_encounter(m)
+				if r.state == RunModel.State.RECRUIT: t.check(r.continue_recruit(), "explicit first-boss join acknowledgment")
 			if index<2: r.choose_reward(reward if index==0 else (&"mend" if reward==&"mend" else &"iron_resolve"))
 		t.check(r.state==R.State.FAILED and r.seals==2 and r.hp==0, "natural neutral-only loss retains two seals")
 		t.check(m.combat_log.size()==3, "combat log bounded to three newest impacts")

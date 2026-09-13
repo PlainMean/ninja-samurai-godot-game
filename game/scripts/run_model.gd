@@ -1,7 +1,7 @@
 class_name RunModel
 extends RefCounted
 const EncounterData = preload("res://scripts/data/encounter_spec.gd")
-enum State { TITLE, INTRO, FIGHT, INTERMISSION, CLEARED, FAILED, MAP, LOADOUT, LOOT, TRAINING }
+enum State { TITLE, INTRO, FIGHT, INTERMISSION, CLEARED, FAILED, MAP, LOADOUT, LOOT, TRAINING, RECRUIT }
 # Load after scripts compile: const preloads can instantiate uncompiled Resource scripts
 # when the main scene (rather than the test runner) is the first entry point.
 static var ENCOUNTERS: Array[EncounterSpec] = [
@@ -13,6 +13,15 @@ static var ENCOUNTERS: Array[EncounterSpec] = [
 	load("res://data/encounters/ember_monk.tres"),
 	load("res://data/encounters/mixed_elite.tres"),
 	load("res://data/encounters/dojo_master.tres")]
+const HeroData = preload("res://scripts/data/hero_spec.gd")
+static var COMPANION: HeroSpec = load("res://data/heroes/kira.tres")
+var first_boss_defeated := false
+var companion_joined := false
+var companion_hp := 0
+var companion_ability: StringName = &"support_strike"
+var companion_level := 0
+var companion_trained := false
+var after_recruit: State = State.TITLE
 var state: State = State.TITLE
 var encounter_index := 0
 var max_hp := 5
@@ -31,6 +40,13 @@ func spec() -> EncounterSpec:
 
 func begin_run() -> bool:
 	if state not in [State.TITLE, State.CLEARED, State.FAILED]: return false
+	first_boss_defeated = false
+	companion_joined = false
+	companion_hp = 0
+	companion_ability = COMPANION.ability_id
+	companion_level = 0
+	companion_trained = false
+	after_recruit = State.TITLE
 	area_mode = false
 	pending_loot = -1
 	current_node = 0
@@ -57,6 +73,7 @@ func begin_encounter(combat: CombatModel) -> bool:
 	if state != State.INTRO: return false
 	combat.configure(spec(), hp, max_hp)
 	if area_mode: combat.configure_weapon(self)
+	combat.configure_companion(self)
 	combat.start()
 	terminal_handoff = false
 	state = State.FIGHT
@@ -67,6 +84,7 @@ func resolve_encounter(combat: CombatModel) -> bool:
 	terminal_handoff = true
 	results.append({"name": spec().display_name, "won": combat.state == CombatModel.Phase.WON, "attacks": combat.attacks, "damage": combat.damage})
 	hp = combat.player_hp
+	companion_hp = combat.companion_hp
 	attacks += combat.attacks
 	damage += combat.damage
 	if combat.state == CombatModel.Phase.LOST:
@@ -79,9 +97,11 @@ func resolve_encounter(combat: CombatModel) -> bool:
 			pending_loot = [0,4,4,1,5,5,2,2,2,3,3,3][current_node]
 			if pending_loot not in inventory: inventory.append(pending_loot)
 			state = State.LOOT
+			_recruit_after_boss()
 			return true
 		reward_claimed = false
 		state = State.CLEARED if seals == ENCOUNTERS.size() else State.INTERMISSION
+		_recruit_after_boss()
 	return true
 
 func rewards() -> Array[StringName]:
@@ -242,6 +262,8 @@ func finish_loot() -> bool:
 	if state != State.LOOT: return false
 	pending_loot = -1
 	hp = max_hp
+	if companion_joined: companion_hp = COMPANION.max_hp
+	companion_trained = false
 	state = State.TRAINING
 	return true
 
@@ -266,3 +288,31 @@ func node_label(node: int) -> String:
 
 func encounter_count() -> int:
 	return 12 if area_mode else ENCOUNTERS.size()
+
+func _recruit_after_boss() -> void:
+	var boss := current_node % 3 == 2 if area_mode else spec().id == &"dojo_master"
+	if first_boss_defeated or not boss: return
+	first_boss_defeated = true
+	companion_joined = true
+	companion_hp = COMPANION.max_hp
+	after_recruit = state
+	state = State.RECRUIT
+
+func continue_recruit() -> bool:
+	if state != State.RECRUIT: return false
+	state = after_recruit
+	return true
+
+func develop_companion(ability: StringName) -> bool:
+	if state != State.TRAINING or not companion_joined or companion_trained: return false
+	if ability not in [&"support_strike", &"ward_pulse", &"upgrade"]: return false
+	if ability == &"upgrade":
+		if companion_level >= 2: return false
+		companion_level += 1
+	else:
+		companion_ability = ability
+	companion_trained = true
+	return true
+
+func companion_ability_name() -> String:
+	return "Ward Pulse" if companion_ability == &"ward_pulse" else "Support Strike"

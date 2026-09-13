@@ -65,3 +65,16 @@ Support tags reuse the authored attack poses.
 - **Gale Assassin** — Sickle assassin; source/runtime basename `gale_assassin`.
 - **Coast Ronin** — Straw-hat ronin; source/runtime basename `coast_ronin`.
 - **Tempest Sovereign** — Storm glaive lord; source/runtime basename `tempest_sovereign`.
+
+## Kira the Tideblade — companion hero (2026-09-13)
+
+Original project pixel art authored and exported exclusively with Aseprite
+Sprite/Image Lua APIs (`art_sources/heroes/generate.lua`). No external art.
+Copper braid, asymmetric teal/ivory armor, split greaves and crescent poleblade;
+WATER tide warden, independently drawn from every player/enemy asset.
+Editable source: `art_sources/heroes/kira.aseprite`; timing: `kira.json`;
+source strip: `kira_sheet.png`; runtime copy: `game/assets/sprites/heroes/`;
+SpriteFrames: `game/assets/frames/heroes/kira_frames.tres`.
+Four 48×48 poses, `support` tag, 100ms each. Palette: `16283e`, `246e78`,
+`51c9bd`, `e5f4d6`, `dcaa87`, `ba7b51`, `34475c`, plus transparency.
+Existing WATER FX are reused; every previous tracked art/frame file is preserved.

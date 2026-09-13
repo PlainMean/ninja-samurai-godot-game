@@ -1,29 +1,27 @@
-# Distinct units complete — 2026-09-12
+# Companion hero implemented — 2026-09-13
 
-Implemented twelve distinct animated enemy unit sets from clean HEAD `9b6b1b7`
-in three bounded, fully gated passes. Every area node references a unique
-UnitSpec and SpriteFrames; all four bosses have distinct silhouettes, larger
-scale and BOSS markers. Names/roles appear on map, HUD, intro and loot.
+Implemented from clean HEAD `e71a0a2` in three bounded passes. Kira the Tideblade
+joins exactly after the first boss victory with a required Continue modal. Her
+WATER support, six HP, defeat/revival, shrine ability choice and level upgrades
+are deterministic model rules. Separate ally sprite, portrait, HUD and events
+project them. Pre-boss rules, map locks, sword damage and elemental cycle remain.
 
-Every raster was authored/exported through Aseprite Sprite/Image APIs. Editable
-sources, JSON metadata, native/runtime PNGs and SpriteFrames are retained in the
-new units directories. All 91 prior tracked art files are byte-preserved.
-Attack has four 100ms poses per unit; support tags reuse those poses. Combat,
-weapons, exact elemental cycle/colors, RNG, rewards and full-clear rules remain.
+Final targeted suite: **96 checks, zero failures**. Full `game/tests/verify.sh`:
+**20,576 checks, zero failures**, plus Web export, exported legacy and four-area
+full clears, companion resource/import selection, native script checks and all
+asset verifiers. Aseprite reproduction/native verifier and independent decoder
+passed four frame hashes, six file hashes, 192 prior-enemy silhouette comparisons
+and preservation of 110 previous art/frame files. `git diff --check` passed.
 
-Final targeted and full `game/tests/verify.sh`: **20,286 checks, zero failures**.
-Independent checks passed 48 source/export frame matches, 60 hashes, 66 silhouette
-pairs and twelve reproducible PNGs. Web export and actual exported legacy/area
-full clears passed. PCK: 195,756 bytes / 237 entries. `git diff --check` passed.
-Artifact: `build/web/index.html` and siblings. No push/deployment.
+Local artifact: `build/web/index.html` and siblings. No push or deployment.
+HEAD remains `e71a0a2`; changes are local and uncommitted. This workspace exposes
+`.git` read-only; no commit is claimed.
 
-All twelve sprite strips were inspected. Native 390×844 capture was blocked by
-unavailable X11/Wayland and Xvfb socket permissions; no game screenshot captured.
-Browser WebGL/HTTP and physical device visual/touch/performance acceptance remain.
+Kira’s strip was inspected directly. Native 390×844 capture was attempted but
+X11 and Wayland were unavailable; zero game captures. Browser WebGL/HTTP,
+physical iOS/Android touch/lifecycle, visual readability and performance remain
+unverified. Headless layout checks cover ally text and bounds at 390×844/390×780.
 
-A local commit was attempted and blocked by read-only `.git/index.lock` (128).
-HEAD remains `9b6b1b7`; verified changes are left unstaged for the parent workspace.
-
-[Plan](.hermes/plans/2026-09-12_210613-distinct-units.md) ·
-[QA and exact roster](qa/mobile/distinct-units/2026-09-12-validation.md) ·
-[Art specification](art_sources/units/ASSET_SPEC.md).
+[Plan](.hermes/plans/2026-09-13_164500-companion-hero.md) ·
+[QA and exact changed files](qa/2026-09-13-companion/validation.md) ·
+[Art specification](art_sources/heroes/ASSET_SPEC.md)
