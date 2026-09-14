@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="EncounterSpec" load_steps=6 format=3]
+[ext_resource type="Script" path="res://scripts/data/encounter_spec.gd" id="1"]
+[ext_resource type="Resource" path="res://data/units/twin_cut_retainer.tres" id="2"]
+[ext_resource type="Resource" path="res://data/encounters/areas/twin_cut_retainer.tres" id="leader"]
+[ext_resource type="Resource" path="res://data/units/cinder_rival.tres" id="u0"]
+[sub_resource type="Resource" id="minion0"]
+script = ExtResource("1")
+id = &"area_0"
+display_name = "Cinder Rival"
+unit = ExtResource("u0")
+element = 1
+enemy_max_hp = 3
+backdrop_tag = &"courtyard"
+banner_tag = &"banner_retainer"
+intro_text = "Fire duelist"
+attack_elements = Array[int]([1, 2, 1])
+attack_names = Array[String](["Guard cut", "Crosswind", "Return cut"])
+
+[resource]
+script = ExtResource("1")
+id = &"area_4"
+display_name = "Twin-cut Retainer"
+unit = ExtResource("2")
+element = 2
+enemy_max_hp = 8
+backdrop_tag = &"courtyard"
+banner_tag = &"banner_retainer"
+intro_text = "Dual blades"
+attack_elements = Array[int]([2, 3, 2])
+attack_names = Array[String](["Guard cut", "Crosswind", "Return cut"])
+party = Array[Resource]([ExtResource("leader"), SubResource("minion0")])

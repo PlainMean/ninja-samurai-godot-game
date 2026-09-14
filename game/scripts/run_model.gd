@@ -15,6 +15,10 @@ static var ENCOUNTERS: Array[EncounterSpec] = [
 	load("res://data/encounters/dojo_master.tres")]
 const HeroData = preload("res://scripts/data/hero_spec.gd")
 static var COMPANION: HeroSpec = load("res://data/heroes/kira.tres")
+var selected_actor: StringName = &"main"
+var auto_companion := true
+var skill_level := 0
+var skill_trained := false
 var first_boss_defeated := false
 var companion_joined := false
 var companion_hp := 0
@@ -40,6 +44,10 @@ func spec() -> EncounterSpec:
 
 func begin_run() -> bool:
 	if state not in [State.TITLE, State.CLEARED, State.FAILED]: return false
+	selected_actor = &"main"
+	auto_companion = true
+	skill_level = 0
+	skill_trained = false
 	first_boss_defeated = false
 	companion_joined = false
 	companion_hp = 0
@@ -74,6 +82,7 @@ func begin_encounter(combat: CombatModel) -> bool:
 	combat.configure(spec(), hp, max_hp)
 	if area_mode: combat.configure_weapon(self)
 	combat.configure_companion(self)
+	combat.configure_actions(self)
 	combat.start()
 	terminal_handoff = false
 	state = State.FIGHT
@@ -171,17 +180,17 @@ func journey_text() -> String:
 # The original eight-seal campaign remains available through begin_run().
 const AREA_ENCOUNTER_PATHS = [
 	"res://data/encounters/areas/cinder_rival.tres",
-	"res://data/encounters/areas/ash_monk.tres",
+	"res://data/encounters/parties/ash_monk.tres",
 	"res://data/encounters/areas/ash_shogun.tres",
 	"res://data/encounters/areas/gate_guard.tres",
-	"res://data/encounters/areas/twin_cut_retainer.tres",
+	"res://data/encounters/parties/twin_cut_retainer.tres",
 	"res://data/encounters/areas/moonlit_master.tres",
 	"res://data/encounters/areas/earth_sentinel.tres",
-	"res://data/encounters/areas/iron_vanguard.tres",
+	"res://data/encounters/parties/iron_vanguard.tres",
 	"res://data/encounters/areas/mountain_regent.tres",
 	"res://data/encounters/areas/gale_assassin.tres",
-	"res://data/encounters/areas/coast_ronin.tres",
-	"res://data/encounters/areas/tempest_sovereign.tres"]
+	"res://data/encounters/parties/coast_ronin.tres",
+	"res://data/encounters/parties/tempest_sovereign.tres"]
 const AREA_NAMES = ["Fire Land", "Water Shrine", "Earth Marches", "Wind Coast"]
 const WeaponData = preload("res://scripts/data/weapon_spec.gd")
 static var WEAPONS: Array[Resource] = [
@@ -264,6 +273,7 @@ func finish_loot() -> bool:
 	hp = max_hp
 	if companion_joined: companion_hp = COMPANION.max_hp
 	companion_trained = false
+	skill_trained = false
 	state = State.TRAINING
 	return true
 
@@ -316,3 +326,9 @@ func develop_companion(ability: StringName) -> bool:
 
 func companion_ability_name() -> String:
 	return "Ward Pulse" if companion_ability == &"ward_pulse" else "Support Strike"
+
+func develop_skills() -> bool:
+	if state != State.TRAINING or skill_trained or skill_level >= 2: return false
+	skill_level += 1
+	skill_trained = true
+	return true

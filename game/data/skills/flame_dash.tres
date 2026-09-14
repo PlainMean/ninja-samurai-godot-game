@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="SkillSpec" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/data/skill_spec.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"flame_dash"
+display_name = "Flame Dash"
+element = 1
+base_damage = 5
+guard = 0
+evade = false
+cooldown = 2
+description = "A focused FIRE dash. Fixed damage + development + advantage."

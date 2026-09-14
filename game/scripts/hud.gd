@@ -36,6 +36,7 @@ func present(s: Dictionary) -> void:
 		add_child(role)
 	set_text(^"UnitRole", s.enemy_role)
 	set_text(^"Progress", ("%s · Node %d · %d/12 seals" % [s.area,(s.encounter-1)%3+1,s.seals]) if s.has("area") and not s.area.is_empty() else "Seals %d / %d · Level %d / %d" % [s.seals, s.total, s.encounter, s.total])
+	$Cue.add_theme_font_size_override("font_size",22)
 	set_text(^"Cue", s.cue)
 	set_text(^"Feedback", s.feedback)
 	$Hint.add_theme_font_size_override("font_size", 16 if s.has("area") and not s.area.is_empty() else 18)

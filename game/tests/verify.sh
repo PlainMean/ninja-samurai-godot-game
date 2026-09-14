@@ -38,11 +38,13 @@ sha256sum -c game/tests/prior_unit_art.sha256
 python3 game/tests/check_moonlit_assets.py
 sha256sum -c game/tests/moonlit_assets.sha256
 run import "$GODOT_BIN" --headless --path game --editor --import
+run native-multi-script-check "$GODOT_BIN" --headless --path game --check-only --script res://tests/native_multi_combat_smoke.gd
 run native-sword-script-check "$GODOT_BIN" --headless --path game --check-only --script res://tests/native_swords_smoke.gd
 run native-script-check "$GODOT_BIN" --headless --path game --check-only --script res://tests/native_visual_smoke.gd
 run native-unit-script-check "$GODOT_BIN" --headless --path game --check-only --script res://tests/native_units_smoke.gd
 run native-companion-script-check "$GODOT_BIN" --headless --path game --check-only --script res://tests/native_companion_smoke.gd
 run sword-tests "$GODOT_BIN" --headless --path game --script res://tests/sword_gate.gd
+run multi-combat-tests "$GODOT_BIN" --headless --path game --script res://tests/multi_combat_gate.gd
 run companion-tests "$GODOT_BIN" --headless --path game --script res://tests/companion_gate.gd
 run native-area-script-check "$GODOT_BIN" --headless --path game --check-only --script res://tests/native_area_smoke.gd
 run tests "$GODOT_BIN" --headless --path game --script res://tests/run_tests.gd
@@ -50,6 +52,7 @@ run smoke "$GODOT_BIN" --headless --path game --quit-after 120
 run export "$GODOT_BIN" --headless --path game --export-release Web ../build/web/index.html
 run export-smoke "$GODOT_BIN" --headless --path build/web --main-pack index.pck --quit-after 120
 run export-run "$GODOT_BIN" --headless --path build/web --main-pack index.pck --script "$PWD/game/tests/export_pack_smoke.gd"
+run export-multi-combat "$GODOT_BIN" --headless --path build/web --main-pack index.pck --script "$PWD/game/tests/export_multi_combat_smoke.gd"
 cp CREDITS.md THIRD_PARTY_NOTICES.txt build/web/
 python3 game/tests/check_web_export.py
 printf 'Verification complete. Logs: build/*.log\n'

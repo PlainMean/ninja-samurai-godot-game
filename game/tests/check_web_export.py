@@ -89,3 +89,34 @@ for name in ['player_attack','player_support']:
  assert any(name+'_sheet.png-' in p and p.endswith('.ctex') for p in paths)
 assert any(p.endswith('scripts/data/weapon_visual_spec.gdc') for p in paths)
 print('PASS four sword resources, imported sheets, body sheets and visual mapping in release pack')
+
+# Combat expansion: roots and every referenced Resource/atlas must survive export.
+expansion_roots = [
+    'scenes/arena.tscn', 'scenes/duel.tscn', 'scenes/hud.tscn',
+    'scripts/combat_controls.gd', 'scripts/data/enemy_state.gd',
+    'scripts/data/skill_spec.gd',
+] + [f'data/skills/{name}.tres' for name in ['flame_dash','stone_guard','windstep']] + [
+    f'data/encounters/parties/{name}.tres' for name in
+    ['ash_monk','twin_cut_retainer','iron_vanguard','coast_ronin','tempest_sovereign']
+]
+visited = set()
+def packed_dependency(relative):
+    if relative in visited:
+        return
+    visited.add(relative)
+    source = root / 'game' / relative
+    assert source.is_file(), relative
+    if relative.endswith('.gd'):
+        assert any(p.endswith(relative[:-3]+'.gdc') for p in paths), relative
+        return
+    if relative.endswith('.png'):
+        assert any(source.name+'-' in p and p.endswith('.ctex') for p in paths), relative
+        return
+    assert any(p.endswith(relative) or p.endswith(relative+'.remap') for p in paths), relative
+    for dependency in re.findall(r'path="res://([^\"]+)"', source.read_text()):
+        packed_dependency(dependency)
+for relative in expansion_roots:
+    packed_dependency(relative)
+assert raw <= 40 * 1024 * 1024, 'Web bundle exceeds 40 MiB raw budget'
+assert compressed <= 10 * 1024 * 1024, 'Web bundle exceeds 10 MiB gzip budget'
+print(f'PASS combat expansion: {len(expansion_roots)} roots / {len(visited)} recursive dependencies; PCK <= 1 MiB, bundle <= 40 MiB raw / 10 MiB gzip')

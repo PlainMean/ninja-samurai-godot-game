@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="SkillSpec" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/data/skill_spec.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"stone_guard"
+display_name = "Stone Guard"
+element = 3
+base_damage = 0
+guard = 3
+evade = false
+cooldown = 2
+description = "Block pool shared across the next enemy replies."

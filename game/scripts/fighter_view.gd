@@ -36,7 +36,7 @@ func present(tag: StringName, time: float, attacking: bool, attack_elapsed: floa
 		var tip: Vector2 = ATTACK_TIPS[pose] if tag == &"attack" else SUPPORT_TIPS[pose]
 		sword.position = sprite.position + hand
 		sword.rotation = (tip - hand).angle() + PI / 2
-	var lunge := 24.0 * (1.0 - absf(attack_elapsed / 0.3 - 1.0)) if attacking else 0.0
+	var lunge := 24.0 * scale.x * (1.0 - absf(attack_elapsed / 0.3 - 1.0)) if attacking else 0.0
 	var retreat := 20.0 * (1.0 - absf(attack_elapsed / 0.3 - 1.0)) if dodging else 0.0
 	position = (home + Vector2(-lunge if faces_left else lunge - retreat, 0)).round()
 	guard = tag == &"guard"

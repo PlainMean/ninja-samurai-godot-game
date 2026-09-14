@@ -56,3 +56,16 @@ offset_left = -27.0
 offset_top = -106.0
 theme_override_font_sizes/font_size = 14
 text = "ALLY"
+
+[node name="EnemySlot1" parent="." instance=ExtResource("2")]
+visible = false
+position = Vector2(267, 450)
+frames = ExtResource("4")
+support = ExtResource("6")
+faces_left = true
+[node name="EnemySlot2" parent="." instance=ExtResource("2")]
+visible = false
+position = Vector2(338, 450)
+frames = ExtResource("4")
+support = ExtResource("6")
+faces_left = true

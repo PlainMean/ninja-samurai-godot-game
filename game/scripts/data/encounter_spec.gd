@@ -10,3 +10,7 @@ extends Resource
 @export var attack_elements: Array[int] = []
 @export var attack_names: Array[String] = []
 @export var unit: UnitSpec
+
+## Empty means the original single enemy; otherwise ordered, non-nested slots.
+# Resource avoids Godot 4.5 self-referential script retention; validated as EncounterSpec at the model boundary.
+@export var party: Array[Resource] = []

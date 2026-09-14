@@ -1,6 +1,6 @@
 extends RefCounted
 static func metrics(available: Vector2) -> Dictionary:
-	var compact := available.y / available.x < 2.0
+	var compact := available.y / available.x <= 2.0
 	var logical_height := 780.0 if compact else 844.0
 	return {"compact": compact, "height": logical_height, "scale": minf(available.x / 390.0, available.y / logical_height)}
 static func apply(screen: Control, available: Vector2) -> void:
@@ -18,3 +18,6 @@ static func apply(screen: Control, available: Vector2) -> void:
 		var journey: Control = screen.get_node("Modal/" + panel)
 		journey.position = Vector2(37.5, 154) if layout.compact else Vector2(20, 170)
 		journey.scale = Vector2(0.9, 0.9) if layout.compact else Vector2.ONE
+
+	if screen.is_node_ready() and screen.get_node_or_null("CombatControls") != null:
+		screen.get_node("CombatControls").present(screen)

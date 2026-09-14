@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="EncounterSpec" load_steps=6 format=3]
+[ext_resource type="Script" path="res://scripts/data/encounter_spec.gd" id="1"]
+[ext_resource type="Resource" path="res://data/units/iron_vanguard.tres" id="2"]
+[ext_resource type="Resource" path="res://data/encounters/areas/iron_vanguard.tres" id="leader"]
+[ext_resource type="Resource" path="res://data/units/gate_guard.tres" id="u0"]
+[sub_resource type="Resource" id="minion0"]
+script = ExtResource("1")
+id = &"area_3"
+display_name = "Gate Guard"
+unit = ExtResource("u0")
+element = 2
+enemy_max_hp = 3
+backdrop_tag = &"gate"
+banner_tag = &"banner_gate"
+intro_text = "Spear guardian"
+attack_elements = Array[int]([2, 3, 2])
+attack_names = Array[String](["Guard cut", "Crosswind", "Return cut"])
+
+[resource]
+script = ExtResource("1")
+id = &"area_7"
+display_name = "Iron Vanguard"
+unit = ExtResource("2")
+element = 3
+enemy_max_hp = 8
+backdrop_tag = &"courtyard"
+banner_tag = &"banner_retainer"
+intro_text = "Hammer vanguard"
+attack_elements = Array[int]([3, 4, 3])
+attack_names = Array[String](["Guard cut", "Crosswind", "Return cut"])
+party = Array[Resource]([ExtResource("leader"), SubResource("minion0")])

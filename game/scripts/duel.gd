@@ -20,6 +20,8 @@ var feedback_time := 0.0
 var feedback_text := ""
 var hurt_player := -1.0
 var hurt_enemy := -1.0
+var hurt_slot := 0
+@onready var combat_controls = $CombatControls
 @onready var companion = $Arena/Companion
 @onready var ninja = $Arena/Ninja
 @onready var samurai = $Arena/Samurai
@@ -102,9 +104,10 @@ func _consume_events() -> void:
 				$Arena/Effects.trigger_element(event.element, Vector2(138,386))
 			CombatEvent.Kind.COMPANION_WARD:
 				$Arena/Effects.trigger_element(event.element, Vector2(138,386))
-			CombatEvent.Kind.PLAYER_HIT, CombatEvent.Kind.COMPANION_HIT:
+			CombatEvent.Kind.PLAYER_HIT, CombatEvent.Kind.COMPANION_HIT, CombatEvent.Kind.KIRA_ATTACK, CombatEvent.Kind.SKILL:
 				hurt_enemy = presentation_time
-				$Arena/Effects.trigger_element(event.element, Vector2(252,386))
+				hurt_slot = event.target_slot
+				$Arena/Effects.trigger_element(event.element, (enemy_views()[event.target_slot].position + Vector2(0,-34)) if model.enemies.size() > 1 else Vector2(252,386))
 			CombatEvent.Kind.WON, CombatEvent.Kind.LOST: terminal_time = 0.0
 		feedback_time = 0.65
 func _attack(element: Element.Type) -> void:
@@ -112,7 +115,7 @@ func _attack(element: Element.Type) -> void:
 	# cannot become a queued attack when that synchronization reaches PLAYER_TURN.
 	var eligible := not paused and run.state == Run.State.FIGHT and model.state == Combat.Phase.PLAYER_TURN
 	_sync_time()
-	if eligible and not paused and run.state == Run.State.FIGHT: model.request_attack(element)
+	if eligible and not paused and not combat_controls.skills_open and run.state == Run.State.FIGHT: model.request_attack(element)
 	_refresh()
 func _clear_presentation() -> void:
 	terminal_time = 0.0
@@ -151,41 +154,50 @@ func _title() -> void:
 	run.return_to_title()
 	paused = false
 	model.reset()
+	_layout()
 	_cancel_pointers()
 	_clear_presentation()
 	_refresh()
 func pause_duel() -> void:
 	_cancel_pointers()
 	if paused or run.state != Run.State.FIGHT: return
+	combat_controls.close_skills()
 	paused = true
 	model.prepare_resume()
 	model.drain_events()
 	_refresh()
 func _cancel_pointers() -> void:
+	if is_instance_valid(combat_controls): combat_controls.cancel_pointers()
 	for button in attack_buttons + [pause_button,primary_button,choice_a,choice_b,secondary_button]:
 		if is_instance_valid(button): button.cancel_pointer()
 func snapshot() -> Dictionary:
+	var target_spec: EncounterSpec = model.spec if run.state == Run.State.FIGHT else run.spec()
 	var cue: String = {Combat.Phase.READY: "Choose your element", Combat.Phase.PLAYER_TURN: "PLAYER TURN", Combat.Phase.PLAYER_ATTACK: "Resolving your attack", Combat.Phase.ENEMY_TURN: "ENEMY TURN", Combat.Phase.ENEMY_ATTACK: "Resolving %s attack" % Element.label(model.enemy_intent().element), Combat.Phase.WON: "Seal earned", Combat.Phase.LOST: "Run ended"}[model.state]
 	var selected := Element.label(model.selected_element)
 	var result := "Choose FIRE, WATER, EARTH or WIND"
 	if model.selected_element != Element.Type.NONE:
-		result = "%s · %s · %d damage" % [selected, Element.Matchup.keys()[Element.resolve(model.selected_element, run.spec().element)], Element.damage_for(model.selected_element, run.spec().element)]
+		result = "%s · %s · %d damage" % [selected, Element.Matchup.keys()[Element.resolve(model.selected_element, target_spec.element)], Element.damage_for(model.selected_element, target_spec.element)]
 	return {"weapon": run.equipped_weapon(), "levels": run.techniques if run.area_mode else [1,1,1,1,1], "hp": model.player_hp if run.state == Run.State.FIGHT else run.hp, "max_hp": run.max_hp,
-		"enemy_hp": model.enemy_hp, "enemy_max_hp": run.spec().enemy_max_hp, "enemy_role": run.spec().unit.role if run.spec().unit != null else "", "enemy_name": ("BOSS · " if run.area_mode and run.current_node % 3 == 2 else "") + run.spec().display_name,
+		"enemy_hp": model.enemy_hp, "enemy_max_hp": target_spec.enemy_max_hp, "enemy_role": target_spec.unit.role if target_spec.unit != null else "", "enemy_name": ("BOSS · " if run.area_mode and run.current_node % 3 == 2 else "") + target_spec.display_name,
 		"total": 12 if run.area_mode else run.encounter_count(), "seals": run.seals, "encounter": run.encounter_index + 1, "cue": cue,
 		"feedback": "\n".join(model.combat_log), "technique": ("%s · %s\nRoll 1–4 · same +1–2\nTechnique +0–2 · matchup +0–1" % [run.equipped_weapon().display_name, Element.label(run.equipped_weapon().element)]) if run.area_mode else "Selected: %s\n%s" % [selected, result],
-		"turn": model.turn_number, "area": run.AREA_NAMES[run.current_node / 3] if run.area_mode else "", "enemy_element": Element.label(run.spec().element), "affinity": Element.label(model.player_affinity), "weakness": Element.label(Element.weakness(run.spec().element)),
+		"turn": model.turn_number, "area": run.AREA_NAMES[run.current_node / 3] if run.area_mode else "", "enemy_element": Element.label(target_spec.element), "affinity": Element.label(model.player_affinity), "weakness": Element.label(Element.weakness(target_spec.element)),
 		"intent": model.enemy_intent(), "forecasts": [model.attack_forecast(Element.Type.FIRE), model.attack_forecast(Element.Type.WATER), model.attack_forecast(Element.Type.EARTH), model.attack_forecast(Element.Type.WIND)]}
 func _refresh() -> void:
 	var show_modal := paused or run.state != Run.State.FIGHT
+	if show_modal: combat_controls.close_skills()
 	if modal.visible != show_modal: _cancel_pointers()
 	modal.visible = show_modal
 	for button in attack_buttons:
-		button.disabled = show_modal or model.state != Combat.Phase.PLAYER_TURN or (run.area_mode and run.techniques[attack_buttons.find(button)+1] == 0)
+		button.disabled = show_modal or combat_controls.skills_open or model.selected_actor == &"kira" or model.state != Combat.Phase.PLAYER_TURN or (run.area_mode and run.techniques[attack_buttons.find(button)+1] == 0)
 	pause_button.disabled = show_modal
+	hud.get_node("Actions").visible = true
+	hud.get_node("ElementInfo").visible = true
+	hud.get_node("Intent").visible = true
 	hud.present(snapshot())
 	$Arena.present(run.spec(), presentation_time)
 	_present_fighters()
+	combat_controls.present(self)
 	var heading := ""
 	var instructions := ""
 	var primary := ""
@@ -198,7 +210,7 @@ func _refresh() -> void:
 		match run.state:
 			Run.State.RECRUIT:
 				heading = "Kira has joined!"
-				instructions = "Kira the Tideblade · WATER\nTide warden · 6 HP\nHer crescent blade strikes after you.\nFoe replies cost her 1 HP.\nShrines revive and develop her."
+				instructions = "Kira the Tideblade · WATER\nTide warden · 6 HP\nChoose MAIN HERO or KIRA.\nTide Arc: WATER · 3–4 damage.\nAuto support is optional; replies cost 1 HP.\nShrines revive and develop her."
 				primary = "Continue with Kira"
 			Run.State.TITLE:
 				heading = "Moonlit Dojo" if area_campaign else "Eight Seals"
@@ -210,6 +222,7 @@ func _refresh() -> void:
 				instructions = "%d / %d · %s / weak %s\n%s" % [run.encounter_index + 1, run.encounter_count(), Element.label(run.spec().element), Element.label(Element.weakness(run.spec().element)), run.spec().intro_text]
 				if run.area_mode: instructions = "%s · Node %d\n%s · weak %s · %d HP\nNext: victory loot → shrine → map" % [run.AREA_NAMES[run.current_node / 3],run.current_node % 3 + 1,Element.label(run.spec().element),Element.label(Element.weakness(run.spec().element)),run.spec().enemy_max_hp]
 				if run.spec().unit != null: instructions += "\n" + run.spec().unit.role
+				if not run.spec().party.is_empty(): instructions += "\n%d enemies · choose a target" % run.spec().party.size()
 				primary = "Fight"
 			Run.State.INTERMISSION:
 				heading = "Choose a technique"
@@ -231,18 +244,33 @@ func _present_fighters() -> void:
 	companion.visible = run.companion_joined
 	$HUD/CompanionStatus.visible = run.companion_joined and run.state == Run.State.FIGHT
 	$HUD/CompanionStatus.text = model.companion_status()
-	$HUD/Feedback.add_theme_font_size_override("font_size", 14 if run.companion_joined else 16)
+	$HUD/Feedback.add_theme_font_size_override("font_size", 11 if run.area_mode else (14 if run.companion_joined else 16))
 	if companion.visible:
 		var fallen: bool = (model.companion_hp if run.state == Run.State.FIGHT else run.companion_hp) == 0
 		companion.modulate = Color(0.5,0.5,0.6,1) if fallen else Color.WHITE
 		companion.get_node("Visual").rotation = -0.5 if fallen else 0.0
 		preload("res://scripts/frame_playback.gd").show_frame(companion.get_node("Visual/Sprite"), run.COMPANION.sprite_frames, &"support", model.elapsed if model.state == Combat.Phase.PLAYER_ATTACK else 0.0)
-	samurai.configure_unit(run.spec().unit)
-	for fighter in [ninja,samurai]:
+	var grouped := run.state == Run.State.FIGHT and model.enemies.size() > 1
+	ninja.scale = Vector2.ONE * (0.65 if grouped else 1.0)
+	ninja.home = Vector2(112 if grouped else 131,450)
+	companion.scale = Vector2.ONE * (0.6 if grouped else 1.0)
+	companion.position.x = 37 if grouped else 57
+	var views := enemy_views()
+	for slot in range(3):
+		var fighter = views[slot]
+		fighter.visible = slot == 0 or (grouped and slot < model.enemies.size())
+		if not fighter.visible: continue
+		var source: EncounterSpec = model.enemies[slot].spec if grouped else run.spec()
+		fighter.configure_unit(source.unit)
+		fighter.scale = Vector2.ONE * (1.2 / source.unit.visual_scale if grouped else 1.0)
+		fighter.home = Vector2([196,267,338][slot] if grouped else 259,450)
+	for fighter in [ninja] + views:
+		if not fighter.visible: continue
 		var player: bool = fighter == ninja
-		var attack: bool = model.state == (Combat.Phase.PLAYER_ATTACK if player else Combat.Phase.ENEMY_ATTACK)
-		var defeated: bool = model.state == (Combat.Phase.LOST if player else Combat.Phase.WON)
-		var hurt: float = hurt_player if player else hurt_enemy
+		var slot := views.find(fighter)
+		var attack: bool = (model.state == Combat.Phase.PLAYER_ATTACK and model.selected_actor == &"main") if player else (model.state == Combat.Phase.ENEMY_ATTACK and model.reply_slot == slot)
+		var defeated: bool = model.state == Combat.Phase.LOST if player else (model.enemies[slot].hp == 0 if run.state == Run.State.FIGHT and slot < model.enemies.size() else model.state == Combat.Phase.WON)
+		var hurt: float = hurt_player if player else (hurt_enemy if hurt_slot == slot else -1.0)
 		var tag := &"idle"
 		var time := presentation_time
 		if defeated:
@@ -256,6 +284,9 @@ func _present_fighters() -> void:
 			time = model.elapsed
 		fighter.present(tag,time,attack,model.elapsed,false)
 
+func enemy_views() -> Array:
+	return [samurai, $Arena/EnemySlot1, $Arena/EnemySlot2]
+
 func _present_area_panel() -> void:
 	if area_panel == null: return
 	var active := run.area_mode and not paused and run.state in [Run.State.LOADOUT, Run.State.MAP, Run.State.LOOT, Run.State.TRAINING]
@@ -264,7 +295,7 @@ func _present_area_panel() -> void:
 	if not active: return
 	for child in modal.get_children():
 		if child != area_panel and child.name != "Scrim": child.visible = false
-	var signature := str([run.state,run.equipped,run.techniques,run.cleared_nodes,run.companion_ability,run.companion_level,run.companion_trained,map_area,starting_sword,inventory_open])
+	var signature := str([run.state,run.equipped,run.techniques,run.cleared_nodes,run.companion_ability,run.companion_level,run.companion_trained,run.skill_level,run.skill_trained,map_area,starting_sword,inventory_open])
 	if signature != area_signature:
 		area_signature = signature
 		area_panel.present(run,map_area,starting_sword,inventory_open)
@@ -284,6 +315,7 @@ func _area_action(id: String, value: int) -> void:
 			run.finish_loot()
 			inventory_open = false
 		"companion": run.develop_companion([&"support_strike", &"ward_pulse", &"upgrade"][value])
+		"skills": run.develop_skills()
 		"train": run.train(value)
 		"title": _title()
 	_refresh()

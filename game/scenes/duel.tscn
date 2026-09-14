@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=8 format=3]
 [ext_resource type="Script" path="res://scripts/duel.gd" id="1"]
 [ext_resource type="PackedScene" path="res://scenes/arena.tscn" id="2"]
 [ext_resource type="PackedScene" path="res://scenes/hud.tscn" id="3"]
 [ext_resource type="PackedScene" path="res://scenes/run_modal.tscn" id="4"]
 [ext_resource type="Script" path="res://scripts/browser_lifecycle.gd" id="5"]
 [ext_resource type="Theme" path="res://assets/ui/duel_theme.tres" id="6"]
+[ext_resource type="Script" path="res://scripts/combat_controls.gd" id="7"]
 [node name="Duel" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -20,6 +21,9 @@ mouse_filter = 2
 color = Color(0.082, 0.086, 0.145, 1)
 [node name="Arena" parent="." instance=ExtResource("2")]
 [node name="HUD" parent="." instance=ExtResource("3")]
+[node name="CombatControls" type="Control" parent="."]
+mouse_filter = 2
+script = ExtResource("7")
 [node name="Modal" parent="." instance=ExtResource("4")]
 [node name="BrowserLifecycle" type="Node" parent="."]
 script = ExtResource("5")

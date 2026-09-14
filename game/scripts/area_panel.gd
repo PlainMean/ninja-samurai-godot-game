@@ -94,7 +94,7 @@ func present(run: RunModel, area: int, sword: int, inventory_open: bool) -> void
    for slot in range(3):
     var n := area * 3 + slot
     var spec := run.area_encounters[n]
-    button("%d. %s%s\n%s · %s\nweak %s · %d HP%s" % [slot+1,"BOSS · " if slot == 2 else "",spec.display_name,spec.unit.role,Element.label(spec.element),Element.label(Element.weakness(spec.element)),spec.enemy_max_hp," · ✓" if n in run.cleared_nodes else ""],"node",n,n in run.next_nodes(),int(spec.element))
+    button("%d. %s%s\n%s · %s\nweak %s · %d HP%s" % [slot+1,"BOSS · " if slot == 2 else "",spec.display_name,spec.unit.role,Element.label(spec.element),Element.label(Element.weakness(spec.element)),spec.enemy_max_hp,(" · %d foes" % spec.party.size() if not spec.party.is_empty() else "") + (" · ✓" if n in run.cleared_nodes else "")],"node",n,n in run.next_nodes(),int(spec.element))
    button("Inventory · switch sword" if not inventory_open else "Close inventory","inventory")
    if inventory_open: inventory(run)
   RunModel.State.LOOT:
@@ -106,6 +106,7 @@ func present(run: RunModel, area: int, sword: int, inventory_open: bool) -> void
   RunModel.State.TRAINING:
    label_text("Shrine of renewal",true)
    label_text("Health restored · %d / %d\nChoose one technique to unlock or develop.\nLevel contributes +0 / +1 / +2 damage." % [run.hp,run.max_hp])
+   button("Develop skills · +%d → +%d" % [run.skill_level,mini(2,run.skill_level+1)],"skills",0,not run.skill_trained and run.skill_level<2)
    if run.companion_joined:
     label_text("Kira · WATER · %d/6 HP\n%s L%d · choose or upgrade once; then train yourself." % [run.companion_hp,run.companion_ability_name(),run.companion_level+1])
     var allies := grid()

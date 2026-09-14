@@ -32,7 +32,7 @@ func run(t) -> void:
      t.check(event.weapon_bonus == 1 + event.roll % 2, "same element parity bonus")
      t.check(event.damage == event.roll + event.weapon_bonus + event.technique_level - 1 + event.matchup_bonus, "additive damage")
      t.check(event.damage >= forecast.min and event.damage <= forecast.max, "forecast encloses actual")
-   c.step(1.25)
+   c.step(1.25 + 0.95 * (c.enemies.size() - 1))
   t.check(c.state == CombatModel.Phase.WON and r.resolve_encounter(c), "balanced full clear victory")
   if r.state == RunModel.State.RECRUIT: t.check(r.continue_recruit(), "explicit first-boss join acknowledgment")
   t.check(r.pending_loot in r.inventory and r.equip_weapon(0), "loot inventory and switch")
@@ -64,7 +64,7 @@ func run(t) -> void:
       for candidate in range(1,5):
        if r.techniques[candidate] > 0 and c.attack_forecast(candidate).min > c.attack_forecast(e).min: e = candidate
       c.request_attack(e)
-      c.step(1.55)
+      c.step(1.55 + 0.95 * (c.enemies.size() - 1))
       strikes += 1
      t.check(c.state == CombatModel.Phase.WON, "all starting builds deterministic victory")
      if c.state != CombatModel.Phase.WON: return

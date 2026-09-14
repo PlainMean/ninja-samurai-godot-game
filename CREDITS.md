@@ -93,3 +93,9 @@ The new player attack/support documents are Aseprite-derived copies of the
 existing credited ninja art, with only weapon-layer visibility disabled. All
 original documents, body cels and prior runtime art are preserved. Kira’s
 previously credited crescent poleblade remains unchanged.
+
+## Multi-hero combat — 2026-09-14
+
+This gameplay/UI expansion reuses the previously credited Kira, twelve unit sets,
+four elemental effects and four equipped sword visuals. It adds no raster artwork
+or third-party assets. All existing sources, strips and SpriteFrames are preserved.

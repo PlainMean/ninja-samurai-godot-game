@@ -1,0 +1,2 @@
+PASS independent baseline comparison: 200 tracked art/source/frame/UI files byte-identical to ce55a48.
+PASS all 74 original test-directory files retained.
